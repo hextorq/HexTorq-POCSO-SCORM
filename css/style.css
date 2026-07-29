@@ -69,6 +69,28 @@ body[data-chapter="certificate"]{--accent:#c9962e;--accent-2:#0fb98b}
 body.fullscreen-mode .sidebar{display:none !important}
 body.fullscreen-mode .stage{max-width:none}
 
+/* ---------- Dark "stern" theme for teaching (info/reveal) screens ---------- */
+body.dark-teach{
+  --bg:#0b1526;
+  --card:#16233b;
+  --text:#eef3fa;
+  --text-mute:#a9b9d1;
+  --border:#2b3c58;
+  --shadow:0 6px 24px rgba(0,0,0,.45);
+}
+body.dark-teach .screen h1,
+body.dark-teach .screen h2,
+body.dark-teach .flip-front .front-text{color:#eef3fa}
+body.dark-teach .chapter-tag{background:rgba(126,196,255,.14);color:#7ec4ff}
+body.dark-teach .icon-hero{color:#7ec4ff}
+body.dark-teach .sidebar{border-right-color:var(--border)}
+body.dark-teach .footer{background:var(--card);border-top-color:var(--border)}
+body.dark-teach .speaker-btn{background:var(--card);border-color:var(--border);color:#7ec4ff}
+body.dark-teach .flip-face{border-color:var(--border)}
+body.dark-teach .flip-back{background:#0f2a24;border-color:var(--accent-2)}
+body.dark-teach .flip-back .back-text{color:#e3f7f0}
+body.dark-teach{transition:background-color .5s ease}
+
 /* ---------- Scroll progress + scroll cue ---------- */
 .scroll-progress{
   position:absolute;left:0;bottom:0;height:3px;width:0%;
@@ -162,7 +184,6 @@ body.wide-screen .layout{max-width:none}
 .flip-front{background:var(--card)}
 .flip-front .front-text{font-weight:600;color:var(--navy)}
 .flip-back{background:#f2fbf8;border-color:var(--accent-2);font-size:.9rem;line-height:1.5;gap:8px}
-.variant-flip .flip-back{transform:rotateY(180deg)}
 .flip-card .tap-hint{margin-top:10px;font-size:.7rem;color:var(--text-mute)}
 
 /* ---------- Sort activity (GSAP Draggable) ---------- */
@@ -206,10 +227,21 @@ body.wide-screen .layout{max-width:none}
 .match-target.filled{border-style:solid;border-color:var(--accent-2);background:#f0fbf7;color:var(--text);font-weight:600}
 @media(max-width:640px){.match-columns{grid-template-columns:1fr}}
 
+/* ---------- Quiz jump-nav (Google-Forms-style question pills) ---------- */
+.quiz-jumpnav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.quiz-nav-pill{
+  width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--card);
+  font-size:.8rem;font-weight:700;color:var(--text-mute);cursor:pointer;transition:all .15s;
+}
+.quiz-nav-pill:hover{border-color:var(--accent)}
+.quiz-nav-pill.nav-answered{border-color:var(--accent);color:var(--accent);background:#eaf3fd}
+.quiz-nav-pill.nav-correct{border-color:var(--accent-2);color:var(--accent-2);background:#f0fbf7}
+.quiz-nav-pill.nav-incorrect{border-color:var(--danger);color:var(--danger);background:#fdf0f0}
+
 /* ---------- Scenario (cinematic) ---------- */
 .scenario-box{
   background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;
-  box-shadow:var(--shadow);position:relative;overflow:hidden;
+  box-shadow:var(--shadow);position:relative;overflow:hidden;scroll-margin-top:96px;
 }
 .scenario-box.mood-tense{background:linear-gradient(135deg,#fff7ea,#ffffff);border-color:#eec06b}
 .scenario-box.mood-safe{background:linear-gradient(135deg,#eaf3fd,#ffffff);border-color:var(--accent)}
@@ -218,6 +250,7 @@ body.wide-screen .layout{max-width:none}
 .scenario-mood-icon svg{width:72px;height:72px}
 .scenario-narration{font-style:italic;color:var(--text-mute);margin-bottom:14px;line-height:1.6;position:relative}
 .scenario-narration .sw{opacity:0;display:inline-block}
+.rw{display:inline-block}
 .scenario-question{font-weight:700;color:var(--navy);margin-bottom:12px;position:relative}
 .choice-btn{
   display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--border);
@@ -253,7 +286,7 @@ body.wide-screen .layout{max-width:none}
 
 /* ---------- Footer ---------- */
 .footer{
-  position:sticky;bottom:0;background:#fff;border-top:1px solid var(--border);
+  position:sticky;bottom:0;z-index:10;background:#fff;border-top:1px solid var(--border);
   padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;
 }
 .footer-msg{font-size:.82rem;color:var(--text-mute);flex:1;text-align:center}

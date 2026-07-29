@@ -172,7 +172,92 @@ function scheduleAutoRead(getElements, btn) {
     const els = typeof getElements === "function" ? getElements() : getElements;
     if (btn) { btn.innerHTML = svgIcon("volumeOff", 18); btn.classList.add("speaking"); }
     Speech.speak(els, () => { if (btn) { btn.innerHTML = svgIcon("volume", 18); btn.classList.remove("speaking"); } });
-  }, 5000);
+  }, 22000);
+}
+
+/* ---------------- Word-by-word GSAP text reveal ---------------- */
+function wordizeForReveal(el) {
+  const text = el.textContent;
+  const words = text.split(" ");
+  el.innerHTML = words.map(w => `<span class="rw">${escapeHtml(w)}</span>`).join(" ");
+  return Array.from(el.querySelectorAll(".rw"));
+}
+function applyWordReveal(paragraphs) {
+  let cumulativeDelay = 0;
+  paragraphs.forEach((p) => {
+    const spans = wordizeForReveal(p);
+    gsap.set(spans, { autoAlpha: 0, y: 8 });
+    gsap.to(spans, { autoAlpha: 1, y: 0, duration: 0.32, stagger: 0.026, ease: "power1.out", delay: cumulativeDelay });
+    cumulativeDelay += spans.length * 0.026 * 0.65 + 0.15;
+  });
+}
+
+/* ---------------- Reveal-card animation variants (10 distinct reveal styles) ---------------- */
+const REVEAL_VARIANTS = ["flip", "flipX", "pop", "slide", "slideUp", "rotateSwap", "zoomSwap", "shutter", "flash", "drop"];
+
+function setRevealVariantRest(variant, front, back, inner) {
+  switch (variant) {
+    case "flip": gsap.set(back, { rotationY: 180 }); break;
+    case "flipX": gsap.set(back, { rotationX: 180 }); break;
+    case "pop": gsap.set(back, { scale: 0.5, autoAlpha: 0 }); break;
+    case "slide": gsap.set(back, { xPercent: 115, autoAlpha: 0 }); break;
+    case "slideUp": gsap.set(back, { yPercent: 115, autoAlpha: 0 }); break;
+    case "rotateSwap": gsap.set(back, { rotation: -20, scale: 0.7, autoAlpha: 0 }); break;
+    case "zoomSwap": gsap.set(back, { scale: 1.7, autoAlpha: 0 }); break;
+    case "shutter": gsap.set(back, { scaleY: 0, autoAlpha: 0 }); break;
+    case "flash": gsap.set(back, { autoAlpha: 0 }); break;
+    case "drop": gsap.set(back, { y: -46, autoAlpha: 0 }); break;
+  }
+}
+
+function playRevealVariant(variant, front, back, inner) {
+  switch (variant) {
+    case "flip":
+      gsap.to(inner, { rotationY: 180, duration: 0.65, ease: "back.out(1.4)" });
+      break;
+    case "flipX":
+      gsap.to(inner, { rotationX: 180, duration: 0.65, ease: "back.out(1.4)" });
+      break;
+    case "pop":
+      gsap.to(front, { scale: 0.6, autoAlpha: 0, duration: 0.28, ease: "power1.in" });
+      gsap.to(back, { scale: 1, autoAlpha: 1, duration: 0.5, delay: 0.14, ease: "back.out(2.2)" });
+      break;
+    case "slide":
+      gsap.to(front, { xPercent: -115, autoAlpha: 0, duration: 0.45, ease: "power2.inOut" });
+      gsap.to(back, { xPercent: 0, autoAlpha: 1, duration: 0.45, ease: "power2.inOut" });
+      break;
+    case "slideUp":
+      gsap.to(front, { yPercent: -115, autoAlpha: 0, duration: 0.45, ease: "power2.inOut" });
+      gsap.to(back, { yPercent: 0, autoAlpha: 1, duration: 0.45, ease: "power2.inOut" });
+      break;
+    case "rotateSwap":
+      gsap.to(front, { rotation: 20, scale: 0.7, autoAlpha: 0, duration: 0.32, ease: "power1.in" });
+      gsap.to(back, { rotation: 0, scale: 1, autoAlpha: 1, duration: 0.5, delay: 0.1, ease: "back.out(1.8)" });
+      break;
+    case "zoomSwap":
+      gsap.to(front, { scale: 0.5, autoAlpha: 0, duration: 0.32, ease: "power1.in" });
+      gsap.to(back, { scale: 1, autoAlpha: 1, duration: 0.45, delay: 0.1, ease: "power2.out" });
+      break;
+    case "shutter":
+      gsap.to(front, { scaleY: 0, autoAlpha: 0, duration: 0.3, ease: "power2.in" });
+      gsap.to(back, { scaleY: 1, autoAlpha: 1, duration: 0.4, delay: 0.15, ease: "power2.out" });
+      break;
+    case "flash":
+      gsap.to(front, { autoAlpha: 0, duration: 0.16, ease: "power1.in" });
+      gsap.to(back, { autoAlpha: 1, duration: 0.22, delay: 0.08, ease: "power1.out" });
+      break;
+    case "drop":
+      gsap.to(front, { y: 40, autoAlpha: 0, duration: 0.3, ease: "power1.in" });
+      gsap.to(back, { y: 0, autoAlpha: 1, duration: 0.5, delay: 0.1, ease: "bounce.out" });
+      break;
+  }
+}
+
+function setRevealVariantDone(variant, front, back, inner) {
+  if (variant === "flip") { gsap.set(inner, { rotationY: 180 }); return; }
+  if (variant === "flipX") { gsap.set(inner, { rotationX: 180 }); return; }
+  gsap.set(front, { autoAlpha: 0 });
+  gsap.set(back, { autoAlpha: 1, scale: 1, x: 0, y: 0, xPercent: 0, yPercent: 0, rotation: 0, scaleY: 1 });
 }
 
 /* ---------------- Read-aloud button ---------------- */
@@ -353,6 +438,7 @@ function render() {
 
   applyChapterTheme(screen);
   document.body.classList.toggle("wide-screen", screen.type === "sort" || screen.type === "match");
+  document.body.classList.toggle("dark-teach", screen.type === "info" || screen.type === "reveal");
 
   switch (screen.type) {
     case "welcome": renderWelcome(screen, wrap); break;
@@ -378,7 +464,7 @@ function renderWelcome(screen, wrap) {
     <div class="welcome-box">
       <div class="icon-hero gsap-stagger">${svgIcon("shield", 56)}</div>
       <h1 class="gsap-stagger" id="welcomeTitle">${screen.title}</h1>
-      <div id="welcomeBody">${screen.body.map((p, i) => `<p class="gsap-stagger" id="wp${i}">${p}</p>`).join("")}</div>
+      <div id="welcomeBody">${screen.body.map((p, i) => `<p id="wp${i}">${p}</p>`).join("")}</div>
       <input id="nameInput" class="name-input gsap-stagger" placeholder="Type your name to begin" value="${escapeHtml(state.learnerName || "")}" />
       <div class="meta-row gsap-stagger">
         <span class="meta-pill">${svgIcon("clock", 14)} ~${MODULE_META.estimatedMinutes} minutes</span>
@@ -392,6 +478,7 @@ function renderWelcome(screen, wrap) {
   const welcomeSpeaker = makeSpeakerBtn([titleEl, ...paras], "speaker-btn-inline");
   wrap.querySelector(".welcome-box").insertBefore(welcomeSpeaker, wrap.querySelector("#nameInput"));
   scheduleAutoRead([titleEl, ...paras], welcomeSpeaker);
+  applyWordReveal(paras);
 
   const input = wrap.querySelector("#nameInput");
   input.addEventListener("input", () => { state.learnerName = input.value; saveState(); updateNextButton(); });
@@ -410,13 +497,14 @@ function renderInfo(screen, wrap) {
     ${screen.chapter ? `<div class="chapter-tag gsap-stagger">Chapter ${screen.chapter}</div>` : ""}
     ${screen.icon ? `<div class="icon-hero gsap-stagger">${svgIcon(screen.icon, 44)}</div>` : ""}
     <div class="title-row gsap-stagger"><h1 id="infoTitle">${screen.title}</h1></div>
-    <div id="infoBody">${screen.body.map((p, i) => `<p class="gsap-stagger" id="ip${i}">${p}</p>`).join("")}</div>
+    <div id="infoBody">${screen.body.map((p, i) => `<p id="ip${i}">${p}</p>`).join("")}</div>
   `;
   const titleEl = wrap.querySelector("#infoTitle");
   const paras = Array.from(wrap.querySelectorAll("#infoBody p"));
   const infoSpeaker = makeSpeakerBtn([titleEl, ...paras]);
   wrap.querySelector(".title-row").appendChild(infoSpeaker);
   scheduleAutoRead([titleEl, ...paras], infoSpeaker);
+  applyWordReveal(paras);
 
   btnNext.disabled = false;
   btnNext.textContent = "Continue →";
@@ -436,10 +524,9 @@ function renderReveal(screen, wrap) {
   wrap.querySelector(".title-row").appendChild(makeSpeakerBtn(() => [wrap.querySelector("#revealTitle")]));
 
   const grid = wrap.querySelector("#cardGrid");
-  const variants = ["flip", "pop", "slide"];
 
   screen.cards.forEach((card, i) => {
-    const variant = variants[i % variants.length];
+    const variant = REVEAL_VARIANTS[i % REVEAL_VARIANTS.length];
     const el = document.createElement("div");
     el.className = `flip-card gsap-stagger variant-${variant}`;
     el.innerHTML = `
@@ -457,31 +544,15 @@ function renderReveal(screen, wrap) {
     const back = el.querySelector(".flip-back");
     const backText = el.querySelector(".back-text");
 
-    // Set each variant's resting (unrevealed) state.
-    if (variant === "flip") gsap.set(back, { rotationY: 180 });
-    else if (variant === "pop") gsap.set(back, { scale: 0.55, autoAlpha: 0 });
-    else if (variant === "slide") gsap.set(back, { xPercent: 115, autoAlpha: 0 });
-
-    if (revealed[i]) {
-      if (variant === "flip") gsap.set(inner, { rotationY: 180 });
-      else if (variant === "pop") { gsap.set(front, { scale: 0.7, autoAlpha: 0 }); gsap.set(back, { scale: 1, autoAlpha: 1 }); }
-      else if (variant === "slide") { gsap.set(front, { xPercent: -115, autoAlpha: 0 }); gsap.set(back, { xPercent: 0, autoAlpha: 1 }); }
-    }
+    setRevealVariantRest(variant, front, back, inner);
+    if (revealed[i]) setRevealVariantDone(variant, front, back, inner);
 
     el.addEventListener("click", () => {
       if (revealed[i]) return;
       revealed[i] = true;
       saveState();
       SFX.click();
-      if (variant === "flip") {
-        gsap.to(inner, { rotationY: 180, duration: 0.65, ease: "back.out(1.4)" });
-      } else if (variant === "pop") {
-        gsap.to(front, { scale: 0.6, autoAlpha: 0, duration: 0.28, ease: "power1.in" });
-        gsap.to(back, { scale: 1, autoAlpha: 1, duration: 0.5, delay: 0.14, ease: "back.out(2.2)" });
-      } else if (variant === "slide") {
-        gsap.to(front, { xPercent: -115, autoAlpha: 0, duration: 0.45, ease: "power2.inOut" });
-        gsap.to(back, { xPercent: 0, autoAlpha: 1, duration: 0.45, ease: "power2.inOut" });
-      }
+      playRevealVariant(variant, front, back, inner);
       checkRevealComplete();
     });
 
@@ -802,7 +873,7 @@ function renderScenario(screen, wrap) {
   }
 }
 
-/* ---------------- Screen: Chapter Quiz ---------------- */
+/* ---------------- Screen: Chapter Quiz (single-page form, jump nav) ---------------- */
 function renderQuiz(screen, wrap) {
   if (!state.quizAnswers[screen.id]) state.quizAnswers[screen.id] = screen.questions.map(() => null);
   const answers = state.quizAnswers[screen.id];
@@ -810,13 +881,34 @@ function renderQuiz(screen, wrap) {
   wrap.innerHTML = `
     ${screen.chapter ? `<div class="chapter-tag gsap-stagger">Chapter ${screen.chapter}</div>` : ""}
     <h2 class="gsap-stagger">${screen.title}</h2>
+    <p class="instruction gsap-stagger">Every question is on this one page — answer them in any order.</p>
+    <div class="quiz-jumpnav gsap-stagger" id="quizJumpNav"></div>
     <div id="qList"></div>
   `;
+  const jumpNav = wrap.querySelector("#quizJumpNav");
   const qList = wrap.querySelector("#qList");
 
+  function updateFooter() {
+    const allAnswered = answers.every(a => a !== null);
+    btnNext.disabled = !allAnswered;
+    footerMsg.textContent = allAnswered ? "" : `Answer all questions to continue (${answers.filter(a => a !== null).length}/${screen.questions.length})`;
+    btnNext.textContent = "Continue →";
+  }
+
   screen.questions.forEach((q, qi) => {
+    const navBtn = document.createElement("button");
+    navBtn.type = "button";
+    navBtn.className = "quiz-nav-pill";
+    navBtn.textContent = qi + 1;
+    navBtn.addEventListener("click", () => {
+      SFX.click();
+      document.getElementById(`qbox-${screen.id}-${qi}`).scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+    jumpNav.appendChild(navBtn);
+
     const box = document.createElement("div");
     box.className = "scenario-box gsap-stagger";
+    box.id = `qbox-${screen.id}-${qi}`;
     box.style.marginBottom = "14px";
     box.innerHTML = `
       <div class="title-row"><div class="scenario-question" id="qq${qi}">${qi + 1}. ${q.q}</div></div>
@@ -827,36 +919,42 @@ function renderQuiz(screen, wrap) {
     const choicesEl = box.querySelector(`.choices-${qi}`);
     const fbEl = box.querySelector(`.fb-${qi}`);
 
-    q.options.forEach((opt, oi) => {
-      const btn = document.createElement("button");
-      btn.className = "choice-btn";
-      btn.textContent = opt;
-      const chosen = answers[qi];
-      if (chosen !== null) {
-        btn.disabled = true;
-        if (oi === chosen) btn.classList.add(oi === q.correct ? "correct" : "incorrect");
-        if (oi === q.correct && oi !== chosen) btn.classList.add("correct");
-      }
-      btn.addEventListener("click", () => {
-        if (answers[qi] !== null) return;
-        answers[qi] = oi;
-        saveState();
-        choicesEl.querySelectorAll(".choice-btn").forEach(b => b.disabled = true);
-        if (oi === q.correct) feedbackCorrect(btn); else feedbackIncorrect(btn);
-        setTimeout(() => renderQuiz(screen, wrap), 550);
+    // Rebuilds only this one question's choice buttons in place — the rest of the
+    // form (and scroll position) stays untouched when a question is answered.
+    function renderQuestionState() {
+      choicesEl.innerHTML = "";
+      q.options.forEach((opt, oi) => {
+        const btn = document.createElement("button");
+        btn.className = "choice-btn";
+        btn.textContent = opt;
+        const chosen = answers[qi];
+        if (chosen !== null) {
+          btn.disabled = true;
+          if (oi === chosen) btn.classList.add(oi === q.correct ? "correct" : "incorrect");
+          if (oi === q.correct && oi !== chosen) btn.classList.add("correct");
+        }
+        btn.addEventListener("click", () => {
+          if (answers[qi] !== null) return;
+          answers[qi] = oi;
+          saveState();
+          choicesEl.querySelectorAll(".choice-btn").forEach(b => b.disabled = true);
+          navBtn.classList.add(oi === q.correct ? "nav-correct" : "nav-incorrect");
+          if (oi === q.correct) feedbackCorrect(btn); else feedbackIncorrect(btn);
+          updateFooter();
+          setTimeout(renderQuestionState, 550);
+        });
+        choicesEl.appendChild(btn);
       });
-      choicesEl.appendChild(btn);
-    });
-    if (answers[qi] !== null) {
-      const isCorrect = answers[qi] === q.correct;
-      fbEl.innerHTML = `<div class="feedback-box ${isCorrect ? "correct" : "incorrect"}">${q.explain}</div>`;
+      if (answers[qi] !== null) {
+        const isCorrect = answers[qi] === q.correct;
+        fbEl.innerHTML = `<div class="feedback-box ${isCorrect ? "correct" : "incorrect"}">${q.explain}</div>`;
+        navBtn.classList.add(isCorrect ? "nav-correct" : "nav-incorrect");
+      }
     }
+    renderQuestionState();
   });
 
-  const allAnswered = answers.every(a => a !== null);
-  btnNext.disabled = !allAnswered;
-  footerMsg.textContent = allAnswered ? "" : "Answer all questions to continue";
-  btnNext.textContent = "Continue →";
+  updateFooter();
 }
 
 /* ---------------- Screen: Final Assessment ---------------- */
@@ -868,43 +966,79 @@ function renderFinal(screen, wrap) {
   if (!allAnswered) renderFinalQuestions(); else renderFinalResult();
 
   function renderFinalQuestions() {
-    wrap.innerHTML = `<h2 class="gsap-stagger">${screen.title}</h2><p class="instruction gsap-stagger">Answer all ${screen.questions.length} questions, then submit.</p><div id="qList"></div>`;
+    wrap.innerHTML = `
+      <h2 class="gsap-stagger">${screen.title}</h2>
+      <p class="instruction gsap-stagger">Every question is on this one page — answer them in any order, then submit.</p>
+      <div class="quiz-jumpnav gsap-stagger" id="finalJumpNav"></div>
+      <div id="qList"></div>
+    `;
+    const jumpNav = wrap.querySelector("#finalJumpNav");
     const qList = wrap.querySelector("#qList");
+
+    function updateSubmitState() {
+      const allAnswered = answers.every(a => a !== null);
+      footerMsg.textContent = allAnswered ? "" : `Answer all questions (${answers.filter(a => a !== null).length}/${screen.questions.length})`;
+      const submitBtn = wrap.querySelector("#submitFinalBtn");
+      if (submitBtn) submitBtn.disabled = !allAnswered;
+    }
+
     screen.questions.forEach((q, qi) => {
+      const navBtn = document.createElement("button");
+      navBtn.type = "button";
+      navBtn.className = "quiz-nav-pill" + (answers[qi] !== null ? " nav-answered" : "");
+      navBtn.textContent = qi + 1;
+      navBtn.addEventListener("click", () => {
+        SFX.click();
+        document.getElementById(`fqbox-${qi}`).scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+      jumpNav.appendChild(navBtn);
+
       const box = document.createElement("div");
       box.className = "scenario-box gsap-stagger";
+      box.id = `fqbox-${qi}`;
       box.style.marginBottom = "14px";
       box.innerHTML = `<div class="scenario-question">${qi + 1}. ${q.q}</div><div class="choices-${qi}"></div>`;
       qList.appendChild(box);
       const choicesEl = box.querySelector(`.choices-${qi}`);
-      q.options.forEach((opt, oi) => {
-        const btn = document.createElement("button");
-        btn.className = "choice-btn" + (answers[qi] === oi ? " selected" : "");
-        if (answers[qi] === oi) btn.style.borderColor = "var(--accent)";
-        btn.textContent = opt;
-        btn.addEventListener("click", () => {
-          SFX.click();
-          answers[qi] = oi;
-          saveState();
-          renderFinal(screen, wrap);
+
+      // Rebuilds only this question's buttons — the rest of the form stays put.
+      function renderChoices() {
+        choicesEl.innerHTML = "";
+        q.options.forEach((opt, oi) => {
+          const btn = document.createElement("button");
+          btn.className = "choice-btn" + (answers[qi] === oi ? " selected" : "");
+          if (answers[qi] === oi) btn.style.borderColor = "var(--accent)";
+          btn.textContent = opt;
+          btn.addEventListener("click", () => {
+            SFX.click();
+            answers[qi] = oi;
+            saveState();
+            renderChoices();
+            navBtn.classList.add("nav-answered");
+            updateSubmitState();
+          });
+          choicesEl.appendChild(btn);
         });
-        choicesEl.appendChild(btn);
-      });
+      }
+      renderChoices();
     });
-    btnNext.disabled = true;
+
+    // Submission is handled entirely by the Submit button below, form-style.
+    btnNext.style.display = "none";
     footerMsg.textContent = `Answer all questions (${answers.filter(a => a !== null).length}/${screen.questions.length})`;
-    btnNext.textContent = "Continue →";
 
     const submitBtn = document.createElement("button");
+    submitBtn.id = "submitFinalBtn";
     submitBtn.className = "btn btn-primary gsap-stagger";
     submitBtn.textContent = "Submit Assessment";
     submitBtn.style.marginTop = "10px";
     submitBtn.disabled = !answers.every(a => a !== null);
-    submitBtn.addEventListener("click", () => renderFinal(screen, wrap));
+    submitBtn.addEventListener("click", () => { SFX.click(); renderFinal(screen, wrap); });
     wrap.appendChild(submitBtn);
   }
 
   function renderFinalResult() {
+    btnNext.style.display = "";
     const correctCount = screen.questions.filter((q, i) => answers[i] === q.correct).length;
     const pct = Math.round((correctCount / screen.questions.length) * 100);
     const passed = pct >= screen.passMark;
