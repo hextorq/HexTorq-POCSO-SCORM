@@ -439,6 +439,7 @@ function render() {
   applyChapterTheme(screen);
   document.body.classList.toggle("wide-screen", screen.type === "sort" || screen.type === "match");
   document.body.classList.toggle("dark-teach", screen.type === "info" || screen.type === "reveal");
+  document.body.dataset.severity = screen.severity || "";
 
   switch (screen.type) {
     case "welcome": renderWelcome(screen, wrap); break;

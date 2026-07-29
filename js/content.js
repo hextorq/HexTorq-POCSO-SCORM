@@ -154,6 +154,7 @@ const SCREENS = [
     chapter: 3,
     chapterTitle: "Recognizing Warning Signs",
     icon: "alert",
+    severity: "warning",
     title: "Spotting Red Flags — In Person and Online",
     body: [
       "People who intend harm often build trust slowly before crossing a line. This pattern is called grooming. Knowing the signs helps you recognize a problem early.",
@@ -164,6 +165,7 @@ const SCREENS = [
     id: "ch3-reveal",
     type: "reveal",
     chapter: 3,
+    severity: "warning",
     title: "Common Red Flags",
     instruction: "Tap each card to learn what it means.",
     cards: [
