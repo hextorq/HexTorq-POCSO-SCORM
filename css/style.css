@@ -91,6 +91,20 @@ body.dark-teach .flip-back{background:#0f2a24;border-color:var(--accent-2)}
 body.dark-teach .flip-back .back-text{color:#e3f7f0}
 body.dark-teach{transition:background-color .5s ease}
 
+/* Chapter-specific tint: the dark background reflects what's actually being
+   taught, not one flat color everywhere. Warnings read as warning-colored. */
+body.dark-teach[data-chapter="1"]{--bg:#0a1830;--card:#132745}                 /* foundational — neutral trust blue */
+body.dark-teach[data-chapter="2"]{--bg:#07211c;--card:#0f3129}                 /* body safety — protective teal */
+body.dark-teach[data-chapter="3"]{--bg:#2b1608;--card:#3f2410}                 /* warning signs — stern amber/red */
+body.dark-teach[data-chapter="4"]{--bg:#170f2c;--card:#241a42}                 /* taking action — empowering violet */
+body.dark-teach[data-chapter="5"]{--bg:#07222b;--card:#0f3540}                 /* getting help — calm supportive cyan */
+
+body.dark-teach[data-chapter="3"] .chapter-tag{background:rgba(255,180,84,.16);color:#ffb454}
+body.dark-teach[data-chapter="3"] .icon-hero{color:#ffb454}
+body.dark-teach[data-chapter="3"] .speaker-btn{color:#ffb454}
+body.dark-teach[data-chapter="3"] .flip-back{background:#3a1d10;border-color:#ffb454}
+body.dark-teach[data-chapter="3"] .flip-back .back-text{color:#ffe7cf}
+
 /* ---------- Scroll progress + scroll cue ---------- */
 .scroll-progress{
   position:absolute;left:0;bottom:0;height:3px;width:0%;
