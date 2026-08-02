@@ -5,12 +5,39 @@
      Falls back to a timed estimate on mobile engines that never fire the
      `boundary` event (iOS Safari and several Android TTS engines).
    - speakDialogue(turns, lineElements, onEnd): for the tea-shop / bus-stop
-     conversations — the module's script explicitly asks for voice-over to
-     carry the conversations. Each turn is read as its own utterance, with
-     the two speakers alternating pitch so they're distinguishable by ear,
-     and stage directions like "(pause)" or "(shrugging)" are stripped from
-     what's spoken (they stay visible in the text) since they aren't lines
-     of dialogue. The active line is highlighted as it's spoken. */
+     conversations. Every character in the script is mapped to a fixed
+     gender (Murugan/Sekar male, Selvi/Amudha female) so the same character
+     always sounds the same across every scene, not just alternating by
+     whoever happens to speak first in a given conversation. Where the
+     browser exposes more than one voice, a male- and female-sounding voice
+     are picked by name (falls back to pitch/rate differentiation on
+     browsers with only one voice installed). Stage directions like
+     "(pause)" or "(shrugging)" are stripped from what's spoken — they stay
+     visible in the text — since they aren't lines of dialogue. The active
+     line is highlighted as it's spoken. */
+
+const GENDER_BY_NAME = { murugan: "male", sekar: "male", selvi: "female", amudha: "female" };
+function guessGender(name) {
+  return GENDER_BY_NAME[(name || "").toLowerCase().trim()] || "male";
+}
+
+let cachedVoices = [];
+function refreshVoices() {
+  if ("speechSynthesis" in window) cachedVoices = window.speechSynthesis.getVoices() || [];
+}
+if (typeof window !== "undefined" && "speechSynthesis" in window) {
+  refreshVoices();
+  window.speechSynthesis.onvoiceschanged = refreshVoices;
+}
+function pickVoiceForGender(gender) {
+  if (!cachedVoices.length) return null;
+  const english = cachedVoices.filter((v) => /^en/i.test(v.lang));
+  const pool = english.length ? english : cachedVoices;
+  const maleHints = /male|david|mark|guy|daniel|rishi|ravi|arjun|ajit/i;
+  const femaleHints = /female|zira|susan|samantha|victoria|heera|aditi|priya|karen/i;
+  const hints = gender === "male" ? maleHints : femaleHints;
+  return pool.find((v) => hints.test(v.name)) || null;
+}
 
 const Speech = (function () {
   let wordSpans = [];
@@ -131,13 +158,7 @@ const Speech = (function () {
       if (onEnd) onEnd();
       return;
     }
-    const pitchCycle = [1, 1.28, 0.82, 1.12];
-    const speakerPitch = {};
-    let cursor = 0;
-    turns.forEach((t) => {
-      if (!(t.who in speakerPitch)) { speakerPitch[t.who] = pitchCycle[cursor % pitchCycle.length]; cursor++; }
-    });
-
+    refreshVoices();
     speakingFlag = true;
     let i = 0;
     function speakNext() {
@@ -151,9 +172,12 @@ const Speech = (function () {
         lineElements[i].scrollIntoView({ block: "nearest", behavior: "smooth" });
       }
       if (!spokenText) { i++; setTimeout(speakNext, 260); return; }
+      const gender = guessGender(turn.who);
+      const voice = pickVoiceForGender(gender);
       const utter = new SpeechSynthesisUtterance(spokenText);
-      utter.pitch = speakerPitch[turn.who] || 1;
-      utter.rate = 0.98;
+      if (voice) utter.voice = voice;
+      utter.pitch = gender === "male" ? 0.85 : 1.25;
+      utter.rate = gender === "male" ? 0.94 : 1.0;
       utter.onend = () => { if (myToken !== cancelToken) return; i++; speakNext(); };
       utter.onerror = () => { if (myToken !== cancelToken) return; i++; speakNext(); };
       window.speechSynthesis.speak(utter);

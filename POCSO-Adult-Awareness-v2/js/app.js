@@ -1,5 +1,7 @@
 /* POCSO Adult Awareness Module — app engine */
 
+if (typeof gsap !== "undefined" && typeof Draggable !== "undefined") gsap.registerPlugin(Draggable, ScrollTrigger);
+
 const STORAGE_KEY = "pocso_adult_progress_v1";
 
 const state = loadState() || {
@@ -42,6 +44,24 @@ const progressLabel = document.getElementById("progressLabel");
 const chapterListEl = document.getElementById("chapterList");
 
 document.getElementById("brandIcon").innerHTML = svgIcon("shield", 26);
+
+/* ---------------- Confetti ---------------- */
+function confettiAt(el, big) {
+  if (typeof confetti !== "function" || !el) return;
+  try {
+    const rect = el.getBoundingClientRect();
+    confetti({
+      particleCount: big ? 110 : 45,
+      spread: big ? 90 : 60,
+      startVelocity: big ? 42 : 28,
+      scalar: big ? 0.95 : 0.8,
+      origin: {
+        x: (rect.left + rect.width / 2) / window.innerWidth,
+        y: (rect.top + rect.height / 2) / window.innerHeight
+      }
+    });
+  } catch (e) { /* best-effort only */ }
+}
 
 /* ---------------- Read-aloud button ---------------- */
 function makeSpeakerBtn(getElements, title) {
@@ -137,8 +157,21 @@ btnNext.addEventListener("click", () => {
 /* ---------------- Screen-in animation ---------------- */
 function animateIn(wrap) {
   if (typeof gsap === "undefined") return;
+  if (typeof ScrollTrigger !== "undefined") ScrollTrigger.getAll().forEach((t) => t.kill());
   gsap.killTweensOf(wrap);
   gsap.fromTo(wrap, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out" });
+
+  const targets = wrap.querySelectorAll(".gsap-stagger");
+  if (targets.length && typeof ScrollTrigger !== "undefined") {
+    gsap.set(targets, { autoAlpha: 0, y: 16 });
+    ScrollTrigger.batch(targets, {
+      scroller: stage,
+      start: "top 96%",
+      once: true,
+      onEnter: (batch) => gsap.to(batch, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.08, ease: "power2.out", overwrite: true })
+    });
+    requestAnimationFrame(() => ScrollTrigger.refresh());
+  }
 }
 
 /* ---------------- Main render dispatch ---------------- */
@@ -164,7 +197,7 @@ function render() {
   updateProgress();
   updateSidebar();
   animateIn(wrap);
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  if (typeof stage.scrollTo === "function") stage.scrollTo({ top: 0, behavior: "smooth" }); else stage.scrollTop = 0;
 }
 
 /* ================================================================
@@ -187,30 +220,39 @@ function renderScreenPage(page, wrap) {
   }
 
   const headRow = document.createElement("div");
-  headRow.className = "block";
+  headRow.className = "block head-row-flex";
   headRow.innerHTML = `<div class="page-heading">${escapeHtml(screen.heading)}</div>`;
   wrap.appendChild(headRow);
 
-  const readableEls = [];
+  let hasReadableContent = false;
   let interactionCheck = null;
 
   screen.blocks.forEach((block) => {
     const el = renderBlock(block, page, (fn) => { interactionCheck = fn; });
     if (el) {
+      el.classList.add("gsap-stagger");
       wrap.appendChild(el);
-      if (["p", "quote", "list", "beliefList", "sayNotSay", "table"].includes(block.t)) {
-        el.querySelectorAll("p,li,.belief,.response").forEach((n) => readableEls.push(n));
+      if (["p", "quote", "list", "beliefList", "sayNotSay", "table", "interaction"].includes(block.t)) {
+        hasReadableContent = true;
       }
     }
   });
 
-  if (readableEls.length) {
-    const speakerBtn = makeSpeakerBtn(readableEls, "Read this screen aloud");
-    speakerBtn.style.position = "absolute";
-    headRow.style.position = "relative";
-    headRow.style.display = "flex";
-    headRow.style.justifyContent = "space-between";
-    headRow.style.alignItems = "center";
+  if (hasReadableContent) {
+    // Recomputed at play-time: always includes visible text, plus any flip-deck
+    // card backs that have already been revealed (never spoils an unrevealed one).
+    const speakerBtn = makeSpeakerBtn(() => {
+      const els = Array.from(wrap.querySelectorAll("p,li,.belief,.response"));
+      wrap.querySelectorAll(".deck-card").forEach((card) => {
+        const front = card.querySelector(".deck-front-text");
+        if (front) els.push(front);
+        if (card.classList.contains("open")) {
+          const back = card.querySelector(".deck-back-text");
+          if (back) els.push(back);
+        }
+      });
+      return els;
+    }, "Read this screen aloud");
     headRow.appendChild(speakerBtn);
   }
 
@@ -382,6 +424,63 @@ function renderInteractionBlock(block, page, setInteractionCheck) {
 }
 
 /* --- Flip deck: shared by beliefFlip / tapReveal / tapOpen --- */
+/* 10 distinct GSAP-driven reveal styles, cycled per card index so a deck of
+   several cards doesn't feel like the same animation repeated. */
+const DECK_VARIANTS = [
+  { type: "flip", axis: "rotationY" },
+  { type: "flip", axis: "rotationX" },
+  { type: "pop" },
+  { type: "slide", axis: "xPercent", from: 115 },
+  { type: "slide", axis: "xPercent", from: -115 },
+  { type: "slide", axis: "yPercent", from: 115 },
+  { type: "slide", axis: "yPercent", from: -115 },
+  { type: "spin" },
+  { type: "unfold" },
+  { type: "peel" }
+];
+
+function setupDeckVariant(v, front, back) {
+  if (typeof gsap === "undefined") return;
+  switch (v.type) {
+    case "flip": gsap.set(back, { [v.axis]: 180 }); break;
+    case "pop": gsap.set(back, { scale: 0.55, autoAlpha: 0 }); break;
+    case "slide": gsap.set(back, { [v.axis]: v.from, autoAlpha: 0 }); break;
+    case "spin": gsap.set(back, { rotation: -22, scale: 0.6, autoAlpha: 0 }); break;
+    case "unfold": gsap.set(back, { scaleY: 0, autoAlpha: 0, transformOrigin: "top center" }); break;
+    case "peel": gsap.set(back, { xPercent: 40, rotation: 12, autoAlpha: 0 }); break;
+  }
+}
+function playDeckVariant(v, front, back, inner, instant) {
+  if (typeof gsap === "undefined") { if (front) front.style.display = "none"; if (back) back.style.display = ""; return; }
+  const d = instant ? 0 : undefined;
+  switch (v.type) {
+    case "flip":
+      gsap.to(inner, { [v.axis]: 180, duration: instant ? 0 : 0.6, ease: "back.out(1.4)" });
+      break;
+    case "pop":
+      gsap.to(front, { scale: 0.6, autoAlpha: 0, duration: instant ? 0 : 0.28, ease: "power1.in" });
+      gsap.to(back, { scale: 1, autoAlpha: 1, duration: instant ? 0 : 0.5, delay: instant ? 0 : 0.14, ease: "back.out(2.2)" });
+      break;
+    case "slide":
+      gsap.to(front, { [v.axis]: -v.from, autoAlpha: 0, duration: instant ? 0 : 0.45, ease: "power2.inOut" });
+      gsap.to(back, { [v.axis]: 0, autoAlpha: 1, duration: instant ? 0 : 0.45, ease: "power2.inOut" });
+      break;
+    case "spin":
+      gsap.to(front, { rotation: 22, scale: 0.6, autoAlpha: 0, duration: instant ? 0 : 0.32, ease: "power1.in" });
+      gsap.to(back, { rotation: 0, scale: 1, autoAlpha: 1, duration: instant ? 0 : 0.5, delay: instant ? 0 : 0.1, ease: "back.out(1.8)" });
+      break;
+    case "unfold":
+      gsap.to(front, { autoAlpha: 0, duration: instant ? 0 : 0.2 });
+      gsap.to(back, { scaleY: 1, autoAlpha: 1, duration: instant ? 0 : 0.5, ease: "power2.out" });
+      break;
+    case "peel":
+      gsap.to(front, { xPercent: -40, rotation: -12, autoAlpha: 0, duration: instant ? 0 : 0.4, ease: "power2.in" });
+      gsap.to(back, { xPercent: 0, rotation: 0, autoAlpha: 1, duration: instant ? 0 : 0.45, delay: instant ? 0 : 0.08, ease: "power2.out" });
+      break;
+  }
+}
+
+/* --- Flip deck: shared by beliefFlip / tapReveal / tapOpen / judgment cards --- */
 function renderFlipDeck(container, page, block, setInteractionCheck) {
   const key = page.id;
   if (!state.deckRevealed[key]) state.deckRevealed[key] = {};
@@ -398,24 +497,53 @@ function renderFlipDeck(container, page, block, setInteractionCheck) {
   grid.className = "deck-grid";
   container.appendChild(grid);
 
-  const wrap = container.closest(".page") || container;
   block.data.items.forEach((item, i) => {
+    const variant = DECK_VARIANTS[i % DECK_VARIANTS.length];
+    const isOpen = !!revealed[i];
     const card = document.createElement("div");
-    card.className = "deck-card" + (revealed[i] ? " open" : "");
+    card.className = "deck-card" + (isOpen ? " open" : "");
     card.innerHTML = `
-      <div class="deck-front">${escapeHtml(item.front)}<div class="deck-hint">Tap to reveal</div></div>
-      <div class="deck-back">
-        ${item.tag ? `<span class="deck-tag tag-${item.tag.toLowerCase().replace(/\s+/g, "")}">${escapeHtml(item.tag)}</span>` : ""}
-        <div class="deck-back-text">${escapeHtml(item.back)}</div>
+      <div class="deck-inner">
+        <div class="deck-face deck-face-front">
+          <div class="deck-front-text">${escapeHtml(item.front)}</div>
+          <div class="deck-hint">${svgIcon("volume", 12)} Tap to reveal</div>
+        </div>
+        <div class="deck-face deck-face-back">
+          ${item.tag ? `<span class="deck-tag tag-${item.tag.toLowerCase().replace(/\s+/g, "")}">${escapeHtml(item.tag)}</span>` : ""}
+          <div class="deck-back-text">${escapeHtml(item.back)}</div>
+          <div class="deck-back-foot"></div>
+        </div>
       </div>
     `;
-    card.addEventListener("click", () => {
-      if (revealed[i]) return;
+    const inner = card.querySelector(".deck-inner");
+    const front = card.querySelector(".deck-face-front");
+    const back = card.querySelector(".deck-face-back");
+
+    setupDeckVariant(variant, front, back);
+    if (isOpen) playDeckVariant(variant, front, back, inner, true);
+
+    const miniSpeaker = makeSpeakerBtn(() => [card.querySelector(".deck-front-text"), card.querySelector(".deck-back-text")], "Read this card aloud");
+    miniSpeaker.classList.add("speaker-btn-inline");
+    card.querySelector(".deck-back-foot").appendChild(miniSpeaker);
+
+    card.addEventListener("click", (ev) => {
+      if (isOpen || ev.target.closest(".speaker-btn")) return;
       revealed[i] = true;
       saveState();
       card.classList.add("open");
+      playDeckVariant(variant, front, back, inner, false);
+
+      const negative = item.tag && /false|offence$/i.test(item.tag) && !/not/i.test(item.tag);
+      const positive = item.tag && /not/i.test(item.tag);
+      if (negative) SFX.incorrect();
+      else if (positive) SFX.correct();
+      else SFX.open();
+
       const allOpen = block.data.items.every((_, idx) => revealed[idx]);
-      allOpen ? SFX.complete() : SFX.open();
+      if (allOpen) {
+        SFX.complete();
+        confettiAt(container, false);
+      }
       notify(document.querySelector("#stage .page"));
     });
     grid.appendChild(card);
@@ -434,12 +562,16 @@ function renderJudgmentDeck(container, page, block, setInteractionCheck) {
   renderFlipDeck(container, page, { ...block, data: { items } }, setInteractionCheck);
 }
 
-/* --- Sort exercise: tap item, tap bin --- */
+/* --- Sort exercise: real drag-and-drop (GSAP Draggable) --- */
 function renderSortDrag(container, page, block, setInteractionCheck) {
   const key = page.id;
   if (!state.sortPlacements[key]) state.sortPlacements[key] = {};
   const placements = state.sortPlacements[key];
-  let selectedIndex = null;
+
+  const hint = document.createElement("div");
+  hint.className = "drag-hint";
+  hint.textContent = "Drag each card into the box where it belongs — works with touch too.";
+  container.appendChild(hint);
 
   const pool = document.createElement("div");
   pool.className = "sort-pool";
@@ -448,58 +580,94 @@ function renderSortDrag(container, page, block, setInteractionCheck) {
   container.appendChild(pool);
   container.appendChild(bins);
 
-  function draw() {
-    pool.innerHTML = "";
-    block.data.items.forEach((item, i) => {
-      if (placements[i] !== undefined) return;
-      const el = document.createElement("div");
-      el.className = "sort-item" + (selectedIndex === i ? " selected" : "");
-      el.textContent = item.text;
-      el.addEventListener("click", () => { selectedIndex = selectedIndex === i ? null : i; SFX.select(); draw(); });
-      pool.appendChild(el);
-    });
+  block.data.bins.forEach((bin) => {
+    const binEl = document.createElement("div");
+    binEl.className = "sort-bin";
+    binEl.dataset.binId = bin.id;
+    binEl.innerHTML = `<h3>${escapeHtml(bin.label)}</h3><div class="sort-bin-drop"></div>`;
+    bins.appendChild(binEl);
+  });
 
-    bins.innerHTML = "";
-    block.data.bins.forEach((bin) => {
-      const binEl = document.createElement("div");
-      binEl.className = "sort-bin" + (selectedIndex !== null ? " target-hint" : "");
-      binEl.innerHTML = `<h3>${escapeHtml(bin.label)}</h3>`;
-      block.data.items.forEach((item, i) => {
-        if (placements[i] !== bin.id) return;
-        const correct = item.bin === bin.id;
-        const chip = document.createElement("div");
-        chip.className = "bin-item" + (correct ? " correct" : "");
-        chip.innerHTML = `${escapeHtml(item.text)}${correct ? `<div class="bin-feedback">${escapeHtml(item.feedback)}</div>` : ""}`;
-        if (!correct) {
-          chip.addEventListener("click", () => { delete placements[i]; saveState(); draw(); check(); });
-        }
-        binEl.appendChild(chip);
-      });
-      binEl.addEventListener("click", () => {
-        if (selectedIndex !== null) {
-          placements[selectedIndex] = bin.id;
-          saveState();
-          const correct = block.data.items[selectedIndex].bin === bin.id;
-          selectedIndex = null;
-          const allPlacedCorrectly = block.data.items.every((item, i) => placements[i] === item.bin);
-          if (!correct) SFX.incorrect();
-          else if (allPlacedCorrectly) SFX.complete();
-          else SFX.correct();
-          draw();
-          check();
-        }
-      });
-      bins.appendChild(binEl);
-    });
+  function renderPlacedChip(item) {
+    const dropArea = bins.querySelector(`[data-bin-id="${item.bin}"] .sort-bin-drop`);
+    const chip = document.createElement("div");
+    chip.className = "bin-item correct";
+    chip.innerHTML = `${escapeHtml(item.text)}<div class="bin-feedback">${escapeHtml(item.feedback)}</div>`;
+    dropArea.appendChild(chip);
+    if (typeof gsap !== "undefined") gsap.from(chip, { autoAlpha: 0, scale: 0.85, duration: 0.3, ease: "back.out(1.5)" });
   }
 
-  function check() {
-    const ok = block.data.items.every((item, i) => placements[i] === item.bin);
+  function flashBox(el, kind) {
+    if (!el) return;
+    el.classList.remove("flash-correct", "flash-wrong");
+    void el.offsetWidth;
+    el.classList.add(kind === "correct" ? "flash-correct" : "flash-wrong");
+    setTimeout(() => el.classList.remove("flash-correct", "flash-wrong"), 700);
+  }
+
+  function checkComplete() {
+    const allCorrect = block.data.items.every((item, i) => placements[i] === item.bin);
     notify(document.querySelector("#stage .page"));
-    return ok;
+    if (allCorrect) { SFX.complete(); confettiAt(bins, true); }
+    return allCorrect;
   }
 
-  draw();
+  block.data.items.forEach((item, i) => {
+    if (placements[i] !== undefined) { renderPlacedChip(item); return; }
+
+    const el = document.createElement("div");
+    el.className = "sort-item";
+    el.textContent = item.text;
+    pool.appendChild(el);
+
+    if (typeof Draggable === "undefined") {
+      // Fallback if the drag library failed to load: tap item, then tap a bin.
+      el.addEventListener("click", () => {
+        el.classList.toggle("selected");
+      });
+      return;
+    }
+
+    Draggable.create(el, {
+      type: "x,y",
+      onDragStart: function () { el.classList.add("dragging"); gsap.set(el, { zIndex: 999 }); },
+      onDragEnd: function () {
+        el.classList.remove("dragging");
+        const dropArea = block.data.bins
+          .map((b) => bins.querySelector(`[data-bin-id="${b.id}"] .sort-bin-drop`))
+          .find((area) => Draggable.hitTest(el, area, "40%"));
+
+        if (!dropArea) { gsap.to(el, { x: 0, y: 0, duration: 0.35, ease: "power2.out" }); return; }
+
+        const binEl = dropArea.closest(".sort-bin");
+        const binId = binEl.dataset.binId;
+        const dragInstance = this;
+
+        if (binId === item.bin) {
+          placements[i] = binId;
+          saveState();
+          SFX.correct();
+          flashBox(binEl, "correct");
+          const targetRect = dropArea.getBoundingClientRect();
+          const elRect = el.getBoundingClientRect();
+          gsap.to(el, {
+            x: "+=" + (targetRect.left + targetRect.width / 2 - (elRect.left + elRect.width / 2)),
+            y: "+=" + (targetRect.top + targetRect.height / 2 - (elRect.top + elRect.height / 2)),
+            scale: 0.85, autoAlpha: 0, duration: 0.35, ease: "power1.in",
+            onComplete: () => { dragInstance.kill(); el.remove(); renderPlacedChip(item); checkComplete(); }
+          });
+        } else {
+          SFX.incorrect();
+          dropArea.appendChild(el);
+          gsap.set(el, { x: 0, y: 0, zIndex: "auto" });
+          gsap.fromTo(el, { scale: 1.06 }, { scale: 1, duration: 0.25, ease: "power1.out" });
+          flashBox(binEl, "wrong");
+          checkComplete();
+        }
+      }
+    });
+  });
+
   setInteractionCheck(() => block.data.items.every((item, i) => placements[i] === item.bin));
 }
 
@@ -548,6 +716,7 @@ function renderSlider(container, page, block, setInteractionCheck) {
     saveState();
     SFX.complete();
     showReveal();
+    confettiAt(box, false);
     notify(document.querySelector("#stage .page"));
   });
 
@@ -591,6 +760,7 @@ function renderMultiSelectCase(container, page, block, setInteractionCheck) {
         saveState();
         SFX.complete();
         draw();
+        confettiAt(box, false);
         notify(document.querySelector("#stage .page"));
       });
       box.appendChild(btn);
@@ -622,6 +792,7 @@ function renderCommitment(container, page, block, setInteractionCheck) {
     state.commitDone[key] = true;
     saveState();
     SFX.confirm();
+    confettiAt(box, false);
     notify(document.querySelector("#stage .page"));
     render();
   });
@@ -649,6 +820,11 @@ function renderQuizPage(page, wrap) {
   }
 
   const answers = state.quizAnswers[key];
+  const initiallyComplete = quiz.questions.every((q, qi) => {
+    const a = answers[qi];
+    return q.type === "multi" ? (Array.isArray(a) && a._submitted) : a !== null;
+  });
+  btnNext.dataset.quizWasComplete = initiallyComplete ? "1" : "0";
 
   quiz.questions.forEach((q, qi) => {
     if (answers[qi] === undefined) answers[qi] = q.type === "multi" ? [] : null;
@@ -676,6 +852,7 @@ function renderQuizPage(page, wrap) {
           saveState();
           const isCorrect = opt.correct;
           isCorrect ? SFX.correct() : SFX.incorrect();
+          if (isCorrect) confettiAt(btn, false);
           wrap.innerHTML = ""; renderQuizPage(page, wrap);
           checkQuizComplete();
         });
@@ -719,6 +896,7 @@ function renderQuizPage(page, wrap) {
           arr._submitted = true;
           const allCorrect = q.options.every((opt, oi) => opt.correct === arr.includes(oi));
           allCorrect ? SFX.correct() : SFX.incorrect();
+          if (allCorrect) confettiAt(submitBtn, false);
           saveState();
           wrap.innerHTML = ""; renderQuizPage(page, wrap);
           checkQuizComplete();
@@ -731,12 +909,15 @@ function renderQuizPage(page, wrap) {
   });
 
   function checkQuizComplete() {
+    const wasComplete = btnNext.dataset.quizWasComplete === "1";
     const allAnswered = quiz.questions.every((q, qi) => {
       const a = state.quizAnswers[key][qi];
       return q.type === "multi" ? (Array.isArray(a) && a._submitted) : a !== null;
     });
     btnNext.disabled = !allAnswered;
     footerMsg.textContent = allAnswered ? "" : "Answer every question to continue";
+    if (allAnswered && !wasComplete) confettiAt(document.querySelector(".quiz-box:last-of-type") || wrap, true);
+    btnNext.dataset.quizWasComplete = allAnswered ? "1" : "0";
   }
   checkQuizComplete();
 }
