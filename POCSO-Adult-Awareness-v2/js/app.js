@@ -160,6 +160,7 @@ function render() {
   else if (page.type === "quiz") renderQuizPage(page, wrap);
   else if (page.type === "final") renderFinalPage(page, wrap);
 
+  hasRenderedOnce = true;
   updateProgress();
   updateSidebar();
   animateIn(wrap);
@@ -169,10 +170,12 @@ function render() {
 /* ================================================================
    SCREEN PAGE — dispatches each content block
    ================================================================ */
+let hasRenderedOnce = false;
 function renderScreenPage(page, wrap) {
   const { chapter, screen, isFirstInChapter } = page;
 
   if (isFirstInChapter) {
+    if (hasRenderedOnce) SFX.transition();
     const banner = document.createElement("div");
     banner.className = "chapter-banner";
     banner.innerHTML = `
@@ -410,8 +413,9 @@ function renderFlipDeck(container, page, block, setInteractionCheck) {
       if (revealed[i]) return;
       revealed[i] = true;
       saveState();
-      SFX.open();
       card.classList.add("open");
+      const allOpen = block.data.items.every((_, idx) => revealed[idx]);
+      allOpen ? SFX.complete() : SFX.open();
       notify(document.querySelector("#stage .page"));
     });
     grid.appendChild(card);
@@ -451,7 +455,7 @@ function renderSortDrag(container, page, block, setInteractionCheck) {
       const el = document.createElement("div");
       el.className = "sort-item" + (selectedIndex === i ? " selected" : "");
       el.textContent = item.text;
-      el.addEventListener("click", () => { selectedIndex = selectedIndex === i ? null : i; draw(); });
+      el.addEventListener("click", () => { selectedIndex = selectedIndex === i ? null : i; SFX.select(); draw(); });
       pool.appendChild(el);
     });
 
@@ -476,8 +480,11 @@ function renderSortDrag(container, page, block, setInteractionCheck) {
           placements[selectedIndex] = bin.id;
           saveState();
           const correct = block.data.items[selectedIndex].bin === bin.id;
-          correct ? SFX.correct() : SFX.incorrect();
           selectedIndex = null;
+          const allPlacedCorrectly = block.data.items.every((item, i) => placements[i] === item.bin);
+          if (!correct) SFX.incorrect();
+          else if (allPlacedCorrectly) SFX.complete();
+          else SFX.correct();
           draw();
           check();
         }
@@ -520,7 +527,13 @@ function renderSlider(container, page, block, setInteractionCheck) {
   const revealBtn = box.querySelector(`#sliderReveal-${idSafe}`);
   const revealBox = box.querySelector(`#sliderRevealBox-${idSafe}`);
 
-  input.addEventListener("input", () => { state.sliderValue[key] = Number(input.value); valEl.textContent = input.value; saveState(); });
+  let lastTickValue = state.sliderValue[key];
+  input.addEventListener("input", () => {
+    state.sliderValue[key] = Number(input.value);
+    valEl.textContent = input.value;
+    saveState();
+    if (Number(input.value) !== lastTickValue) { SFX.select(); lastTickValue = Number(input.value); }
+  });
 
   function showReveal() {
     revealBox.style.display = "block";
@@ -533,7 +546,7 @@ function renderSlider(container, page, block, setInteractionCheck) {
   revealBtn.addEventListener("click", () => {
     state.sliderRevealed[key] = true;
     saveState();
-    SFX.open();
+    SFX.complete();
     showReveal();
     notify(document.querySelector("#stage .page"));
   });
@@ -563,7 +576,7 @@ function renderMultiSelectCase(container, page, block, setInteractionCheck) {
         <span class="case-option-label">${escapeHtml(opt.label)}${submitted && opt.note ? ` <span class="opt-note">— ${escapeHtml(opt.note)}</span>` : ""}</span>
       `;
       if (!submitted) {
-        row.querySelector("input").addEventListener("change", (e) => { answers[i] = e.target.checked; saveState(); });
+        row.querySelector("input").addEventListener("change", (e) => { answers[i] = e.target.checked; SFX.select(); saveState(); });
       }
       box.appendChild(row);
     });
@@ -576,7 +589,7 @@ function renderMultiSelectCase(container, page, block, setInteractionCheck) {
       btn.addEventListener("click", () => {
         state.caseSubmitted[key] = true;
         saveState();
-        SFX.open();
+        SFX.complete();
         draw();
         notify(document.querySelector("#stage .page"));
       });
@@ -608,7 +621,7 @@ function renderCommitment(container, page, block, setInteractionCheck) {
     if (state.commitDone[key]) return;
     state.commitDone[key] = true;
     saveState();
-    SFX.correct();
+    SFX.confirm();
     notify(document.querySelector("#stage .page"));
     render();
   });
@@ -687,6 +700,7 @@ function renderQuizPage(page, wrap) {
             const idx = arr.indexOf(oi);
             if (e.target.checked && idx === -1) arr.push(oi);
             if (!e.target.checked && idx !== -1) arr.splice(idx, 1);
+            SFX.select();
             saveState();
           });
         } else {
