@@ -155,10 +155,13 @@ body.wide-screen .layout{max-width:none}
   padding:9px 10px;border-radius:10px;font-size:.85rem;color:var(--text-mute);
 }
 .chapter-item .dot{width:9px;height:9px;border-radius:50%;background:var(--border);flex-shrink:0}
-.chapter-item.active{background:#eaf3fd;color:var(--navy);font-weight:700}
-.chapter-item.active .dot{background:var(--accent)}
+/* Solid accent + white text, not a fixed light pill — this stays readable
+   whether the sidebar sits over the light theme or any dark-teach variant. */
+.chapter-item.active{background:var(--accent);color:#fff;font-weight:700}
+.chapter-item.active .dot{background:#fff}
 .chapter-item.done .dot{background:var(--accent-2)}
 .chapter-item.done{color:var(--text)}
+body.dark-teach .chapter-item .dot{background:#425576}
 
 @media(min-width:820px){
   .sidebar{display:block}
