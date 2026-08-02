@@ -1,0 +1,946 @@
+/*
+  POCSO — Adult Awareness Module
+  Content transcribed verbatim from the source script (pocso.txt).
+  Nothing is paraphrased or omitted — text is only reorganised into
+  screen/block/interaction structures for rendering.
+*/
+
+const MODULE_META = {
+  title: `POCSO — Adult Awareness Module`,
+  issuingAuthority: `Tamil Nadu Police`,
+  productionNote: `All the highlights are the suggestions, the developer can use any creative representation based on the content`,
+  disclaimer: `This module explains the law in simple words. It is not legal advice.`
+};
+
+const CHAPTERS = [
+
+/* =================================================================
+   CHAPTER 1 — What POCSO Is, and Who the Law Calls a Child
+   ================================================================= */
+{
+  num: 1,
+  title: `What POCSO Is, and Who the Law Calls a Child`,
+  duration: `~12 min · 8 screens`,
+  screens: [
+    {
+      id: "1.1",
+      heading: `SCREEN 1.1 — Opening`,
+      blocks: [
+        { t: "p", lines: [
+          `You do not need to be a police officer, a lawyer, or a teacher for this law to apply to you.`,
+          `POCSO applies to every adult in India — including you.`,
+          `In the next 45 minutes you will learn what this law says, what it treats as a crime, and what it asks you to do.`
+        ]},
+        { t: "visual", lines: [
+          `Build a 20–25 second sequence of five or six short shots of ordinary Chennai adult life.`,
+          `Suggested shots: a man pouring tea at a roadside shop; two women waiting at a bus stop with school bags in hand; an auto driver leaning on his vehicle outside a school gate at 3:30pm; a shopkeeper handing over change to a child; a watchman in an apartment lobby; a hand scrolling a phone.`,
+          `What to avoid: no dark colours, no shadows, no sinister music cue, no menacing figure. Nothing that says "crime."`,
+          `Why: the point of this opening is that these are the people the law is speaking to — ordinary adults in ordinary places. If the visual looks like a crime documentary, the learner decides the module is about someone else and stops paying attention.`,
+          `Ending shot: hold on one wide frame of a normal street with adults and children in the same space. The text appears over it.`
+        ]},
+        { t: "note", lines: [
+          `Every screen carries audio narration, and text that can be enlarged. Nothing is taught only in writing.`
+        ]}
+      ]
+    },
+    {
+      id: "1.2",
+      heading: `SCREEN 1.2 — The name`,
+      blocks: [
+        { t: "p", lines: [
+          `POCSO — The Protection of Children from Sexual Offences Act, 2012 குழந்தைகளை பாலியல் குற்றங்களிலிருந்து பாதுகாக்கும் சட்டம், 2012`,
+          `A central law, passed by Parliament in 2012. It applies in every state, including Tamil Nadu.`
+        ]},
+        { t: "visual", lines: [
+          `Clean title card. Tamil line and English line in the same font size and the same weight — Tamil is not a subtitle sitting under English. Place them side by side or stacked with equal prominence. Use the Tamil Nadu Police colour palette. No illustration needed.`
+        ]}
+      ]
+    },
+    {
+      id: "1.3",
+      heading: `SCREEN 1.3 — The most important line in the Act`,
+      blocks: [
+        { t: "p", lines: [
+          `A child is any person below the age of 18. POCSO Act, Section 2(d)`,
+          `That is the whole definition. There is no exception in it.`
+        ]},
+        { t: "interaction", kind: "beliefFlip", label: `Interaction — tap each belief to test it against the law:`, fixedHeader: "18", data: {
+          items: [
+            { front: `Below 18 — unless the child looks older.`, back: `False. Looks are not a test. The court decides age from records — school certificate first, then birth certificate.` },
+            { front: `Below 18 — unless the child is earning.`, back: `False. A working child is still a child.` },
+            { front: `Below 18 — unless the child is married.`, back: `False. Marriage does not make a child an adult under this Act.` },
+            { front: `Below 18 — unless the child agreed.`, back: `False. Below 18, a child's "yes" has no meaning in law.` }
+          ]
+        }},
+        { t: "visual", lines: [
+          `Four cards laid out. Each card carries one belief in the learner's voice. On tap, the card flips and shows FALSE in red with the explanation underneath.`,
+          `The numeral 18 sits at the top of the screen throughout, large and fixed. It does not move or change as the cards flip.`,
+          `Why: the learner should physically knock down four excuses one at a time, and the only thing left standing on the screen at the end is the number 18.`
+        ]}
+      ]
+    },
+    {
+      id: "1.4",
+      heading: `SCREEN 1.4 — Consent`,
+      blocks: [
+        { t: "p", lines: [
+          `Below 18, a child's "yes" has no meaning in law.`,
+          `This is where most adults get it wrong. It is also where an ordinary person most often becomes an accused person.`
+        ]},
+        { t: "dialogue", location: `TEA SHOP`, turns: [
+          { who: "Murugan", text: `That case in our street. Boy twenty-two, girl seventeen. She herself told the police nobody forced her. Still they took him.` },
+          { who: "Selvi", text: `They will take him.` },
+          { who: "Murugan", text: `But she said yes, Selvi.` },
+          { who: "Selvi", text: `Below eighteen, the law does not accept a child's yes. It has no meaning.` },
+          { who: "Murugan", text: `Even if she agreed?` },
+          { who: "Selvi", text: `Even if she agreed. That is why agreement is not a defence.` },
+          { who: "Murugan", text: `(pause) And if she looks older?` },
+          { who: "Selvi", text: `They go by her records. Not her face.` },
+          { who: "Murugan", text: `(slowly) So — wait till eighteen and then it's fine.` },
+          { who: "Selvi", text: `No. Don't say it like that.` },
+          { who: "Murugan", text: `Why?` },
+          { who: "Selvi", text: `Because nothing becomes allowed at eighteen. Before eighteen, the law doesn't ask if she agreed. After eighteen, it asks — and if she said no, that's rape.` },
+          { who: "Murugan", text: `So it's a crime either way.` },
+          { who: "Selvi", text: `Either way. Only the question changes.` }
+        ]},
+        { t: "p", heading: `Screen text — below the conversation:`, lines: [
+          `Two different laws. Two different questions.`,
+          `Below 18 — POCSO. A child's consent does not exist in law.`,
+          `18 and above — BNS. Sex without consent is rape — BNS Sections 63 and 64.`
+        ]},
+        { t: "interaction", kind: "tapReveal", label: `Interaction — tap each to reveal:`, data: {
+          items: [
+            { front: `But she agreed.`, back: `Below 18, "yes" has no meaning in law.` },
+            { front: `But she looks older.`, back: `Looks are irrelevant. Age comes from records.` },
+            { front: `But she is married.`, back: `Marriage cannot create consent where the law says none can exist.` },
+            { front: `But we are in a relationship.`, back: `A relationship is not a defence. The offence is complete.` },
+            { front: `But he is a boy — he wanted it.`, back: `Same rule. A boy below 18 cannot consent either.` },
+            { front: `But both of them are below 18.`, back: `Still an offence. But when the person who did it is himself below 18, the case goes to the Juvenile Justice Board, not to a regular criminal court. Section 34(1).` }
+          ]
+        }}
+      ]
+    },
+    {
+      id: "1.5",
+      heading: `SCREEN 1.5 — Boys are children too`,
+      blocks: [
+        { t: "p", lines: [
+          `POCSO works in both directions.`,
+          `Any child can be a victim. Girls and boys are protected the same way.`,
+          `Any adult, regardless of gender or relationship to the child, can commit an offence under POCSO. The law does not assume the offender is male.`
+        ]},
+        { t: "interaction", kind: "sortDrag", label: `Interaction — sort exercise. Five case cards. The learner drags each into "POCSO applies" or "POCSO does not apply."`, data: {
+          bins: [ { id: "applies", label: `POCSO applies` }, { id: "not-applies", label: `POCSO does not apply` } ],
+          items: [
+            { text: `A 15-year-old boy is sexually assaulted by a male relative`, bin: "applies", feedback: `Correct. Boys are protected equally.` },
+            { text: `A 16-year-old boy is sexually assaulted by a woman`, bin: "applies", feedback: `Correct. The law does not assume the offender is a man.` },
+            { text: `A 17-year-old girl is assaulted by her tuition teacher`, bin: "applies", feedback: `Correct — and because he is her teacher, the punishment is higher. Chapter 3.` },
+            { text: `A 13-year-old girl is shown pornographic material by a neighbour`, bin: "applies", feedback: `Correct. Showing pornographic material to a child is an offence under Section 11. No touching is needed.` },
+            { text: `A 19-year-old college student is assaulted`, bin: "not-applies", feedback: `Correct. She is above 18, so POCSO does not apply. She is protected under the BNS — Section 63 (rape), Section 74 (assault or criminal force with intent to outrage modesty), Section 75 (sexual harassment). She is not unprotected. She is protected by a different law.` }
+          ]
+        }},
+        { t: "visual", lines: [
+          `Five simple illustrated cards, each showing an age and a short line of text. Draw the boy and the girl at the same size, same posture, same lighting.`,
+          `What to avoid: do not draw the girl child hunched, crying, in shadow, or with her face hidden while the boy is drawn upright. This is the standard illustration cliché in Indian child protection material and it works against the message of this screen.`,
+          `Suggested treatment: flat vector illustration, warm colours, children shown in ordinary settings — school corridor, home, playground — not in distress.`
+        ]}
+      ]
+    },
+    {
+      id: "1.6",
+      heading: `SCREEN 1.6 — Where the danger actually is`,
+      blocks: [
+        { t: "p", lines: [
+          `We teach children to be careful of strangers.`,
+          `The evidence points the other way.`
+        ]},
+        { t: "interaction", kind: "sliderReveal", label: `Interaction — slider estimate.`, data: {
+          question: `Out of 10 POCSO cases, how many do you think involve someone the child already knew?`,
+          min: 0, max: 10,
+          revealHeading: `Answer revealed:`,
+          revealLines: [
+            `More than 9 out of 10 (NCRB, Crime in India 2024).`,
+            `In 96.6% of POCSO cases the offender was known to the child — a relative, a neighbour, a family friend, someone from school or tuition, someone with a reason to be near the child.`
+          ]
+        }},
+        { t: "visual", lines: [
+          `A horizontal bar of 10 human figures. As the answer is revealed, 9 of the 10 change colour to indicate "known to the child" and 1 stays grey for "stranger." Simple, immediate, no text needed to explain it.`,
+          `Below the bar, place a still illustration: a family function — chairs in rows, a meal being served, children running between adults. Warm, festive, completely normal. One adult stands slightly apart from the group, watching. Do not make him look sinister. He should look like anybody.`,
+          `Why: the discomfort should come from the ordinariness, not from the drawing. If the developer draws a villain, the learner will conclude that offenders look like villains — which is the exact belief this screen exists to break.`
+        ]}
+      ]
+    },
+    {
+      id: "1.7",
+      heading: `SCREEN 1.7 — What the Act actually does`,
+      blocks: [
+        { t: "dialogue", location: `TEA SHOP / any relevant place`, turns: [
+          { who: "Murugan", text: `All this POCSO, POCSO. It's for the police, no? What do I have to do with it?` },
+          { who: "Selvi", text: `That's what I thought also. Then they called a meeting at the school. Four things, they said. Only four.` },
+          { who: "Murugan", text: `Four things.` },
+          { who: "Selvi", text: `One — it lists out exactly what counts as a crime against a child. And it's a longer list than you think. Some of them don't even involve touching.` },
+          { who: "Murugan", text: `Without touching?` },
+          { who: "Selvi", text: `Sending a sexually explicit message to a fifteen-year-old. Showing them sexually explicit content on your phone. That itself can be an offence under POCSO.` },
+          { who: "Murugan", text: `(pause) Okay. Second?` },
+          { who: "Selvi", text: `Second — if you know or you think something is happening to a child, you have to report it. If you keep quiet, that is also an offence.` },
+          { who: "Murugan", text: `Even if I'm not the one doing it?` },
+          { who: "Selvi", text: `Even then.` },
+          { who: "Murugan", text: `Aiyo.` },
+          { who: "Selvi", text: `Third — the law changed how the child is treated. Who takes her statement, where, who sits with her. She doesn't have to stand in a police station and repeat it in front of everyone.` },
+          { who: "Murugan", text: `That is good. That was always the fear.` },
+          { who: "Selvi", text: `Fourth — separate courts, only for these cases. So it doesn't sit in a file for ten years.` },
+          { who: "Murugan", text: `And you're telling me all this because?` },
+          { who: "Selvi", text: `Because you have three children coming into this shop every evening for biscuits, Murugan anna. It's your business too.` }
+        ]},
+        { t: "interaction", kind: "tapOpen", label: `Screen text — after the conversation: The four parts of POCSO. Tap to open each.`, data: {
+          items: [
+            { front: `1 · It defines the offences and the punishments.`, back: `Sections 3 to 12. Wider than most people assume — several offences involve no touching.` },
+            { front: `2 · It makes reporting a legal duty.`, back: `Section 19: any person who knows, or thinks, that an offence has been committed must report it. You do not have to be certain. Section 21: failure to report is punishable.` },
+            { front: `3 · It changes how the child is treated.`, back: `Who records the statement, where, in whose presence. How a medical examination is done. Whether the child must face the accused in court.` },
+            { front: `4 · It creates Special Courts.`, back: `So these cases are heard by designated courts, within fixed timelines.` }
+          ]
+        }}
+      ]
+    },
+    {
+      id: "1.8",
+      heading: `SCREEN 1.8 — Why this module is addressed to you`,
+      blocks: [
+        { t: "p", lines: [
+          `There are two ways an adult can end up on the wrong side of this law.`,
+          `The first is obvious. By doing something to a child.`,
+          `The second one catches people who never thought they had done anything wrong. By knowing, or suspecting, and staying quiet.`,
+          `The punishments are not the same. But both are offences, and only one of them is something you might do by accident.`,
+          `So this module is not only about protecting a child from someone else.`,
+          `It is about knowing exactly where the line is — so that you never cross it, and never stand next to it in silence.`
+        ]},
+        { t: "interaction", kind: "commitmentTap", label: `Interaction — commitment tap. One button. Nothing is scored. It exists so the learner makes a statement instead of just reading one.`, data: {
+          buttonText: `I understand this law applies to me.`
+        }},
+        { t: "visual", lines: [
+          `Two panels side by side, the same size. Left panel: a single figure with a hand extended towards a child, drawn in silhouette. Right panel: a figure standing with their back turned, hands in pockets, while the same scene happens behind them, also in silhouette.`,
+          `The two panels must be identical in size, colour weight and prominence. Neither one should be bigger, brighter, or placed above the other.`,
+          `Why this matters: both are offences under this Act, and the second one is the one people do not know about. If the developer draws the first one large and dramatic and the second one small and grey, the learner reads the silence panel as a minor thing — which is the belief the screen is trying to remove.`,
+          `Add one short line of dialogue inside each panel, in a speech bubble. Left: "Nobody will know." Right: "It's not my business."`
+        ]}
+      ]
+    }
+  ],
+  quiz: {
+    heading: `CHAPTER 1 QUIZ`,
+    questions: [
+      {
+        type: "single",
+        q: `Scenario. A 17-year-old tells you she is in a relationship with a 30-year-old man and that she is happy in it. Under POCSO —`,
+        options: [
+          { label: `Not an offence, because she agreed`, correct: false },
+          { label: `Not an offence, because she will turn 18 next week`, correct: false },
+          { label: `An offence, because a person below 18 cannot legally consent`, correct: true },
+          { label: `An offence only if she complains later`, correct: false }
+        ],
+        feedbackCorrect: `Age is the only test. Her agreement and how close she is to turning 18 make no difference.`,
+        feedbackIncorrect: `Under Section 2(d), anyone below 18 is a child, and a child cannot give valid consent.`
+      },
+      {
+        type: "multi",
+        q: `Multiple select. Who is protected by POCSO? (Select all that apply.)`,
+        options: [
+          { label: `A 14-year-old girl`, correct: true },
+          { label: `A 14-year-old boy`, correct: true },
+          { label: `A 17-year-old girl who is married`, correct: true },
+          { label: `A 19-year-old woman`, correct: false }
+        ],
+        feedback: `All three children are protected, whatever their gender or marital status. The 19-year-old is above 18 — she is protected under the BNS instead, not POCSO.`
+      },
+      {
+        type: "single",
+        q: `True or false. If you suspect a child is being sexually abused, whether to report it is your personal choice.`,
+        options: [
+          { label: `True`, correct: false },
+          { label: `False`, correct: true }
+        ],
+        feedback: `Section 19 makes reporting a legal duty for every person. Section 21 makes failure to report punishable.`
+      }
+    ]
+  }
+},
+
+/* =================================================================
+   CHAPTER 2 — What Counts as an Offence
+   ================================================================= */
+{
+  num: 2,
+  title: `What Counts as an Offence`,
+  duration: `~9 min · 7 screens`,
+  screens: [
+    {
+      id: "2.1",
+      heading: `SCREEN 2.1 — Opening`,
+      blocks: [
+        { t: "p", lines: [
+          `Ask most adults what child sexual abuse means, and they will describe one thing: rape.`,
+          `POCSO covers four kinds of offence. Only one of them involves penetration. Two of them do not involve touching at all.`,
+          `This chapter covers all four.`
+        ]},
+        { t: "visual", lines: [
+          `Four empty outlined boxes across the top of the screen, filling in one by one as the chapter progresses. Keep the strip visible on every screen in Chapter 2, so the learner can always see how many remain. On Screen 2.7 all four are already filled — the strip stays on screen, unchanged, because that screen is about all four.`
+        ]}
+      ]
+    },
+    {
+      id: "2.2",
+      heading: `SCREEN 2.2 — The four kinds`,
+      blocks: [
+        { t: "table", headerRow: [`What it is`, `Section`], rows: [
+          [`1 · Penetrative sexual assault`, `3`],
+          [`2 · Sexual assault — touching, without penetration`, `7`],
+          [`3 · Sexual harassment — no touching needed`, `11`],
+          [`4 · Using a child for pornography`, `13`]
+        ]}
+      ]
+    },
+    {
+      id: "2.3",
+      heading: `SCREEN 2.3 — Penetrative sexual assault (Section 3)`,
+      blocks: [
+        { t: "p", lines: [
+          `Section 3 covers penetration of a child's body, in any form. It also covers making the child do it to the offender, and manipulating any part of the child's body to cause penetration.`
+        ]},
+        { t: "quote", heading: `The Act's own words:`, lines: [
+          `Penetration into the vagina, mouth, urethra or anus of a child; or making the child do so with the offender or any other person.`
+        ]},
+        { t: "p", lines: [
+          `Punishment — Section 4. At least 10 years, and it can go up to imprisonment for life, with a fine. If the child is below 16, at least 20 years.`,
+          `No interaction on this screen. The learner reads and moves on.`
+        ]},
+        { t: "visual", lines: [
+          `None. Any drawing here either sanitises the offence or distresses the reader. Silence is the correct design choice.`
+        ]}
+      ]
+    },
+    {
+      id: "2.4",
+      heading: `SCREEN 2.4 — Sexual assault (Section 7)`,
+      blocks: [
+        { t: "p", lines: [
+          `Section 7 covers touching a child with sexual intent, without penetration — and making a child touch the offender or another person.`,
+          `It also covers "any other act with sexual intent which involves physical contact."`,
+          `The test is the intent behind the touch — not the body part, and not whether there were clothes in between.`,
+          `Punishment — Section 8. Three to five years, with a fine.`
+        ]},
+        { t: "interaction", kind: "judgmentCards", label: `Interaction — judgement. Three situations, marked Offence / Not an offence.`, data: {
+          items: [
+            { situation: `A doctor examines a child's stomach during a consultation, with the parent present`, answer: `Not an offence`, feedback: `Correct. There is no sexual intent — and Section 41 states that Sections 3 to 13 do not apply to medical examination or treatment carried out with the consent of the parent or guardian.` },
+            { situation: `An uncle touches a 12-year-old's chest over her school uniform`, answer: `Offence`, feedback: `Correct. Clothing makes no difference. Section 7 covers touching over clothes where the intent is sexual.` },
+            { situation: `A tuition teacher repeatedly makes a student sit on his lap and holds her there`, answer: `Offence`, feedback: `Correct — and because he is her teacher, the punishment rises.` }
+          ]
+        }},
+        { t: "visual", lines: [
+          `Three cards, one at a time. Each carries a line illustration of the setting only — a clinic room with a curtain and weighing scale; a school corridor; a tuition room with a low table and notebooks. Do not illustrate the act. No hands, no contact, no bodies. Card flips to green or amber with the feedback.`
+        ]}
+      ]
+    },
+    {
+      id: "2.5",
+      heading: `SCREEN 2.5 — Sexual harassment (Section 11)`,
+      blocks: [
+        { t: "dialogue", location: `TEA SHOP`, turns: [
+          { who: "Murugan", text: `This one I can't accept. The man in the next street. They took him and he never touched the girl.` },
+          { who: "Selvi", text: `What did he do?` },
+          { who: "Murugan", text: `Nothing! Some messages, they're saying. On the phone.` },
+          { who: "Selvi", text: `What kind of messages?` },
+          { who: "Murugan", text: `(shrugging) Dirty messages, whatever. She's fifteen. But he never went near her. Never met her once.` },
+          { who: "Selvi", text: `Still a crime.` },
+          { who: "Murugan", text: `For messages?` },
+          { who: "Selvi", text: `For messages. There's a whole section for things where nobody touches anybody. Sending sexual things to a child. Showing them something on a phone. Following them, watching them, messaging again and again when nobody asked.` },
+          { who: "Murugan", text: `But if he didn't touch her, what harm —` },
+          { who: "Selvi", text: `Murugan anna. If a grown man was sending those messages to your granddaughter, and somebody told you "but he never touched her" — would that help?` },
+          { who: "Murugan", text: `(long pause) No.` },
+          { who: "Selvi", text: `Then the answer was already there. It just wasn't known to be written down.` }
+        ]},
+        { t: "p", heading: `Screen text — below the conversation:`, lines: [
+          `This is the section least known, and most often broken.`,
+          `Section 11 requires no touching at all. With sexual intent, each of these is an offence:`
+        ]},
+        { t: "list", items: [
+          `1 · Saying a word, making a sound or gesture, or showing an object or part of the body, intending a child to hear or see it`,
+          `2 · Showing a child pornographic material, in any form or media`,
+          `3 · Repeatedly following, watching or contacting a child — directly, or by phone or online`,
+          `4 · Threatening to use a real or morphed sexual picture of a child`,
+          `5 · Luring a child for pornographic purposes`
+        ]},
+        { t: "p", lines: [ `Punishment — Section 12. Up to three years, with a fine.` ]},
+        { t: "visual", lines: [
+          `Below: a five-panel illustrated strip, one per item, scrolling vertically. · An adult leaning towards a child on a bus, mid-sentence, speech bubble with symbols not words · An adult holding a phone turned towards a child — screen blank white, nothing on it · A child walking home, the same adult figure visible across three frames — outside school, on the street, near the house · A phone showing a message bubble with a photo icon and a warning triangle · An adult holding out a phone and money towards a child`,
+          `Highlight panels 2 and 3 with a coloured border, tagged "Most commonly committed." These are the two offences ordinary adults commit most casually.`
+        ]}
+      ]
+    },
+    {
+      id: "2.6",
+      heading: `SCREEN 2.6 — Photos and videos of children`,
+      blocks: [
+        { t: "dialogue", location: `TEA SHOP`, turns: [
+          { who: "Murugan", text: `(holding out his phone, upset) Look what came in the building group this morning.` },
+          { who: "Selvi", text: `(not taking it) I don't want to see it.` },
+          { who: "Murugan", text: `Some video. Very bad. A child. Thirty people in that group —` },
+          { who: "Selvi", text: `What was done with it?` },
+          { who: "Murugan", text: `I sent it to my brother. And the watchman. See what people have become, I told them.` },
+          { who: "Selvi", text: `(quietly) Anna. That's an offence.` },
+          { who: "Murugan", text: `What is? I didn't make it! I was showing them how disgusting it is.` },
+          { who: "Selvi", text: `Sending it on is the offence. The law doesn't ask the reason. Three years, it can go up to.` },
+          { who: "Murugan", text: `(looking at the phone as though it changed shape) Then what was I supposed to do?` },
+          { who: "Selvi", text: `Two things. Report it. Then delete it. Nothing else is allowed.` },
+          { who: "Murugan", text: `(after a moment) My brother has sent it on by now. Definitely.` },
+          { who: "Selvi", text: `Yes. And that person will send it to somebody. Every one of them thinks he's the one exposing it. And the video keeps travelling.` },
+          { who: "Selvi", text: `(pause)` },
+          { who: "Selvi", text: `And somewhere in it, there is a child.` }
+        ]},
+        { t: "p", lines: [
+          `Making such material, keeping it to pass on, and sending it on are three separate offences — Sections 13, 14 and 15.`,
+          `Making it carries at least five years. Sending it on carries up to three years, for any reason at all, and it is also a separate offence under the IT Act. Even simply having it and not deleting or reporting it carries a fine.`,
+          `Report it. Then delete it.`,
+          `That is the only permitted action.`
+        ]},
+        { t: "visual", lines: [
+          `Conversation: phone faces away from the viewer throughout. Selvi never takes it. Never show the screen.`,
+          `After: one phone icon, then two, four, eight — spreading across the screen and off the edges. No content, only spread. It stops. One line appears: "Somewhere in it, there is a child."`,
+          `Then: a chat window with a fully blurred video thumbnail. Two buttons — Forward, struck through in red, tagged "up to 3 years" · Report and delete, in green, tagged "the only permitted action."`
+        ]}
+      ]
+    },
+    {
+      id: "2.7",
+      heading: `SCREEN 2.7 — When the punishment goes up`,
+      blocks: [
+        { t: "p", lines: [ `The same act carries a much higher punishment in certain cases.` ]},
+        { t: "list", heading: `Because of who did it`, items: [
+          `a police officer or public servant`, `staff of a school, hospital, jail or children's home`, `a relative, or someone living in the same house`, `anyone in a position of trust or authority over the child`
+        ]},
+        { t: "list", heading: `Because of the child`, items: [ `below 12`, `has a disability` ]},
+        { t: "list", heading: `Because of what happened`, items: [
+          `caused grievous hurt, pregnancy, HIV or death`, `done by more than one person`, `done repeatedly`
+        ]},
+        { t: "p", lines: [
+          `Aggravated penetrative sexual assault — Sections 5 and 6. At least 20 years, and it can go up to imprisonment for the rest of the offender's life, or death.`,
+          `Aggravated sexual assault — Sections 9 and 10. Five to seven years.`
+        ]},
+        { t: "visual", heading: `[VISUAL — staircase]`, lines: [
+          `Two steps side by side, both visible at once. Lower: "The offence" — bar marked 10 years minimum. Upper, visibly taller: "The same offence, made worse" — bar marked 20 years minimum, up to life, or death.`,
+          `Between them, three icon groups feeding upward — who did it · who it was done to · how it was done. Tapping each expands the list.`,
+          `Same colour for both bars, deeper shade on the taller. Not red vs green — it is the same offence.`
+        ]}
+      ]
+    }
+  ],
+  quiz: {
+    heading: `CHAPTER 2 QUIZ`,
+    note: `(Quiz scenarios keep second person — that is a hypothetical role in standard assessment format, not an address to the learner.)`,
+    questions: [
+      {
+        type: "multi",
+        q: `Multiple select. Which of these are offences under POCSO? (Select all that apply.)`,
+        options: [
+          { label: `Showing a pornographic video to a 15-year-old`, correct: true },
+          { label: `Repeatedly sending sexual messages to a 14-year-old on Instagram`, correct: true },
+          { label: `Touching a child's chest over her clothing`, correct: true },
+          { label: `Keeping a video of child sexual abuse on a phone in order to forward it`, correct: true },
+          { label: `A paediatrician examining a child with the parent present`, correct: false }
+        ],
+        feedback: `The first four are offences — §11, §11, §7 and §15. The first three involve no penetration; two involve no touching at all. The medical examination has no sexual intent, and Section 41 expressly excludes examination or treatment carried out with parental consent.`
+      },
+      {
+        type: "single",
+        q: `Scenario. A man receives a video of child sexual abuse on WhatsApp. He is disgusted and forwards it to three friends saying see what people are doing. Under POCSO —`,
+        options: [
+          { label: `No offence, because his intention was to condemn it`, correct: false },
+          { label: `No offence, because he did not create the video`, correct: false },
+          { label: `An offence under Section 15(2), because he sent it on`, correct: true },
+          { label: `An offence only if one of the friends complains`, correct: false }
+        ],
+        feedback: `Section 15(2) covers storing such material in order to transmit, propagate, display or distribute it. The only permitted purposes are reporting it, or producing it as evidence in court. Report and delete was the correct action.`
+      },
+      {
+        type: "single",
+        q: `Scenario. A hostel warden sexually assaults a 13-year-old resident. Compared to the same act by a stranger, the punishment is —`,
+        options: [
+          { label: `The same`, correct: false },
+          { label: `Lower, because he is an employee of the institution`, correct: false },
+          { label: `Higher, because he is in a position of trust and is staff of the institution`, correct: true },
+          { label: `Decided by the institution`, correct: false }
+        ]
+      }
+    ]
+  }
+},
+
+/* =================================================================
+   CHAPTER 3 — The Line an Adult Must Not Cross
+   ================================================================= */
+{
+  num: 3,
+  title: `The Line an Adult Must Not Cross`,
+  duration: `~4 min · 2 screens`,
+  screens: [
+    {
+      id: "3.1",
+      heading: `SCREEN 3.1 — Things that are already offences`,
+      blocks: [
+        { t: "p", lines: [
+          `Every other chapter in this module is about protecting a child from someone else.`,
+          `This chapter is about the line an adult must not cross.`,
+          `Each of the following is already an offence. None of them is what people picture when they hear the word "abuse."`
+        ]},
+        { t: "list", heading: `Things you say, send or show`, items: [
+          `Sending a sexual joke, picture or message to someone below 18`,
+          `Showing a child pornographic material — including "just to see the reaction"`,
+          `Commenting on a child's body in a sexual way, in person or online`,
+          `Repeatedly messaging or following a teenager who did not ask for the contact`
+        ]},
+        { t: "list", heading: `Things on a phone or a camera`, items: [
+          `Photographing a child undressed`,
+          `Keeping such material to share or sell it`,
+          `Forwarding it to anyone, for any reason`,
+          `Threatening to share a real or morphed sexual picture of a child`
+        ]}
+      ]
+    },
+    {
+      id: "3.2",
+      heading: `SCREEN 3.2 — Three beliefs that are wrong`,
+      blocks: [
+        { t: "dialogue", location: `BUS STOP`, turns: [
+          { who: "Amudha", text: `(looking up from her phone) Sekar. You see this case?` },
+          { who: "Sekar", text: `Which one?` },
+          { who: "Amudha", text: `The man — he said it happened only one time. Only once, and they gave him ten years.` },
+          { who: "Sekar", text: `Once is enough. It's a crime the first time.` },
+          { who: "Amudha", text: `Then what's the point of how many times?` },
+          { who: "Sekar", text: `It makes the punishment bigger. Not smaller.` },
+          { who: "Amudha", text: `(scrolling) And this word they keep using — no penetration.` },
+          { who: "Sekar", text: `Also not a defence. There are separate sections for touching without that. And separate sections for things with no touching at all.` },
+          { who: "Amudha", text: `(shaking her head) Then this one I don't understand. The girl said nothing for six years. Six years! Then suddenly she goes to the police.` },
+          { who: "Sekar", text: `She was nine.` },
+          { who: "Amudha", text: `(quiet)` },
+          { who: "Sekar", text: `Children don't speak immediately. Sometimes there are no words. Sometimes they were told what would happen. Sometimes they told one person, nothing happened, so they stopped trying.` },
+          { who: "Amudha", text: `And the law accepts that?` },
+          { who: "Sekar", text: `Waiting doesn't make the case weaker. Six years. Twenty years. Nobody is too late.` },
+          { who: "Amudha", text: `(after a moment) And that tuition master they arrested. Twenty years minimum, they're saying. For a teacher.` },
+          { who: "Sekar", text: `Because he's a teacher.` },
+          { who: "Amudha", text: `That's backwards.` },
+          { who: "Sekar", text: `Is it? A stranger has to work hard to get near a child. That girl's mother put her in an auto and sent her to him six days a week. Told her — listen to Sir. He didn't have to work at all. It was handed to him.` },
+          { who: "Amudha", text: `(slowly) Because everyone trusted him.` },
+          { who: "Sekar", text: `She had no way to protect herself from someone she was told was safe. The law looked at that and said — worse. Not better.` },
+          { who: "Amudha", text: `(no answer)` }
+        ]},
+        { t: "p", heading: `Screen text — below the conversation:`, lines: [
+          `Three beliefs, and what the law says.`
+        ]},
+        { t: "beliefList", items: [
+          { belief: `"It only happened once."`, response: `Every offence is complete the first time. Repetition raises the punishment. Its absence removes nothing.` },
+          { belief: `"There was no penetration."`, response: `Separate offences exist for touching without penetration, and for acts with no touching at all.` },
+          { belief: `"The child said nothing at the time."`, response: `Delay is normal and does not weaken a case. Courts accept that children stay silent for years. Nobody is too late to come forward.` }
+        ]},
+        { t: "p", lines: [
+          `Committing the act is not the only way to be liable.`,
+          `Encouraging it, planning it, or deliberately not acting when it was a duty to act — the law can punish that as the offence itself. Attempting it carries up to half the sentence. Sections 16, 17 and 18.`,
+          `For the more serious offences — sexual assault and penetrative sexual assault, Sections 3, 5, 7 and 9 — the Special Court begins by presuming the accused did it, once the prosecution has laid the basic facts. Disproving it is his job. Sections 29 and 30.`
+        ]},
+        { t: "visual", lines: [
+          `Two beats to hold: on "She was nine," hold the frame — and have Amudha lower the phone. On her final silence, do not draw her nodding. She looks down the road for the bus.`,
+          `Below the conversation: reuse the staircase graphic from Chapter 2 — same drawing, same colours — highlighting only the "who did it" group. Do not redesign it.`,
+          `Beside it, three figures at identical size: a hand extended ("Did it") · a figure gesturing forward ("Encouraged it") · a figure with a key beside an open door, looking away ("Chose not to stop it"). One bracket beneath all three: "The law can treat all three the same." All three at the same size and colour weight — if the first is drawn larger, the graphic argues against the text.`
+        ]}
+      ]
+    }
+  ],
+  quiz: {
+    heading: `CHAPTER 3 QUIZ`,
+    questions: [
+      {
+        type: "single",
+        q: `Scenario. A 35-year-old man exchanges sexual messages with a 16-year-old girl online. They never meet. Under POCSO —`,
+        options: [
+          { label: `No offence, because there was no physical contact`, correct: false },
+          { label: `No offence, because she took part willingly`, correct: false },
+          { label: `An offence under Section 11 — sexual harassment needs no physical contact`, correct: true },
+          { label: `An offence only if he meets her later`, correct: false }
+        ],
+        feedback: `Section 11 covers repeatedly contacting a child online with sexual intent, and covers sexual words and material sent to a child.`
+      },
+      {
+        type: "single",
+        q: `True or false. Once charges are framed in a POCSO case of sexual assault, the prosecution must prove the accused did it, as in any other criminal trial.`,
+        options: [
+          { label: `True`, correct: false },
+          { label: `False`, correct: true }
+        ],
+        feedback: `For the offences under Sections 3, 5, 7 and 9, Section 29 has the Special Court presume the accused committed the offence unless he proves otherwise, and Section 30 presumes he had the guilty mind. The burden sits with him.`
+      },
+      {
+        type: "single",
+        q: `Scenario. A school principal learns that a teacher has assaulted a student. He decides not to report it, so the school's reputation is protected. Under POCSO he faces —`,
+        options: [
+          { label: `No liability, since he did not commit the assault`, correct: false },
+          { label: `Liability for failure to report under Section 21 — and possible liability as an abettor under Section 16, if his silence allowed further offences`, correct: true },
+          { label: `Liability only if the parents complain about him`, correct: false },
+          { label: `Only departmental action, not criminal liability`, correct: false }
+        ],
+        feedback: `Section 21 makes failure to report punishable, with a higher penalty for a person in charge of an institution. Section 16 covers deliberately not acting when it was your duty to act.`
+      }
+    ]
+  }
+},
+
+/* =================================================================
+   CHAPTER 4 — Seeing It Before the Child Speaks
+   ================================================================= */
+{
+  num: 4,
+  title: `Seeing It Before the Child Speaks`,
+  duration: `~5 min · 3 screens`,
+  screens: [
+    {
+      id: "4.1",
+      heading: `SCREEN 4.1 — What grooming looks like`,
+      blocks: [
+        { t: "p", lines: [
+          `Most children being abused never tell anyone.`,
+          `They stay silent because they were threatened. Because they were told nobody would believe them. Because the person doing it is someone the family loves. Because they have no words for it. Because they tried once, and nothing happened.`,
+          `So the noticing has to be done by adults.`,
+          `Abuse rarely starts with an assault. It starts with someone slowly building access to a child, and silence around it. That is grooming.`,
+          `Six patterns:`
+        ]},
+        { t: "list", items: [
+          `1 · Targeting — fixing on one particular child. Often one who is alone a lot, or has trouble at home, or badly wants attention.`,
+          `2 · Special treatment — gifts, money, phone recharge, favours no other child gets.`,
+          `3 · Creating time alone — extra classes, dropping her home, sending her on errands, a closed door. Always with a good reason attached.`,
+          `4 · Testing the boundary — small touches that could look innocent. Tickling, play-fighting, a hand that stays a moment too long. He is watching how the child reacts, and how the adults around react.`,
+          `5 · Secrecy — "this is just between us." Private messages. A phone the parents don't know about. The clearest single sign.`,
+          `6 · Escalation and silencing — contact increases. The child is made to feel she is part of it, or ashamed, or afraid of what happens if she speaks.`
+        ]},
+        { t: "visual", heading: `[VISUAL — staircase, not a list]`, lines: [
+          `Six steps rising left to right. Each carries a number, the pattern name, and one icon: a single figure picked out of a group · a wrapped gift · a closed door · a hand reaching out, drawn faintly · a finger to the lips · an arrow curving upward.`
+        ]}
+      ]
+    },
+    {
+      id: "4.2",
+      heading: `SCREEN 4.2 — Divya's case, and what to look for in a child`,
+      blocks: [
+        { t: "p", lines: [
+          `Read this, then mark what stands out.`,
+          `Divya is 13, in Class 8. Her father works in Dubai. Her mother works two shifts. A neighbour she calls Chithappa has been helping the family for two years. He drops her to school. He stays with her when her mother is on night duty.`,
+          `Over four months: he starts bringing her small gifts. He recharges her phone. He tells her she is more grown-up than other girls her age. He asks her not to mention the gifts — the other children in the building will feel bad, he says. He starts arriving before her mother leaves, and staying after she goes.`,
+          `Her mother notices Divya has gone quiet, and decides it must be exam pressure. Her teacher notices Divya has stopped sitting with her usual friends.`
+        ]},
+        { t: "interaction", kind: "multiSelectCase", label: `Interaction — multiple select. Which of the six patterns are present?`, data: {
+          options: [
+            { label: `Targeting`, correct: true },
+            { label: `Special treatment`, correct: true },
+            { label: `Creating time alone`, correct: true },
+            { label: `Secrecy`, correct: true },
+            { label: `Testing the boundary`, correct: false, note: `not described here` },
+            { label: `Escalation and silencing`, correct: false, note: `not described yet` }
+          ],
+          feedbackLines: [
+            `Four of the six. And nothing has been done to Divya yet.`,
+            `That is the point. By the time anything happens, this man will have spent months making sure he can be alone with her and that she won't talk about it — all of it in the open.`,
+            `Two adults have already seen something change. Neither of them had to be sure, and neither of them had to ask Divya a single question. Either one could have reported a suspicion that day.`
+          ]
+        }},
+        { t: "p", heading: `Screen text — below the case: Signs in a child.`, lines: [] },
+        { t: "list", heading: `In behaviour`, items: [
+          `suddenly withdrawn, or suddenly clingy`, `afraid of one person or one place`, `won't be alone with someone she was fine with before`, `marks falling`, `stops activities she liked`, `running away`, `angry, or hurting herself`, `not sleeping`, `bedwetting`
+        ]},
+        { t: "list", heading: `In what she knows`, items: [
+          `words, drawings or games involving sexual acts a child that age should not know about.`
+        ]},
+        { t: "list", heading: `In the body`, items: [
+          `difficulty walking or sitting`, `pain, bleeding or discharge`, `falling ill often with no clear reason`, `not wanting to change clothes in front of anyone`
+        ]},
+        { t: "list", heading: `On the phone`, items: [
+          `hiding the screen`, `a phone, SIM or account the family didn't know existed`, `upset after being online`
+        ]},
+        { t: "p", lines: [ `You do not need to spot many. One change that is new, and does not go away, is enough.` ]},
+        { t: "visual", lines: [
+          `Top — Divya's story as four panels, scrolled through with text beneath each: 1 · The setup. A small flat. Divya at a table with schoolbooks. Her mother at the door in work clothes, leaving. A wall calendar with shifts marked. 2 · The gifts. Same table. A hand and forearm only — no face — placing a wrapped item and a phone beside her books. Divya looks pleased. 3 · The secret. Divya alone, holding the phone, glancing towards the door. 4 · What the adults saw. Split frame. Left: her mother across a meal, mildly concerned. Right: a school corridor, Divya alone on a step while girls talk nearby, her teacher passing with a register.`,
+          `Rules: never show the man's face — hands, a shoulder, nothing more. Divya must never look frightened or sad in panels 1–3; she looks like a child being treated well. Same colour palette across all four.`,
+          `Bottom — four grouped panels with heading icons only: Behaviour · What she knows · Body · Phone. Do not illustrate individual signs. No crying child, no bruises. A parent may be recognising their own child here; illustrated distress turns a checklist into an accusation.`,
+          `Highlight "What she knows" with a border tagged "Most often ignored."`
+        ]}
+      ]
+    },
+    {
+      id: "4.3",
+      heading: `SCREEN 4.3 — Noticing is not investigating`,
+      blocks: [
+        { t: "p", lines: [
+          `Suspicion is enough to report.`,
+          `Do not question the child. Probing questions damage the child's account.`,
+          `Do not confront the person suspected. It warns him, endangers the child, destroys evidence.`,
+          `Do not arrange a medical examination. There is a legal procedure for that.`,
+          `Do not discuss it in a WhatsApp group, a staff room, or with neighbours. Revealing a child's identity — in a newspaper, or on WhatsApp, Facebook or YouTube — is itself an offence under Section 23.`,
+          `Report it. That is the whole job. Establishing what happened is the system's work.`
+        ]},
+        { t: "dialogue", location: `TEA SHOP`, note: `(add any characters / scenario without changing the core content)`, turns: [
+          { who: "Selvi", text: `Murugan anna. Can I ask you something, and you won't repeat it?` },
+          { who: "Murugan", text: `Ask.` },
+          { who: "Selvi", text: `My sister's daughter. Eleven. Last two months she won't stay in the room when her father's younger brother comes. She goes and stands in the kitchen. Every time.` },
+          { who: "Murugan", text: `(carefully) You told your sister?` },
+          { who: "Selvi", text: `How to say it? That family is everything to us. He's been coming to that house fifteen years. If I say one word and I'm wrong —` },
+          { who: "Murugan", text: `You'll lose the whole family.` },
+          { who: "Selvi", text: `And they'll say Selvi is the one who broke it.` },
+          { who: "Murugan", text: `So what are you doing?` },
+          { who: "Selvi", text: `Watching. Waiting to be sure.` },
+          { who: "Murugan", text: `(putting the cloth down) How long have you been waiting to be sure?` },
+          { who: "Selvi", text: `(pause) Two months.` },
+          { who: "Murugan", text: `And in those two months, how many times has he been in that house?` },
+          { who: "Selvi", text: `(no answer)` },
+          { who: "Murugan", text: `You told me the law doesn't ask anyone to be sure. Suspicion is enough, you said. They set it low on purpose, so ordinary people don't have to decide this alone.` },
+          { who: "Selvi", text: `(quietly) I said that.` },
+          { who: "Murugan", text: `Then it isn't an accusation. It's handing a question to people whose job it is to answer it. If the answer is nothing, it's nothing, and you'll be glad.` },
+          { who: "Selvi", text: `And if it isn't nothing?` },
+          { who: "Murugan", text: `Then you waited two months. Don't wait four.` }
+        ]},
+        { t: "p", heading: `Screen text — below the conversation:`, lines: [
+          `More than 9 out of 10 offenders are already known to the child. So most suspicions will be about someone known — a relative, a family friend, someone whose family is tied to yours.`,
+          `This is where most adults stop.`,
+          `The reasons are always the same. It will destroy the family. He would never. She'll be blamed for the rest of her life. Let me watch a little longer and be sure.`,
+          `Waiting to be sure is how children stay in these situations for years.`
+        ]}
+      ]
+    }
+  ],
+  quiz: {
+    heading: `CHAPTER 4 QUIZ`,
+    questions: [
+      {
+        type: "multi",
+        q: `Multiple select. In Divya's case, which should have raised concern? (Select all that apply.)`,
+        options: [
+          { label: `An adult asking a child to keep gifts secret`, correct: true },
+          { label: `An adult repeatedly arranging to be alone with her`, correct: true },
+          { label: `A sudden change in how she behaved at school`, correct: true },
+          { label: `Her father working abroad`, correct: false }
+        ],
+        feedback: `The first three are grooming patterns.`
+      },
+      {
+        type: "single",
+        q: `Scenario. You suspect a child in your building is being abused by a relative. The first step should be to —`,
+        options: [
+          { label: `Ask the child directly, to be sure before acting`, correct: false },
+          { label: `Speak to the relative and watch how he reacts`, correct: false },
+          { label: `Report the suspicion to the police or SJPU — or call 1098`, correct: true },
+          { label: `Wait until something clearer appears`, correct: false }
+        ],
+        feedback: `Section 19 says the report goes to the Special Juvenile Police Unit or the local police; 1098 routes to the same place.`
+      },
+      {
+        type: "single",
+        q: `True or false. Reporting should wait until abuse is reasonably certain.`,
+        options: [
+          { label: `True`, correct: false },
+          { label: `False`, correct: true }
+        ],
+        feedback: `Suspicion is enough. The law does not ask for certainty and does not ask for proof. Waiting until it is certain is what leaves children where they are.`
+      }
+    ]
+  }
+},
+
+/* =================================================================
+   CHAPTER 5 — When a Child Tells You, and What to Do Next
+   ================================================================= */
+{
+  num: 5,
+  title: `When a Child Tells You, and What to Do Next`,
+  duration: `~9 min · 4 screens`,
+  screens: [
+    {
+      id: "5.1",
+      heading: `SCREEN 5.1 — When a child tells you`,
+      blocks: [
+        { t: "p", lines: [
+          `When a child tells an adult, understand what has just happened.`,
+          `It rarely comes out plainly. Usually it arrives like this:`
+        ]},
+        { t: "p", heading: `Indirectly`, lines: [
+          `a boy says "I don't want to go to tuition any more." He is not refusing tuition. He is refusing a person, and hoping someone asks.`
+        ]},
+        { t: "p", heading: `As a question about "a friend"`, lines: [
+          `"What if someone's uncle did something bad to them?" The friend is very often the child asking.`
+        ]},
+        { t: "p", lines: [ `The first ten seconds matter most.` ]},
+        { t: "sayNotSay", sayHeading: `Say this`, say: [ `"I believe you."`, `"This is not your fault."`, `"I'm glad you told me."` ], sayNote: `Then stay calm, and let the child speak without interrupting.`,
+          notHeading: `Not this`, not: [ `"Are you sure?"`, `"Why didn't you tell me before?"`, `"Why did you go with him?"`, `"Let's keep this between us."` ] },
+        { t: "visual", lines: [
+          `Top: a still of two people sitting side by side on a step, seen from behind — an adult and a child, both facing away, neither looking at the other. Children disclose in this position, not face to face. The image teaches that before the text does.`,
+          `Middle — five small cards, scrolled horizontally, one per pattern: a school bag put down at a doorway, child half-turned away · two children on a school step, the speaker looking straight ahead · a child speaking to an adult who is half-listening and still doing something with their hands · the same child later, shaking their head · the inside of an auto at night, both facing forward. In every one, the child is not making eye contact. That is the through-line. Draw boys in at least two of the five.`,
+          `Strip across the bottom: "The difference is not how much you care. It is what comes out of your mouth in the first ten seconds."`
+        ]}
+      ]
+    },
+    {
+      id: "5.2",
+      heading: `SCREEN 5.2 — What not to do`,
+      blocks: [
+        { t: "p", heading: `Do not promise secrecy.`, lines: [
+          `A child will often ask first: "Promise you won't tell anyone." That promise cannot be kept — reporting is a legal duty, and secrecy leaves the child where they are.`
+        ]},
+        { t: "quote", heading: `Say this instead:`, lines: [
+          `"I can't promise to keep it a secret, because if somebody is hurting you, my job is to make it stop. But I promise I'll tell you who I'm telling. And I'll stay with you through it."`
+        ]},
+        { t: "p", heading: `Do not investigate.`, lines: [
+          `No leading questions. "Did he touch you here?" puts information into the child's account that they did not give.`,
+          `Two questions are enough: "Can you tell me what happened?" and "Is there anything else you want to tell me?" Then stop.`
+        ]},
+        { t: "p", lines: [
+          `Do not make the child repeat it to a second, third and fourth adult.`,
+          `Do not photograph or examine the child.`
+        ]},
+        { t: "list", heading: `Write it down, the same day.`, items: [
+          `The child's exact words, in the language they used. Do not translate. Do not tidy them up`,
+          `Date and time`,
+          `Where, and who else was there`
+        ]},
+        { t: "p", lines: [
+          `One question before anything else: does the child have to go back tonight to where that person is?`,
+          `If yes — call 1098 immediately.`,
+          `Do not send the child home with the person suspected.`
+        ]}
+      ]
+    },
+    {
+      id: "5.3",
+      heading: `SCREEN 5.3 — Reporting`,
+      blocks: [
+        { t: "p", lines: [
+          `Any person who suspects, or knows, must report. Section 19.`,
+          `"Any person."`,
+          `Staying quiet is itself an offence. Failure to report can bring up to six months, or a fine, or both — and up to one year for a person in charge of an institution. Section 21.`,
+          `A child is never punished for not reporting. Section 21(3).`,
+          `Some people have a special duty. Staff of a hotel, lodge, hospital, club, studio or photo shop, and media staff, must report what they come across. Section 20.`,
+          `You do not have to give your name when you report. If you do give it, you may later be asked to give a statement.`,
+          `If the report turns out to be wrong, nothing happens to the person who made it.`,
+          `The law says it plainly: no liability, civil or criminal, for giving information in good faith. Section 19(7).`,
+          `Good faith means honestly believing something was wrong. It does not mean being right. No lawsuit. No prosecution. Even if the investigation finds nothing.`,
+          `A complaint made knowingly to humiliate or defame someone is a different thing, and is itself an offence. Section 22. Reporting an honest suspicion is not.`,
+          `Telling a panchayat, a school correspondent, or the family is not reporting. And a POCSO case cannot be settled or withdrawn — a compromise, a payment, or a marriage arranged afterwards does not close it.`
+        ]},
+        { t: "list", heading: `Where to report`, items: [
+          `Child Helpline 1098 — free, day and night`,
+          `Singappen Special Force 1091 — the Tamil Nadu Police unit for women and children`,
+          `Local police / SJPU — where the law says the report goes`,
+          `POCSO e-Box — online, for anyone who cannot report in person`
+        ]}
+      ]
+    },
+    {
+      id: "5.4",
+      heading: `SCREEN 5.4 — What happens after you report`,
+      blocks: [
+        { t: "p", lines: [
+          `Most people stay quiet because they do not know what they are starting. This is what happens.`,
+          `The report goes to the local police or the Special Juvenile Police Unit. If the child needs a safe place or care, the child is placed before the Child Welfare Committee.`,
+          `The statement is taken by a woman police officer, not in uniform, at the child's home or a place the child chooses, with a parent or someone the child trusts sitting there. The child is not kept at a police station at night.`,
+          `If a medical examination is needed, it is done by a woman doctor for a girl child, with someone the child trusts present. No FIR is needed first.`,
+          `The case is heard by a Special Court, in private. The child does not have to face the accused. The evidence is meant to be recorded within thirty days, and the trial finished within a year.`,
+          `The family can ask for a support person to stay with the child through all of it, and for free legal aid. The court can order compensation at any stage, without waiting for the case to end.`,
+          `And you — you may be asked to give a statement as a witness. Nothing that identifies the child can ever be published.`,
+          `Sections 19, 24, 26, 27, 33, 35, 36 and 40.`
+        ]},
+        { t: "visual", lines: [
+          `A single horizontal path with six plain stops: the call · the police or SJPU · the child's statement, at home · the Child Welfare Committee, if care is needed · the Special Court · the trial. No faces, no uniforms, no courtroom drama. The point is that the path exists and is short, not that it is impressive.`
+        ]}
+      ]
+    }
+  ],
+  quiz: {
+    heading: `CHAPTER 5 QUIZ`,
+    questions: [
+      {
+        type: "single",
+        q: `Scenario. A 10-year-old says "Promise you won't tell Amma" before telling you something. The right response is —`,
+        options: [
+          { label: `Promise, so she feels safe enough to speak`, correct: false },
+          { label: `Refuse, and say her mother will be told immediately`, correct: false },
+          { label: `Say the secret cannot be kept, but that she will be told who is being told, and will not be left alone through it`, correct: true },
+          { label: `Change the subject and raise it another day`, correct: false }
+        ],
+        feedback: `Secrecy cannot be promised — reporting is compulsory, and secrecy leaves her unprotected. But an honest promise that can be kept protects her trust. A broken one confirms her fear that adults cannot be relied on.`
+      },
+      {
+        type: "single",
+        q: `Scenario. A child starts telling you something and stops. The best response is —`,
+        options: [
+          { label: `"Did he touch you somewhere private?"`, correct: false },
+          { label: `"Was it your uncle?"`, correct: false },
+          { label: `"Take your time. Is there anything else you want to tell me?"`, correct: true },
+          { label: `"Let's call your parents so you can tell them properly"`, correct: false }
+        ],
+        feedback: `Options a and b are leading — they supply information the child did not give, and can be used to undermine the child's evidence later. Option d makes the child repeat it to more adults, which is distressing and creates inconsistencies.`
+      },
+      {
+        type: "single",
+        q: `True or false. A child who tells someone about abuse and later says she made it up has probably made it up.`,
+        options: [
+          { label: `True`, correct: false },
+          { label: `False`, correct: true }
+        ],
+        feedback: `Taking it back is common. It usually follows pressure from the family, fear of consequences, or distress at how the first adult reacted. It is not proof the disclosure was untrue, and the duty to report does not change.`
+      },
+      {
+        type: "single",
+        q: `Scenario. A hostel warden hears from a resident that another staff member assaulted a child. He tells the correspondent, who says the school will handle it internally. Neither goes to the police. Under POCSO —`,
+        options: [
+          { label: `The warden has done his duty by informing his senior`, correct: false },
+          { label: `Only the correspondent is liable`, correct: false },
+          { label: `Both failed to report. The correspondent faces the higher penalty, as the person in charge`, correct: true },
+          { label: `Neither is liable unless the parents complain`, correct: false }
+        ],
+        feedback: `The duty falls on any person who knows — it is not discharged by passing it up the line. Telling a senior is not reporting. A person in charge of an institution faces up to one year for failing to report an offence by someone under them.`
+      },
+      {
+        type: "single",
+        q: `Scenario. A woman reports a suspicion about her neighbour. The investigation finds nothing and the case is closed. She is —`,
+        options: [
+          { label: `Liable for defamation`, correct: false },
+          { label: `Liable for a false complaint`, correct: false },
+          { label: `Protected, because she reported in good faith`, correct: true },
+          { label: `Protected only if she apologises`, correct: false }
+        ],
+        feedback: `The law protects anyone who gives information in good faith from civil and criminal liability, whether or not the case proceeds. Only a knowingly false complaint, made to humiliate or defame, is an offence.`
+      },
+      {
+        type: "multi",
+        q: `Multiple select. Which of these does the law require when a child's statement is recorded? (Select all that apply.)`,
+        options: [
+          { label: `The officer must not be in uniform`, correct: true },
+          { label: `A woman officer records it, as far as possible`, correct: true },
+          { label: `It is recorded at her home or a place she chooses`, correct: true },
+          { label: `She must not be kept at a police station at night`, correct: true },
+          { label: `Her parent or someone she trusts must be present`, correct: true },
+          { label: `She must identify the accused in person at the police station`, correct: false }
+        ],
+        feedback: `The first five are required by law. The last is not — the court must ensure she is not exposed to the accused while giving evidence.`
+      }
+    ]
+  }
+}
+];
+
+const FINAL_CARD = {
+  heading: `ONE CARD TO KEEP`,
+  intro: `Five things. If you remember nothing else, remember these.`,
+  lines: [
+    `Anyone below 18 is a child. Below 18, "yes" has no meaning in law.`,
+    `A crime does not need touching. Messages, pictures, videos, and following a child are all offences.`,
+    `Never forward a photo or video of child abuse. Report it, then delete it.`,
+    `Suspicion is enough. You do not have to be sure — and staying quiet is itself an offence.`,
+    `If a child tells you — believe, don't question, don't promise secrecy, write it down, report the same day.`
+  ],
+  contacts: `Child Helpline 1098 · Singappen Special Force 1091 · your local police or SJPU · POCSO e-Box`,
+  disclaimer: `This module explains the law in simple words. It is not legal advice.`,
+  visual: `One card, downloadable and printable, sized for a phone screenshot. Five lines and the numbers. Nothing else on it.`
+};
