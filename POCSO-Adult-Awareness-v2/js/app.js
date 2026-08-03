@@ -178,8 +178,13 @@ function animateIn(wrap) {
   const targets = wrap.querySelectorAll(".gsap-stagger");
   if (targets.length && typeof ScrollTrigger !== "undefined") {
     gsap.set(targets, { autoAlpha: 0, y: 16 });
+    // .stage is only the actual scroll container at the desktop breakpoint
+    // (see the media query in style.css) — below that, the window/document
+    // scrolls instead, so ScrollTrigger needs the matching scroller or its
+    // batch reveal will never fire on mobile.
+    const isDesktopShell = window.innerWidth >= 900;
     ScrollTrigger.batch(targets, {
-      scroller: stage,
+      scroller: isDesktopShell ? stage : window,
       start: "top 96%",
       once: true,
       onEnter: (batch) => gsap.to(batch, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.08, ease: "power2.out", overwrite: true })
@@ -214,7 +219,12 @@ function render() {
   updateProgress();
   updateSidebar();
   animateIn(wrap);
+  // Desktop scrolls the .stage pane; mobile scrolls the window (the whole
+  // page) instead, since the sidebar-independent-scroll shell only applies
+  // at the desktop breakpoint. Both calls are harmless no-ops when that
+  // element isn't the actual scroll container.
   if (typeof stage.scrollTo === "function") stage.scrollTo({ top: 0, behavior: "smooth" }); else stage.scrollTop = 0;
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 /* ================================================================
