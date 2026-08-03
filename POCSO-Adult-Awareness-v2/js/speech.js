@@ -33,10 +33,22 @@ function pickVoiceForGender(gender) {
   if (!cachedVoices.length) return null;
   const english = cachedVoices.filter((v) => /^en/i.test(v.lang));
   const pool = english.length ? english : cachedVoices;
-  const maleHints = /male|david|mark|guy|daniel|rishi|ravi|arjun|ajit/i;
-  const femaleHints = /female|zira|susan|samantha|victoria|heera|aditi|priya|karen/i;
+  const maleHints = /\b(male|david|mark|guy|daniel|alex|fred|james|george|arthur|ryan|rishi|ravi|arjun|ajit|paul|oliver|thomas)\b/i;
+  const femaleHints = /\b(female|zira|susan|samantha|victoria|heera|aditi|priya|karen|hazel|moira|tessa|fiona|kate|amy|emma|joanna|salli|linda)\b/i;
   const hints = gender === "male" ? maleHints : femaleHints;
-  return pool.find((v) => hints.test(v.name)) || null;
+  const named = pool.find((v) => hints.test(v.name));
+  if (named) return named;
+  // No gender hint in any installed voice's name (common — many systems
+  // only ship one or two ungendered-named voices). Fall back to picking
+  // two genuinely different voice objects so the two characters still
+  // sound distinct in timbre, not just in pitch on the same voice.
+  if (pool.length > 1) return gender === "male" ? pool[0] : pool[1];
+  return pool[0] || null;
+}
+
+function vibrateForGender(gender) {
+  if (!navigator.vibrate) return;
+  try { navigator.vibrate(gender === "male" ? [30] : [18, 40, 18]); } catch (e) { /* best-effort only */ }
 }
 
 const Speech = (function () {
@@ -174,10 +186,14 @@ const Speech = (function () {
       if (!spokenText) { i++; setTimeout(speakNext, 260); return; }
       const gender = guessGender(turn.who);
       const voice = pickVoiceForGender(gender);
+      vibrateForGender(gender);
       const utter = new SpeechSynthesisUtterance(spokenText);
       if (voice) utter.voice = voice;
-      utter.pitch = gender === "male" ? 0.85 : 1.25;
-      utter.rate = gender === "male" ? 0.94 : 1.0;
+      // Pitch/rate gap is wide on purpose: when the browser only has one
+      // ungendered voice installed, this is the only differentiation
+      // available, so a subtle shift isn't enough to read as two people.
+      utter.pitch = gender === "male" ? 0.72 : 1.4;
+      utter.rate = gender === "male" ? 0.92 : 1.02;
       utter.onend = () => { if (myToken !== cancelToken) return; i++; speakNext(); };
       utter.onerror = () => { if (myToken !== cancelToken) return; i++; speakNext(); };
       window.speechSynthesis.speak(utter);

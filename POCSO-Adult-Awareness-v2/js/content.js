@@ -117,7 +117,7 @@ const CHAPTERS = [
             { front: `But she is married.`, back: `Marriage cannot create consent where the law says none can exist.` },
             { front: `But we are in a relationship.`, back: `A relationship is not a defence. The offence is complete.` },
             { front: `But he is a boy — he wanted it.`, back: `Same rule. A boy below 18 cannot consent either.` },
-            { front: `But both of them are below 18.`, back: `Still an offence. But when the person who did it is himself below 18, the case goes to the Juvenile Justice Board, not to a regular criminal court. Section 34(1).` }
+            { front: `But both of them are below 18.`, back: `Still an offence. But when the person who did it is himself below 18, the case goes to the Juvenile Justice Board under the Juvenile Justice Act, not to a regular criminal court. Section 34(1).` }
           ]
         }}
       ]
@@ -137,9 +137,9 @@ const CHAPTERS = [
           items: [
             { text: `A 15-year-old boy is sexually assaulted by a male relative`, bin: "applies", feedback: `Correct. Boys are protected equally.` },
             { text: `A 16-year-old boy is sexually assaulted by a woman`, bin: "applies", feedback: `Correct. The law does not assume the offender is a man.` },
-            { text: `A 17-year-old girl is assaulted by her tuition teacher`, bin: "applies", feedback: `Correct — and because he is her teacher, the punishment is higher. Chapter 3.` },
+            { text: `A 17-year-old girl is sexually assaulted by her tuition teacher`, bin: "applies", feedback: `Correct — and because he is her teacher, the punishment is higher. Chapter 3.` },
             { text: `A 13-year-old girl is shown pornographic material by a neighbour`, bin: "applies", feedback: `Correct. Showing pornographic material to a child is an offence under Section 11. No touching is needed.` },
-            { text: `A 19-year-old college student is assaulted`, bin: "not-applies", feedback: `Correct. She is above 18, so POCSO does not apply. She is protected under the BNS — Section 63 (rape), Section 74 (assault or criminal force with intent to outrage modesty), Section 75 (sexual harassment). She is not unprotected. She is protected by a different law.` }
+            { text: `A 19-year-old college student is sexually assaulted`, bin: "not-applies", feedback: `Correct. She is above 18, so POCSO does not apply. She is protected under the BNS — Section 63 (rape), Section 74 (assault or criminal force with intent to outrage modesty), Section 75 (sexual harassment). She is not unprotected. She is protected by a different law.` }
           ]
         }},
         { t: "visual", lines: [
@@ -159,12 +159,13 @@ const CHAPTERS = [
           `The evidence points the other way.`
         ]},
         { t: "interaction", kind: "sliderReveal", label: `Interaction — slider estimate.`, data: {
-          question: `Out of 10 POCSO cases, how many do you think involve someone the child already knew?`,
+          question: `Out of 10 of the most serious POCSO cases, how many do you think involve someone the child already knew?`,
           min: 0, max: 10,
           revealHeading: `Answer revealed:`,
           revealLines: [
             `More than 9 out of 10 (NCRB, Crime in India 2024).`,
-            `In 96.6% of POCSO cases the offender was known to the child — a relative, a neighbour, a family friend, someone from school or tuition, someone with a reason to be near the child.`
+            `Nationally, 67,809 POCSO cases were registered in 2024. In the most serious category — Sections 4 and 6 — the offender was someone the child already knew in 96.6% of them.`,
+            `In 96.6% of cases under Sections 4 and 6 of POCSO the offender was known to the child — a relative, a neighbour, a family friend, someone from school or tuition, someone with a reason to be near the child.`
           ]
         }},
         { t: "visual", lines: [
@@ -199,7 +200,7 @@ const CHAPTERS = [
         ]},
         { t: "interaction", kind: "tapOpen", label: `Screen text — after the conversation: The four parts of POCSO. Tap to open each.`, data: {
           items: [
-            { front: `1 · It defines the offences and the punishments.`, back: `Sections 3 to 12. Wider than most people assume — several offences involve no touching.` },
+            { front: `1 · It defines the offences and the punishments.`, back: `Sections 3 to 15. Wider than most people assume — several offences involve no touching.` },
             { front: `2 · It makes reporting a legal duty.`, back: `Section 19: any person who knows, or thinks, that an offence has been committed must report it. You do not have to be certain. Section 21: failure to report is punishable.` },
             { front: `3 · It changes how the child is treated.`, back: `Who records the statement, where, in whose presence. How a medical examination is done. Whether the child must face the accused in court.` },
             { front: `4 · It creates Special Courts.`, back: `So these cases are heard by designated courts, within fixed timelines.` }
@@ -318,7 +319,7 @@ const CHAPTERS = [
           `Penetration into the vagina, mouth, urethra or anus of a child; or making the child do so with the offender or any other person.`
         ]},
         { t: "p", lines: [
-          `Punishment — Section 4. At least 10 years, and it can go up to imprisonment for life, with a fine. If the child is below 16, at least 20 years.`,
+          `Punishment — Section 4. At least 10 years, and it can go up to imprisonment for life, with a fine. If the child is below 16, at least 20 years, and it can go up to imprisonment for the rest of the offender's life, with a fine.`,
           `No interaction on this screen. The learner reads and moves on.`
         ]},
         { t: "visual", lines: [
@@ -409,9 +410,9 @@ const CHAPTERS = [
         ]},
         { t: "p", lines: [
           `Making such material, keeping it to pass on, and sending it on are three separate offences — Sections 13, 14 and 15.`,
-          `Making it carries at least five years. Sending it on carries up to three years, for any reason at all, and it is also a separate offence under the IT Act. Even simply having it and not deleting or reporting it carries a fine.`,
+          `Making it carries at least five years. Keeping it in order to pass it on carries up to three years, or a fine, or both. Sending it on carries up to three years, for any reason at all — and is separately an offence under Section 67B of the IT Act.`,
           `Report it. Then delete it.`,
-          `That is the only permitted action.`
+          `If the police ask you to keep it, do that instead — they will tell you what to do with it.`
         ]},
         { t: "visual", lines: [
           `Conversation: phone faces away from the viewer throughout. Selvi never takes it. Never show the screen.`,
@@ -592,7 +593,7 @@ const CHAPTERS = [
       },
       {
         type: "single",
-        q: `Scenario. A school principal learns that a teacher has assaulted a student. He decides not to report it, so the school's reputation is protected. Under POCSO he faces —`,
+        q: `Scenario. A school principal learns that a teacher has sexually assaulted a student. He decides not to report it, so the school's reputation is protected. Under POCSO he faces —`,
         options: [
           { label: `No liability, since he did not commit the assault`, correct: false },
           { label: `Liability for failure to report under Section 21 — and possible liability as an abettor under Section 16, if his silence allowed further offences`, correct: true },
@@ -622,7 +623,7 @@ const CHAPTERS = [
           `Most children being abused never tell anyone.`,
           `They stay silent because they were threatened. Because they were told nobody would believe them. Because the person doing it is someone the family loves. Because they have no words for it. Because they tried once, and nothing happened.`,
           `So the noticing has to be done by adults.`,
-          `Abuse rarely starts with an assault. It starts with someone slowly building access to a child, and silence around it. That is grooming.`,
+          `Abuse rarely starts with a sexual assault. It starts with someone slowly building access to a child, and silence around it. That is grooming.`,
           `Six patterns:`
         ]},
         { t: "list", items: [
@@ -913,7 +914,7 @@ const CHAPTERS = [
       },
       {
         type: "single",
-        q: `Scenario. A hostel warden hears from a resident that another staff member assaulted a child. He tells the correspondent, who says the school will handle it internally. Neither goes to the police. Under POCSO —`,
+        q: `Scenario. A hostel warden hears from a resident that another staff member sexually assaulted a child. He tells the correspondent, who says the school will handle it internally. Neither goes to the police. Under POCSO —`,
         options: [
           { label: `The warden has done his duty by informing his senior`, correct: false },
           { label: `Only the correspondent is liable`, correct: false },
