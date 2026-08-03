@@ -14,7 +14,9 @@ function svgIcon(name, size) {
     collapse: `<path d="M4 9h5V4M20 9h-5V4M4 15h5v5M20 15h-5v5"/>`,
     chevronDown: `<path d="M5 9l7 7 7-7"/>`,
     video: `<rect x="3" y="5.5" width="13" height="13" rx="2"/><path d="M16 10l5-3v10l-5-3z"/>`,
-    quote: `<path d="M7 8.5c-2 1-3 2.6-3 5s1.5 4 3.5 4c1.4 0 2.5-1.1 2.5-2.5S9.4 12.5 8 12.5c-.3 0-.6 0-.8.1C7.4 10.5 8.7 9.2 10 8.5L7 8.5z"/><path d="M15.5 8.5c-2 1-3 2.6-3 5s1.5 4 3.5 4c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.6-2.5-2.6c-.3 0-.6 0-.8.1.2-2.1 1.5-3.4 2.8-4.1l-2.5.1z"/>`
+    quote: `<path d="M7 8.5c-2 1-3 2.6-3 5s1.5 4 3.5 4c1.4 0 2.5-1.1 2.5-2.5S9.4 12.5 8 12.5c-.3 0-.6 0-.8.1C7.4 10.5 8.7 9.2 10 8.5L7 8.5z"/><path d="M15.5 8.5c-2 1-3 2.6-3 5s1.5 4 3.5 4c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.6-2.5-2.6c-.3 0-.6 0-.8.1.2-2.1 1.5-3.4 2.8-4.1l-2.5.1z"/>`,
+    cert: `<circle cx="12" cy="9" r="6"/><path d="M9 14.5L7.5 21.5 12 19l4.5 2.5L15 14.5"/>`,
+    printer: `<rect x="6" y="9" width="12" height="7" rx="1.5"/><path d="M6 9V4h12v5M8 16v4h8v-4"/>`
   };
   return `<svg class="icon icon-${name}" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name] || ""}</svg>`;
 }

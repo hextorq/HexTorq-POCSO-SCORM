@@ -13,7 +13,9 @@ const state = loadState() || {
   sliderRevealed: {},
   caseAnswers: {},
   caseSubmitted: {},
-  commitDone: {}
+  commitDone: {},
+  learnerName: "",
+  certGenerated: false
 };
 
 function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
@@ -135,11 +137,23 @@ function updateSidebar() {
 }
 
 /* ---------------- Progress ---------------- */
+const progressChapterLabel = document.getElementById("progressChapterLabel");
 function updateProgress() {
-  const done = Object.keys(state.completedPages).length;
-  const pct = Math.round((done / PAGES.length) * 100);
+  const page = currentPage();
+  let scopePages, caption;
+  if (page.type === "final") {
+    scopePages = PAGES;
+    caption = "Overview";
+  } else {
+    const chNum = page.chapter.num;
+    scopePages = PAGES.filter((p) => p.chapter && p.chapter.num === chNum);
+    caption = "Chapter " + chNum;
+  }
+  const done = scopePages.filter((p) => state.completedPages[p.id]).length;
+  const pct = Math.round((done / scopePages.length) * 100);
   progressFill.style.width = pct + "%";
   progressLabel.textContent = pct + "%";
+  if (progressChapterLabel) progressChapterLabel.textContent = caption;
 }
 
 /* ---------------- Navigation ---------------- */
@@ -189,6 +203,9 @@ function render() {
   footerMsg.textContent = "";
   btnNext.textContent = state.currentIndex === 0 ? "Start →" : "Continue →";
 
+  const severity = page.type === "screen" ? (page.screen.severity || "") : (page.type === "final" ? "safe" : "");
+  document.body.dataset.severity = severity;
+
   if (page.type === "screen") renderScreenPage(page, wrap);
   else if (page.type === "quiz") renderQuizPage(page, wrap);
   else if (page.type === "final") renderFinalPage(page, wrap);
@@ -219,9 +236,12 @@ function renderScreenPage(page, wrap) {
     wrap.appendChild(banner);
   }
 
+  const SEVERITY_LABEL = { danger: "Danger", warning: "Warning", notice: "Notice", safe: "Safe" };
+  const sevBadge = screen.severity ? `<span class="severity-badge sev-${screen.severity}">${SEVERITY_LABEL[screen.severity]}</span>` : "";
+
   const headRow = document.createElement("div");
   headRow.className = "block head-row-flex";
-  headRow.innerHTML = `<div class="page-heading">${escapeHtml(screen.heading)}</div>`;
+  headRow.innerHTML = `<div class="page-heading">${escapeHtml(screen.heading)}${sevBadge}</div>`;
   wrap.appendChild(headRow);
 
   let hasReadableContent = false;
@@ -925,7 +945,94 @@ function renderQuizPage(page, wrap) {
 /* ================================================================
    FINAL PAGE — One Card to Keep
    ================================================================ */
+function computeOverallScore() {
+  let total = 0, correct = 0;
+  PAGES.filter((p) => p.type === "quiz").forEach((p) => {
+    const answers = state.quizAnswers && state.quizAnswers[p.id];
+    if (!answers) return;
+    p.quiz.questions.forEach((q, qi) => {
+      total++;
+      const a = answers[qi];
+      if (q.type === "multi") {
+        const arr = Array.isArray(a) ? a : [];
+        if (q.options.every((opt, oi) => opt.correct === arr.includes(oi))) correct++;
+      } else if (a !== null && a !== undefined && q.options[a] && q.options[a].correct) {
+        correct++;
+      }
+    });
+  });
+  return total ? Math.round((correct / total) * 100) : 0;
+}
+
+function renderCertificateBlock(wrap) {
+  const dateStr = new Date().toLocaleDateString("en-IN", { year: "numeric", month: "long", day: "numeric" });
+  const certId = "TNP-POCSO-" + new Date().getFullYear() + "-" + Math.random().toString(36).slice(2, 8).toUpperCase();
+  const score = computeOverallScore();
+
+  const certNode = document.createElement("div");
+  certNode.className = "certificate";
+  certNode.innerHTML = `
+    <div class="cert-corner cert-corner-tl"></div>
+    <div class="cert-corner cert-corner-tr"></div>
+    <div class="cert-corner cert-corner-bl"></div>
+    <div class="cert-corner cert-corner-br"></div>
+    <div class="cert-id">Certificate No. ${certId}</div>
+    <div class="cert-badge">${svgIcon("cert", 38)}</div>
+    <div class="cert-title">Certificate of Completion</div>
+    <div class="cert-sub">POCSO — Adult Awareness Module</div>
+    <div class="cert-body">This is to certify that</div>
+    <div class="cert-name">${escapeHtml(state.learnerName || "Learner")}</div>
+    <div class="cert-body">has completed the POCSO Adult Awareness Module — covering the definition of a child under the Act, what counts as an offence, the duty to report, and how to respond when a child discloses abuse — with an overall quiz performance of <strong>${score}%</strong>.</div>
+    <div class="cert-sign-row">
+      <div class="cert-sign"><div class="cert-sign-line"></div><div class="cert-sign-label">Date: ${dateStr}</div></div>
+      <div class="cert-seal">
+        <div class="cert-seal-ring">${svgIcon("shield", 26)}</div>
+        <div class="cert-seal-text">OFFICIAL SEAL</div>
+      </div>
+      <div class="cert-sign"><div class="cert-sign-line"></div><div class="cert-sign-label">${escapeHtml(MODULE_META.issuingAuthority)}</div></div>
+    </div>
+  `;
+  wrap.appendChild(certNode);
+
+  const actions = document.createElement("div");
+  actions.className = "cert-actions";
+  actions.innerHTML = `
+    <button class="btn btn-primary" id="printCertBtn">${svgIcon("printer", 14)} Print / Save as PDF</button>
+  `;
+  wrap.appendChild(actions);
+  actions.querySelector("#printCertBtn").addEventListener("click", () => { SFX.click(); window.print(); });
+}
+
 function renderFinalPage(page, wrap) {
+  if (!state.certGenerated) {
+    const gate = document.createElement("div");
+    gate.className = "cert-gate";
+    gate.innerHTML = `
+      <h2>Get your certificate</h2>
+      <p>Enter your name to generate a certificate of completion for this module.</p>
+      <input type="text" class="cert-name-input" id="certNameInput" placeholder="Your full name" value="${escapeHtml(state.learnerName || "")}">
+      <button class="btn btn-primary" id="genCertBtn" ${state.learnerName.trim() ? "" : "disabled"}>${svgIcon("cert", 14)} Generate Certificate</button>
+    `;
+    wrap.appendChild(gate);
+    const input = gate.querySelector("#certNameInput");
+    const genBtn = gate.querySelector("#genCertBtn");
+    input.addEventListener("input", () => {
+      state.learnerName = input.value;
+      saveState();
+      genBtn.disabled = !input.value.trim();
+    });
+    genBtn.addEventListener("click", () => {
+      if (!state.learnerName.trim()) return;
+      state.certGenerated = true;
+      saveState();
+      SFX.complete();
+      render();
+      setTimeout(() => confettiAt(document.querySelector(".certificate"), true), 250);
+    });
+  } else {
+    renderCertificateBlock(wrap);
+  }
+
   const card = document.createElement("div");
   card.className = "final-card";
   card.innerHTML = `

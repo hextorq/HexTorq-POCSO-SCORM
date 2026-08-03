@@ -59,6 +59,7 @@ const CHAPTERS = [
     {
       id: "1.3",
       heading: `SCREEN 1.3 — The most important line in the Act`,
+      severity: "notice",
       blocks: [
         { t: "p", lines: [
           `A child is any person below the age of 18. POCSO Act, Section 2(d)`,
@@ -82,6 +83,7 @@ const CHAPTERS = [
     {
       id: "1.4",
       heading: `SCREEN 1.4 — Consent`,
+      severity: "warning",
       blocks: [
         { t: "p", lines: [
           `Below 18, a child's "yes" has no meaning in law.`,
@@ -123,6 +125,7 @@ const CHAPTERS = [
     {
       id: "1.5",
       heading: `SCREEN 1.5 — Boys are children too`,
+      severity: "notice",
       blocks: [
         { t: "p", lines: [
           `POCSO works in both directions.`,
@@ -149,6 +152,7 @@ const CHAPTERS = [
     {
       id: "1.6",
       heading: `SCREEN 1.6 — Where the danger actually is`,
+      severity: "warning",
       blocks: [
         { t: "p", lines: [
           `We teach children to be careful of strangers.`,
@@ -173,6 +177,7 @@ const CHAPTERS = [
     {
       id: "1.7",
       heading: `SCREEN 1.7 — What the Act actually does`,
+      severity: "safe",
       blocks: [
         { t: "dialogue", location: `TEA SHOP / any relevant place`, turns: [
           { who: "Murugan", text: `All this POCSO, POCSO. It's for the police, no? What do I have to do with it?` },
@@ -205,6 +210,7 @@ const CHAPTERS = [
     {
       id: "1.8",
       heading: `SCREEN 1.8 — Why this module is addressed to you`,
+      severity: "warning",
       blocks: [
         { t: "p", lines: [
           `There are two ways an adult can end up on the wrong side of this law.`,
@@ -290,6 +296,7 @@ const CHAPTERS = [
     {
       id: "2.2",
       heading: `SCREEN 2.2 — The four kinds`,
+      severity: "notice",
       blocks: [
         { t: "table", headerRow: [`What it is`, `Section`], rows: [
           [`1 · Penetrative sexual assault`, `3`],
@@ -302,6 +309,7 @@ const CHAPTERS = [
     {
       id: "2.3",
       heading: `SCREEN 2.3 — Penetrative sexual assault (Section 3)`,
+      severity: "danger",
       blocks: [
         { t: "p", lines: [
           `Section 3 covers penetration of a child's body, in any form. It also covers making the child do it to the offender, and manipulating any part of the child's body to cause penetration.`
@@ -321,6 +329,7 @@ const CHAPTERS = [
     {
       id: "2.4",
       heading: `SCREEN 2.4 — Sexual assault (Section 7)`,
+      severity: "danger",
       blocks: [
         { t: "p", lines: [
           `Section 7 covers touching a child with sexual intent, without penetration — and making a child touch the offender or another person.`,
@@ -343,6 +352,7 @@ const CHAPTERS = [
     {
       id: "2.5",
       heading: `SCREEN 2.5 — Sexual harassment (Section 11)`,
+      severity: "warning",
       blocks: [
         { t: "dialogue", location: `TEA SHOP`, turns: [
           { who: "Murugan", text: `This one I can't accept. The man in the next street. They took him and he never touched the girl.` },
@@ -379,6 +389,7 @@ const CHAPTERS = [
     {
       id: "2.6",
       heading: `SCREEN 2.6 — Photos and videos of children`,
+      severity: "danger",
       blocks: [
         { t: "dialogue", location: `TEA SHOP`, turns: [
           { who: "Murugan", text: `(holding out his phone, upset) Look what came in the building group this morning.` },
@@ -412,6 +423,7 @@ const CHAPTERS = [
     {
       id: "2.7",
       heading: `SCREEN 2.7 — When the punishment goes up`,
+      severity: "danger",
       blocks: [
         { t: "p", lines: [ `The same act carries a much higher punishment in certain cases.` ]},
         { t: "list", heading: `Because of who did it`, items: [
@@ -485,6 +497,7 @@ const CHAPTERS = [
     {
       id: "3.1",
       heading: `SCREEN 3.1 — Things that are already offences`,
+      severity: "warning",
       blocks: [
         { t: "p", lines: [
           `Every other chapter in this module is about protecting a child from someone else.`,
@@ -508,6 +521,7 @@ const CHAPTERS = [
     {
       id: "3.2",
       heading: `SCREEN 3.2 — Three beliefs that are wrong`,
+      severity: "notice",
       blocks: [
         { t: "dialogue", location: `BUS STOP`, turns: [
           { who: "Amudha", text: `(looking up from her phone) Sekar. You see this case?` },
@@ -602,6 +616,7 @@ const CHAPTERS = [
     {
       id: "4.1",
       heading: `SCREEN 4.1 — What grooming looks like`,
+      severity: "warning",
       blocks: [
         { t: "p", lines: [
           `Most children being abused never tell anyone.`,
@@ -626,6 +641,7 @@ const CHAPTERS = [
     {
       id: "4.2",
       heading: `SCREEN 4.2 — Divya's case, and what to look for in a child`,
+      severity: "warning",
       blocks: [
         { t: "p", lines: [
           `Read this, then mark what stands out.`,
@@ -673,6 +689,7 @@ const CHAPTERS = [
     {
       id: "4.3",
       heading: `SCREEN 4.3 — Noticing is not investigating`,
+      severity: "safe",
       blocks: [
         { t: "p", lines: [
           `Suspicion is enough to report.`,
@@ -760,6 +777,7 @@ const CHAPTERS = [
     {
       id: "5.1",
       heading: `SCREEN 5.1 — When a child tells you`,
+      severity: "safe",
       blocks: [
         { t: "p", lines: [
           `When a child tells an adult, understand what has just happened.`,
@@ -784,6 +802,7 @@ const CHAPTERS = [
     {
       id: "5.2",
       heading: `SCREEN 5.2 — What not to do`,
+      severity: "warning",
       blocks: [
         { t: "p", heading: `Do not promise secrecy.`, lines: [
           `A child will often ask first: "Promise you won't tell anyone." That promise cannot be kept — reporting is a legal duty, and secrecy leaves the child where they are.`
@@ -814,6 +833,7 @@ const CHAPTERS = [
     {
       id: "5.3",
       heading: `SCREEN 5.3 — Reporting`,
+      severity: "safe",
       blocks: [
         { t: "p", lines: [
           `Any person who suspects, or knows, must report. Section 19.`,
@@ -839,6 +859,7 @@ const CHAPTERS = [
     {
       id: "5.4",
       heading: `SCREEN 5.4 — What happens after you report`,
+      severity: "safe",
       blocks: [
         { t: "p", lines: [
           `Most people stay quiet because they do not know what they are starting. This is what happens.`,

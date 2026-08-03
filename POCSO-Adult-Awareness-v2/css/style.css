@@ -16,6 +16,18 @@
 }
 *{box-sizing:border-box}
 html,body{height:100%;overflow:hidden}
+
+/* Severity theming: the accent colour and page background shift per
+   screen to match how serious the content on it is — red for the most
+   severe offences, orange for warnings, yellow for "notice this", green
+   for safe/protective/reassuring content. Applied via body[data-severity]
+   set from each screen's `severity` field in content.js. */
+body[data-severity="danger"]{--gold:#a3372b;--gold-2:#c24a3a;--bg:#fbf0ee}
+body[data-severity="warning"]{--gold:#b5720f;--gold-2:#d98a1f;--bg:#fbf5e9}
+body[data-severity="notice"]{--gold:#a68a12;--gold-2:#c9a92e;--bg:#fbf8e6}
+body[data-severity="safe"]{--gold:#2f6b45;--gold-2:#3f8759;--bg:#eef6ef}
+body{transition:background-color .4s ease}
+
 body{
   margin:0;
   font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
@@ -39,7 +51,8 @@ body{
 .badge-icon svg{width:26px;height:26px}
 .brand-title{font-weight:700;font-size:1.02rem;line-height:1.2}
 .brand-sub{font-size:.74rem;opacity:.75;letter-spacing:.04em;text-transform:uppercase}
-.topbar-progress{display:flex;align-items:center;gap:10px;min-width:160px;flex:1;max-width:280px}
+.topbar-progress{display:flex;align-items:center;gap:10px;min-width:160px;flex:1;max-width:320px}
+.progress-chapter-label{font-size:.72rem;font-weight:700;color:var(--gold-2);white-space:nowrap;letter-spacing:.02em}
 .progress-track{flex:1;height:6px;background:rgba(255,255,255,.18);border-radius:6px;overflow:hidden}
 .progress-fill{height:100%;width:0%;background:var(--gold-2);transition:width .4s ease}
 .progress-label{font-size:.76rem;font-weight:600;min-width:34px;text-align:right}
@@ -65,9 +78,27 @@ body{
 /* ---------- Stage / page ---------- */
 .stage{flex:1;min-width:0;min-height:0;overflow-y:auto;padding:28px 20px 70px;display:flex;justify-content:center}
 .page{width:100%;max-width:700px}
+
+/* ---------- Custom slim scrollbars (sidebar + content) ---------- */
+.sidebar,.stage{
+  scrollbar-width:thin;
+  scrollbar-color:var(--gold) transparent;
+}
+.sidebar::-webkit-scrollbar,.stage::-webkit-scrollbar{width:6px}
+.sidebar::-webkit-scrollbar-track,.stage::-webkit-scrollbar-track{background:transparent}
+.sidebar::-webkit-scrollbar-thumb,.stage::-webkit-scrollbar-thumb{background:var(--gold);border-radius:10px}
+.sidebar::-webkit-scrollbar-thumb:hover,.stage::-webkit-scrollbar-thumb:hover{background:var(--gold-2)}
 .page-heading{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px}
 .head-row-flex{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .head-row-flex .page-heading{margin-bottom:0}
+.severity-badge{
+  display:inline-block;margin-left:10px;font-size:.66rem;font-weight:800;letter-spacing:.06em;
+  text-transform:uppercase;padding:2px 8px;border-radius:5px;vertical-align:middle;
+}
+.severity-badge.sev-danger{background:#fbeeec;color:#a3372b}
+.severity-badge.sev-warning{background:#fbf1de;color:#b5720f}
+.severity-badge.sev-notice{background:#fbf6d9;color:#8a7100}
+.severity-badge.sev-safe{background:#eaf5ed;color:#2f6b45}
 .chapter-banner{
   background:linear-gradient(135deg,var(--navy),var(--navy-2));color:#fff;border-radius:var(--radius);
   padding:22px 24px;margin-bottom:22px;border-left:4px solid var(--gold-2);
@@ -257,7 +288,48 @@ body{
 .final-card .contacts{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.2);font-size:.88rem;color:var(--gold-2);font-weight:600}
 .final-card .disclaimer{margin-top:14px;font-size:.75rem;opacity:.65;font-style:italic}
 
+/* ---------- Certificate ---------- */
+.cert-gate{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin-bottom:20px;text-align:center}
+.cert-gate h2{margin:0 0 6px;color:var(--navy);font-size:1.1rem}
+.cert-gate p{color:var(--text-mute);font-size:.88rem;margin:0 0 14px}
+.cert-name-input{
+  width:100%;max-width:320px;padding:11px 14px;border-radius:9px;border:1px solid var(--border);
+  font-size:1rem;margin:0 auto 14px;text-align:center;display:block;
+}
+.certificate{
+  position:relative;background:
+    repeating-linear-gradient(135deg, rgba(11,32,56,.015) 0 2px, transparent 2px 14px),
+    #fffdf7;
+  border:3px solid var(--navy);border-radius:4px;padding:44px 32px;text-align:center;
+  box-shadow:var(--shadow);margin-bottom:20px;
+}
+.certificate::before{content:"";position:absolute;inset:8px;border:1px solid var(--gold-2);border-radius:2px;pointer-events:none}
+.cert-corner{position:absolute;width:26px;height:26px;border:3px solid var(--gold);opacity:.7}
+.cert-corner-tl{top:6px;left:6px;border-right:none;border-bottom:none}
+.cert-corner-tr{top:6px;right:6px;border-left:none;border-bottom:none}
+.cert-corner-bl{bottom:6px;left:6px;border-right:none;border-top:none}
+.cert-corner-br{bottom:6px;right:6px;border-left:none;border-top:none}
+.cert-id{position:absolute;top:14px;right:26px;font-size:.66rem;letter-spacing:.04em;color:var(--text-mute);font-family:'Courier New',monospace}
+.cert-badge{display:flex;justify-content:center;color:var(--gold);margin-bottom:4px}
+.cert-badge svg{width:38px;height:38px}
+.cert-title{font-size:1.5rem;color:var(--navy);font-weight:800;margin:8px 0 0;font-family:Georgia,serif;letter-spacing:.02em}
+.cert-sub{color:var(--text-mute);font-size:.82rem;margin-bottom:20px;text-transform:uppercase;letter-spacing:.08em}
+.cert-name{font-size:1.9rem;font-weight:700;color:var(--gold);margin:14px 0;font-family:Georgia,serif;border-bottom:2px solid var(--gold-2);display:inline-block;padding-bottom:6px}
+.cert-body{color:var(--text);line-height:1.7;max-width:480px;margin:0 auto;font-size:.94rem}
+.cert-sign-row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:34px;gap:16px;flex-wrap:wrap}
+.cert-sign{flex:1;min-width:130px}
+.cert-sign-line{border-top:1px solid var(--text-mute);margin-bottom:6px}
+.cert-sign-label{font-size:.76rem;color:var(--text-mute)}
+.cert-seal{display:flex;flex-direction:column;align-items:center;gap:4px}
+.cert-seal-ring{
+  width:52px;height:52px;border-radius:50%;border:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;color:var(--gold);
+  box-shadow:0 0 0 3px rgba(169,124,31,.12);
+}
+.cert-seal-text{font-size:.58rem;letter-spacing:.08em;color:var(--text-mute);font-weight:700}
+.cert-actions{display:flex;gap:10px;justify-content:center;margin-bottom:20px}
+
 @media print{
-  .topbar,.sidebar,.footer{display:none !important}
-  .stage{padding:0}
+  .topbar,.sidebar,.footer,.cert-actions,.cert-gate{display:none !important}
+  .stage{padding:0;overflow:visible}
 }
