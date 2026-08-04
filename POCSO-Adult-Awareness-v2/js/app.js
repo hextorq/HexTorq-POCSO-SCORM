@@ -57,7 +57,10 @@ const state = loadState() || {
   certGenerated: false
 };
 
-function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+  catch (e) { /* Safari private-browsing throws on quota — progress just won't persist */ }
+}
 function loadState() {
   try { const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : null; }
   catch (e) { return null; }
@@ -510,12 +513,22 @@ function renderVisualBlock(block, page) {
     ? `<div class="video-slot-tag">Video ${block._videoNum} — ${escapeHtml(block._videoLoc)}</div>`
     : "";
   if (block.video) {
-    const player = `<video class="video-slot-player" src="${escapeHtml(block.video)}" controls autoplay muted playsinline loop preload="auto"></video>`;
+    const player = `<video class="video-slot-player" src="${escapeHtml(block.video)}" controls autoplay muted playsinline webkit-playsinline loop preload="auto"></video>`;
     div.innerHTML = `
       <div class="video-slot video-slot-has-video" data-video-slot="${slotId}">
         ${tag}
         ${player}
       </div>`;
+    // iOS Safari sometimes ignores the autoplay attribute on video markup
+    // injected via innerHTML — an explicit muted play() call is the
+    // reliable path there. Rejection (e.g. reduced-motion settings) is
+    // fine to ignore; the visible controls still let the user press play.
+    const videoEl = div.querySelector(".video-slot-player");
+    if (videoEl) {
+      videoEl.muted = true;
+      const p = videoEl.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    }
     return div;
   }
   div.innerHTML = `

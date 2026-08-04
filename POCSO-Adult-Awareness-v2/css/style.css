@@ -79,7 +79,7 @@ body{
 
 /* ---------- Top bar ---------- */
 .topbar{
-  flex-shrink:0;position:sticky;top:0;
+  flex-shrink:0;position:-webkit-sticky;position:sticky;top:0;
   display:flex;flex-direction:column;gap:2px;
   background:linear-gradient(135deg,var(--navy),var(--navy-2));
   color:#fff;padding:8px 14px 10px 88px;z-index:20;
@@ -376,7 +376,7 @@ body{
 .btn-primary:disabled{background:#b7bfc9;cursor:not-allowed}
 .btn-ghost{background:transparent;color:var(--text-mute);border:1px solid var(--border)}
 .btn-ghost:disabled{opacity:.4;cursor:not-allowed}
-.footer{flex-shrink:0;position:sticky;bottom:0;z-index:10;background:#fff;border-top:1px solid var(--border);padding:13px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.footer{flex-shrink:0;position:-webkit-sticky;position:sticky;bottom:0;z-index:10;background:#fff;border-top:1px solid var(--border);padding:13px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .footer-msg{font-size:.8rem;color:var(--text-mute);flex:1;text-align:center}
 
 /* ---------- Final card ---------- */

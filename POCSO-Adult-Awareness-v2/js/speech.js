@@ -58,6 +58,10 @@ const Speech = (function () {
   let fallbackTimer = null;
   let usedRealBoundary = false;
   let cancelToken = 0;
+  // iOS Safari will silently garbage-collect an utterance mid-speech if
+  // nothing outside the speak() call still references it — keeping one
+  // here pins it alive for the whole utterance.
+  let liveUtterance = null;
 
   function escapeHtml(str) {
     const d = document.createElement("div");
@@ -104,6 +108,7 @@ const Speech = (function () {
     clearHighlight();
     wordSpans = [];
     speakingFlag = false;
+    liveUtterance = null;
     document.querySelectorAll(".line-active").forEach((el) => el.classList.remove("line-active"));
   }
 
@@ -156,11 +161,17 @@ const Speech = (function () {
         }, msPerWord);
       }, 350);
     };
-    utter.onend = () => { if (myToken !== cancelToken) return; stopFallback(); clearHighlight(); speakingFlag = false; if (onEnd) onEnd(); };
-    utter.onerror = () => { if (myToken !== cancelToken) return; stopFallback(); clearHighlight(); speakingFlag = false; if (onEnd) onEnd(); };
+    utter.onend = () => { if (myToken !== cancelToken) return; stopFallback(); clearHighlight(); speakingFlag = false; liveUtterance = null; if (onEnd) onEnd(); };
+    utter.onerror = () => { if (myToken !== cancelToken) return; stopFallback(); clearHighlight(); speakingFlag = false; liveUtterance = null; if (onEnd) onEnd(); };
 
     speakingFlag = true;
-    window.speechSynthesis.speak(utter);
+    liveUtterance = utter;
+    // iOS Safari can silently drop an utterance queued in the same tick
+    // right after cancel() — a short delay avoids that race.
+    setTimeout(() => {
+      if (myToken !== cancelToken) return;
+      window.speechSynthesis.speak(utter);
+    }, 60);
   }
 
   function speakDialogue(turns, lineElements, onEnd) {
@@ -194,11 +205,12 @@ const Speech = (function () {
       // available, so a subtle shift isn't enough to read as two people.
       utter.pitch = gender === "male" ? 0.72 : 1.4;
       utter.rate = gender === "male" ? 0.92 : 1.02;
-      utter.onend = () => { if (myToken !== cancelToken) return; i++; speakNext(); };
-      utter.onerror = () => { if (myToken !== cancelToken) return; i++; speakNext(); };
+      utter.onend = () => { if (myToken !== cancelToken) return; liveUtterance = null; i++; speakNext(); };
+      utter.onerror = () => { if (myToken !== cancelToken) return; liveUtterance = null; i++; speakNext(); };
+      liveUtterance = utter;
       window.speechSynthesis.speak(utter);
     }
-    speakNext();
+    setTimeout(speakNext, 60);
   }
 
   return {
