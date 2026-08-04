@@ -1454,3 +1454,11 @@ async function downloadAndShareOneCard(btn) {
 /* ---------------- Boot ---------------- */
 buildSidebar();
 render();
+
+const loadingScreen = document.getElementById("loadingScreen");
+if (loadingScreen) {
+  requestAnimationFrame(() => {
+    loadingScreen.classList.add("loading-hidden");
+    setTimeout(() => loadingScreen.remove(), 500);
+  });
+}
