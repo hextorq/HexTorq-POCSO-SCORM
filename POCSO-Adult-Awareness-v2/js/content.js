@@ -48,7 +48,8 @@ const CHAPTERS = [
       heading: `SCREEN 1.2 — The name`,
       blocks: [
         { t: "p", lines: [
-          `POCSO — The Protection of Children from Sexual Offences Act, 2012 குழந்தைகளை பாலியல் குற்றங்களிலிருந்து பாதுகாக்கும் சட்டம், 2012`,
+          `POCSO — The Protection of Children from Sexual Offences Act, 2012`,
+          `குழந்தைகளை பாலியல் குற்றங்களிலிருந்து பாதுகாக்கும் சட்டம், 2012`,
           `A central law, passed by Parliament in 2012. It applies in every state, including Tamil Nadu.`
         ]},
         { t: "visual", lines: [
@@ -70,7 +71,7 @@ const CHAPTERS = [
             { front: `Below 18 — unless the child looks older.`, back: `False. Looks are not a test. The court decides age from records — school certificate first, then birth certificate.` },
             { front: `Below 18 — unless the child is earning.`, back: `False. A working child is still a child.` },
             { front: `Below 18 — unless the child is married.`, back: `False. Marriage does not make a child an adult under this Act.` },
-            { front: `Below 18 — unless the child agreed.`, back: `False. Below 18, a child's "yes" has no meaning in law.` }
+            { front: `Below 18 — unless the child agreed.`, back: `False. Below 18, a child cannot give consent.` }
           ]
         }},
         { t: "visual", lines: [
@@ -86,7 +87,7 @@ const CHAPTERS = [
       severity: "warning",
       blocks: [
         { t: "p", lines: [
-          `Below 18, a child's "yes" has no meaning in law.`,
+          `Below 18, a child cannot give consent.`,
           `This is where most adults get it wrong. It is also where an ordinary person most often becomes an accused person.`
         ]},
         { t: "dialogue", location: `TEA SHOP`, turns: [
@@ -158,7 +159,7 @@ const CHAPTERS = [
           `We teach children to be careful of strangers.`,
           `The evidence points the other way.`
         ]},
-        { t: "interaction", kind: "sliderReveal", label: `Interaction — slider estimate.`, data: {
+        { t: "interaction", kind: "numberPick", label: `Interaction — tap your estimate.`, data: {
           question: `Out of 10 of the most serious POCSO cases, how many do you think involve someone the child already knew?`,
           min: 0, max: 10,
           revealHeading: `Answer revealed:`,
@@ -303,7 +304,7 @@ const CHAPTERS = [
           [`1 · Penetrative sexual assault`, `3`],
           [`2 · Sexual assault — touching, without penetration`, `7`],
           [`3 · Sexual harassment — no touching needed`, `11`],
-          [`4 · Using a child for pornography`, `13`]
+          [`4 · Using a child to make sexual material`, `13`]
         ]}
       ]
     },
@@ -393,31 +394,62 @@ const CHAPTERS = [
       severity: "danger",
       blocks: [
         { t: "dialogue", location: `TEA SHOP`, turns: [
-          { who: "Murugan", text: `(holding out his phone, upset) Look what came in the building group this morning.` },
+          { who: "Murugan", text: `(holding the phone out, agitated) Selvi. Did you see what came in the building group?` },
           { who: "Selvi", text: `(not taking it) I don't want to see it.` },
-          { who: "Murugan", text: `Some video. Very bad. A child. Thirty people in that group —` },
-          { who: "Selvi", text: `What was done with it?` },
-          { who: "Murugan", text: `I sent it to my brother. And the watchman. See what people have become, I told them.` },
-          { who: "Selvi", text: `(quietly) Anna. That's an offence.` },
-          { who: "Murugan", text: `What is? I didn't make it! I was showing them how disgusting it is.` },
-          { who: "Selvi", text: `Sending it on is the offence. The law doesn't ask the reason. Three years, it can go up to.` },
-          { who: "Murugan", text: `(looking at the phone as though it changed shape) Then what was I supposed to do?` },
+          { who: "Murugan", text: `One video. A child. Some fellow has done — Selvi, I can't even say it. Thirty people in that group.` },
+          { who: "Selvi", text: `Where did it come from?` },
+          { who: "Murugan", text: `How do I know? Somebody sent it. It's going everywhere.` },
+          { who: "Selvi", text: `It didn't come from nowhere, anna. Somebody made it.` },
+          { who: "Murugan", text: `(stopping) What?` },
+          { who: "Selvi", text: `Somebody was in the room. Somebody held the phone. That's not a video that appeared. That is a man who did something to a child and recorded it while he did it.` },
+          { who: "Murugan", text: `(quieter) ...Yes.` },
+          { who: "Selvi", text: `And now thirty people in your building are carrying it.` },
+          { who: "Murugan", text: `I sent it to my brother. And to the watchman. See what people have become, I told them.` },
+          { who: "Selvi", text: `(after a pause) Anna. That's an offence.` },
+          { who: "Murugan", text: `What offence? I didn't make it! I was showing them how disgusting it is.` },
+          { who: "Selvi", text: `Sending it on is its own offence. The law doesn't ask why you sent it. Three years, it can go up to. And there's a separate case under the IT act Section 67B on top of that.` },
+          { who: "Murugan", text: `For forwarding?` },
+          { who: "Selvi", text: `For forwarding.` },
+          { who: "Murugan", text: `Then what was I supposed to do?` },
           { who: "Selvi", text: `Two things. Report it. Then delete it. Nothing else is allowed.` },
-          { who: "Murugan", text: `(after a moment) My brother has sent it on by now. Definitely.` },
-          { who: "Selvi", text: `Yes. And that person will send it to somebody. Every one of them thinks he's the one exposing it. And the video keeps travelling.` },
+          { who: "Murugan", text: `(after a moment) My brother will have sent it on by now. Definitely.` },
+          { who: "Selvi", text: `Yes. And that person will send it to somebody. Every one of them thinks he's the one exposing it.` },
           { who: "Selvi", text: `(pause)` },
-          { who: "Selvi", text: `And somewhere in it, there is a child.` }
+          { who: "Murugan", text: `Somebody should catch that fellow.` },
+          { who: "Selvi", text: `Somebody should. And when they do, this is what they'll find on his phone — everybody who helped it travel. He made it once. It's been made again every day since, by people like us.` },
+          { who: "Murugan", text: `(nothing)` },
+          { who: "Selvi", text: `For him it was one day. For the child it doesn't stop, because we didn't stop.` }
+        ]},
+        { t: "p", heading: `Screen text — after the conversation`, lines: [
+          `Somebody made it. That is where this starts.`,
+          `Using a child to make sexual material is an offence in itself — Section 13. Not less than five years.`,
+          `Sending it on is a separate offence. Up to three years, for any reason at all. Condemning it is not a reason the law recognises. There is also a separate offence under the IT Act.`,
+          `Keeping it is a separate offence. Even simply having it and not deleting it or reporting it carries a fine. Keeping it in order to pass it on carries up to three years.`,
+          `Only two reasons to still have it are permitted: reporting it, or producing it in court.`
         ]},
         { t: "p", lines: [
-          `Making such material, keeping it to pass on, and sending it on are three separate offences — Sections 13, 14 and 15.`,
-          `Making it carries at least five years. Keeping it in order to pass it on carries up to three years, or a fine, or both. Sending it on carries up to three years, for any reason at all — and is separately an offence under Section 67B of the IT Act.`,
           `Report it. Then delete it.`,
-          `If the police ask you to keep it, do that instead — they will tell you what to do with it.`
+          `That is the only permitted action.`
+        ]},
+        { t: "list", heading: `You have it on your phone right now. Do this in order.`, items: [
+          `1 · Stop → do not forward it, not to one more person, not to warn anybody`,
+          `2 · Report it → cybercrime.gov.in · or 1098 · or your local police station`,
+          `3 · Delete it → from the chat, and from your phone's gallery and downloads`
+        ]},
+        { t: "p", lines: [
+          `Then, if you can: leave the group, or tell the group not to forward it. You are not required to. The three steps above are.`
         ]},
         { t: "visual", lines: [
-          `Conversation: phone faces away from the viewer throughout. Selvi never takes it. Never show the screen.`,
-          `After: one phone icon, then two, four, eight — spreading across the screen and off the edges. No content, only spread. It stops. One line appears: "Somewhere in it, there is a child."`,
-          `Then: a chat window with a fully blurred video thumbnail. Two buttons — Forward, struck through in red, tagged "up to 3 years" · Report and delete, in green, tagged "the only permitted action."`
+          `During the conversation. The phone faces away from the viewer throughout. Selvi never takes it, never looks at it. The screen is never shown, not blurred, not pixelated, not at any angle. Hold on the two of them and the tea glasses.`,
+          `On Selvi's line "somebody was in the room" — cut to nothing. No flashback, no silhouette, no shadowed doorway, no implied figure. This is the single most important instruction on the screen. The sentence is doing the work. Any image at all reduces it, and any image at all risks becoming the thing the learner remembers instead of the sentence.`,
+          `After the conversation — the spread. One phone icon. Then two. Four. Eight. Sixteen, moving outward past the edges of the frame. No content on any of them, only spread. It runs three seconds and stops dead.`,
+          `Forward — struck through in red, tagged "up to 3 years, plus a separate IT Act offence"`,
+          `Report and delete — in green, tagged "the only permitted action"`,
+          `Appears only after the learner taps "Report and delete." Not before.`
+        ]},
+        { t: "visual", heading: `[VISUAL — the pathway strip]`, lines: [
+          `A single horizontal strip, three boxes, two arrows between them. Nothing else.`,
+          `[ 1 · STOP ] ──▶ [ 2 · REPORT ] ──▶ [ 3 · DELETE ]`
         ]}
       ]
     },

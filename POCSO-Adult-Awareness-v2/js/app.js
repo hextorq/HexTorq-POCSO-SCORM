@@ -443,8 +443,8 @@ function renderInteractionBlock(block, page, setInteractionCheck) {
     renderJudgmentDeck(div, page, block, setInteractionCheck);
   } else if (kind === "sortDrag") {
     renderSortDrag(div, page, block, setInteractionCheck);
-  } else if (kind === "sliderReveal") {
-    renderSlider(div, page, block, setInteractionCheck);
+  } else if (kind === "numberPick") {
+    renderNumberPick(div, page, block, setInteractionCheck);
   } else if (kind === "multiSelectCase") {
     renderMultiSelectCase(div, page, block, setInteractionCheck);
   } else if (kind === "commitmentTap") {
@@ -701,47 +701,56 @@ function renderSortDrag(container, page, block, setInteractionCheck) {
   setInteractionCheck(() => block.data.items.every((item, i) => placements[i] === item.bin));
 }
 
-/* --- Slider estimate --- */
-function renderSlider(container, page, block, setInteractionCheck) {
+/* --- Number-pick estimate (replaces the old drag-slider — testers found
+   dragging a slider handle confusing; tapping one number in a row is
+   unambiguous) --- */
+function renderNumberPick(container, page, block, setInteractionCheck) {
   const key = page.id;
-  if (state.sliderValue[key] === undefined) state.sliderValue[key] = Math.round((block.data.min + block.data.max) / 2);
+  const idSafe = key.replace(/\./g, "_");
 
   const box = document.createElement("div");
   box.className = "slider-box";
   box.innerHTML = `
     <div class="slider-question">${escapeHtml(block.data.question)}</div>
-    <div class="slider-row">
-      <input type="range" min="${block.data.min}" max="${block.data.max}" value="${state.sliderValue[key]}" id="sliderInput-${key.replace(/\./g, "_")}">
-      <div class="slider-value" id="sliderVal-${key.replace(/\./g, "_")}">${state.sliderValue[key]}</div>
-    </div>
-    <button class="btn btn-primary" id="sliderReveal-${key.replace(/\./g, "_")}" style="margin-top:14px">Reveal the answer</button>
-    <div class="slider-reveal" id="sliderRevealBox-${key.replace(/\./g, "_")}" style="display:none"></div>
+    <div class="number-pick-row" id="numberRow-${idSafe}"></div>
+    <button class="btn btn-primary" id="sliderReveal-${idSafe}" style="margin-top:14px" disabled>Reveal the answer</button>
+    <div class="slider-reveal" id="sliderRevealBox-${idSafe}" style="display:none"></div>
   `;
   container.appendChild(box);
 
-  const idSafe = key.replace(/\./g, "_");
-  const input = box.querySelector(`#sliderInput-${idSafe}`);
-  const valEl = box.querySelector(`#sliderVal-${idSafe}`);
+  const row = box.querySelector(`#numberRow-${idSafe}`);
   const revealBtn = box.querySelector(`#sliderReveal-${idSafe}`);
   const revealBox = box.querySelector(`#sliderRevealBox-${idSafe}`);
 
-  let lastTickValue = state.sliderValue[key];
-  input.addEventListener("input", () => {
-    state.sliderValue[key] = Number(input.value);
-    valEl.textContent = input.value;
-    saveState();
-    if (Number(input.value) !== lastTickValue) { SFX.select(); lastTickValue = Number(input.value); }
-  });
+  for (let n = block.data.min; n <= block.data.max; n++) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "number-pick-btn" + (state.sliderValue[key] === n ? " selected" : "");
+    btn.textContent = String(n);
+    btn.disabled = !!state.sliderRevealed[key];
+    btn.addEventListener("click", () => {
+      state.sliderValue[key] = n;
+      saveState();
+      SFX.select();
+      row.querySelectorAll(".number-pick-btn").forEach((b) => b.classList.remove("selected"));
+      btn.classList.add("selected");
+      revealBtn.disabled = false;
+    });
+    row.appendChild(btn);
+  }
 
   function showReveal() {
     revealBox.style.display = "block";
     revealBox.innerHTML = `<div class="slider-reveal-heading">${escapeHtml(block.data.revealHeading)}</div>${block.data.revealLines.map((l) => `<p>${escapeHtml(l)}</p>`).join("")}`;
     revealBtn.disabled = true;
     revealBtn.textContent = "Answer revealed";
+    row.querySelectorAll(".number-pick-btn").forEach((b) => { b.disabled = true; });
   }
   if (state.sliderRevealed[key]) showReveal();
+  else revealBtn.disabled = state.sliderValue[key] === undefined;
 
   revealBtn.addEventListener("click", () => {
+    if (state.sliderValue[key] === undefined) return;
     state.sliderRevealed[key] = true;
     saveState();
     SFX.complete();

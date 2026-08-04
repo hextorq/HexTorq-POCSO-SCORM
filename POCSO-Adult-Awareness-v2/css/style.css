@@ -238,6 +238,18 @@ body{
 .slider-reveal{margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
 .slider-reveal-heading{font-weight:700;color:var(--navy);margin-bottom:6px;font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
 
+/* Number-pick estimate — replaces the drag-slider with a row of tappable
+   numbers (0-10), each an unambiguous single choice. */
+.number-pick-row{display:flex;flex-wrap:wrap;gap:8px}
+.number-pick-btn{
+  width:38px;height:38px;border-radius:8px;border:1px solid var(--border);background:#fff;
+  font-size:.92rem;font-weight:700;color:var(--navy);cursor:pointer;transition:all .15s;
+}
+.number-pick-btn:hover:not(:disabled){border-color:var(--gold)}
+.number-pick-btn.selected{background:var(--gold);color:#fff;border-color:var(--gold)}
+.number-pick-btn:disabled{cursor:default;opacity:.7}
+.number-pick-btn.selected:disabled{opacity:1}
+
 /* ---------- Multi-select case ---------- */
 .case-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
 .case-option{display:flex;align-items:flex-start;gap:10px;padding:9px 4px;border-bottom:1px solid var(--border);cursor:pointer}
