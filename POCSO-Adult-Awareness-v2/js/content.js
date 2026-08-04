@@ -32,7 +32,7 @@ const CHAPTERS = [
           `POCSO applies to every adult in India — including you.`,
           `In the next 45 minutes you will learn what this law says, what it treats as a crime, and what it asks you to do.`
         ]},
-        { t: "visual", lines: [
+        { t: "visual", video: `video/video-1.mp4`, lines: [
           `Build a 20–25 second sequence of five or six short shots of ordinary Chennai adult life.`,
           `Suggested shots: a man pouring tea at a roadside shop; two women waiting at a bus stop with school bags in hand; an auto driver leaning on his vehicle outside a school gate at 3:30pm; a shopkeeper handing over change to a child; a watchman in an apartment lobby; a hand scrolling a phone.`,
           `What to avoid: no dark colours, no shadows, no sinister music cue, no menacing figure. Nothing that says "crime."`,
@@ -991,7 +991,7 @@ const FINAL_CARD = {
     `Suspicion is enough. You do not have to be sure — and staying quiet is itself an offence.`,
     `If a child tells you — believe, don't question, don't promise secrecy, write it down, report the same day.`
   ],
-  contacts: `Child Helpline 1098 · Singappen Special Force 1091 · your local police or SJPU · POCSO e-Box`,
+  contacts: `your local police or SJPU · POCSO e-Box`,
   disclaimer: `This module explains the law in simple words. It is not legal advice.`,
   visual: `One card, downloadable and printable, sized for a phone screenshot. Five lines and the numbers. Nothing else on it.`
 };
