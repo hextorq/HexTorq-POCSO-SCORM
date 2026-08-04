@@ -58,7 +58,7 @@ body{
   flex-shrink:0;position:sticky;top:0;
   display:flex;flex-direction:column;gap:2px;
   background:linear-gradient(135deg,var(--navy),var(--navy-2));
-  color:#fff;padding:8px 92px 10px;z-index:20;
+  color:#fff;padding:8px 14px 10px 88px;z-index:20;
   border-bottom:3px solid var(--gold);
   min-height:64px;
 }
@@ -93,6 +93,9 @@ body{
   .brand-logo-right{display:block}
   .brand-logo{height:80px;width:80px}
   .topbar{padding-left:110px;padding-right:110px}
+}
+@media(max-width:639px){
+  .brand-center{width:100%}
 }
 @media(max-width:520px){
   .progress-center-block{max-width:80%}
