@@ -1249,6 +1249,10 @@ function renderOneCardPage(page, wrap) {
     <ol>${FINAL_CARD.lines.map((l) => `<li>${escapeHtml(l)}</li>`).join("")}</ol>
     <div class="contacts">${escapeHtml(FINAL_CARD.contacts)}</div>
     <div class="disclaimer">${escapeHtml(FINAL_CARD.disclaimer)}</div>
+    <div class="helpline-logos">
+      <img src="img/child-line.jpg" alt="Childline 1098">
+      <img src="img/singapen-helpline.png" alt="Singapenn Helpline">
+    </div>
   `;
   wrap.appendChild(card);
 
@@ -1287,8 +1291,17 @@ function wrapCanvasText(ctx, text, maxWidth) {
   return lines;
 }
 
-function buildOneCardCanvas() {
-  const W = 1080, H = 1350, PAD = 80;
+function loadImage(src) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => resolve(null);
+    img.src = src;
+  });
+}
+
+async function buildOneCardCanvas() {
+  const W = 1080, H = 1440, PAD = 80;
   const canvas = document.createElement("canvas");
   canvas.width = W; canvas.height = H;
   const ctx = canvas.getContext("2d");
@@ -1347,7 +1360,32 @@ function buildOneCardCanvas() {
   ctx.fillStyle = "#c9962e";
   wrapCanvasText(ctx, FINAL_CARD.contacts, W - PAD * 2).forEach((l) => { ctx.fillText(l, W / 2, y); y += 30; });
 
-  y = H - PAD + 10;
+  // Helpline logos, side by side, above the disclaimer.
+  const [childLineImg, singapenImg] = await Promise.all([
+    loadImage("img/child-line.jpg"),
+    loadImage("img/singapen-helpline.png")
+  ]);
+  const logoH = 96;
+  const logos = [childLineImg, singapenImg].filter(Boolean);
+  if (logos.length) {
+    y += 30;
+    const gap = 30;
+    const widths = logos.map((img) => (img.width / img.height) * logoH);
+    const totalW = widths.reduce((a, b) => a + b, 0) + gap * (logos.length - 1);
+    let x = W / 2 - totalW / 2;
+    logos.forEach((img, i) => {
+      ctx.fillStyle = "#ffffff";
+      const r = 8;
+      ctx.beginPath();
+      ctx.roundRect ? ctx.roundRect(x, y, widths[i], logoH, r) : ctx.rect(x, y, widths[i], logoH);
+      ctx.fill();
+      ctx.drawImage(img, x, y, widths[i], logoH);
+      x += widths[i] + gap;
+    });
+    y += logoH + 30;
+  }
+
+  y = Math.max(y, H - PAD - 20);
   ctx.font = "italic 18px 'Segoe UI', Arial, sans-serif";
   ctx.fillStyle = "rgba(255,255,255,.55)";
   wrapCanvasText(ctx, FINAL_CARD.disclaimer, W - PAD * 2).forEach((l) => { ctx.fillText(l, W / 2, y); y += 24; });
@@ -1355,9 +1393,9 @@ function buildOneCardCanvas() {
   return canvas;
 }
 
-function downloadAndShareOneCard(btn) {
+async function downloadAndShareOneCard(btn) {
   SFX.click();
-  const canvas = buildOneCardCanvas();
+  const canvas = await buildOneCardCanvas();
   if (!canvas) { footerMsg.textContent = "Image export isn't supported on this browser."; return; }
   canvas.toBlob(async (blob) => {
     if (!blob) return;
