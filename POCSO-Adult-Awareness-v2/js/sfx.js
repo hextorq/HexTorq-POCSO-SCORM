@@ -46,6 +46,15 @@ const SFX = (function () {
     confirm() { tone(330, 0, 0.22, "sine", 0.1); tone(440, 0.1, 0.26, "sine", 0.11); },
     // Moving into a new chapter.
     transition() { tone(392, 0, 0.24, "sine", 0.08); tone(494, 0.09, 0.28, "sine", 0.07); },
+    // Footer navigation: Next rises, Back falls — distinguishable by ear
+    // even without looking at the button.
+    navNext() { tone(520, 0, 0.06, "sine", 0.07); tone(680, 0.04, 0.08, "sine", 0.06); },
+    navBack() { tone(560, 0, 0.06, "sine", 0.06); tone(420, 0.04, 0.08, "sine", 0.05); },
+    // A whole chapter finished (quiz answered in full) — bigger and more
+    // celebratory than a single exercise's "complete".
+    chapterComplete() {
+      [440, 554, 659, 880, 1046.5].forEach((f, i) => tone(f, i * 0.09, 0.3, "triangle", 0.16));
+    },
     ensureCtx
   };
 })();

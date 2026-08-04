@@ -75,11 +75,6 @@ const CHAPTERS = [
             { front: `Below 18 — unless the child agreed.`, back: `False. Below 18, a child cannot give consent.` }
           ]
         }},
-        { t: "visual", lines: [
-          `Four cards laid out. Each card carries one belief in the learner's voice. On tap, the card flips and shows FALSE in red with the explanation underneath.`,
-          `The numeral 18 sits at the top of the screen throughout, large and fixed. It does not move or change as the cards flip.`,
-          `Why: the learner should physically knock down four excuses one at a time, and the only thing left standing on the screen at the end is the number 18.`
-        ]}
       ]
     },
     {
@@ -449,10 +444,7 @@ const CHAPTERS = [
           `Report and delete — in green, tagged "the only permitted action"`,
           `Appears only after the learner taps "Report and delete." Not before.`
         ]},
-        { t: "visual", heading: `[VISUAL — the pathway strip]`, lines: [
-          `A single horizontal strip, three boxes, two arrows between them. Nothing else.`,
-          `[ 1 · STOP ] ──▶ [ 2 · REPORT ] ──▶ [ 3 · DELETE ]`
-        ]}
+        { t: "pathway", steps: [`Stop`, `Report`, `Delete`] }
       ]
     },
     {

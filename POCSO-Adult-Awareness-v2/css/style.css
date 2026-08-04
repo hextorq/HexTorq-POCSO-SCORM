@@ -5,7 +5,7 @@
   --gold-2:#c9962e;
   --danger:#a3372b;
   --ok:#2f6b45;
-  --bg:#f6f4ee;
+  --bg:#f0ece0;
   --card:#ffffff;
   --text:#1c2530;
   --text-mute:#5c6470;
@@ -33,10 +33,10 @@ body{overflow-x:hidden}
    severe offences, orange for warnings, yellow for "notice this", green
    for safe/protective/reassuring content. Applied via body[data-severity]
    set from each screen's `severity` field in content.js. */
-body[data-severity="danger"]{--gold:#a3372b;--gold-2:#c24a3a;--bg:#fbf0ee}
-body[data-severity="warning"]{--gold:#b5720f;--gold-2:#d98a1f;--bg:#fbf5e9}
-body[data-severity="notice"]{--gold:#a68a12;--gold-2:#c9a92e;--bg:#fbf8e6}
-body[data-severity="safe"]{--gold:#2f6b45;--gold-2:#3f8759;--bg:#eef6ef}
+body[data-severity="danger"]{--gold:#a3372b;--gold-2:#c24a3a;--bg:#f6dcd7}
+body[data-severity="warning"]{--gold:#b5720f;--gold-2:#d98a1f;--bg:#f7e8c9}
+body[data-severity="notice"]{--gold:#a68a12;--gold-2:#c9a92e;--bg:#f5edb8}
+body[data-severity="safe"]{--gold:#2f6b45;--gold-2:#3f8759;--bg:#d9efdd}
 body{transition:background-color .4s ease}
 
 body{
@@ -58,16 +58,24 @@ body{
   flex-shrink:0;position:sticky;top:0;
   display:flex;flex-direction:column;gap:2px;
   background:linear-gradient(135deg,var(--navy),var(--navy-2));
-  color:#fff;padding:8px 18px 10px;z-index:20;
+  color:#fff;padding:8px 92px 10px;z-index:20;
   border-bottom:3px solid var(--gold);
+  min-height:64px;
 }
-.topbar-brand-row{display:flex;align-items:center;justify-content:space-between;gap:14px}
-.brand-logo{height:72px;width:72px;object-fit:cover;border-radius:8px;flex-shrink:0;background:#fff;padding:0}
-.brand-logo-right{display:none}
-.brand-center{text-align:center;flex:1;min-width:0}
+.topbar-brand-row{display:flex;align-items:center;justify-content:center}
+/* Logos are centred on the full navbar height (both rows), not just the
+   brand-text row, and sit at the outer edges independent of row flow. */
+.brand-logo{
+  position:absolute;top:50%;transform:translateY(-50%);
+  height:64px;width:64px;object-fit:cover;border-radius:8px;background:#fff;padding:0;
+}
+.brand-logo-left{left:14px}
+.brand-logo-right{right:14px;display:none}
+.brand-center{text-align:center;min-width:0}
 .brand-line{line-height:1.25}
-.brand-line-1{font-weight:700;font-size:.98rem}
-.brand-line-2{font-weight:800;font-size:1.12rem;color:var(--gold-2);letter-spacing:.02em}
+/* "Singapenn Special Task Force Initiative" is the main focus. */
+.brand-line-1{font-weight:800;font-size:1.14rem;color:var(--gold-2);letter-spacing:.02em}
+.brand-line-2{font-weight:600;font-size:.9rem;color:rgba(255,255,255,.85)}
 /* Progress row: only the centre 50% of the navbar's width, everything
    else in this row is deliberately empty so the bar reads as centred. */
 .topbar-progress-row{display:flex;justify-content:center}
@@ -80,7 +88,8 @@ body{
 .progress-label{font-size:.76rem;font-weight:600;min-width:34px;text-align:right}
 @media(min-width:640px){
   .brand-logo-right{display:block}
-  .brand-logo{height:96px;width:96px}
+  .brand-logo{height:80px;width:80px}
+  .topbar{padding-left:110px;padding-right:110px}
 }
 @media(max-width:520px){
   .progress-center-block{max-width:80%}
@@ -90,7 +99,7 @@ body{
 .layout{display:flex;flex:1;width:100%;max-width:1180px;margin:0 auto;min-height:0}
 .sidebar{
   width:250px;flex-shrink:0;padding:22px 16px;border-right:1px solid var(--border);display:none;
-  overflow-y:auto;height:100%;
+  overflow-y:auto;overflow-x:hidden;height:100%;
 }
 .sidebar-title{font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;color:var(--text-mute);margin-bottom:12px;font-weight:700}
 .chapter-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
@@ -105,10 +114,10 @@ body{
 @media(min-width:900px){.sidebar{display:block}}
 
 /* ---------- Stage / page ---------- */
-.stage{flex:1;min-width:0;padding:28px 20px 70px;display:flex;justify-content:center}
-.page{width:100%;max-width:700px}
+.stage{flex:1;min-width:0;overflow-x:hidden;padding:28px 20px 96px;display:flex;justify-content:center}
+.page{width:100%;max-width:700px;min-width:0}
 @media(min-width:900px){
-  .stage{min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .stage{min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
 }
 
 /* ---------- Custom slim scrollbars (sidebar + content) ---------- */
@@ -174,6 +183,27 @@ body{
 .video-slot-head svg{color:var(--gold)}
 .video-slot p{font-size:.87rem;line-height:1.6;color:var(--text-mute);margin:0 0 .6em}
 .video-slot p:last-child{margin-bottom:0}
+
+/* ---------- Pathway strip (real component, e.g. Stop -> Report -> Delete) ---------- */
+.pathway-strip{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:14px 0;padding:6px 0}
+.pathway-box{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  background:var(--card);border:2px solid var(--gold);border-radius:var(--radius);
+  padding:14px 18px;min-width:96px;box-shadow:var(--shadow);cursor:default;
+  transition:transform .18s ease,border-color .18s ease,background .18s ease;
+}
+.pathway-box:hover{transform:translateY(-3px) scale(1.04);border-color:var(--gold-2);background:#fbf7ec}
+.pathway-num{
+  width:22px;height:22px;border-radius:50%;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;
+}
+.pathway-label{font-weight:700;color:var(--navy);font-size:.86rem;letter-spacing:.03em;text-transform:uppercase}
+.pathway-arrow{color:var(--gold);flex-shrink:0}
+.pathway-arrow svg{transform:rotate(-90deg);display:block}
+@media(max-width:520px){
+  .pathway-strip{flex-direction:column}
+  .pathway-arrow svg{transform:rotate(0deg)}
+}
 
 /* ---------- Dialogue ---------- */
 .dialogue-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 18px 14px;box-shadow:var(--shadow)}
@@ -304,8 +334,10 @@ body{
 .w-active{background:#fbe9b6;border-radius:3px}
 
 /* ---------- Buttons / footer ---------- */
-.btn{font-size:.9rem;font-weight:600;padding:10px 18px;border-radius:8px;border:none;cursor:pointer;transition:opacity .15s,transform .1s}
+.btn{font-size:.9rem;font-weight:600;padding:11px 20px;border-radius:8px;border:none;cursor:pointer;transition:opacity .15s,transform .1s;display:inline-flex;align-items:center;gap:8px}
 .btn:active{transform:scale(.97)}
+.btn-icon{display:inline-flex;align-items:center}
+.page-end-spacer{height:48px}
 .btn-primary{background:var(--navy);color:#fff}
 .btn-primary:disabled{background:#b7bfc9;cursor:not-allowed}
 .btn-ghost{background:transparent;color:var(--text-mute);border:1px solid var(--border)}
@@ -365,10 +397,10 @@ body{
 .cert-corner-br{bottom:6px;right:6px;border-left:none;border-top:none}
 .cert-emblem-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;padding:0 8px}
 .cert-emblem{display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--gold)}
-.cert-emblem-img{width:44px;height:44px;object-fit:contain;border-radius:6px;background:#fff;padding:2px}
-.cert-emblem svg{width:36px;height:36px}
-.cert-emblem-label{font-size:.6rem;line-height:1.2;color:var(--text-mute);text-align:center;font-weight:600}
+.cert-emblem-img{width:72px;height:72px;object-fit:contain;border-radius:8px;background:#fff;padding:2px}
+.cert-emblem-label{font-size:.62rem;line-height:1.2;color:var(--text-mute);text-align:center;font-weight:600}
 .cert-id{text-align:center;font-size:.66rem;letter-spacing:.04em;color:var(--text-mute);font-family:'Courier New',monospace;margin-bottom:6px}
+.cert-id-footer{margin:10px 0 0}
 .cert-badge{display:flex;justify-content:center;color:var(--gold);margin-bottom:4px}
 .cert-badge svg{width:34px;height:34px}
 .cert-title{font-size:1.5rem;color:var(--navy);font-weight:800;margin:8px 0 0;font-family:Georgia,serif;letter-spacing:.02em}
@@ -383,6 +415,17 @@ body{
 .cert-actions{display:flex;gap:10px;justify-content:center;margin-bottom:20px}
 
 @media print{
+  /* Only the certificate itself keeps its colours — the surrounding page
+     (which is tinted per-severity on screen) must print as plain white,
+     and the certificate should sit centred on the sheet, not pinned to
+     the top-left. */
+  html,body{overflow:visible !important;height:auto !important;background:#fff !important}
+  #app{height:auto}
   .topbar,.sidebar,.footer,.cert-actions,.cert-gate{display:none !important}
-  .stage{padding:0;overflow:visible}
+  .layout{max-width:none}
+  .stage{
+    padding:0;overflow:visible;background:#fff !important;
+    display:flex;justify-content:center;align-items:center;min-height:100vh;
+  }
+  .page{max-width:100%;margin:0 auto}
 }
