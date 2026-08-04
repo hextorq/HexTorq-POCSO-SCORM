@@ -48,7 +48,7 @@ function pickVoiceForGender(gender) {
 
 function vibrateForGender(gender) {
   if (!navigator.vibrate) return;
-  try { navigator.vibrate(gender === "male" ? [30] : [18, 40, 18]); } catch (e) { /* best-effort only */ }
+  try { navigator.vibrate(gender === "male" ? [55] : [35, 45, 35]); } catch (e) { /* best-effort only */ }
 }
 
 const Speech = (function () {
