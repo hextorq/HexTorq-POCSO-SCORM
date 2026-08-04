@@ -27,13 +27,15 @@ function escapeHtml(str) { const d = document.createElement("div"); d.textConten
 
 /* ---------------- Flatten chapters into a linear page sequence ---------------- */
 const PAGES = [];
+PAGES.push({ id: "intro", type: "intro" });
 CHAPTERS.forEach((ch) => {
   ch.screens.forEach((screen, i) => {
     PAGES.push({ id: screen.id, type: "screen", chapter: ch, screen, isFirstInChapter: i === 0 });
   });
   PAGES.push({ id: "quiz-" + ch.num, type: "quiz", chapter: ch, quiz: ch.quiz });
 });
-PAGES.push({ id: "final", type: "final" });
+PAGES.push({ id: "certificate", type: "certificate" });
+PAGES.push({ id: "onecard", type: "onecard" });
 
 function currentPage() { return PAGES[state.currentIndex]; }
 
@@ -45,7 +47,6 @@ const progressFill = document.getElementById("progressFill");
 const progressLabel = document.getElementById("progressLabel");
 const chapterListEl = document.getElementById("chapterList");
 
-document.getElementById("brandIcon").innerHTML = svgIcon("shield", 26);
 
 /* ---------------- Confetti ---------------- */
 function confettiAt(el, big) {
@@ -111,7 +112,7 @@ function buildSidebar() {
     const li = document.createElement("li");
     li.className = "chapter-item";
     li.dataset.chapter = ch.num;
-    li.innerHTML = `<span class="ch-title"><span class="dot"></span><span>${ch.num} · ${ch.title}</span></span><span class="ch-sub">${ch.duration}</span>`;
+    li.innerHTML = `<span class="ch-title"><span class="dot"></span><span>${ch.title}</span></span><span class="ch-sub">${ch.duration}</span>`;
     chapterListEl.appendChild(li);
   });
   const finalLi = document.createElement("li");
@@ -120,16 +121,17 @@ function buildSidebar() {
   finalLi.innerHTML = `<span class="ch-title"><span class="dot"></span><span>One Card to Keep</span></span>`;
   chapterListEl.appendChild(finalLi);
 }
+const FINAL_PAGE_TYPES = ["certificate", "onecard"];
 function updateSidebar() {
   const page = currentPage();
   const items = chapterListEl.querySelectorAll(".chapter-item");
   items.forEach((item) => {
     const key = item.dataset.chapter;
     const isFinal = key === "final";
-    const isActive = isFinal ? page.type === "final" : (page.chapter && String(page.chapter.num) === key);
+    const isActive = isFinal ? FINAL_PAGE_TYPES.includes(page.type) : (page.chapter && String(page.chapter.num) === key);
     item.classList.toggle("active", isActive);
     const chapterPages = isFinal
-      ? PAGES.filter((p) => p.type === "final")
+      ? PAGES.filter((p) => FINAL_PAGE_TYPES.includes(p.type))
       : PAGES.filter((p) => p.chapter && String(p.chapter.num) === key);
     const done = chapterPages.length > 0 && chapterPages.every((p) => state.completedPages[p.id]);
     item.classList.toggle("done", done);
@@ -140,17 +142,23 @@ function updateSidebar() {
 const progressChapterLabel = document.getElementById("progressChapterLabel");
 function updateProgress() {
   const page = currentPage();
-  let scopePages, caption;
-  if (page.type === "final") {
-    scopePages = PAGES;
+  let pct, caption;
+  if (page.type === "intro") {
+    pct = 0;
     caption = "Overview";
+  } else if (FINAL_PAGE_TYPES.includes(page.type)) {
+    // Reaching the certificate/one-card pages is only possible after every
+    // chapter and quiz is done, so this is always 100% — no off-by-one from
+    // these pages themselves not yet being marked "completed".
+    pct = 100;
+    caption = "Complete";
   } else {
     const chNum = page.chapter.num;
-    scopePages = PAGES.filter((p) => p.chapter && p.chapter.num === chNum);
+    const scopePages = PAGES.filter((p) => p.chapter && p.chapter.num === chNum);
+    const done = scopePages.filter((p) => state.completedPages[p.id]).length;
+    pct = Math.round((done / scopePages.length) * 100);
     caption = "Chapter " + chNum;
   }
-  const done = scopePages.filter((p) => state.completedPages[p.id]).length;
-  const pct = Math.round((done / scopePages.length) * 100);
   progressFill.style.width = pct + "%";
   progressLabel.textContent = pct + "%";
   if (progressChapterLabel) progressChapterLabel.textContent = caption;
@@ -208,12 +216,14 @@ function render() {
   footerMsg.textContent = "";
   btnNext.textContent = state.currentIndex === 0 ? "Start →" : "Continue →";
 
-  const severity = page.type === "screen" ? (page.screen.severity || "") : (page.type === "final" ? "safe" : "");
+  const severity = page.type === "screen" ? (page.screen.severity || "") : (FINAL_PAGE_TYPES.includes(page.type) ? "safe" : "");
   document.body.dataset.severity = severity;
 
-  if (page.type === "screen") renderScreenPage(page, wrap);
+  if (page.type === "intro") renderIntroPage(page, wrap);
+  else if (page.type === "screen") renderScreenPage(page, wrap);
   else if (page.type === "quiz") renderQuizPage(page, wrap);
-  else if (page.type === "final") renderFinalPage(page, wrap);
+  else if (page.type === "certificate") renderCertificatePage(page, wrap);
+  else if (page.type === "onecard") renderOneCardPage(page, wrap);
 
   hasRenderedOnce = true;
   updateProgress();
@@ -225,6 +235,47 @@ function render() {
   // element isn't the actual scroll container.
   if (typeof stage.scrollTo === "function") stage.scrollTo({ top: 0, behavior: "smooth" }); else stage.scrollTop = 0;
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ================================================================
+   INTRO / OVERVIEW PAGE — concise chapter-by-chapter summary
+   ================================================================ */
+function renderIntroPage(page, wrap) {
+  const totalScreens = CHAPTERS.reduce((sum, ch) => sum + ch.screens.length, 0);
+
+  const intro = document.createElement("div");
+  intro.className = "intro-hero";
+  intro.innerHTML = `
+    <h1>${escapeHtml(MODULE_META.title)}</h1>
+    <p>Five short chapters covering what the law defines as an offence against a child, what your duties are as an adult, and what to do if a child ever discloses abuse to you or you suspect it.</p>
+  `;
+  wrap.appendChild(intro);
+
+  const list = document.createElement("div");
+  list.className = "intro-chapter-list";
+  CHAPTERS.forEach((ch) => {
+    const row = document.createElement("div");
+    row.className = "intro-chapter-row";
+    row.innerHTML = `
+      <div class="intro-chapter-num">${ch.num}</div>
+      <div class="intro-chapter-body">
+        <div class="intro-chapter-title">${escapeHtml(ch.title)}</div>
+        <div class="intro-chapter-blurb">${escapeHtml(ch.blurb || "")}</div>
+        <div class="intro-chapter-duration">${escapeHtml(ch.duration)}</div>
+      </div>
+    `;
+    list.appendChild(row);
+  });
+  wrap.appendChild(list);
+
+  const note = document.createElement("div");
+  note.className = "intro-note";
+  note.textContent = `${totalScreens} screens in total, plus a short quiz after each chapter. Your progress is saved automatically — you can leave and pick up where you left off.`;
+  wrap.appendChild(note);
+
+  btnNext.textContent = "Start →";
+  btnNext.disabled = false;
+  footerMsg.textContent = "";
 }
 
 /* ================================================================
@@ -987,6 +1038,12 @@ function computeOverallScore() {
   return total ? Math.round((correct / total) * 100) : 0;
 }
 
+const CERT_SIGNATORIES = [
+  { name: `C. Joseph Vijay`, title: `Chief Minister`, title2: `Tamil Nadu` },
+  { name: `Mahesh Kumar Aggarwal, IPS`, title: `Head of Tamil Nadu Police`, title2: `` },
+  { name: `K. Bhavaneeswari, IPS`, title: `Inspector General of Police (IGP)`, title2: `Singapenn Special Force` }
+];
+
 function renderCertificateBlock(wrap) {
   const dateStr = new Date().toLocaleDateString("en-IN", { year: "numeric", month: "long", day: "numeric" });
   const certId = "TNP-POCSO-" + new Date().getFullYear() + "-" + Math.random().toString(36).slice(2, 8).toUpperCase();
@@ -999,20 +1056,31 @@ function renderCertificateBlock(wrap) {
     <div class="cert-corner cert-corner-tr"></div>
     <div class="cert-corner cert-corner-bl"></div>
     <div class="cert-corner cert-corner-br"></div>
-    <div class="cert-id">Certificate No. ${certId}</div>
-    <div class="cert-badge">${svgIcon("cert", 38)}</div>
+    <div class="cert-emblem-row">
+      <div class="cert-emblem">
+        ${svgIcon("shield", 30)}
+        <div class="cert-emblem-label">Tamil Nadu<br>Government</div>
+      </div>
+      <div class="cert-emblem">
+        <img src="img/tamilnadu-police-logo.png" alt="Tamil Nadu Police" class="cert-emblem-img">
+        <div class="cert-emblem-label">Tamil Nadu<br>Police</div>
+      </div>
+    </div>
+    <div class="cert-id">Certificate No. ${certId} &middot; ${dateStr}</div>
+    <div class="cert-badge">${svgIcon("cert", 34)}</div>
     <div class="cert-title">Certificate of Completion</div>
-    <div class="cert-sub">POCSO — Adult Awareness Module</div>
+    <div class="cert-sub">POCSO Awareness (Age: 18+)</div>
     <div class="cert-body">This is to certify that</div>
     <div class="cert-name">${escapeHtml(state.learnerName || "Learner")}</div>
     <div class="cert-body">has completed the POCSO Adult Awareness Module — covering the definition of a child under the Act, what counts as an offence, the duty to report, and how to respond when a child discloses abuse — with an overall quiz performance of <strong>${score}%</strong>.</div>
     <div class="cert-sign-row">
-      <div class="cert-sign"><div class="cert-sign-line"></div><div class="cert-sign-label">Date: ${dateStr}</div></div>
-      <div class="cert-seal">
-        <div class="cert-seal-ring">${svgIcon("shield", 26)}</div>
-        <div class="cert-seal-text">OFFICIAL SEAL</div>
-      </div>
-      <div class="cert-sign"><div class="cert-sign-line"></div><div class="cert-sign-label">${escapeHtml(MODULE_META.issuingAuthority)}</div></div>
+      ${CERT_SIGNATORIES.map((s) => `
+        <div class="cert-sign">
+          <div class="cert-sign-line"></div>
+          <div class="cert-sign-name">${escapeHtml(s.name)}</div>
+          <div class="cert-sign-title">${escapeHtml(s.title)}${s.title2 ? `<br>${escapeHtml(s.title2)}` : ""}</div>
+        </div>
+      `).join("")}
     </div>
   `;
   wrap.appendChild(certNode);
@@ -1026,7 +1094,8 @@ function renderCertificateBlock(wrap) {
   actions.querySelector("#printCertBtn").addEventListener("click", () => { SFX.click(); window.print(); });
 }
 
-function renderFinalPage(page, wrap) {
+/* ---------------- Certificate page (own page, separate from the summary card) ---------------- */
+function renderCertificatePage(page, wrap) {
   if (!state.certGenerated) {
     const gate = document.createElement("div");
     gate.className = "cert-gate";
@@ -1052,10 +1121,17 @@ function renderFinalPage(page, wrap) {
       render();
       setTimeout(() => confettiAt(document.querySelector(".certificate"), true), 250);
     });
+    btnNext.disabled = true;
+    footerMsg.textContent = "Enter your name and generate your certificate to continue";
   } else {
     renderCertificateBlock(wrap);
+    btnNext.disabled = false;
+    footerMsg.textContent = "";
   }
+}
 
+/* ---------------- One Card to Keep — its own page, read after the certificate ---------------- */
+function renderOneCardPage(page, wrap) {
   const card = document.createElement("div");
   card.className = "final-card";
   card.innerHTML = `
@@ -1066,6 +1142,12 @@ function renderFinalPage(page, wrap) {
     <div class="disclaimer">${escapeHtml(FINAL_CARD.disclaimer)}</div>
   `;
   wrap.appendChild(card);
+
+  const actions = document.createElement("div");
+  actions.className = "cert-actions";
+  actions.innerHTML = `<button class="btn btn-primary" id="downloadShareBtn">${svgIcon("printer", 14)} Download and Share</button>`;
+  wrap.appendChild(actions);
+  actions.querySelector("#downloadShareBtn").addEventListener("click", (e) => downloadAndShareOneCard(e.currentTarget));
 
   const visual = document.createElement("div");
   visual.className = "block";
@@ -1079,6 +1161,121 @@ function renderFinalPage(page, wrap) {
 
   btnNext.style.display = "none";
   footerMsg.textContent = "Module complete.";
+}
+
+/* --- Render "One Card to Keep" onto a canvas, then download or share it
+   as an image (WhatsApp etc. via the Web Share API's file-sharing, where
+   supported; otherwise a straight download). No image library needed —
+   the card is simple enough to draw directly. --- */
+function wrapCanvasText(ctx, text, maxWidth) {
+  const words = text.split(" ");
+  const lines = [];
+  let line = "";
+  words.forEach((word) => {
+    const test = line ? line + " " + word : word;
+    if (ctx.measureText(test).width > maxWidth && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = test;
+    }
+  });
+  if (line) lines.push(line);
+  return lines;
+}
+
+function buildOneCardCanvas() {
+  const W = 1080, H = 1350, PAD = 80;
+  const canvas = document.createElement("canvas");
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return null;
+
+  // Background
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, "#0b2038");
+  bg.addColorStop(1, "#132c4a");
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = "#c9962e";
+  ctx.lineWidth = 6;
+  ctx.strokeRect(24, 24, W - 48, H - 48);
+
+  let y = PAD + 20;
+  ctx.textAlign = "center";
+  ctx.fillStyle = "#c9962e";
+  ctx.font = "700 30px Georgia, serif";
+  ctx.fillText("SURAKSHA KAVASAM", W / 2, y);
+  y += 40;
+  ctx.font = "600 20px 'Segoe UI', Arial, sans-serif";
+  ctx.fillStyle = "rgba(255,255,255,.75)";
+  ctx.fillText("POCSO Adult Awareness Module", W / 2, y);
+  y += 60;
+
+  ctx.font = "800 46px Georgia, serif";
+  ctx.fillStyle = "#ffffff";
+  ctx.fillText(FINAL_CARD.heading, W / 2, y);
+  y += 50;
+
+  ctx.font = "italic 24px 'Segoe UI', Arial, sans-serif";
+  ctx.fillStyle = "rgba(255,255,255,.85)";
+  wrapCanvasText(ctx, FINAL_CARD.intro, W - PAD * 2).forEach((l) => { ctx.fillText(l, W / 2, y); y += 30; });
+  y += 20;
+
+  ctx.textAlign = "left";
+  FINAL_CARD.lines.forEach((line, i) => {
+    ctx.font = "700 26px 'Segoe UI', Arial, sans-serif";
+    ctx.fillStyle = "#c9962e";
+    ctx.fillText(String(i + 1) + ".", PAD, y);
+    ctx.font = "26px 'Segoe UI', Arial, sans-serif";
+    ctx.fillStyle = "#ffffff";
+    const wrapped = wrapCanvasText(ctx, line, W - PAD * 2 - 46);
+    wrapped.forEach((l, li) => { ctx.fillText(l, PAD + 46, y + li * 34); });
+    y += wrapped.length * 34 + 22;
+  });
+
+  y += 20;
+  ctx.strokeStyle = "rgba(255,255,255,.25)";
+  ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
+  y += 44;
+
+  ctx.textAlign = "center";
+  ctx.font = "700 22px 'Segoe UI', Arial, sans-serif";
+  ctx.fillStyle = "#c9962e";
+  wrapCanvasText(ctx, FINAL_CARD.contacts, W - PAD * 2).forEach((l) => { ctx.fillText(l, W / 2, y); y += 30; });
+
+  y = H - PAD + 10;
+  ctx.font = "italic 18px 'Segoe UI', Arial, sans-serif";
+  ctx.fillStyle = "rgba(255,255,255,.55)";
+  wrapCanvasText(ctx, FINAL_CARD.disclaimer, W - PAD * 2).forEach((l) => { ctx.fillText(l, W / 2, y); y += 24; });
+
+  return canvas;
+}
+
+function downloadAndShareOneCard(btn) {
+  SFX.click();
+  const canvas = buildOneCardCanvas();
+  if (!canvas) { footerMsg.textContent = "Image export isn't supported on this browser."; return; }
+  canvas.toBlob(async (blob) => {
+    if (!blob) return;
+    const fileName = "suraksha-kavasam-one-card-to-keep.png";
+    const file = new File([blob], fileName, { type: "image/png" });
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({ files: [file], title: "One Card to Keep — POCSO Awareness", text: "POCSO Adult Awareness — One Card to Keep" });
+        return;
+      } catch (e) { /* user cancelled the share sheet — fall through to a plain download */ }
+    }
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }, "image/png");
 }
 
 /* ---------------- Boot ---------------- */

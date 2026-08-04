@@ -21,6 +21,7 @@ const CHAPTERS = [
   num: 1,
   title: `What POCSO Is, and Who the Law Calls a Child`,
   duration: `~12 min · 8 screens`,
+  blurb: `The legal definition of a child, and why consent below 18 doesn't exist in law.`,
   screens: [
     {
       id: "1.1",
@@ -280,6 +281,7 @@ const CHAPTERS = [
   num: 2,
   title: `What Counts as an Offence`,
   duration: `~9 min · 7 screens`,
+  blurb: `The four kinds of offence under POCSO — most of them don't require touching.`,
   screens: [
     {
       id: "2.1",
@@ -526,6 +528,7 @@ const CHAPTERS = [
   num: 3,
   title: `The Line an Adult Must Not Cross`,
   duration: `~4 min · 2 screens`,
+  blurb: `Everyday behaviours that are already offences, and beliefs that don't hold up in law.`,
   screens: [
     {
       id: "3.1",
@@ -645,6 +648,7 @@ const CHAPTERS = [
   num: 4,
   title: `Seeing It Before the Child Speaks`,
   duration: `~5 min · 3 screens`,
+  blurb: `Recognising grooming patterns and signs in a child, before anything is said.`,
   screens: [
     {
       id: "4.1",
@@ -806,6 +810,7 @@ const CHAPTERS = [
   num: 5,
   title: `When a Child Tells You, and What to Do Next`,
   duration: `~9 min · 4 screens`,
+  blurb: `What to say, what not to say, and how to report — and what happens after.`,
   screens: [
     {
       id: "5.1",
