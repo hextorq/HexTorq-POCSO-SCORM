@@ -109,14 +109,6 @@ body{
 .page-heading{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px}
 .head-row-flex{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .head-row-flex .page-heading{margin-bottom:0}
-.severity-badge{
-  display:inline-block;margin-left:10px;font-size:.66rem;font-weight:800;letter-spacing:.06em;
-  text-transform:uppercase;padding:2px 8px;border-radius:5px;vertical-align:middle;
-}
-.severity-badge.sev-danger{background:#fbeeec;color:#a3372b}
-.severity-badge.sev-warning{background:#fbf1de;color:#b5720f}
-.severity-badge.sev-notice{background:#fbf6d9;color:#8a7100}
-.severity-badge.sev-safe{background:#eaf5ed;color:#2f6b45}
 .chapter-banner{
   background:linear-gradient(135deg,var(--navy),var(--navy-2));color:#fff;border-radius:var(--radius);
   padding:22px 24px;margin-bottom:22px;border-left:4px solid var(--gold-2);

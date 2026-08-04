@@ -246,12 +246,12 @@ function renderScreenPage(page, wrap) {
     wrap.appendChild(banner);
   }
 
-  const SEVERITY_LABEL = { danger: "Danger", warning: "Warning", notice: "Notice", safe: "Safe" };
-  const sevBadge = screen.severity ? `<span class="severity-badge sev-${screen.severity}">${SEVERITY_LABEL[screen.severity]}</span>` : "";
-
+  // Severity still drives the colour theme (see body[data-severity] in
+  // style.css) — only the visible text label ("Warning" / "Danger" / etc.)
+  // next to the heading has been removed.
   const headRow = document.createElement("div");
   headRow.className = "block head-row-flex";
-  headRow.innerHTML = `<div class="page-heading">${escapeHtml(screen.heading)}${sevBadge}</div>`;
+  headRow.innerHTML = `<div class="page-heading">${escapeHtml(screen.heading)}</div>`;
   wrap.appendChild(headRow);
 
   let hasReadableContent = false;
@@ -272,7 +272,11 @@ function renderScreenPage(page, wrap) {
     // Recomputed at play-time: always includes visible text, plus any flip-deck
     // card backs that have already been revealed (never spoils an unrevealed one).
     const speakerBtn = makeSpeakerBtn(() => {
-      const els = Array.from(wrap.querySelectorAll("p,li,.belief,.response"));
+      // Video-slot placeholders and production notes are also built from <p>
+      // tags, but they're notes for whoever builds the video/module — not
+      // lesson content — so they must never be swept into the narration.
+      const els = Array.from(wrap.querySelectorAll("p,li,.belief,.response"))
+        .filter((el) => !el.closest(".video-slot") && !el.closest(".p-note"));
       wrap.querySelectorAll(".deck-card").forEach((card) => {
         const front = card.querySelector(".deck-front-text");
         if (front) els.push(front);
