@@ -32,7 +32,7 @@ const CHAPTERS = [
           `POCSO applies to every adult in India — including you.`,
           `In the next 45 minutes you will learn what this law says, what it treats as a crime, and what it asks you to do.`
         ]},
-        { t: "visual", video: `video/video-1.mp4`, lines: [
+        { t: "visual", video: `video/ch01-screen-1-1-opening.mp4`, lines: [
           `Build a 20–25 second sequence of five or six short shots of ordinary Chennai adult life.`,
           `Suggested shots: a man pouring tea at a roadside shop; two women waiting at a bus stop with school bags in hand; an auto driver leaning on his vehicle outside a school gate at 3:30pm; a shopkeeper handing over change to a child; a watchman in an apartment lobby; a hand scrolling a phone.`,
           `What to avoid: no dark colours, no shadows, no sinister music cue, no menacing figure. Nothing that says "crime."`,
@@ -53,7 +53,7 @@ const CHAPTERS = [
           `குழந்தைகளை பாலியல் குற்றங்களிலிருந்து பாதுகாக்கும் சட்டம், 2012`,
           `A central law, passed by Parliament in 2012. It applies in every state, including Tamil Nadu.`
         ]},
-        { t: "visual", lines: [
+        { t: "visual", video: `video/ch01-screen-1-2-the-name.mp4`, lines: [
           `Clean title card. Tamil line and English line in the same font size and the same weight — Tamil is not a subtitle sitting under English. Place them side by side or stacked with equal prominence. Use the Tamil Nadu Police colour palette. No illustration needed.`
         ]}
       ]
@@ -139,7 +139,7 @@ const CHAPTERS = [
             { text: `A 19-year-old college student is sexually assaulted`, bin: "not-applies", feedback: `Correct. She is above 18, so POCSO does not apply. She is protected under the BNS — Section 63 (rape), Section 74 (assault or criminal force with intent to outrage modesty), Section 75 (sexual harassment). She is not unprotected. She is protected by a different law.` }
           ]
         }},
-        { t: "visual", lines: [
+        { t: "visual", video: `video/ch01-screen-1-5-boys-are-children-too.mp4`, lines: [
           `Five simple illustrated cards, each showing an age and a short line of text. Draw the boy and the girl at the same size, same posture, same lighting.`,
           `What to avoid: do not draw the girl child hunched, crying, in shadow, or with her face hidden while the boy is drawn upright. This is the standard illustration cliché in Indian child protection material and it works against the message of this screen.`,
           `Suggested treatment: flat vector illustration, warm colours, children shown in ordinary settings — school corridor, home, playground — not in distress.`
@@ -165,7 +165,7 @@ const CHAPTERS = [
             `In 96.6% of cases under Sections 4 and 6 of POCSO the offender was known to the child — a relative, a neighbour, a family friend, someone from school or tuition, someone with a reason to be near the child.`
           ]
         }},
-        { t: "visual", lines: [
+        { t: "visual", video: `video/ch01-screen-1-6-where-the-danger-is.mp4`, lines: [
           `A horizontal bar of 10 human figures. As the answer is revealed, 9 of the 10 change colour to indicate "known to the child" and 1 stays grey for "stranger." Simple, immediate, no text needed to explain it.`,
           `Below the bar, place a still illustration: a family function — chairs in rows, a meal being served, children running between adults. Warm, festive, completely normal. One adult stands slightly apart from the group, watching. Do not make him look sinister. He should look like anybody.`,
           `Why: the discomfort should come from the ordinariness, not from the drawing. If the developer draws a villain, the learner will conclude that offenders look like villains — which is the exact belief this screen exists to break.`
@@ -221,7 +221,7 @@ const CHAPTERS = [
         { t: "interaction", kind: "commitmentTap", label: `Interaction — commitment tap. One button. Nothing is scored. It exists so the learner makes a statement instead of just reading one.`, data: {
           buttonText: `I understand this law applies to me.`
         }},
-        { t: "visual", lines: [
+        { t: "visual", video: `video/ch01-screen-1-8-applies-to-you.mp4`, lines: [
           `Two panels side by side, the same size. Left panel: a single figure with a hand extended towards a child, drawn in silhouette. Right panel: a figure standing with their back turned, hands in pockets, while the same scene happens behind them, also in silhouette.`,
           `The two panels must be identical in size, colour weight and prominence. Neither one should be bigger, brighter, or placed above the other.`,
           `Why this matters: both are offences under this Act, and the second one is the one people do not know about. If the developer draws the first one large and dramatic and the second one small and grey, the learner reads the silence panel as a minor thing — which is the belief the screen is trying to remove.`,
@@ -287,7 +287,7 @@ const CHAPTERS = [
           `POCSO covers four kinds of offence. Only one of them involves penetration. Two of them do not involve touching at all.`,
           `This chapter covers all four.`
         ]},
-        { t: "visual", lines: [
+        { t: "visual", video: `video/ch02-screen-2-1-four-kinds-opening.mp4`, lines: [
           `Four empty outlined boxes across the top of the screen, filling in one by one as the chapter progresses. Keep the strip visible on every screen in Chapter 2, so the learner can always see how many remain. On Screen 2.7 all four are already filled — the strip stays on screen, unchanged, because that screen is about all four.`
         ]}
       ]
@@ -343,7 +343,7 @@ const CHAPTERS = [
             { situation: `A tuition teacher repeatedly makes a student sit on his lap and holds her there`, answer: `Offence`, feedback: `Correct — and because he is her teacher, the punishment rises.` }
           ]
         }},
-        { t: "visual", lines: [
+        { t: "visual", video: `video/ch02-screen-2-4-sexual-assault-section-7.mp4`, lines: [
           `Three cards, one at a time. Each carries a line illustration of the setting only — a clinic room with a curtain and weighing scale; a school corridor; a tuition room with a low table and notebooks. Do not illustrate the act. No hands, no contact, no bodies. Card flips to green or amber with the feedback.`
         ]}
       ]
@@ -379,7 +379,7 @@ const CHAPTERS = [
           `5 · Luring a child for pornographic purposes`
         ]},
         { t: "p", lines: [ `Punishment — Section 12. Up to three years, with a fine.` ]},
-        { t: "visual", lines: [
+        { t: "visual", video: `video/ch02-screen-2-5-sexual-harassment-section-11.mp4`, lines: [
           `Below: a five-panel illustrated strip, one per item, scrolling vertically. · An adult leaning towards a child on a bus, mid-sentence, speech bubble with symbols not words · An adult holding a phone turned towards a child — screen blank white, nothing on it · A child walking home, the same adult figure visible across three frames — outside school, on the street, near the house · A phone showing a message bubble with a photo icon and a warning triangle · An adult holding out a phone and money towards a child`,
           `Highlight panels 2 and 3 with a coloured border, tagged "Most commonly committed." These are the two offences ordinary adults commit most casually.`
         ]}
@@ -436,7 +436,7 @@ const CHAPTERS = [
         { t: "p", lines: [
           `Then, if you can: leave the group, or tell the group not to forward it. You are not required to. The three steps above are.`
         ]},
-        { t: "visual", lines: [
+        { t: "visual", video: `video/ch02-screen-2-6-photos-videos-scenario.mp4`, lines: [
           `During the conversation. The phone faces away from the viewer throughout. Selvi never takes it, never looks at it. The screen is never shown, not blurred, not pixelated, not at any angle. Hold on the two of them and the tea glasses.`,
           `On Selvi's line "somebody was in the room" — cut to nothing. No flashback, no silhouette, no shadowed doorway, no implied figure. This is the single most important instruction on the screen. The sentence is doing the work. Any image at all reduces it, and any image at all risks becoming the thing the learner remembers instead of the sentence.`,
           `After the conversation — the spread. One phone icon. Then two. Four. Eight. Sixteen, moving outward past the edges of the frame. No content on any of them, only spread. It runs three seconds and stops dead.`,
@@ -444,7 +444,7 @@ const CHAPTERS = [
           `Report and delete — in green, tagged "the only permitted action"`,
           `Appears only after the learner taps "Report and delete." Not before.`
         ]},
-        { t: "pathway", steps: [`Stop`, `Report`, `Delete`] }
+        { t: "pathway", video: `video/ch02-screen-2-6-report-delete-pathway.mp4`, steps: [`Stop`, `Report`, `Delete`] }
       ]
     },
     {
@@ -464,7 +464,7 @@ const CHAPTERS = [
           `Aggravated penetrative sexual assault — Sections 5 and 6. At least 20 years, and it can go up to imprisonment for the rest of the offender's life, or death.`,
           `Aggravated sexual assault — Sections 9 and 10. Five to seven years.`
         ]},
-        { t: "visual", heading: `[VISUAL — staircase]`, lines: [
+        { t: "visual", video: `video/ch02-screen-2-7-punishment-goes-up.mp4`, heading: `[VISUAL — staircase]`, lines: [
           `Two steps side by side, both visible at once. Lower: "The offence" — bar marked 10 years minimum. Upper, visibly taller: "The same offence, made worse" — bar marked 20 years minimum, up to life, or death.`,
           `Between them, three icon groups feeding upward — who did it · who it was done to · how it was done. Tapping each expands the list.`,
           `Same colour for both bars, deeper shade on the taller. Not red vs green — it is the same offence.`
@@ -587,7 +587,7 @@ const CHAPTERS = [
           `Encouraging it, planning it, or deliberately not acting when it was a duty to act — the law can punish that as the offence itself. Attempting it carries up to half the sentence. Sections 16, 17 and 18.`,
           `For the more serious offences — sexual assault and penetrative sexual assault, Sections 3, 5, 7 and 9 — the Special Court begins by presuming the accused did it, once the prosecution has laid the basic facts. Disproving it is his job. Sections 29 and 30.`
         ]},
-        { t: "visual", lines: [
+        { t: "visual", video: `video/ch03-screen-3-2-three-beliefs-wrong.mp4`, lines: [
           `Two beats to hold: on "She was nine," hold the frame — and have Amudha lower the phone. On her final silence, do not draw her nodding. She looks down the road for the bus.`,
           `Below the conversation: reuse the staircase graphic from Chapter 2 — same drawing, same colours — highlighting only the "who did it" group. Do not redesign it.`,
           `Beside it, three figures at identical size: a hand extended ("Did it") · a figure gesturing forward ("Encouraged it") · a figure with a key beside an open door, looking away ("Chose not to stop it"). One bracket beneath all three: "The law can treat all three the same." All three at the same size and colour weight — if the first is drawn larger, the graphic argues against the text.`
@@ -662,7 +662,7 @@ const CHAPTERS = [
           `5 · Secrecy — "this is just between us." Private messages. A phone the parents don't know about. The clearest single sign.`,
           `6 · Escalation and silencing — contact increases. The child is made to feel she is part of it, or ashamed, or afraid of what happens if she speaks.`
         ]},
-        { t: "visual", heading: `[VISUAL — staircase, not a list]`, lines: [
+        { t: "visual", video: `video/ch04-screen-4-1-grooming-warning-signs.mp4`, heading: `[VISUAL — staircase, not a list]`, lines: [
           `Six steps rising left to right. Each carries a number, the pattern name, and one icon: a single figure picked out of a group · a wrapped gift · a closed door · a hand reaching out, drawn faintly · a finger to the lips · an arrow curving upward.`
         ]}
       ]
@@ -707,7 +707,7 @@ const CHAPTERS = [
           `hiding the screen`, `a phone, SIM or account the family didn't know existed`, `upset after being online`
         ]},
         { t: "p", lines: [ `You do not need to spot many. One change that is new, and does not go away, is enough.` ]},
-        { t: "visual", lines: [
+        { t: "visual", video: `video/ch04-screen-4-2-divya-case-signs.mp4`, lines: [
           `Top — Divya's story as four panels, scrolled through with text beneath each: 1 · The setup. A small flat. Divya at a table with schoolbooks. Her mother at the door in work clothes, leaving. A wall calendar with shifts marked. 2 · The gifts. Same table. A hand and forearm only — no face — placing a wrapped item and a phone beside her books. Divya looks pleased. 3 · The secret. Divya alone, holding the phone, glancing towards the door. 4 · What the adults saw. Split frame. Left: her mother across a meal, mildly concerned. Right: a school corridor, Divya alone on a step while girls talk nearby, her teacher passing with a register.`,
           `Rules: never show the man's face — hands, a shoulder, nothing more. Divya must never look frightened or sad in panels 1–3; she looks like a child being treated well. Same colour palette across all four.`,
           `Bottom — four grouped panels with heading icons only: Behaviour · What she knows · Body · Phone. Do not illustrate individual signs. No crying child, no bruises. A parent may be recognising their own child here; illustrated distress turns a checklist into an accusation.`,
@@ -822,7 +822,7 @@ const CHAPTERS = [
         { t: "p", lines: [ `The first ten seconds matter most.` ]},
         { t: "sayNotSay", sayHeading: `Say this`, say: [ `"I believe you."`, `"This is not your fault."`, `"I'm glad you told me."` ], sayNote: `Then stay calm, and let the child speak without interrupting.`,
           notHeading: `Not this`, not: [ `"Are you sure?"`, `"Why didn't you tell me before?"`, `"Why did you go with him?"`, `"Let's keep this between us."` ] },
-        { t: "visual", lines: [
+        { t: "visual", video: `video/ch05-screen-5-1-child-tells-you.mp4`, lines: [
           `Top: a still of two people sitting side by side on a step, seen from behind — an adult and a child, both facing away, neither looking at the other. Children disclose in this position, not face to face. The image teaches that before the text does.`,
           `Middle — five small cards, scrolled horizontally, one per pattern: a school bag put down at a doorway, child half-turned away · two children on a school step, the speaker looking straight ahead · a child speaking to an adult who is half-listening and still doing something with their hands · the same child later, shaking their head · the inside of an auto at night, both facing forward. In every one, the child is not making eye contact. That is the through-line. Draw boys in at least two of the five.`,
           `Strip across the bottom: "The difference is not how much you care. It is what comes out of your mouth in the first ten seconds."`
@@ -901,7 +901,7 @@ const CHAPTERS = [
           `And you — you may be asked to give a statement as a witness. Nothing that identifies the child can ever be published.`,
           `Sections 19, 24, 26, 27, 33, 35, 36 and 40.`
         ]},
-        { t: "visual", lines: [
+        { t: "visual", video: `video/ch05-screen-5-4-after-reporting-pathway.mp4`, lines: [
           `A single horizontal path with six plain stops: the call · the police or SJPU · the child's statement, at home · the Child Welfare Committee, if care is needed · the Special Court · the trial. No faces, no uniforms, no courtroom drama. The point is that the path exists and is short, not that it is impressive.`
         ]}
       ]

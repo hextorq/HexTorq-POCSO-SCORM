@@ -217,6 +217,32 @@ body{
 .video-slot-player{width:100%;display:block;border-radius:10px;margin:0;background:#000;box-shadow:0 4px 14px rgba(0,0,0,.18)}
 .video-slot-has-video{padding:14px;border-style:solid}
 .video-slot-has-video .video-slot-player{aspect-ratio:16/9;object-fit:cover}
+.pathway-video-slot{margin-bottom:16px}
+
+/* ---------- Reusable interaction videos ---------- */
+.interactive-video{
+  width:100%;max-width:520px;margin:8px auto 16px;border:1px solid var(--border);
+  border-radius:10px;overflow:hidden;background:#fff;box-shadow:var(--shadow);
+}
+.interactive-video-player{
+  display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--navy);
+}
+.commit-box .interactive-video{margin-bottom:14px}
+.quiz-box .interactive-video{max-width:360px;margin:0 0 10px}
+.cert-gate + .interactive-video,.certificate + .interactive-video{margin-top:0}
+
+/* ---------- Sound consent ---------- */
+.media-consent{
+  position:fixed;inset:0;z-index:80;display:flex;align-items:flex-end;justify-content:center;
+  padding:18px;background:rgba(11,32,56,.32);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+}
+.media-consent-panel{
+  width:min(440px,100%);background:#fff;border:1px solid var(--border);border-radius:10px;
+  padding:16px;box-shadow:0 16px 36px rgba(11,32,56,.24);
+}
+.media-consent-title{font-weight:800;color:var(--navy);font-size:1rem;margin-bottom:4px}
+.media-consent-copy{font-size:.86rem;color:var(--text-mute);line-height:1.5;margin-bottom:14px}
+.media-consent-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
 
 /* ---------- Pathway strip (real component, e.g. Stop -> Report -> Delete) ---------- */
 .pathway-strip{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:14px 0;padding:6px 0}

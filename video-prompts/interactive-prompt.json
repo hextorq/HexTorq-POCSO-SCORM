@@ -1,0 +1,354 @@
+[
+  {
+    "asset_id": "interaction_tap_reveal",
+    "title": "Tap Reveal Interaction",
+    "type": "reusable_interactivity_video",
+    "duration_seconds": 10,
+    "aspect_ratio": "16:9",
+    "resolution": "1920x1080",
+    "language": "No voiceover",
+    "visual_rule": "No subtitles, no captions, no text overlays. No legal content. No people. Pure UI motion graphic.",
+    "style": {
+      "visual_style": "clean civic-awareness UI animation",
+      "color_palette": "navy, gold, white, soft green",
+      "mood": "curious, calm, interactive",
+      "animation": "tap ripple, card flip, soft reveal glow, shield confirmation"
+    },
+    "timeline": [
+      {
+        "time": "00:00-00:01",
+        "scene": "Clean navy background. Small Singapenn-style logo top-left and Tamil Nadu Police-style logo top-right fade in subtly.",
+        "animation": "soft logo fade-in"
+      },
+      {
+        "time": "00:01-00:02",
+        "scene": "Four blank rounded cards appear in a neat grid. No text.",
+        "animation": "cards slide in gently"
+      },
+      {
+        "time": "00:02-00:03",
+        "scene": "A soft gold tap ripple appears on the first card.",
+        "animation": "tap ripple expands"
+      },
+      {
+        "time": "00:03-00:04",
+        "scene": "First card flips over and reveals a blank green-safe back surface. No words.",
+        "animation": "smooth card flip"
+      },
+      {
+        "time": "00:04-00:05",
+        "scene": "Second and third cards receive quick tap ripples.",
+        "animation": "two tap ripples, staggered"
+      },
+      {
+        "time": "00:05-00:06.5",
+        "scene": "Second and third cards flip open. Soft glow appears behind the revealed cards.",
+        "animation": "staggered card flips"
+      },
+      {
+        "time": "00:06.5-00:08",
+        "scene": "Fourth card gets a tap ripple and flips open. All four cards now glow softly.",
+        "animation": "final card flip, gentle completion glow"
+      },
+      {
+        "time": "00:08-00:10",
+        "scene": "A transparent shield outline forms behind the four cards. Cards settle calmly.",
+        "animation": "shield outline forms and fades slightly"
+      }
+    ],
+    "negative_prompt": [
+      "no subtitles",
+      "no captions",
+      "no text",
+      "no people",
+      "no children",
+      "no abuse content",
+      "no legal wording",
+      "no dark crime style",
+      "no flashing red"
+    ],
+    "purpose": "Reusable background or inline animation for tap-to-reveal interactions."
+  },
+  {
+    "asset_id": "interaction_drag_sort",
+    "title": "Drag Sort Interaction",
+    "type": "reusable_interactivity_video",
+    "duration_seconds": 10,
+    "aspect_ratio": "16:9",
+    "resolution": "1920x1080",
+    "language": "No voiceover",
+    "visual_rule": "No subtitles, no captions, no text overlays. No legal content. No people. Pure UI motion graphic.",
+    "style": {
+      "visual_style": "clean interactive learning UI animation",
+      "color_palette": "navy, gold, white, soft green, muted amber",
+      "mood": "active, clear, game-like but serious",
+      "animation": "draggable cards, drop zones, snap, correct placement glow"
+    },
+    "timeline": [
+      {
+        "time": "00:00-00:01",
+        "scene": "Clean light background with subtle navy frame. Logos fade in at top corners.",
+        "animation": "soft logo fade-in"
+      },
+      {
+        "time": "00:01-00:02",
+        "scene": "Five blank draggable cards appear at the bottom. Two blank drop zones appear above. No text.",
+        "animation": "cards and zones slide in"
+      },
+      {
+        "time": "00:02-00:03",
+        "scene": "First card lifts slightly with a soft gold outline.",
+        "animation": "card lift and hover"
+      },
+      {
+        "time": "00:03-00:04",
+        "scene": "First card moves into the left drop zone and snaps into place.",
+        "animation": "smooth drag path, snap placement"
+      },
+      {
+        "time": "00:04-00:05",
+        "scene": "Second card moves into the right drop zone and snaps into place.",
+        "animation": "drag and snap"
+      },
+      {
+        "time": "00:05-00:06.5",
+        "scene": "Three remaining cards move quickly one by one into the two zones.",
+        "animation": "staggered drag placements"
+      },
+      {
+        "time": "00:06.5-00:08",
+        "scene": "All placed cards glow with a soft green confirmation pulse. No checkmark text.",
+        "animation": "completion glow"
+      },
+      {
+        "time": "00:08-00:10",
+        "scene": "Drop zones merge into a shield-shaped learning badge. No words.",
+        "animation": "zones morph into shield, fade gently"
+      }
+    ],
+    "negative_prompt": [
+      "no subtitles",
+      "no captions",
+      "no text",
+      "no people",
+      "no children",
+      "no abuse content",
+      "no legal wording",
+      "no red error flashing",
+      "no arcade style"
+    ],
+    "purpose": "Reusable visual for drag-and-drop sorting exercises."
+  },
+  {
+    "asset_id": "feedback_correct",
+    "title": "Correct Answer Feedback",
+    "type": "reusable_interactivity_video",
+    "duration_seconds": 10,
+    "aspect_ratio": "16:9",
+    "resolution": "1920x1080",
+    "language": "No voiceover",
+    "visual_rule": "No subtitles, no captions, no text overlays. No legal content. No people. Pure success feedback animation.",
+    "style": {
+      "visual_style": "restrained success animation for serious e-learning",
+      "color_palette": "navy, gold, white, soft green",
+      "mood": "positive, calm, respectful",
+      "animation": "soft pulse, shield check shape, gold particles, no confetti overload"
+    },
+    "timeline": [
+      {
+        "time": "00:00-00:01",
+        "scene": "Clean navy background with subtle logos at top corners.",
+        "animation": "soft fade-in"
+      },
+      {
+        "time": "00:01-00:02",
+        "scene": "A blank answer card appears in the center.",
+        "animation": "card scales in gently"
+      },
+      {
+        "time": "00:02-00:03",
+        "scene": "Soft green glow begins around the card.",
+        "animation": "glow expands"
+      },
+      {
+        "time": "00:03-00:04",
+        "scene": "A simple shield outline forms behind the card.",
+        "animation": "shield line draws"
+      },
+      {
+        "time": "00:04-00:05",
+        "scene": "A check-shaped gold stroke appears inside the shield. No text.",
+        "animation": "check stroke draws"
+      },
+      {
+        "time": "00:05-00:06.5",
+        "scene": "Small restrained gold particles rise slowly around the shield.",
+        "animation": "minimal celebration particles"
+      },
+      {
+        "time": "00:06.5-00:08",
+        "scene": "Card, shield, and check hold steady with a soft green pulse.",
+        "animation": "slow confirmation pulse"
+      },
+      {
+        "time": "00:08-00:10",
+        "scene": "Everything settles and fades to a clean background.",
+        "animation": "gentle fade-out"
+      }
+    ],
+    "negative_prompt": [
+      "no subtitles",
+      "no captions",
+      "no text",
+      "no people",
+      "no children",
+      "no abuse content",
+      "no loud celebration",
+      "no fireworks",
+      "no cartoon confetti overload"
+    ],
+    "purpose": "Reusable animation for correct answers and completed interactions."
+  },
+  {
+    "asset_id": "feedback_caution",
+    "title": "Caution / Try Again Feedback",
+    "type": "reusable_interactivity_video",
+    "duration_seconds": 10,
+    "aspect_ratio": "16:9",
+    "resolution": "1920x1080",
+    "language": "No voiceover",
+    "visual_rule": "No subtitles, no captions, no text overlays. No legal content. No people. Use caution without fear.",
+    "style": {
+      "visual_style": "restrained caution animation for serious learning",
+      "color_palette": "navy, gold, white, muted amber, very soft red only as accent",
+      "mood": "careful, calm, corrective, not alarming",
+      "animation": "soft amber pulse, card shake, reset loop, no scary warning"
+    },
+    "timeline": [
+      {
+        "time": "00:00-00:01",
+        "scene": "Clean white/navy background with subtle logos at top corners.",
+        "animation": "soft fade-in"
+      },
+      {
+        "time": "00:01-00:02",
+        "scene": "A blank answer card appears in the center.",
+        "animation": "card slides in"
+      },
+      {
+        "time": "00:02-00:03",
+        "scene": "The card receives a soft amber outline.",
+        "animation": "amber outline pulse"
+      },
+      {
+        "time": "00:03-00:04",
+        "scene": "The card makes a very small side-to-side correction motion.",
+        "animation": "gentle shake, not harsh"
+      },
+      {
+        "time": "00:04-00:05",
+        "scene": "A small abstract caution triangle appears beside the card, without text.",
+        "animation": "triangle fades in softly"
+      },
+      {
+        "time": "00:05-00:06.5",
+        "scene": "The caution triangle dissolves into a curved retry arrow.",
+        "animation": "triangle morphs to retry arrow"
+      },
+      {
+        "time": "00:06.5-00:08",
+        "scene": "The card returns to neutral, ready to be tried again.",
+        "animation": "outline returns from amber to gold"
+      },
+      {
+        "time": "00:08-00:10",
+        "scene": "Final calm frame: blank card, soft gold border, no warning.",
+        "animation": "settle and fade"
+      }
+    ],
+    "negative_prompt": [
+      "no subtitles",
+      "no captions",
+      "no text",
+      "no people",
+      "no children",
+      "no abuse content",
+      "no scary red alert",
+      "no siren",
+      "no harsh error symbol",
+      "no failure shame tone"
+    ],
+    "purpose": "Reusable animation for incorrect answer, incomplete interaction, or try-again feedback."
+  },
+  {
+    "asset_id": "module_complete",
+    "title": "Module Complete Celebration",
+    "type": "reusable_interactivity_video",
+    "duration_seconds": 10,
+    "aspect_ratio": "16:9",
+    "resolution": "1920x1080",
+    "language": "No voiceover",
+    "visual_rule": "No subtitles, no captions, no text overlays. No legal content. No people. Official, respectful completion animation.",
+    "style": {
+      "visual_style": "official certificate-style completion animation",
+      "color_palette": "deep navy, gold, white, soft green",
+      "mood": "complete, respectful, proud, civic",
+      "animation": "certificate paper, shield emblem, soft gold particles, calm completion glow"
+    },
+    "timeline": [
+      {
+        "time": "00:00-00:01",
+        "scene": "Deep navy background. Logos fade in subtly at top corners.",
+        "animation": "soft logo fade-in"
+      },
+      {
+        "time": "00:01-00:02",
+        "scene": "A clean blank certificate paper slides gently into the center. No text.",
+        "animation": "paper slide-in"
+      },
+      {
+        "time": "00:02-00:03",
+        "scene": "Gold border draws around the certificate.",
+        "animation": "border line draws smoothly"
+      },
+      {
+        "time": "00:03-00:04",
+        "scene": "A shield emblem outline appears above the certificate.",
+        "animation": "shield outline forms"
+      },
+      {
+        "time": "00:04-00:05",
+        "scene": "A subtle check stroke forms inside the shield.",
+        "animation": "check draws softly"
+      },
+      {
+        "time": "00:05-00:06.5",
+        "scene": "Small gold particles rise slowly behind the certificate, restrained and official.",
+        "animation": "minimal gold particles"
+      },
+      {
+        "time": "00:06.5-00:08",
+        "scene": "Certificate and shield glow together with soft green and gold light.",
+        "animation": "completion glow pulse"
+      },
+      {
+        "time": "00:08-00:10",
+        "scene": "Final clean completion frame: certificate, shield, logos, no text.",
+        "animation": "hold and gentle fade"
+      }
+    ],
+    "negative_prompt": [
+      "no subtitles",
+      "no captions",
+      "no text",
+      "no people",
+      "no children",
+      "no abuse content",
+      "no party confetti overload",
+      "no fireworks",
+      "no cartoon celebration",
+      "no flashy commercial style"
+    ],
+    "purpose": "Reusable final completion animation for certificate or module-complete moment."
+  }
+]

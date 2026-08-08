@@ -1,0 +1,1715 @@
+{
+  "project": "POCSO Adult Awareness",
+  "format": "Google video generation prompts",
+  "duration_seconds_each": 10,
+  "global_rule": "For all videos: use Tamil voiceover; no subtitles, no captions, no sentence text overlays; keep 7 to 9 quick visual beats within 10 seconds; logos may appear as small official corner marks; avoid abuse depiction, distress, explicit content, villain framing, police raid imagery, courtroom drama, and crime-documentary style.",
+  "prompts": [
+    {
+      "asset_id": "video_01",
+      "chapter": 1,
+      "screen": "1.1",
+      "title": "Opening",
+      "type": "video",
+      "duration_seconds": 10,
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "language": "Tamil",
+      "visual_rule": "No captions, no subtitles, no text overlays. Logos are allowed as small official corner marks only.",
+      "style": {
+        "visual_style": "warm realistic public awareness video with light animated transitions",
+        "location": "ordinary Chennai / Tamil Nadu public life",
+        "mood": "safe, calm, civic awareness, inclusive of adults and children",
+        "lighting": "bright natural daylight",
+        "animation": "soft logo fade-in, gentle scene transitions, subtle animated safety-shield glow only at the end",
+        "color": "natural warm colours with subtle navy and gold accents"
+      },
+      "logos": {
+        "include": true,
+        "placement": "small Tamil Nadu Police style emblem in top-right and Singapenn style emblem in top-left",
+        "behavior": "logos gently fade in during first second and remain subtle, not distracting",
+        "note": "Do not add written labels beside the logos."
+      },
+      "tamil_voiceover": "POCSO சட்டம் குழந்தைகளை பாதுகாக்கும் சட்டம். இது குழந்தைகளுக்கும், அவர்களை பாதுகாக்க வேண்டிய ஒவ்வொரு பெரியவருக்கும் தெரிந்திருக்க வேண்டிய சட்டம். பள்ளி, வீடு, தெரு, கடை - குழந்தைகள் இருக்கும் எல்லா இடங்களிலும் இந்த விழிப்புணர்வு அவசியம்.",
+      "timeline": [
+        {
+          "time": "00:00-00:02",
+          "scene": "Soft fade in. Small official-style logos appear in the top corners. Roadside tea stall in Chennai. A man pours tea while adults and schoolchildren move normally in the background.",
+          "camera": "medium shot, natural eye-level",
+          "animation": "gentle logo fade-in, soft warm light transition"
+        },
+        {
+          "time": "00:02-00:04",
+          "scene": "Two women wait near a bus stop with school bags. A parent walks with a child. Everyone appears calm and ordinary.",
+          "camera": "wide steady frame",
+          "animation": "smooth crossfade from previous scene"
+        },
+        {
+          "time": "00:04-00:06",
+          "scene": "Outside a school gate at pickup time. Auto driver waits, parents gather, children leave school safely with adults around.",
+          "camera": "medium-wide shot",
+          "animation": "subtle animated navy-and-gold safety shield line briefly passes across the frame, very soft and transparent"
+        },
+        {
+          "time": "00:06-00:08",
+          "scene": "Neighbourhood shopkeeper gives biscuits or a notebook to a child while another adult waits nearby. The scene is public, normal, respectful.",
+          "camera": "side angle, warm daylight",
+          "animation": "gentle motion blur transition, no text"
+        },
+        {
+          "time": "00:08-00:10",
+          "scene": "Wide Chennai street scene with adults and children sharing the same public space. Apartment watchman, parents, children, pedestrians, and a hand checking a phone appear naturally. End with a subtle glowing shield icon animation in the center background, no words.",
+          "camera": "wide final frame, hold steady",
+          "animation": "soft transparent shield glow appears and fades, logos remain in corners"
+        }
+      ],
+      "audio_direction": {
+        "voice": "clear Tamil adult narrator, calm, warm, serious but not frightening",
+        "background": "soft natural street ambience, low volume",
+        "music": "very soft civic-awareness music, no suspense, no crime tone",
+        "sync_note": "Do not create any captions or subtitles. Voiceover carries the message."
+      },
+      "negative_prompt": [
+        "no captions",
+        "no subtitles",
+        "no text overlays",
+        "no title cards",
+        "no written legal text",
+        "no abuse depiction",
+        "no child in distress",
+        "no crying",
+        "no isolated child",
+        "no threatening adult",
+        "no villain framing",
+        "no dark alley",
+        "no shadows suggesting danger",
+        "no police arrest",
+        "no courtroom",
+        "no explicit phone content",
+        "no sensational crime documentary style",
+        "do not make the video say POCSO is only for adults"
+      ],
+      "purpose": "Opening video showing that POCSO protects children and that adults must understand their duty to protect children."
+    },
+    {
+      "asset_id": "video_02",
+      "chapter": 1,
+      "screen": "1.2",
+      "title": "The name",
+      "type": "video",
+      "duration_seconds": 10,
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "language": "Tamil",
+      "visual_rule": "Use no subtitles and no sentence-by-sentence captions. This video may show only the Act name as a clean official title graphic, because this screen teaches the name of the law. Logos are allowed as small official corner marks.",
+      "style": {
+        "visual_style": "official civic awareness motion graphic mixed with warm real-world Tamil Nadu visuals",
+        "mood": "clear, respectful, calm, official, accessible",
+        "color_palette": "Tamil Nadu Police inspired navy, white, gold, and warm daylight tones",
+        "animation": "soft fades, clean title reveal, subtle shield and document-line motion, no flashy effects",
+        "pace": "lively with 8 quick visual beats inside 10 seconds"
+      },
+      "logos": {
+        "include": true,
+        "placement": "small Singapenn-style emblem top-left and Tamil Nadu Police-style emblem top-right",
+        "behavior": "fade in during first second and stay subtle",
+        "note": "No extra written labels near logos."
+      },
+      "tamil_voiceover": "POCSO என்பது குழந்தைகளை பாலியல் குற்றங்களிலிருந்து பாதுகாக்கும் சட்டம், 2012. இது இந்திய பாராளுமன்றம் இயற்றிய மத்திய சட்டம். தமிழ்நாடு உட்பட இந்தியாவின் ஒவ்வொரு மாநிலத்திலும் இந்த சட்டம் பொருந்தும்.",
+      "timeline": [
+        {
+          "time": "00:00-00:01",
+          "scene": "Clean navy background with soft light. Small official-style logos fade into the top corners. No captions.",
+          "camera": "static centered frame",
+          "animation": "gentle logo fade-in, subtle gold line sweep"
+        },
+        {
+          "time": "00:01-00:02",
+          "scene": "A simple animated outline of India appears softly, with Tamil Nadu subtly highlighted in gold. No map labels.",
+          "camera": "flat motion graphic",
+          "animation": "map outline draws in smoothly"
+        },
+        {
+          "time": "00:02-00:03",
+          "scene": "Quick warm shot of a school entrance in Tamil Nadu with parents and children moving normally.",
+          "camera": "wide natural daylight shot",
+          "animation": "soft crossfade from map"
+        },
+        {
+          "time": "00:03-00:04",
+          "scene": "Quick shot of a neighbourhood street with adults and children in ordinary public life.",
+          "camera": "medium-wide eye-level shot",
+          "animation": "gentle transition, no dramatic movement"
+        },
+        {
+          "time": "00:04-00:05",
+          "scene": "Official-looking document pages animate softly, pages turning without readable paragraphs.",
+          "camera": "close-up motion graphic",
+          "animation": "paper edges and seal-like shield glow"
+        },
+        {
+          "time": "00:05-00:06.5",
+          "scene": "Main title appears cleanly: 'POCSO'. Under it, equal-sized English and Tamil law names appear as official title text, not subtitles.",
+          "camera": "centered title frame",
+          "animation": "letters fade in gently, no bouncing",
+          "allowed_text": [
+            "POCSO",
+            "Protection of Children from Sexual Offences Act, 2012",
+            "குழந்தைகளை பாலியல் குற்றங்களிலிருந்து பாதுகாக்கும் சட்டம், 2012"
+          ]
+        },
+        {
+          "time": "00:06.5-00:07.5",
+          "scene": "Tamil and English title lines sit with equal size and equal weight. A subtle shield icon forms behind them.",
+          "camera": "static official title frame",
+          "animation": "soft shield glow, no extra text"
+        },
+        {
+          "time": "00:07.5-00:08.7",
+          "scene": "Return to a warm public scene: parent, child, shopkeeper, and pedestrians in ordinary daylight.",
+          "camera": "wide calm shot",
+          "animation": "smooth crossfade"
+        },
+        {
+          "time": "00:08.7-00:10",
+          "scene": "Final official frame with the POCSO title, Tamil and English lines equal, logos still in corners, navy-gold background.",
+          "camera": "centered final hold",
+          "animation": "very subtle gold border glow, fade out at end"
+        }
+      ],
+      "audio_direction": {
+        "voice": "clear Tamil adult narrator, calm and official, easy to understand",
+        "background": "very soft civic-awareness music, low volume",
+        "sound_design": "subtle page-turn and soft transition sounds only",
+        "sync_note": "Do not create subtitles. Only the law name may appear as title text."
+      },
+      "negative_prompt": [
+        "no subtitles",
+        "no sentence captions",
+        "no long text blocks",
+        "no dramatic crime visuals",
+        "no abuse depiction",
+        "no child in distress",
+        "no crying",
+        "no threatening adult",
+        "no dark lighting",
+        "no police raid",
+        "no courtroom drama",
+        "no scary music",
+        "do not make Tamil smaller than English",
+        "do not treat Tamil as a subtitle"
+      ],
+      "purpose": "Teach the learner the full name of POCSO and establish that it is a central law applying across India, including Tamil Nadu."
+    },
+    {
+      "asset_id": "video_03",
+      "chapter": 1,
+      "screen": "1.5",
+      "title": "Boys are children too",
+      "type": "video",
+      "duration_seconds": 10,
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "language": "Tamil",
+      "visual_rule": "No subtitles, no captions, no text overlays. Use visuals only. Logos are allowed as small official corner marks.",
+      "style": {
+        "visual_style": "warm realistic public awareness video with light animated card transitions",
+        "mood": "inclusive, calm, respectful, protective",
+        "color_palette": "natural daylight with subtle navy and gold civic accents",
+        "animation": "soft card-like transitions between scenes, gentle shield glow at the end",
+        "pace": "lively with 8 quick visual beats inside 10 seconds"
+      },
+      "logos": {
+        "include": true,
+        "placement": "small Singapenn-style emblem top-left and Tamil Nadu Police-style emblem top-right",
+        "behavior": "fade in during first second and remain subtle",
+        "note": "No written labels near logos."
+      },
+      "tamil_voiceover": "POCSO சட்டம் பெண் குழந்தைகளுக்கு மட்டும் அல்ல. ஆண் குழந்தைகளுக்கும் இதே சட்ட பாதுகாப்பு உண்டு. எந்த குழந்தையும் பாதிக்கப்படலாம். தவறு செய்பவர் ஆணாக இருந்தாலும், பெண்ணாக இருந்தாலும், உறவினராக இருந்தாலும், இந்த சட்டம் பொருந்தும்.",
+      "timeline": [
+        {
+          "time": "00:00-00:01",
+          "scene": "Soft fade in. Logos appear in the top corners. A school corridor in daylight with boys and girls walking together normally.",
+          "camera": "wide eye-level frame",
+          "animation": "gentle logo fade-in, soft warm transition"
+        },
+        {
+          "time": "00:01-00:02",
+          "scene": "A 14-15 year old boy sits at a classroom desk with other students around him. He appears normal and safe, not sad or frightened.",
+          "camera": "medium shot",
+          "animation": "subtle card-frame transition, no text"
+        },
+        {
+          "time": "00:02-00:03",
+          "scene": "A 14-15 year old girl in a similar classroom setting, same posture, same lighting, same dignity as the boy.",
+          "camera": "medium shot matching previous shot",
+          "animation": "smooth crossfade"
+        },
+        {
+          "time": "00:03-00:04",
+          "scene": "A group of boys and girls playing or talking in a school playground. Everyone is shown at equal size and equal importance.",
+          "camera": "wide steady shot",
+          "animation": "soft navy-gold shield line passes gently across the frame"
+        },
+        {
+          "time": "00:04-00:05",
+          "scene": "Ordinary tuition-room setting: notebooks on a table, students seated in a safe group learning environment. Do not show any harmful act.",
+          "camera": "medium-wide shot of setting only",
+          "animation": "gentle transition"
+        },
+        {
+          "time": "00:05-00:06.5",
+          "scene": "Neighbourhood home setting with family members and children in a normal living room. Show adults and children in public family space, not isolated.",
+          "camera": "wide warm daylight shot",
+          "animation": "soft card slide transition"
+        },
+        {
+          "time": "00:06.5-00:07.5",
+          "scene": "A woman adult, a man adult, and an older relative figure are shown as ordinary silhouettes or neutral figures around a community notice-board style background, making clear the law is gender-neutral without making anyone look guilty.",
+          "camera": "balanced centered composition",
+          "animation": "three neutral figure icons softly appear, no labels"
+        },
+        {
+          "time": "00:07.5-00:08.7",
+          "scene": "A boy and a girl stand side by side at the same size, same posture, same lighting, with a soft protective shield glow behind both.",
+          "camera": "medium-wide centered frame",
+          "animation": "transparent shield forms behind both children"
+        },
+        {
+          "time": "00:08.7-00:10",
+          "scene": "Final warm public scene: children of different genders with parents and teachers nearby in a school courtyard. Hold calm, equal, protective framing.",
+          "camera": "wide final hold",
+          "animation": "shield glow fades gently, logos remain subtle"
+        }
+      ],
+      "audio_direction": {
+        "voice": "clear Tamil adult narrator, calm, serious, inclusive, easy to understand",
+        "background": "soft school and street ambience, very low volume",
+        "music": "gentle civic-awareness music, no suspense",
+        "sync_note": "Do not create subtitles or captions. The Tamil voiceover carries the message."
+      },
+      "negative_prompt": [
+        "no subtitles",
+        "no captions",
+        "no text overlays",
+        "no written labels",
+        "no abuse depiction",
+        "no distress",
+        "no crying child",
+        "no frightened child",
+        "no isolated child",
+        "no threatening adult",
+        "no villain framing",
+        "no dark lighting",
+        "no shame-based visuals",
+        "do not show girls as weaker than boys",
+        "do not show boys as less vulnerable than girls",
+        "do not make any adult look like a criminal"
+      ],
+      "purpose": "Show that POCSO protects all children equally, including boys and girls, and that an offender can be any adult regardless of gender or relationship."
+    },
+    {
+      "asset_id": "video_04",
+      "chapter": 1,
+      "screen": "1.6",
+      "title": "Where the danger actually is",
+      "type": "video",
+      "duration_seconds": 10,
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "language": "Tamil",
+      "visual_rule": "No subtitles, no captions, no text overlays. Use visual storytelling and simple animation only. Logos are allowed as small official corner marks.",
+      "style": {
+        "visual_style": "warm realistic public awareness video with simple data animation",
+        "mood": "calm but serious, ordinary-life awareness, not frightening",
+        "color_palette": "natural daylight, warm public-space tones, subtle navy and gold accents",
+        "animation": "soft human-figure data animation, gentle highlight transitions, no dramatic effects",
+        "pace": "lively with 8 quick visual beats inside 10 seconds"
+      },
+      "logos": {
+        "include": true,
+        "placement": "small Singapenn-style emblem top-left and Tamil Nadu Police-style emblem top-right",
+        "behavior": "fade in during first second and remain subtle",
+        "note": "No written labels near logos."
+      },
+      "tamil_voiceover": "குழந்தைகள் அந்நியர்களிடம் மட்டும் கவனமாக இருக்க வேண்டும் என்று நாம் சொல்லிக் கொள்கிறோம். ஆனால் பல வழக்குகளில் ஆபத்து குழந்தைக்கு ஏற்கனவே தெரிந்தவர்களிடமிருந்தே வருகிறது. உறவினர், அயல்வாசி, குடும்ப நண்பர், பள்ளி அல்லது டியூஷன் தொடர்புடையவர் - சாதாரணமாக தோன்றும் இடங்களிலும் கவனம் தேவை.",
+      "timeline": [
+        {
+          "time": "00:00-00:01",
+          "scene": "Soft fade in. Logos appear in the top corners. A normal Chennai residential street in daylight with families, children, and neighbours moving naturally.",
+          "camera": "wide eye-level shot",
+          "animation": "gentle logo fade-in"
+        },
+        {
+          "time": "00:01-00:02",
+          "scene": "A parent walks with a child near a school gate. Other familiar adults stand nearby in ordinary public life.",
+          "camera": "medium-wide shot",
+          "animation": "soft crossfade"
+        },
+        {
+          "time": "00:02-00:03",
+          "scene": "Animated row of 10 simple neutral human icons appears over a clean background. No numbers or words.",
+          "camera": "flat motion graphic",
+          "animation": "10 icons appear one by one"
+        },
+        {
+          "time": "00:03-00:04",
+          "scene": "Nine of the ten icons gently change to navy/gold while one remains grey, showing most cases involve someone known to the child without using text.",
+          "camera": "centered graphic frame",
+          "animation": "9 icons softly highlight, 1 stays grey"
+        },
+        {
+          "time": "00:04-00:05",
+          "scene": "Family function scene: chairs, food being served, children moving between adults. Everything looks normal, warm, and public.",
+          "camera": "wide warm daylight shot",
+          "animation": "smooth transition from icons"
+        },
+        {
+          "time": "00:05-00:06",
+          "scene": "Neighbourhood apartment lobby. A watchman, parent, child, and residents pass each other naturally. No one looks suspicious.",
+          "camera": "steady medium-wide shot",
+          "animation": "subtle shield-line transition"
+        },
+        {
+          "time": "00:06-00:07",
+          "scene": "Tuition or school corridor setting with children and adults moving in a normal supervised environment. Show the setting, not any harmful act.",
+          "camera": "wide frame",
+          "animation": "soft crossfade"
+        },
+        {
+          "time": "00:07-00:08.5",
+          "scene": "Return to the family function. One adult stands slightly apart from the group, but looks completely ordinary, not sinister. The discomfort should come from the ordinariness.",
+          "camera": "wide balanced frame, no zoom onto the adult",
+          "animation": "very subtle focus shift across the group"
+        },
+        {
+          "time": "00:08.5-00:10",
+          "scene": "Final frame: children, parents, neighbours, and familiar adults in one ordinary public space. A soft transparent shield glow covers the whole community, not one person.",
+          "camera": "wide final hold",
+          "animation": "gentle shield glow fades in and out, logos remain subtle"
+        }
+      ],
+      "audio_direction": {
+        "voice": "clear Tamil adult narrator, calm, serious, not alarming",
+        "background": "soft street, school, and family-function ambience at low volume",
+        "music": "subtle civic-awareness music, no suspense or fear cue",
+        "sync_note": "Do not create subtitles, captions, or data labels. The animation should communicate the 9-out-of-10 idea visually."
+      },
+      "negative_prompt": [
+        "no subtitles",
+        "no captions",
+        "no text overlays",
+        "no numbers or labels on screen",
+        "no abuse depiction",
+        "no child in distress",
+        "no crying",
+        "no isolated child",
+        "no threatening adult",
+        "no villain framing",
+        "no dark lighting",
+        "no sinister stare",
+        "no dramatic zoom on one adult",
+        "no crime documentary tone",
+        "do not make offenders look like obvious villains"
+      ],
+      "purpose": "Show that danger often comes from known, ordinary-looking people in familiar places, while keeping the visual calm, non-sensational, and awareness-focused."
+    },
+    {
+      "asset_id": "video_05",
+      "chapter": 1,
+      "screen": "1.8",
+      "title": "Why this module is addressed to you",
+      "type": "video",
+      "duration_seconds": 10,
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "language": "Tamil",
+      "visual_rule": "No subtitles, no captions, no text overlays. Use symbolic visual storytelling only. Logos are allowed as small official corner marks.",
+      "style": {
+        "visual_style": "warm realistic civic awareness video with symbolic two-panel animation",
+        "mood": "serious, reflective, responsible, calm",
+        "color_palette": "natural daylight with restrained navy and gold accents",
+        "animation": "soft split-screen reveal, equal-weight panels, subtle shield and responsibility-line animation",
+        "pace": "lively with 8 quick visual beats inside 10 seconds"
+      },
+      "logos": {
+        "include": true,
+        "placement": "small Singapenn-style emblem top-left and Tamil Nadu Police-style emblem top-right",
+        "behavior": "fade in during first second and remain subtle",
+        "note": "No written labels near logos."
+      },
+      "tamil_voiceover": "குழந்தைக்கு தீங்கு செய்வதும் குற்றம். தெரிந்தும், சந்தேகம் இருந்தும் அமைதியாக இருப்பதும் தவறு. குழந்தையை பாதுகாக்க, சந்தேகம் வந்தால் உடனே தெரிவிப்பது ஒவ்வொரு பெரியவரின் பொறுப்பு.",
+      "timeline": [
+        {
+          "time": "00:00-00:01",
+          "scene": "Soft fade in. Logos appear in the top corners. Ordinary apartment courtyard in daylight with adults and children in the same space.",
+          "camera": "wide eye-level shot",
+          "animation": "gentle logo fade-in"
+        },
+        {
+          "time": "00:01-00:02",
+          "scene": "Frame slowly divides into two equal panels. Both panels are same size, same colour weight, same brightness.",
+          "camera": "centered composition",
+          "animation": "clean vertical split-screen reveal"
+        },
+        {
+          "time": "00:02-00:03",
+          "scene": "Left panel: symbolic silhouette of an adult figure with a hand extended toward a child figure. No contact, no fear, no details.",
+          "camera": "flat symbolic silhouette, neutral background",
+          "animation": "soft silhouette fade-in"
+        },
+        {
+          "time": "00:03-00:04",
+          "scene": "Right panel: symbolic silhouette of another adult standing with back turned, hands in pockets, while the same vague scene exists behind them.",
+          "camera": "flat symbolic silhouette, same scale as left",
+          "animation": "soft silhouette fade-in"
+        },
+        {
+          "time": "00:04-00:05",
+          "scene": "Both panels stay exactly equal. A thin navy-and-gold line connects both panels, showing both are serious responsibilities under the law.",
+          "camera": "static split-screen",
+          "animation": "line draws gently from left to right"
+        },
+        {
+          "time": "00:05-00:06",
+          "scene": "Cut to ordinary tea shop or street corner. Adults talk while children pass in the background. The scene is normal and public.",
+          "camera": "medium-wide realistic shot",
+          "animation": "soft crossfade"
+        },
+        {
+          "time": "00:06-00:07",
+          "scene": "A concerned adult notices something from a distance in an ordinary public setting, pauses, and takes out a phone. Do not show the suspected act.",
+          "camera": "medium shot, calm body language",
+          "animation": "subtle focus shift to the phone"
+        },
+        {
+          "time": "00:07-00:08.5",
+          "scene": "Phone screen is abstract and blank, showing only generic call interface shapes without readable numbers or words. The adult prepares to report responsibly.",
+          "camera": "close-up of hand and phone, no readable text",
+          "animation": "soft shield glow around phone"
+        },
+        {
+          "time": "00:08.5-00:10",
+          "scene": "Final wide community frame: adults and children in an ordinary street, with a transparent protective shield glow around the whole public space. No one is shown as a villain.",
+          "camera": "wide final hold",
+          "animation": "shield glow fades gently, logos remain subtle"
+        }
+      ],
+      "audio_direction": {
+        "voice": "clear Tamil adult narrator, calm, firm, responsible, precise enough to finish naturally within 10 seconds",
+        "background": "soft street ambience at low volume",
+        "music": "restrained civic-awareness music, reflective but not frightening",
+        "sync_note": "Do not create subtitles, captions, speech bubbles, or written labels."
+      },
+      "negative_prompt": [
+        "no subtitles",
+        "no captions",
+        "no text overlays",
+        "no speech bubbles",
+        "no written labels",
+        "no abuse depiction",
+        "no contact between adult and child",
+        "no distressed child",
+        "no crying",
+        "no threatening adult",
+        "no villain framing",
+        "no dark lighting",
+        "no dramatic red warning graphics",
+        "no crime documentary style",
+        "do not make the direct-harm panel larger than the silence panel",
+        "do not make silence look minor"
+      ],
+      "purpose": "Show that adults can be responsible under POCSO both by directly harming a child and by staying silent when they know or suspect something, with equal visual seriousness."
+    },
+    {
+      "asset_id": "video_06",
+      "chapter": 2,
+      "screen": "2.1",
+      "title": "Opening",
+      "type": "video",
+      "duration_seconds": 10,
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "language": "Tamil",
+      "visual_rule": "No subtitles, no captions, no text overlays. Use symbolic animation only. Logos are allowed as small official corner marks.",
+      "style": {
+        "visual_style": "clean civic-awareness motion graphic mixed with warm real-world public spaces",
+        "mood": "clear, serious, educational, not frightening",
+        "color_palette": "Tamil Nadu Police inspired navy, gold, white, and warm daylight tones",
+        "animation": "four-box progress animation, soft icon reveals, smooth transitions",
+        "pace": "lively with 8 quick visual beats inside 10 seconds"
+      },
+      "logos": {
+        "include": true,
+        "placement": "small Singapenn-style emblem top-left and Tamil Nadu Police-style emblem top-right",
+        "behavior": "fade in during first second and remain subtle",
+        "note": "No written labels near logos."
+      },
+      "tamil_voiceover": "குழந்தைகளுக்கு எதிரான பாலியல் குற்றம் என்றால் பலர் ஒரே ஒரு விஷயத்தை மட்டும் நினைப்பார்கள். ஆனால் POCSO சட்டம் நான்கு வகையான குற்றங்களை பார்க்கிறது. சில குற்றங்களுக்கு தொடுதல் கூட தேவையில்லை. இந்த பகுதியில் அவை என்னென்ன என்பதை பார்க்கப் போகிறோம்.",
+      "timeline": [
+        {
+          "time": "00:00-00:01",
+          "scene": "Soft fade in. Logos appear in the top corners. Clean navy background with four empty rounded boxes across the top area, no words inside.",
+          "camera": "centered motion graphic frame",
+          "animation": "logos fade in, four empty boxes draw softly"
+        },
+        {
+          "time": "00:01-00:02",
+          "scene": "Warm real-world shot of a school corridor with students and adults moving normally. No distress, no incident.",
+          "camera": "wide eye-level shot",
+          "animation": "soft crossfade from graphic"
+        },
+        {
+          "time": "00:02-00:03",
+          "scene": "Return to the four boxes. First box fills with a simple neutral shield icon. No text.",
+          "camera": "flat motion graphic",
+          "animation": "first box fills in gold/navy"
+        },
+        {
+          "time": "00:03-00:04",
+          "scene": "Ordinary neighbourhood street with a shop, parents, children, and passers-by. Calm daylight.",
+          "camera": "medium-wide shot",
+          "animation": "gentle transition"
+        },
+        {
+          "time": "00:04-00:05",
+          "scene": "Four-box strip again. Second box fills with a simple hand-with-boundary symbol, abstract and non-graphic.",
+          "camera": "flat motion graphic",
+          "animation": "second box fills, subtle pulse"
+        },
+        {
+          "time": "00:05-00:06",
+          "scene": "Close-up of a phone in an adult hand, screen completely abstract and blank with generic shapes only. No readable messages or images.",
+          "camera": "safe close-up",
+          "animation": "soft focus shift"
+        },
+        {
+          "time": "00:06-00:07",
+          "scene": "Four-box strip again. Third box fills with a neutral communication icon and fourth box fills with a protected-media icon, both abstract.",
+          "camera": "flat motion graphic",
+          "animation": "third and fourth boxes fill one after another"
+        },
+        {
+          "time": "00:07-00:08.5",
+          "scene": "All four filled boxes stay visible. A soft shield glow appears around the full set, showing the four categories belong to one law.",
+          "camera": "centered graphic frame",
+          "animation": "transparent shield glow behind all boxes"
+        },
+        {
+          "time": "00:08.5-00:10",
+          "scene": "Final warm public scene: school gate or community space with children and adults present normally. Four small abstract boxes remain only as faint background shapes, no words.",
+          "camera": "wide final hold",
+          "animation": "faint four-box motif fades into the scene, logos remain subtle"
+        }
+      ],
+      "audio_direction": {
+        "voice": "clear Tamil adult narrator, calm and educational",
+        "background": "soft school and street ambience at low volume",
+        "music": "neutral civic-awareness music, no suspense",
+        "sync_note": "Do not create subtitles, captions, written category names, or legal-section text."
+      },
+      "negative_prompt": [
+        "no subtitles",
+        "no captions",
+        "no text overlays",
+        "no written labels",
+        "no legal section text on screen",
+        "no abuse depiction",
+        "no distressed child",
+        "no crying",
+        "no threatening adult",
+        "no explicit phone content",
+        "no body-part illustrations",
+        "no dark lighting",
+        "no red danger animation",
+        "no crime documentary tone",
+        "do not show rape or assault visually"
+      ],
+      "purpose": "Introduce Chapter 2 by visually showing that POCSO covers four categories of offences, including offences where no touching is involved."
+    },
+    {
+      "asset_id": "video_07",
+      "chapter": 2,
+      "screen": "2.4",
+      "title": "Sexual assault - Section 7",
+      "type": "video",
+      "duration_seconds": 10,
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "language": "Tamil",
+      "visual_rule": "No subtitles, no captions, no text overlays. Show only safe settings and symbolic judgement animation. Do not illustrate the act. Logos are allowed as small official corner marks.",
+      "style": {
+        "visual_style": "warm realistic public awareness video with clean card-flip animation",
+        "mood": "serious, careful, educational, non-graphic",
+        "color_palette": "natural daylight, navy, gold, white, soft green, muted amber",
+        "animation": "three safe setting cards, card flip, green/amber judgement glow without text",
+        "pace": "lively with 8 quick visual beats inside 10 seconds"
+      },
+      "logos": {
+        "include": true,
+        "placement": "small Singapenn-style emblem top-left and Tamil Nadu Police-style emblem top-right",
+        "behavior": "fade in during first second and remain subtle",
+        "note": "No written labels near logos."
+      },
+      "tamil_voiceover": "பாலியல் நோக்கத்துடன் குழந்தையை தொடுவது குற்றம். உடையின் மேல் தொடுதலும் குற்றமாகலாம். ஆனால் சிகிச்சை போன்ற சட்டபூர்வ செயலில் பாலியல் நோக்கம் இல்லையெனில் அது குற்றம் அல்ல. நோக்கம் தான் முக்கியம்.",
+      "timeline": [
+        {
+          "time": "00:00-00:01",
+          "scene": "Soft fade in. Logos appear in the top corners. Three blank card shapes appear on a clean navy-gold background.",
+          "camera": "centered motion graphic frame",
+          "animation": "logos fade in, three cards slide in"
+        },
+        {
+          "time": "00:01-00:02",
+          "scene": "First card opens into a safe clinic room: curtain, examination table, weighing scale, parent chair. No people touching, no examination shown.",
+          "camera": "medium-wide room shot",
+          "animation": "card flip into clinic setting"
+        },
+        {
+          "time": "00:02-00:03",
+          "scene": "Clinic card gets a soft green glow, symbolising lawful medical care without sexual intent. No words or labels.",
+          "camera": "same frame",
+          "animation": "gentle green judgement glow"
+        },
+        {
+          "time": "00:03-00:04",
+          "scene": "Second card opens into a school corridor: lockers or classroom doors, school bags, daylight. Show only the setting, no act, no contact.",
+          "camera": "wide empty corridor or safe group background",
+          "animation": "card flip transition"
+        },
+        {
+          "time": "00:04-00:05",
+          "scene": "School corridor card gets a muted amber/red caution glow, without showing any harmful act.",
+          "camera": "same frame",
+          "animation": "soft caution glow, no aggressive flashing"
+        },
+        {
+          "time": "00:05-00:06",
+          "scene": "Third card opens into a tuition room: low table, notebooks, chairs, daylight through window. No adult-child contact shown.",
+          "camera": "medium-wide setting-only shot",
+          "animation": "card flip transition"
+        },
+        {
+          "time": "00:06-00:07",
+          "scene": "Tuition room card gets the same muted amber/red caution glow. The visual stays about the setting and legal judgement, not the act.",
+          "camera": "same frame",
+          "animation": "soft caution glow"
+        },
+        {
+          "time": "00:07-00:08.5",
+          "scene": "All three cards appear side by side. Clinic card glows green; school and tuition cards glow amber/red. No text.",
+          "camera": "centered three-card composition",
+          "animation": "cards settle into a clean comparison layout"
+        },
+        {
+          "time": "00:08.5-00:10",
+          "scene": "Final abstract frame: a neutral hand icon stops before a protective shield around a child icon. No contact, no body detail, no words.",
+          "camera": "centered symbolic frame",
+          "animation": "shield forms gently, logos remain subtle"
+        }
+      ],
+      "audio_direction": {
+        "voice": "clear Tamil adult narrator, careful, calm, serious",
+        "background": "very soft ambience, low volume",
+        "music": "restrained educational music, no suspense",
+        "sync_note": "Do not create subtitles, captions, section numbers, offence labels, or written judgements."
+      },
+      "negative_prompt": [
+        "no subtitles",
+        "no captions",
+        "no text overlays",
+        "no written labels",
+        "no section number text",
+        "no legal text on screen",
+        "no abuse depiction",
+        "no touching shown",
+        "no body-part focus",
+        "no hands on child",
+        "no frightened child",
+        "no crying",
+        "no adult leaning over child",
+        "no dark room",
+        "no threatening adult",
+        "no villain framing",
+        "no explicit imagery",
+        "no crime documentary style"
+      ],
+      "purpose": "Explain visually that sexual assault under POCSO depends on sexual intent and physical contact, while keeping every image safe, setting-based, and non-graphic."
+    },
+    {
+      "asset_id": "video_08",
+      "chapter": 2,
+      "screen": "2.5",
+      "title": "Sexual harassment - Section 11",
+      "type": "video",
+      "duration_seconds": 10,
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "language": "Tamil",
+      "visual_rule": "No subtitles, no captions, no text overlays. Use safe symbolic visuals only. Do not show explicit messages, explicit images, or any harmful act. Logos are allowed as small official corner marks.",
+      "style": {
+        "visual_style": "warm realistic public awareness video with clean vertical-panel animation",
+        "mood": "serious, clear, educational, non-sensational",
+        "color_palette": "natural daylight with navy, gold, white, soft caution amber",
+        "animation": "five-panel scrolling strip, phone icons, shield icons, soft caution highlights",
+        "pace": "lively with 8 quick visual beats inside 10 seconds"
+      },
+      "logos": {
+        "include": true,
+        "placement": "small Singapenn-style emblem top-left and Tamil Nadu Police-style emblem top-right",
+        "behavior": "fade in during first second and remain subtle",
+        "note": "No written labels near logos."
+      },
+      "tamil_voiceover": "POCSO சட்டத்தில் சில குற்றங்களுக்கு தொடுதல் தேவையில்லை. குழந்தைக்கு பாலியல் நோக்கத்துடன் பேசுவது, சைகை காட்டுவது, தவறான உள்ளடக்கம் காட்டுவது, மீண்டும் மீண்டும் பின்தொடருவது அல்லது தொடர்பு கொள்வது கூட குற்றமாகும். கைபேசி மூலமாக நடந்தாலும் இது முக்கியமான குற்றம் தான்.",
+      "timeline": [
+        {
+          "time": "00:00-00:01",
+          "scene": "Soft fade in. Logos appear in top corners. A clean vertical strip of five blank panels appears, like awareness cards, with no text.",
+          "camera": "centered motion graphic frame",
+          "animation": "five panels slide in vertically"
+        },
+        {
+          "time": "00:01-00:02",
+          "scene": "Panel 1: ordinary bus interior. An adult figure is seated near a child in a public setting, with a speech bubble containing only abstract symbols, no words.",
+          "camera": "safe medium-wide illustration-style shot",
+          "animation": "panel glides upward gently"
+        },
+        {
+          "time": "00:02-00:03",
+          "scene": "Panel 2: adult hand holding a phone turned toward a child, but the phone screen is completely blank white with no content.",
+          "camera": "close-up, safe framing",
+          "animation": "soft caution glow around phone, no text"
+        },
+        {
+          "time": "00:03-00:04",
+          "scene": "Panel 3: child walking home in daylight. The same neutral adult figure appears far away in three faint background positions, showing repeated following without making the adult look monstrous.",
+          "camera": "wide street view",
+          "animation": "three faint silhouettes appear and fade"
+        },
+        {
+          "time": "00:04-00:05",
+          "scene": "Panel 4: close-up of a phone with generic message bubbles and a small photo icon plus warning triangle. No readable text, no photo content.",
+          "camera": "safe phone close-up",
+          "animation": "warning triangle pulses softly"
+        },
+        {
+          "time": "00:05-00:06",
+          "scene": "Panel 5: an adult hand offers a phone and money-like shapes toward a child, but keep distance and show no contact. Use symbolic framing only.",
+          "camera": "medium shot, hands and objects only, no distress",
+          "animation": "protective shield line appears between adult hand and child"
+        },
+        {
+          "time": "00:06-00:07.2",
+          "scene": "The five panels stack together. Panels 2 and 3 receive a soft amber highlight to show phone content and repeated contact are often ignored.",
+          "camera": "centered five-panel composition",
+          "animation": "two panels glow amber, no labels"
+        },
+        {
+          "time": "00:07.2-00:08.5",
+          "scene": "Abstract phone icons, speech bubbles, and eye/contact symbols shrink into a protective shield, showing these are covered by the law.",
+          "camera": "motion graphic frame",
+          "animation": "icons move into shield shape"
+        },
+        {
+          "time": "00:08.5-00:10",
+          "scene": "Final warm public scene: school corridor or bus stop with children and adults in normal daylight. A transparent shield glow covers the public space.",
+          "camera": "wide final hold",
+          "animation": "shield glow fades gently, logos remain subtle"
+        }
+      ],
+      "audio_direction": {
+        "voice": "clear Tamil adult narrator, calm, firm, educational",
+        "background": "very soft street and bus ambience, low volume",
+        "music": "restrained civic-awareness music, no suspense",
+        "sync_note": "Do not create subtitles, captions, message text, legal section text, or written labels."
+      },
+      "negative_prompt": [
+        "no subtitles",
+        "no captions",
+        "no text overlays",
+        "no readable phone messages",
+        "no explicit images",
+        "no explicit phone content",
+        "no abuse depiction",
+        "no touching shown",
+        "no distressed child",
+        "no crying",
+        "no isolated dark setting",
+        "no threatening adult",
+        "no villain framing",
+        "no dark alley",
+        "no sensational crime style",
+        "no sexualized visuals",
+        "do not show any child's private image"
+      ],
+      "purpose": "Show that POCSO sexual harassment can happen without touching, including words, gestures, phones, repeated contact, threats, or luring, while keeping every visual safe and non-graphic."
+    },
+    {
+      "asset_id": "video_09",
+      "chapter": 2,
+      "screen": "2.6",
+      "title": "Photos and videos of children",
+      "type": "video",
+      "duration_seconds": 10,
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "language": "Tamil",
+      "visual_rule": "No subtitles, no captions, no text overlays. Never show the phone content. The phone screen must face away, be blank, or use abstract shapes only. Logos are allowed as small official corner marks.",
+      "style": {
+        "visual_style": "warm realistic public awareness video with simple phone-spread animation",
+        "mood": "serious, urgent but calm, responsible, non-sensational",
+        "color_palette": "natural daylight, navy, gold, white, soft green, muted red for caution only",
+        "animation": "phone icon multiplication, stop/report/delete symbolic action, soft shield glow",
+        "pace": "lively with 8 quick visual beats inside 10 seconds"
+      },
+      "logos": {
+        "include": true,
+        "placement": "small Singapenn-style emblem top-left and Tamil Nadu Police-style emblem top-right",
+        "behavior": "fade in during first second and remain subtle",
+        "note": "No written labels near logos."
+      },
+      "tamil_voiceover": "ஒரு குழந்தையை சேர்ந்த தவறான படம் அல்லது வீடியோ வந்தால், அதை யாருக்கும் அனுப்பக்கூடாது. அதைக் கண்டனம் செய்வதற்காக அனுப்பினாலும் அது மீண்டும் பரவுகிறது. சரியான செயல் இரண்டு தான்: உடனே புகார் தெரிவிக்க வேண்டும், பிறகு அதை நீக்க வேண்டும்.",
+      "timeline": [
+        {
+          "time": "00:00-00:01",
+          "scene": "Soft fade in. Logos appear in the top corners. Tea shop or home setting. An adult holds a phone but the screen faces away from camera.",
+          "camera": "medium shot, calm realistic framing",
+          "animation": "gentle logo fade-in"
+        },
+        {
+          "time": "00:01-00:02",
+          "scene": "Another adult gently raises a hand in a stop gesture, refusing to look at the phone. No anger, no drama.",
+          "camera": "medium two-person frame",
+          "animation": "soft focus shift to stop gesture"
+        },
+        {
+          "time": "00:02-00:03",
+          "scene": "Cut to abstract phone icon on a clean background. The phone screen is blank, no image, no message, no content.",
+          "camera": "motion graphic frame",
+          "animation": "single phone icon appears"
+        },
+        {
+          "time": "00:03-00:04",
+          "scene": "The single phone icon becomes two, then four, showing forwarding and spreading. All screens remain blank.",
+          "camera": "centered graphic",
+          "animation": "phone icons duplicate outward"
+        },
+        {
+          "time": "00:04-00:05",
+          "scene": "Phone icons multiply to eight and sixteen, moving outward past the frame edges. No content appears on any screen.",
+          "camera": "wide graphic frame",
+          "animation": "icons spread quickly, then freeze"
+        },
+        {
+          "time": "00:05-00:06",
+          "scene": "The spread stops suddenly. A muted red caution line crosses over the abstract forwarding path. No words.",
+          "camera": "motion graphic frame",
+          "animation": "red line strikes through forwarding path"
+        },
+        {
+          "time": "00:06-00:07",
+          "scene": "A responsible adult taps an abstract call/report icon on a blank phone interface. No readable number or text.",
+          "camera": "close-up of phone and hand",
+          "animation": "green glow around report icon"
+        },
+        {
+          "time": "00:07-00:08.5",
+          "scene": "The same phone shows a simple delete/trash icon animation. The blank content disappears into a protective shield shape.",
+          "camera": "safe close-up / graphic blend",
+          "animation": "delete icon activates, shield forms"
+        },
+        {
+          "time": "00:08.5-00:10",
+          "scene": "Final real-world frame: adult places phone face down on a table and looks calm/responsible. Another adult is nearby in support. No child is shown in this final shot.",
+          "camera": "medium final hold",
+          "animation": "soft shield glow fades, logos remain subtle"
+        }
+      ],
+      "audio_direction": {
+        "voice": "clear Tamil adult narrator, calm but firm, urgent without panic",
+        "background": "very soft tea shop or home ambience, low volume",
+        "music": "restrained civic-awareness tone, no suspense",
+        "sync_note": "Do not create subtitles, captions, readable phone UI, warning text, or legal text."
+      },
+      "negative_prompt": [
+        "no subtitles",
+        "no captions",
+        "no text overlays",
+        "no readable phone messages",
+        "no images on phone screen",
+        "no explicit content",
+        "no blurred explicit content",
+        "no pixelated explicit content",
+        "no child abuse image",
+        "no child in distress",
+        "no crying",
+        "no abuse depiction",
+        "no flashback",
+        "no shadowed doorway",
+        "no implied assault scene",
+        "no villain framing",
+        "no sensational crime style",
+        "do not show what is being forwarded"
+      ],
+      "purpose": "Teach that forwarding harmful images or videos of children is never allowed; the only correct action is to report and delete, without ever showing the content."
+    },
+    {
+      "asset_id": "video_10",
+      "chapter": 2,
+      "screen": "2.6",
+      "title": "Report and delete pathway",
+      "type": "video",
+      "duration_seconds": 10,
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "language": "Tamil",
+      "visual_rule": "No subtitles, no captions, no text overlays. This video is the pure action-flow version: use only abstract UI symbols and motion graphics. No real people, no real-world tea shop or home scene, no readable numbers, no readable phone text, no child image, no harmful content.",
+      "style": {
+        "visual_style": "clean civic-awareness UI motion graphic with a phone-action pathway",
+        "mood": "clear, calm, decisive, responsible",
+        "color_palette": "navy, gold, white, soft green for correct action, muted red only for blocked forwarding",
+        "animation": "simple step-by-step motion pathway, stop symbol, report icon, delete icon, shield icon",
+        "pace": "lively with 8 quick visual beats inside 10 seconds"
+      },
+      "logos": {
+        "include": true,
+        "placement": "small Singapenn-style emblem top-left and Tamil Nadu Police-style emblem top-right",
+        "behavior": "fade in during first second and remain subtle",
+        "note": "No written labels near logos."
+      },
+      "tamil_voiceover": "இப்படிப்பட்ட படம் அல்லது வீடியோ வந்தால், மூன்று செயல்கள் மட்டும். பார்க்க வேண்டாம். பகிர வேண்டாம். புகார் தெரிவித்து, உடனே நீக்குங்கள்.",
+      "timeline": [
+        {
+          "time": "00:00-00:01",
+          "scene": "Soft fade in. Logos appear in the top corners. A clean abstract phone appears in the center on a navy background. The phone screen is blank. No people.",
+          "camera": "centered motion graphic",
+          "animation": "phone scales in gently, logos fade in"
+        },
+        {
+          "time": "00:01-00:02",
+          "scene": "A generic incoming media symbol appears as a blank square with a warning triangle. No image, no text.",
+          "camera": "close centered graphic",
+          "animation": "blank media tile slides onto phone"
+        },
+        {
+          "time": "00:02-00:03",
+          "scene": "A forward/share arrow begins to appear but is immediately blocked by a soft red stop line. No words.",
+          "camera": "centered graphic",
+          "animation": "share arrow starts, red line crosses it gently"
+        },
+        {
+          "time": "00:03-00:04",
+          "scene": "Phone moves to the first safe action: a stop-hand icon pauses above the phone, showing do not open and do not view.",
+          "camera": "motion graphic frame",
+          "animation": "hand stop icon appears, red caution fades down"
+        },
+        {
+          "time": "00:04-00:05",
+          "scene": "A blocked share arrow appears briefly, then collapses. The path redirects toward a shield-shaped report icon.",
+          "camera": "centered graphic",
+          "animation": "green path line draws from phone to shield"
+        },
+        {
+          "time": "00:05-00:06",
+          "scene": "The report shield glows softly in green. The phone remains blank and safe.",
+          "camera": "close graphic",
+          "animation": "green confirmation pulse"
+        },
+        {
+          "time": "00:06-00:07",
+          "scene": "A delete/trash icon appears. The blank warning media tile moves into the delete icon.",
+          "camera": "centered pathway graphic",
+          "animation": "tile slides smoothly into delete icon"
+        },
+        {
+          "time": "00:07-00:08",
+          "scene": "The phone screen becomes clean and empty. A protective shield forms around the phone.",
+          "camera": "centered final-action graphic",
+          "animation": "delete completes, shield outline draws"
+        },
+        {
+          "time": "00:08-00:10",
+          "scene": "Final frame: stop-hand icon, report shield, delete icon, and blank phone sit together as a completed action-flow pathway. No text. Logos remain in the corners.",
+          "camera": "wide centered hold",
+          "animation": "soft green and gold glow, fade out gently"
+        }
+      ],
+      "audio_direction": {
+        "voice": "clear Tamil adult narrator, calm, firm, step-by-step",
+        "background": "minimal soft interface tones, low volume",
+        "music": "subtle civic-awareness music, no suspense",
+        "sync_note": "Do not create subtitles, captions, readable labels, or phone text."
+      },
+      "negative_prompt": [
+        "no subtitles",
+        "no captions",
+        "no text overlays",
+        "no readable phone UI",
+        "no numbers",
+        "no labels",
+        "no child image",
+        "no explicit content",
+        "no blurred explicit content",
+        "no pixelated explicit content",
+        "no abuse depiction",
+        "no distressed child",
+        "no forwarding shown as successful",
+        "no WhatsApp chat screenshots",
+        "no social media names or logos",
+        "no sensational style",
+        "no scary red flashing"
+      ],
+      "purpose": "Create a simple 10-second visual pathway showing the correct response to harmful child-related media: stop, report, delete."
+    },
+    {
+      "asset_id": "video_11",
+      "chapter": 2,
+      "screen": "2.7",
+      "title": "When the punishment goes up",
+      "type": "video",
+      "duration_seconds": 10,
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "language": "Tamil",
+      "visual_rule": "No subtitles, no captions, no text overlays. Use symbolic bars, icons, and motion only. Do not show abuse, violence, court scenes, or police arrest.",
+      "style": {
+        "visual_style": "clean civic-awareness motion graphic with restrained legal-education design",
+        "mood": "serious, clear, official, non-sensational",
+        "color_palette": "navy, gold, white, muted amber, no aggressive red except tiny caution accents",
+        "animation": "two-level bar comparison, upward motion, icon groups feeding into higher punishment level",
+        "pace": "lively with 8 quick visual beats inside 10 seconds"
+      },
+      "logos": {
+        "include": true,
+        "placement": "small Singapenn-style emblem top-left and Tamil Nadu Police-style emblem top-right",
+        "behavior": "fade in during first second and remain subtle",
+        "note": "No written labels near logos."
+      },
+      "tamil_voiceover": "சில சூழ்நிலைகளில் POCSO குற்றத்தின் தண்டனை அதிகரிக்கும். குழந்தையின் வயது, குற்றம் செய்தவர் வைத்திருந்த பொறுப்பு, அல்லது குற்றம் நடந்த விதம் போன்ற காரணங்கள் முக்கியம். அதே குற்றம், சில சூழ்நிலைகளில் மிகவும் கடுமையாக பார்க்கப்படும்.",
+      "timeline": [
+        {
+          "time": "00:00-00:01",
+          "scene": "Soft fade in. Logos appear in top corners. Clean navy background with two empty horizontal bar platforms, one lower and one higher. No text.",
+          "camera": "centered motion graphic",
+          "animation": "two bar platforms draw in gently"
+        },
+        {
+          "time": "00:01-00:02",
+          "scene": "Lower bar fills in gold to a medium height, representing the base offence level without written numbers.",
+          "camera": "same graphic frame",
+          "animation": "lower bar rises smoothly"
+        },
+        {
+          "time": "00:02-00:03",
+          "scene": "Upper bar outline appears above it, same colour family but deeper shade, visibly taller than the lower bar.",
+          "camera": "centered comparison frame",
+          "animation": "upper bar outline glows softly"
+        },
+        {
+          "time": "00:03-00:04",
+          "scene": "Icon group 1 appears: neutral child-age symbol, represented by a small calendar and child shield icon. No numbers.",
+          "camera": "motion graphic close-up",
+          "animation": "icon floats upward toward upper bar"
+        },
+        {
+          "time": "00:04-00:05",
+          "scene": "Icon group 2 appears: responsibility symbol, such as teacher desk, police cap silhouette, family/home key, or institution building, all neutral and non-accusatory.",
+          "camera": "motion graphic close-up",
+          "animation": "icons move upward toward upper bar"
+        },
+        {
+          "time": "00:05-00:06",
+          "scene": "Icon group 3 appears: seriousness-of-act symbol using abstract warning shield, broken boundary line, and medical care cross. No body imagery.",
+          "camera": "motion graphic close-up",
+          "animation": "icons move upward toward upper bar"
+        },
+        {
+          "time": "00:06-00:07",
+          "scene": "The three icon groups feed into the upper bar. The upper bar rises taller in deeper gold/navy, showing punishment escalation.",
+          "camera": "wide centered comparison",
+          "animation": "upper bar rises smoothly, no flashing"
+        },
+        {
+          "time": "00:07-00:08.5",
+          "scene": "Both bars remain visible together. Lower and upper bars are same colour family, with the upper one deeper and taller. No green-versus-red contrast.",
+          "camera": "static comparison frame",
+          "animation": "subtle glow around both bars"
+        },
+        {
+          "time": "00:08.5-00:10",
+          "scene": "Final frame: protective shield encloses the two bars and the three icon groups, showing law-based seriousness without fear visuals.",
+          "camera": "centered final hold",
+          "animation": "shield outline forms and fades gently, logos remain subtle"
+        }
+      ],
+      "audio_direction": {
+        "voice": "clear Tamil adult narrator, calm, official, serious",
+        "background": "minimal soft motion-graphic sounds, low volume",
+        "music": "restrained civic-awareness music, no suspense",
+        "sync_note": "Do not create subtitles, captions, numbers, legal section text, or written labels."
+      },
+      "negative_prompt": [
+        "no subtitles",
+        "no captions",
+        "no text overlays",
+        "no numbers on screen",
+        "no legal section text",
+        "no courtroom",
+        "no judge",
+        "no police arrest",
+        "no jail bars",
+        "no abuse depiction",
+        "no violence",
+        "no body-part imagery",
+        "no distressed child",
+        "no crying",
+        "no threatening adult",
+        "no villain framing",
+        "no scary red graphics",
+        "no crime documentary tone",
+        "do not use green for lower punishment and red for higher punishment"
+      ],
+      "purpose": "Explain visually that the same POCSO offence can receive higher punishment depending on who did it, who the child is, and how the offence was committed."
+    },
+    {
+      "asset_id": "video_12",
+      "chapter": 3,
+      "screen": "3.2",
+      "title": "Three beliefs that are wrong",
+      "type": "video",
+      "duration_seconds": 10,
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "language": "Tamil",
+      "visual_rule": "No subtitles, no captions, no text overlays. Use symbolic figures and calm real-world shots. Do not show abuse, coercion, or any harmful act. Logos are allowed as small official corner marks.",
+      "style": {
+        "visual_style": "warm realistic civic-awareness video mixed with clean responsibility-comparison animation",
+        "mood": "serious, reflective, educational, non-sensational",
+        "color_palette": "natural daylight, navy, gold, white, muted amber",
+        "animation": "three equal figures, bracket-like connection, soft staircase reuse motif",
+        "pace": "lively with 8 quick visual beats inside 10 seconds"
+      },
+      "logos": {
+        "include": true,
+        "placement": "small Singapenn-style emblem top-left and Tamil Nadu Police-style emblem top-right",
+        "behavior": "fade in during first second and remain subtle",
+        "note": "No written labels near logos."
+      },
+      "tamil_voiceover": "POCSO-வில் பொறுப்பு ஒருவரிடம் மட்டும் நிற்காது. தவறு செய்பவர், அதற்கு உதவுபவர், தடுக்க வேண்டிய நிலையில் இருந்தும் தடுக்காதவர் - மூவரையும் சட்டம் கடுமையாக பார்க்கலாம்.",
+      "timeline": [
+        {
+          "time": "00:00-00:01",
+          "scene": "Soft fade in. Logos appear in the top corners. A calm bus stop in daylight. Two adults stand quietly after a serious conversation; no child is shown in danger.",
+          "camera": "medium-wide realistic shot",
+          "animation": "gentle logo fade-in"
+        },
+        {
+          "time": "00:01-00:02",
+          "scene": "One adult lowers a phone and pauses, looking thoughtful. The screen is blank. This is a moment of responsibility, not panic.",
+          "camera": "medium close-up",
+          "animation": "soft focus on phone lowering"
+        },
+        {
+          "time": "00:02-00:03",
+          "scene": "Cut to clean motion graphic: three neutral adult figures appear side by side at exactly the same size and colour weight, with no labels.",
+          "camera": "centered graphic frame",
+          "animation": "three figures fade in together"
+        },
+        {
+          "time": "00:03-00:04",
+          "scene": "First figure is marked by a small abstract action icon near the hand. No child, no contact, no harmful act.",
+          "camera": "graphic close emphasis",
+          "animation": "soft gold outline appears around first figure"
+        },
+        {
+          "time": "00:04-00:05",
+          "scene": "Second figure is marked by a small forward-arrow/help icon, symbolising assistance or encouragement without showing any incident.",
+          "camera": "graphic close emphasis",
+          "animation": "soft gold outline moves to second figure"
+        },
+        {
+          "time": "00:05-00:06",
+          "scene": "Third figure stands near an open doorway and key icon, looking away, symbolising a duty to stop or act that was ignored.",
+          "camera": "graphic close emphasis",
+          "animation": "soft gold outline moves to third figure"
+        },
+        {
+          "time": "00:06-00:07",
+          "scene": "All three figures return side by side, still exactly equal in size. A single gold bracket-like line connects all three without text.",
+          "camera": "wide centered graphic",
+          "animation": "bracket line draws under all three"
+        },
+        {
+          "time": "00:07-00:08.5",
+          "scene": "A faint legal shield and staircase motif appears behind the three figures, showing seriousness without punishment numbers or words.",
+          "camera": "centered graphic",
+          "animation": "faint staircase forms behind figures"
+        },
+        {
+          "time": "00:08.5-00:10",
+          "scene": "Final return to ordinary public setting: the adults stand in daylight with a calm protective shield glow around the community space. No phone call, no repeated report visual.",
+          "camera": "wide final hold",
+          "animation": "transparent shield glow covers the group, logos remain subtle"
+        }
+      ],
+      "audio_direction": {
+        "voice": "clear Tamil adult narrator, calm, serious, reflective",
+        "background": "soft street or tea shop ambience at low volume",
+        "music": "restrained civic-awareness music, no suspense",
+        "sync_note": "Do not create subtitles, captions, written labels, legal text, or speech bubbles."
+      },
+      "negative_prompt": [
+        "no subtitles",
+        "no captions",
+        "no text overlays",
+        "no speech bubbles",
+        "no legal section text",
+        "no abuse depiction",
+        "no harmful act",
+        "no adult-child contact",
+        "no distressed child",
+        "no crying",
+        "no threatening adult",
+        "no villain framing",
+        "no dark lighting",
+        "no courtroom",
+        "no police arrest",
+        "no jail imagery",
+        "do not make the first figure larger than the other two",
+        "do not make silence look minor"
+      ],
+      "purpose": "Show that under POCSO responsibility may attach not only to the person who directly commits an offence, but also to those who encourage it or deliberately fail to act when they have a duty."
+    },
+    {
+      "asset_id": "video_13",
+      "chapter": 4,
+      "screen": "4.1",
+      "title": "What grooming looks like",
+      "type": "video",
+      "duration_seconds": 10,
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "language": "Tamil",
+      "visual_rule": "No subtitles, no captions, no text overlays. Make this a simple six-step warning-sign video. Use symbolic icons and safe everyday visuals only. Do not show abuse, fear, isolation, or a suspicious-looking offender. Logos are allowed as small official corner marks.",
+      "style": {
+        "visual_style": "clean civic-awareness motion graphic with very brief safe everyday inserts",
+        "mood": "clear, careful, serious, observational, not frightening",
+        "color_palette": "natural daylight with navy, gold, white, muted amber caution accents",
+        "animation": "six-step staircase animation, one icon per warning sign, clean progression from left to right",
+        "pace": "lively with 8 quick visual beats inside 10 seconds"
+      },
+      "logos": {
+        "include": true,
+        "placement": "small Singapenn-style emblem top-left and Tamil Nadu Police-style emblem top-right",
+        "behavior": "fade in during first second and remain subtle",
+        "note": "No written labels near logos."
+      },
+      "tamil_voiceover": "குழந்தை உடனே பேசாமல் இருக்கலாம். அதனால் பெரியவர்கள் அறிகுறிகளை கவனிக்க வேண்டும். தனி கவனம், பரிசு, தனியாக நேரம், எல்லை சோதனை, ரகசியம், மெதுவாக அதிகரிக்கும் நடத்தை - இவை முக்கிய எச்சரிக்கைகள்.",
+      "timeline": [
+        {
+          "time": "00:00-00:01",
+          "scene": "Soft fade in. Logos appear in the top corners. Clean navy background. A simple empty staircase appears from left to right, with six steps and no text.",
+          "camera": "centered motion graphic",
+          "animation": "staircase outline draws softly"
+        },
+        {
+          "time": "00:01-00:02",
+          "scene": "Step 1 lights up: one neutral child figure is gently highlighted inside a group, showing special attention to one child. No sadness, no fear.",
+          "camera": "graphic close-up",
+          "animation": "first step fills with soft gold"
+        },
+        {
+          "time": "00:02-00:03",
+          "scene": "Step 2 lights up: a wrapped gift icon appears beside schoolbooks, showing special gifts or favours. No adult face, no suspicious look.",
+          "camera": "graphic-to-real quick transition",
+          "animation": "gift icon pulses gently"
+        },
+        {
+          "time": "00:03-00:04",
+          "scene": "Step 3 lights up: a clock and open-door icon appear, showing repeated chances to be alone. Keep the background bright and ordinary.",
+          "camera": "medium setting shot",
+          "animation": "door icon appears, soft caution glow"
+        },
+        {
+          "time": "00:04-00:05",
+          "scene": "Step 4 lights up: an abstract hand stops before a shield boundary, showing boundary testing without any touch or body detail.",
+          "camera": "symbolic motion graphic",
+          "animation": "hand pauses before shield"
+        },
+        {
+          "time": "00:05-00:06",
+          "scene": "Step 5 lights up: a secrecy icon and a blank phone beside schoolbooks appear, showing private messages or secrets. No readable screen.",
+          "camera": "safe close-up",
+          "animation": "secrecy icon fades in, no text"
+        },
+        {
+          "time": "00:06-00:07",
+          "scene": "Step 6 lights up: a gentle upward arrow appears, showing behaviour slowly increasing over time. No fear visuals.",
+          "camera": "wide graphic frame",
+          "animation": "final step fills, upward arrow draws"
+        },
+        {
+          "time": "00:07-00:08.5",
+          "scene": "All six warning steps glow softly together. A transparent shield appears behind the staircase, showing that adults should notice patterns early.",
+          "camera": "centered graphic",
+          "animation": "shield glow behind all steps"
+        },
+        {
+          "time": "00:08.5-00:10",
+          "scene": "Final warm real-world frame: school corridor or apartment courtyard in daylight. Adults and children are present normally. One responsible adult notices calmly from a public distance, not spying.",
+          "camera": "wide final hold",
+          "animation": "staircase motif fades into shield glow, logos remain subtle"
+        }
+      ],
+      "audio_direction": {
+        "voice": "clear Tamil adult narrator, calm, careful, serious",
+        "background": "soft school/courtyard ambience at low volume",
+        "music": "restrained civic-awareness music, no suspense or horror tone",
+        "sync_note": "Do not create subtitles, captions, step labels, numbers, or written warnings."
+      },
+      "negative_prompt": [
+        "no subtitles",
+        "no captions",
+        "no text overlays",
+        "no written step names",
+        "no numbers on screen",
+        "no abuse depiction",
+        "no child in distress",
+        "no crying",
+        "no frightened child",
+        "no isolated child in dark room",
+        "no suspicious villain adult",
+        "no sinister lighting",
+        "no hand touching child",
+        "no stalking horror visual",
+        "no explicit phone content",
+        "no crime documentary tone"
+      ],
+      "purpose": "Show grooming as six early warning signs that adults can notice: special attention, gifts, time alone, boundary testing, secrecy, and gradual escalation."
+    },
+    {
+      "asset_id": "video_14",
+      "chapter": 4,
+      "screen": "4.2",
+      "title": "Divya's case, and what to look for in a child",
+      "type": "video",
+      "duration_seconds": 10,
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "language": "Tamil",
+      "visual_rule": "No subtitles, no captions, no text overlays. Never show the man's face. Use hands, shoulder, or objects only. Divya must not look frightened or sad in the early panels. Logos are allowed as small official corner marks.",
+      "style": {
+        "visual_style": "warm realistic public awareness video with gentle four-panel story animation",
+        "mood": "observational, careful, serious, non-accusatory",
+        "color_palette": "natural home and school daylight with restrained navy, gold, and soft amber caution accents",
+        "animation": "four story panels, subtle caution highlights, grouped sign icons without labels",
+        "pace": "lively with 8 quick visual beats inside 10 seconds"
+      },
+      "logos": {
+        "include": true,
+        "placement": "small Singapenn-style emblem top-left and Tamil Nadu Police-style emblem top-right",
+        "behavior": "fade in during first second and remain subtle",
+        "note": "No written labels near logos."
+      },
+      "tamil_voiceover": "ஒரு குழந்தையில் திடீர் மாற்றம் வந்தால் அதை சாதாரணமாக எடுத்துக் கொள்ள வேண்டாம். ரகசிய பரிசுகள், தனியாக இருக்க வாய்ப்பு, கைபேசி மறைப்பது, நண்பர்களிடமிருந்து விலகுவது போன்ற மாற்றங்கள் கவனிக்க வேண்டியவை. உறுதியாக தெரிய வேண்டிய அவசியமில்லை. சந்தேகம் இருந்தாலே உதவி கேட்கலாம்.",
+      "timeline": [
+        {
+          "time": "00:00-00:01",
+          "scene": "Soft fade in. Logos appear in top corners. A small flat in daylight. Divya, age 13, sits at a table with schoolbooks. Her mother leaves for work near the doorway.",
+          "camera": "wide warm home shot",
+          "animation": "gentle logo fade-in"
+        },
+        {
+          "time": "00:01-00:02",
+          "scene": "Wall calendar with work shifts marked visually using abstract blocks, not readable text. Divya continues studying calmly.",
+          "camera": "detail shot, then back to Divya",
+          "animation": "soft focus shift"
+        },
+        {
+          "time": "00:02-00:03",
+          "scene": "A hand and forearm only, no face, places a small wrapped gift and a phone beside Divya's schoolbooks. Divya looks pleased, not afraid.",
+          "camera": "safe table-level close-up",
+          "animation": "soft amber caution glow around gift and phone"
+        },
+        {
+          "time": "00:03-00:04",
+          "scene": "Divya sits alone holding the phone, glancing toward the doorway. She looks uncertain but not frightened. Phone screen is blank.",
+          "camera": "medium shot",
+          "animation": "subtle shield-line transition"
+        },
+        {
+          "time": "00:04-00:05",
+          "scene": "Split frame: left side mother notices Divya quietly across a meal; right side school corridor where Divya sits apart while other girls talk nearby.",
+          "camera": "balanced split-screen composition",
+          "animation": "split frame slides in softly"
+        },
+        {
+          "time": "00:05-00:06",
+          "scene": "Teacher passes in the school corridor with a register, noticing Divya sitting alone. No interrogation, no confrontation.",
+          "camera": "medium-wide corridor shot",
+          "animation": "soft focus on teacher noticing"
+        },
+        {
+          "time": "00:06-00:07",
+          "scene": "Four grouped symbol panels appear: behaviour icon, knowledge/thought icon, body-care icon, phone icon. No words and no individual distress signs.",
+          "camera": "clean motion graphic",
+          "animation": "four icons appear in equal boxes"
+        },
+        {
+          "time": "00:07-00:08.5",
+          "scene": "The knowledge/thought icon panel receives a gentle amber border highlight, showing it is often ignored. No labels.",
+          "camera": "same graphic frame",
+          "animation": "one panel softly highlights, no flashing"
+        },
+        {
+          "time": "00:08.5-00:10",
+          "scene": "Final warm frame: mother and teacher as responsible adults in separate soft panels, both noticing calmly. A transparent protective shield connects home and school.",
+          "camera": "wide final composed frame",
+          "animation": "shield line connects both panels, logos remain subtle"
+        }
+      ],
+      "audio_direction": {
+        "voice": "clear Tamil adult narrator, calm, careful, empathetic, serious",
+        "background": "soft home and school ambience, low volume",
+        "music": "restrained civic-awareness music, no suspense or fear cue",
+        "sync_note": "Do not create subtitles, captions, labels, written signs, phone messages, or readable calendar text."
+      },
+      "negative_prompt": [
+        "no subtitles",
+        "no captions",
+        "no text overlays",
+        "no readable phone screen",
+        "no readable calendar text",
+        "no man's face",
+        "no suspicious villain adult",
+        "no abuse depiction",
+        "no touching shown",
+        "no child in distress",
+        "no crying",
+        "no bruises",
+        "no frightening expression in panels 1 to 3",
+        "no dark room",
+        "no accusation-style visuals",
+        "no explicit content",
+        "no interrogation scene",
+        "do not make Divya look harmed in the early scenes"
+      ],
+      "purpose": "Show Divya's grooming-risk pattern and the early changes adults can notice, without showing abuse, fear, or the suspected adult's face."
+    },
+    {
+      "asset_id": "video_15",
+      "chapter": 5,
+      "screen": "5.1",
+      "title": "When a child tells you",
+      "type": "video",
+      "duration_seconds": 10,
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "language": "Tamil",
+      "visual_rule": "No subtitles, no captions, no text overlays. Show calm supportive body language only. Do not show abuse, distress, interrogation, or face-to-face pressure. Logos are allowed as small official corner marks.",
+      "style": {
+        "visual_style": "warm realistic public awareness video with soft supportive-scene transitions",
+        "mood": "calm, supportive, safe, empathetic, serious",
+        "color_palette": "natural daylight, soft warm tones, navy and gold civic accents, gentle green safety glow",
+        "animation": "five small disclosure-pattern scene cards, soft shield glow, no written labels",
+        "pace": "lively with 8 quick visual beats inside 10 seconds"
+      },
+      "logos": {
+        "include": true,
+        "placement": "small Singapenn-style emblem top-left and Tamil Nadu Police-style emblem top-right",
+        "behavior": "fade in during first second and remain subtle",
+        "note": "No written labels near logos."
+      },
+      "tamil_voiceover": "ஒரு குழந்தை பேச ஆரம்பித்தால், முதல் சில விநாடிகள் மிகவும் முக்கியம். அமைதியாக இருங்கள். நம்புகிறேன், இது உன் தவறு அல்ல, சொன்னதற்கு நன்றி என்று சொல்லுங்கள். கேள்விகளால் அழுத்த வேண்டாம். குழந்தை சொல்ல விரும்புவது வரை அமைதியாக கேளுங்கள்.",
+      "timeline": [
+        {
+          "time": "00:00-00:01",
+          "scene": "Soft fade in. Logos appear in top corners. Adult and child sit side by side on a step, seen from behind, both facing forward, not face to face.",
+          "camera": "wide rear view, calm daylight",
+          "animation": "gentle logo fade-in"
+        },
+        {
+          "time": "00:01-00:02",
+          "scene": "Close side-back angle: adult keeps relaxed posture, hands still, listening without interruption. Child looks forward, not forced to make eye contact.",
+          "camera": "medium side-back shot",
+          "animation": "soft focus on calm body language"
+        },
+        {
+          "time": "00:02-00:03",
+          "scene": "Small scene card 1: school bag placed near a doorway, child half-turned away, suggesting indirect disclosure without words.",
+          "camera": "safe medium shot",
+          "animation": "card slides gently"
+        },
+        {
+          "time": "00:03-00:04",
+          "scene": "Small scene card 2: two children on a school step, one speaking while looking straight ahead, no eye contact pressure.",
+          "camera": "medium-wide shot",
+          "animation": "soft crossfade"
+        },
+        {
+          "time": "00:04-00:05",
+          "scene": "Small scene card 3: child speaks to an adult who stops what they are doing and begins listening carefully. Adult does not crowd the child.",
+          "camera": "medium shot",
+          "animation": "gentle shield-line transition"
+        },
+        {
+          "time": "00:05-00:06",
+          "scene": "Small scene card 4: same child later shakes head softly, showing hesitation. Adult remains calm and patient.",
+          "camera": "medium shot",
+          "animation": "soft slow motion, no drama"
+        },
+        {
+          "time": "00:06-00:07",
+          "scene": "Small scene card 5: inside an auto at night or evening, adult and child face forward, sitting side by side. Both are calm; no danger shown.",
+          "camera": "front interior view from dashboard area",
+          "animation": "gentle transition, warm safe light"
+        },
+        {
+          "time": "00:07-00:08.5",
+          "scene": "Return to the adult and child sitting side by side on the step. Adult slightly nods, giving calm reassurance without touching or questioning.",
+          "camera": "wide rear view",
+          "animation": "transparent protective shield glow around both"
+        },
+        {
+          "time": "00:08.5-00:10",
+          "scene": "Final frame: adult remains beside the child, steady and supportive. Warm daylight. No dramatic expression. Logos remain subtle.",
+          "camera": "steady final hold",
+          "animation": "shield glow gently fades"
+        }
+      ],
+      "audio_direction": {
+        "voice": "clear Tamil adult narrator, gentle, calm, reassuring, serious",
+        "background": "soft outdoor ambience at low volume",
+        "music": "very soft supportive civic-awareness music, no suspense",
+        "sync_note": "Do not create subtitles, captions, written phrases, or speech bubbles. Voiceover carries the recommended words."
+      },
+      "negative_prompt": [
+        "no subtitles",
+        "no captions",
+        "no text overlays",
+        "no speech bubbles",
+        "no abuse depiction",
+        "no crying child",
+        "no panic",
+        "no interrogation",
+        "no adult pointing finger",
+        "no face-to-face pressure",
+        "no adult grabbing or touching child",
+        "no child forced to look at adult",
+        "no police station",
+        "no courtroom",
+        "no dark threatening environment",
+        "no sensational style"
+      ],
+      "purpose": "Show how an adult should calmly receive a child's disclosure: believe, reassure, stay calm, avoid pressure, and listen without forcing eye contact."
+    },
+    {
+      "asset_id": "video_16",
+      "chapter": 5,
+      "screen": "5.4",
+      "title": "What happens after you report",
+      "type": "video",
+      "duration_seconds": 10,
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "language": "Tamil",
+      "visual_rule": "No subtitles, no captions, no text overlays. Use a calm six-stop pathway animation and safe real-world support visuals. Do not show police intimidation, courtroom drama, abuse, or the accused.",
+      "style": {
+        "visual_style": "clean civic-awareness motion graphic mixed with calm support-service visuals",
+        "mood": "reassuring, procedural, calm, responsible, official",
+        "color_palette": "navy, gold, white, soft green, warm daylight",
+        "animation": "six-stop reporting pathway, soft connecting line, protective shield glow",
+        "pace": "lively with 8 quick visual beats inside 10 seconds"
+      },
+      "logos": {
+        "include": true,
+        "placement": "small Singapenn-style emblem top-left and Tamil Nadu Police-style emblem top-right",
+        "behavior": "fade in during first second and remain subtle",
+        "note": "No written labels near logos."
+      },
+      "tamil_voiceover": "புகார் தெரிவித்த பிறகு, குழந்தை தனியாக விடப்பட மாட்டாள். தகவல் காவல்துறை அல்லது சிறப்பு சிறுவர் காவல் பிரிவுக்கு செல்கிறது. தேவையெனில் குழந்தைக்கு பாதுகாப்பும் ஆதரவும் வழங்கப்படும். வாக்குமூலம் குழந்தைக்கு ஏற்ற இடத்தில் எடுக்கப்படும். வழக்கு சிறப்பு நீதிமன்றத்தில் தனியுரிமையுடன் நடைபெறும்.",
+      "timeline": [
+        {
+          "time": "00:00-00:01",
+          "scene": "Soft fade in. Logos appear in top corners. Clean navy background with six empty circular stops connected by a thin gold line. No labels or numbers.",
+          "camera": "centered motion graphic",
+          "animation": "pathway line draws gently"
+        },
+        {
+          "time": "00:01-00:02",
+          "scene": "Stop 1 glows: abstract phone/call icon appears. No readable number or text.",
+          "camera": "graphic close-up",
+          "animation": "first stop lights softly"
+        },
+        {
+          "time": "00:02-00:03",
+          "scene": "Stop 2 glows: neutral police support icon, such as shield and cap outline. No arrest, no intimidation.",
+          "camera": "graphic close-up",
+          "animation": "second stop lights, line continues"
+        },
+        {
+          "time": "00:03-00:04",
+          "scene": "Stop 3 glows: calm home setting with a woman officer-style support figure seated without uniform pressure, parent/support person nearby. No interrogation.",
+          "camera": "warm medium-wide shot",
+          "animation": "soft crossfade from icon to real scene"
+        },
+        {
+          "time": "00:04-00:05",
+          "scene": "Stop 4 glows: child welfare support symbol, represented by safe home, care hands, and shield icons. No institutional fear.",
+          "camera": "motion graphic frame",
+          "animation": "care icons appear gently"
+        },
+        {
+          "time": "00:05-00:06",
+          "scene": "Stop 5 glows: private court support shown symbolically with a balanced scale inside a shield, not a courtroom scene.",
+          "camera": "graphic close-up",
+          "animation": "scale icon fades in"
+        },
+        {
+          "time": "00:06-00:07",
+          "scene": "Stop 6 glows: support person and legal aid represented by two neutral adult figures beside a shield and document icon. No text on document.",
+          "camera": "motion graphic frame",
+          "animation": "support figures appear"
+        },
+        {
+          "time": "00:07-00:08.5",
+          "scene": "All six stops glow together, connected by the gold pathway. A transparent shield grows around the whole path.",
+          "camera": "wide centered pathway",
+          "animation": "full path completes, shield forms"
+        },
+        {
+          "time": "00:08.5-00:10",
+          "scene": "Final warm real-world frame: child and trusted adult seen from behind entering a safe public support building or community office in daylight. No police drama.",
+          "camera": "wide final hold",
+          "animation": "pathway motif fades into shield glow, logos remain subtle"
+        }
+      ],
+      "audio_direction": {
+        "voice": "clear Tamil adult narrator, calm, reassuring, official",
+        "background": "very soft public-office or street ambience at low volume",
+        "music": "gentle reassuring civic-awareness music, no suspense",
+        "sync_note": "Do not create subtitles, captions, step labels, phone numbers, legal section text, or written pathway names."
+      },
+      "negative_prompt": [
+        "no subtitles",
+        "no captions",
+        "no text overlays",
+        "no readable phone number",
+        "no legal section text",
+        "no police arrest",
+        "no accused person",
+        "no courtroom drama",
+        "no judge scene",
+        "no child facing accused",
+        "no interrogation",
+        "no abuse depiction",
+        "no crying child",
+        "no distress",
+        "no threatening uniforms",
+        "no jail bars",
+        "no dark lighting",
+        "no sensational crime tone"
+      ],
+      "purpose": "Reassure learners that after reporting, there is a structured child-friendly pathway involving police/SJPU, child welfare support, statement recording, special court, and support services."
+    }
+  ]
+}

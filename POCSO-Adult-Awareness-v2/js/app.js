@@ -42,6 +42,14 @@ function randomEncourageMessage() {
 }
 
 const STORAGE_KEY = "pocso_adult_progress_v1";
+const MEDIA_CONSENT_KEY = "pocso_media_sound_consent_v1";
+const INTERACTIVE_VIDEOS = {
+  tapReveal: "video/interactive-tap-reveal.mp4",
+  dragSort: "video/interactive-drag-sort.mp4",
+  feedbackCorrect: "video/interactive-feedback-correct.mp4",
+  feedbackCaution: "video/interactive-feedback-caution.mp4",
+  moduleComplete: "video/interactive-module-complete.mp4"
+};
 
 const state = loadState() || {
   currentIndex: 0,
@@ -88,7 +96,7 @@ PAGES.push({ id: "onecard", type: "onecard" });
   CHAPTERS.forEach((ch) => {
     ch.screens.forEach((screen) => {
       (screen.blocks || []).forEach((block) => {
-        if (block.t === "visual") {
+        if (block.video) {
           n += 1;
           block._videoNum = n;
           block._videoLoc = `Ch ${ch.num} · ${screen.id}`;
@@ -107,6 +115,19 @@ const footerMsg = document.getElementById("footerMsg");
 const progressFill = document.getElementById("progressFill");
 const progressLabel = document.getElementById("progressLabel");
 const chapterListEl = document.getElementById("chapterList");
+
+function hasSoundConsent() {
+  try { return localStorage.getItem(MEDIA_CONSENT_KEY) === "granted"; }
+  catch (e) { return false; }
+}
+function hasMediaConsentChoice() {
+  try { return !!localStorage.getItem(MEDIA_CONSENT_KEY); }
+  catch (e) { return false; }
+}
+function setSoundConsent(value) {
+  try { localStorage.setItem(MEDIA_CONSENT_KEY, value ? "granted" : "declined"); }
+  catch (e) { /* progress still works without localStorage */ }
+}
 
 
 /* ---------------- Confetti ----------------
@@ -155,6 +176,115 @@ function chapterCompleteCelebration() {
     setTimeout(() => confetti({ particleCount: 130, spread: 100, startVelocity: 48, origin: { x: 0.5, y } }), 120);
     setTimeout(() => confetti({ particleCount: 90, spread: 70, startVelocity: 40, origin: { x: 0.8, y } }), 240);
   } catch (e) { /* best-effort only */ }
+}
+
+function makeVideoPlayerHtml(src, extraClass) {
+  return `<video class="video-slot-player ${extraClass || ""}" src="${escapeHtml(src)}" controls playsinline webkit-playsinline loop preload="auto"></video>`;
+}
+
+function makeInteractiveVideoHtml(src, label) {
+  return `
+    <div class="interactive-video" aria-label="${escapeHtml(label || "Interactive animation")}">
+      <video class="interactive-video-player" src="${escapeHtml(src)}" autoplay muted loop playsinline webkit-playsinline preload="auto"></video>
+    </div>`;
+}
+function makeFeedbackVideoHtml(correct) {
+  return makeInteractiveVideoHtml(
+    correct ? INTERACTIVE_VIDEOS.feedbackCorrect : INTERACTIVE_VIDEOS.feedbackCaution,
+    correct ? "Correct answer feedback animation" : "Try again feedback animation"
+  );
+}
+
+function setupInteractiveVideos(root) {
+  const scope = root || stage;
+  scope.querySelectorAll(".interactive-video-player").forEach((videoEl) => {
+    videoEl.muted = true;
+    videoEl.volume = 0;
+    const p = videoEl.play();
+    if (p && typeof p.catch === "function") p.catch(() => {});
+  });
+}
+
+function playPageVideos(withSound) {
+  const videos = Array.from(stage.querySelectorAll(".video-slot-player"));
+  if (!videos.length) return;
+
+  if (!withSound) {
+    videos.forEach((videoEl) => {
+      videoEl.loop = true;
+      videoEl.muted = true;
+      videoEl.volume = 0;
+      const p = videoEl.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    });
+    return;
+  }
+
+  videos.forEach((videoEl) => {
+    videoEl.pause();
+    videoEl.loop = videos.length === 1;
+    videoEl.muted = true;
+    videoEl.volume = 0;
+    try { videoEl.currentTime = 0; } catch (e) { /* some streams may not seek immediately */ }
+  });
+
+  function playAt(index) {
+    const videoEl = videos[index];
+    if (!videoEl) return;
+    videoEl.muted = false;
+    videoEl.volume = 1;
+    if (index < videos.length - 1) {
+      videoEl.onended = () => playAt(index + 1);
+    }
+    const p = videoEl.play();
+    if (p && typeof p.catch === "function") {
+      p.catch(() => {
+        footerMsg.textContent = "Tap the video if your browser blocks sound autoplay.";
+      });
+    }
+  }
+  playAt(0);
+}
+
+function ensureMediaConsentPrompt() {
+  if (hasSoundConsent()) return;
+  if (hasMediaConsentChoice()) return;
+  const videos = stage.querySelectorAll(".video-slot-player");
+  if (!videos.length || document.querySelector(".media-consent")) return;
+
+  const prompt = document.createElement("div");
+  prompt.className = "media-consent";
+  prompt.innerHTML = `
+    <div class="media-consent-panel">
+      <div class="media-consent-title">Play videos with sound?</div>
+      <div class="media-consent-copy">Allow once, and each lesson video will start with audio when you enter a screen.</div>
+      <div class="media-consent-actions">
+        <button type="button" class="btn btn-ghost" id="mediaConsentLater">Not now</button>
+        <button type="button" class="btn btn-primary" id="mediaConsentAllow">Play with sound</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(prompt);
+
+  prompt.querySelector("#mediaConsentLater").addEventListener("click", () => {
+    setSoundConsent(false);
+    prompt.remove();
+    playPageVideos(false);
+  });
+  prompt.querySelector("#mediaConsentAllow").addEventListener("click", () => {
+    setSoundConsent(true);
+    SFX.ensureCtx();
+    prompt.remove();
+    playPageVideos(true);
+  });
+}
+
+function setupCurrentPageVideos() {
+  const videos = stage.querySelectorAll(".video-slot-player");
+  if (!videos.length) return;
+  const withSound = hasSoundConsent();
+  playPageVideos(withSound);
+  ensureMediaConsentPrompt();
 }
 
 /* ---------------- Read-aloud button ---------------- */
@@ -328,6 +458,8 @@ function render() {
   // screen immediately, not watch it scroll there.
   stage.scrollTop = 0;
   window.scrollTo(0, 0);
+  setupCurrentPageVideos();
+  setupInteractiveVideos(wrap);
 }
 
 /* ================================================================
@@ -513,22 +645,12 @@ function renderVisualBlock(block, page) {
     ? `<div class="video-slot-tag">Video ${block._videoNum} — ${escapeHtml(block._videoLoc)}</div>`
     : "";
   if (block.video) {
-    const player = `<video class="video-slot-player" src="${escapeHtml(block.video)}" controls autoplay muted playsinline webkit-playsinline loop preload="auto"></video>`;
+    const player = makeVideoPlayerHtml(block.video);
     div.innerHTML = `
       <div class="video-slot video-slot-has-video" data-video-slot="${slotId}">
         ${tag}
         ${player}
       </div>`;
-    // iOS Safari sometimes ignores the autoplay attribute on video markup
-    // injected via innerHTML — an explicit muted play() call is the
-    // reliable path there. Rejection (e.g. reduced-motion settings) is
-    // fine to ignore; the visible controls still let the user press play.
-    const videoEl = div.querySelector(".video-slot-player");
-    if (videoEl) {
-      videoEl.muted = true;
-      const p = videoEl.play();
-      if (p && typeof p.catch === "function") p.catch(() => {});
-    }
     return div;
   }
   div.innerHTML = `
@@ -546,6 +668,15 @@ function renderVisualBlock(block, page) {
 function renderPathwayBlock(block) {
   const div = document.createElement("div");
   div.className = "block";
+  if (block.video) {
+    const videoWrap = document.createElement("div");
+    videoWrap.className = "video-slot video-slot-has-video pathway-video-slot";
+    const tag = block._videoNum
+      ? `<div class="video-slot-tag">Video ${block._videoNum} — ${escapeHtml(block._videoLoc)}</div>`
+      : "";
+    videoWrap.innerHTML = `${tag}${makeVideoPlayerHtml(block.video, "pathway-video-player")}`;
+    div.appendChild(videoWrap);
+  }
   const strip = document.createElement("div");
   strip.className = "pathway-strip";
   block.steps.forEach((step, i) => {
@@ -732,6 +863,10 @@ function renderFlipDeck(container, page, block, setInteractionCheck) {
     container.appendChild(fh);
   }
 
+  const guide = document.createElement("div");
+  guide.innerHTML = makeInteractiveVideoHtml(INTERACTIVE_VIDEOS.tapReveal, "Tap reveal interaction animation");
+  container.appendChild(guide.firstElementChild);
+
   const grid = document.createElement("div");
   grid.className = "deck-grid";
   container.appendChild(grid);
@@ -806,6 +941,10 @@ function renderSortDrag(container, page, block, setInteractionCheck) {
   const key = page.id;
   if (!state.sortPlacements[key]) state.sortPlacements[key] = {};
   const placements = state.sortPlacements[key];
+
+  const guide = document.createElement("div");
+  guide.innerHTML = makeInteractiveVideoHtml(INTERACTIVE_VIDEOS.dragSort, "Drag sort interaction animation");
+  container.appendChild(guide.firstElementChild);
 
   const hint = document.createElement("div");
   hint.className = "drag-hint";
@@ -1031,6 +1170,7 @@ function renderCommitment(container, page, block, setInteractionCheck) {
   box.className = "commit-box";
   const done = !!state.commitDone[key];
   box.innerHTML = `
+    ${makeInteractiveVideoHtml(INTERACTIVE_VIDEOS.tapReveal, "Commitment tap interaction animation")}
     <button class="commit-btn${done ? " confirmed" : ""}" id="commitBtn">${done ? svgIcon("check", 16) + " Understood" : escapeHtml(block.data.buttonText)}</button>
     ${done ? `<div class="commit-confirmed-note">You've confirmed you understand this law applies to you.</div>` : ""}
   `;
@@ -1101,7 +1241,7 @@ function renderQuizPage(page, wrap) {
           const isCorrect = opt.correct;
           isCorrect ? SFX.correct() : SFX.incorrect();
           if (isCorrect) confettiAt(btn, false);
-          wrap.innerHTML = ""; renderQuizPage(page, wrap);
+          wrap.innerHTML = ""; renderQuizPage(page, wrap); setupInteractiveVideos(wrap);
           checkQuizComplete();
         });
         choicesEl.appendChild(btn);
@@ -1109,7 +1249,7 @@ function renderQuizPage(page, wrap) {
       if (answers[qi] !== null) {
         const opt = q.options[answers[qi]];
         const text = opt.correct ? (q.feedbackCorrect || q.feedback) : (q.feedbackIncorrect || q.feedback);
-        if (text) fbEl.innerHTML = `<div class="feedback-box ${opt.correct ? "correct" : "incorrect"}">${escapeHtml(text)}</div>`;
+        if (text) fbEl.innerHTML = `${makeFeedbackVideoHtml(opt.correct)}<div class="feedback-box ${opt.correct ? "correct" : "incorrect"}">${escapeHtml(text)}</div>`;
       }
     } else if (q.type === "multi") {
       const submitted = Array.isArray(answers[qi]) && answers[qi]._submitted;
@@ -1146,12 +1286,13 @@ function renderQuizPage(page, wrap) {
           allCorrect ? SFX.correct() : SFX.incorrect();
           if (allCorrect) confettiAt(submitBtn, false);
           saveState();
-          wrap.innerHTML = ""; renderQuizPage(page, wrap);
+          wrap.innerHTML = ""; renderQuizPage(page, wrap); setupInteractiveVideos(wrap);
           checkQuizComplete();
         });
         choicesEl.appendChild(submitBtn);
       } else if (q.feedback) {
-        fbEl.innerHTML = `<div class="feedback-box correct">${escapeHtml(q.feedback)}</div>`;
+        const allCorrect = q.options.every((opt, oi) => opt.correct === sel.includes(oi));
+        fbEl.innerHTML = `${makeFeedbackVideoHtml(allCorrect)}<div class="feedback-box ${allCorrect ? "correct" : "incorrect"}">${escapeHtml(q.feedback)}</div>`;
       }
     }
   });
@@ -1250,6 +1391,10 @@ function renderCertificateBlock(wrap) {
 
 /* ---------------- Certificate page (own page, separate from the summary card) ---------------- */
 function renderCertificatePage(page, wrap) {
+  const completeAnim = document.createElement("div");
+  completeAnim.innerHTML = makeInteractiveVideoHtml(INTERACTIVE_VIDEOS.moduleComplete, "Module complete animation");
+  wrap.appendChild(completeAnim.firstElementChild);
+
   if (!state.certGenerated) {
     const gate = document.createElement("div");
     gate.className = "cert-gate";
