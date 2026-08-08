@@ -484,20 +484,21 @@ body{
      and the certificate should sit centred on the sheet, not pinned to
      the top-left. */
   *{box-shadow:none !important}
-  html,body{overflow:visible !important;width:297mm;height:210mm;margin:0 !important;background:#fff !important}
+  html,body{overflow:hidden !important;width:297mm;height:209mm;margin:0 !important;background:#fff !important}
   body > *:not(#app){display:none !important}
-  #app{height:auto;background:#fff !important}
+  #app{height:209mm !important;overflow:hidden !important;background:#fff !important}
   .topbar,.sidebar,.footer,.cert-actions,.cert-gate{display:none !important}
-  .layout{display:block !important;max-width:none;width:297mm;height:210mm;background:#fff !important}
+  .layout{display:block !important;max-width:none;width:297mm;height:209mm;overflow:hidden !important;background:#fff !important}
   .stage{
     padding:0 !important;overflow:visible !important;background:#fff !important;
-    display:block !important;width:297mm;height:210mm;min-height:0 !important;
+    display:block !important;width:297mm;height:209mm;min-height:0 !important;overflow:hidden !important;
   }
-  .page{display:block !important;max-width:none !important;width:297mm;height:210mm;margin:0 !important;padding:0 !important;background:#fff !important}
+  .page{display:block !important;max-width:none !important;width:297mm;height:209mm;margin:0 !important;padding:0 !important;overflow:hidden !important;background:#fff !important}
   .page > *:not(.certificate){display:none !important}
   .certificate{
-    display:block !important;box-sizing:border-box;width:277mm;min-height:190mm;
-    margin:10mm !important;padding:20mm 18mm !important;break-inside:avoid;page-break-inside:avoid;
+    display:block !important;box-sizing:border-box;width:273mm;height:185mm;min-height:0;
+    margin:8mm auto 0 !important;padding:16mm 18mm !important;overflow:hidden !important;
+    break-before:avoid;break-after:avoid;break-inside:avoid;page-break-before:avoid;page-break-after:avoid;page-break-inside:avoid;
     box-shadow:none !important;
   }
 }
