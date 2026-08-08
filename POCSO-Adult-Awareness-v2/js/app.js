@@ -106,6 +106,67 @@ PAGES.push({ id: "onecard", type: "onecard" });
   });
 })();
 
+function collectVideoUrls() {
+  const urls = [];
+  CHAPTERS.forEach((ch) => {
+    ch.screens.forEach((screen) => {
+      (screen.blocks || []).forEach((block) => {
+        if (block.video) urls.push(block.video);
+      });
+    });
+  });
+  Object.keys(INTERACTIVE_VIDEOS).forEach((key) => urls.push(INTERACTIVE_VIDEOS[key]));
+  return Array.from(new Set(urls));
+}
+
+const ALL_VIDEO_URLS = collectVideoUrls();
+const ALL_VIDEO_CACHE_URLS = ALL_VIDEO_URLS.map((url) => new URL(url, window.location.href).href);
+
+async function runLimited(items, limit, worker) {
+  let index = 0;
+  const runners = Array.from({ length: Math.min(limit, items.length) }, async () => {
+    while (index < items.length) {
+      const item = items[index];
+      index += 1;
+      try { await worker(item); } catch (e) { /* preload is a best-effort speedup */ }
+    }
+  });
+  await Promise.all(runners);
+}
+
+function warmVideoHttpCache(urls) {
+  if (typeof fetch !== "function" || !urls.length) return;
+  runLimited(urls, 3, async (url) => {
+    const res = await fetch(url, { cache: "force-cache" });
+    if (res && res.ok) await res.blob();
+  });
+}
+
+function startVideoPreload() {
+  if (!ALL_VIDEO_CACHE_URLS.length) return;
+
+  ALL_VIDEO_CACHE_URLS.forEach((url) => {
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "video";
+    link.href = url;
+    document.head.appendChild(link);
+  });
+
+  warmVideoHttpCache(ALL_VIDEO_CACHE_URLS);
+
+  if (!("serviceWorker" in navigator)) return;
+  if (!/^https?:$/.test(window.location.protocol)) return;
+
+  navigator.serviceWorker.register("sw.js")
+    .then(() => navigator.serviceWorker.ready)
+    .then((registration) => {
+      const worker = registration.active || registration.waiting || registration.installing;
+      if (worker) worker.postMessage({ type: "CACHE_VIDEOS", urls: ALL_VIDEO_CACHE_URLS });
+    })
+    .catch(() => {});
+}
+
 function currentPage() { return PAGES[state.currentIndex]; }
 
 const stage = document.getElementById("stage");
@@ -1623,6 +1684,7 @@ async function downloadAndShareOneCard(btn) {
 }
 
 /* ---------------- Boot ---------------- */
+startVideoPreload();
 buildSidebar();
 render();
 
