@@ -179,13 +179,13 @@ function chapterCompleteCelebration() {
 }
 
 function makeVideoPlayerHtml(src, extraClass) {
-  return `<video class="video-slot-player ${extraClass || ""}" src="${escapeHtml(src)}" controls playsinline webkit-playsinline loop preload="auto"></video>`;
+  return `<video class="video-slot-player ${extraClass || ""}" src="${escapeHtml(src)}" controls playsinline webkit-playsinline preload="auto"></video>`;
 }
 
 function makeInteractiveVideoHtml(src, label) {
   return `
     <div class="interactive-video" aria-label="${escapeHtml(label || "Interactive animation")}">
-      <video class="interactive-video-player" src="${escapeHtml(src)}" autoplay muted loop playsinline webkit-playsinline preload="auto"></video>
+      <video class="interactive-video-player" src="${escapeHtml(src)}" muted playsinline webkit-playsinline preload="auto"></video>
     </div>`;
 }
 function makeFeedbackVideoHtml(correct) {
@@ -200,8 +200,22 @@ function setupInteractiveVideos(root) {
   scope.querySelectorAll(".interactive-video-player").forEach((videoEl) => {
     videoEl.muted = true;
     videoEl.volume = 0;
-    const p = videoEl.play();
-    if (p && typeof p.catch === "function") p.catch(() => {});
+    videoEl.loop = false;
+    videoEl.onended = null;
+    try { videoEl.currentTime = 0; } catch (e) { /* best effort for cached media */ }
+    const playMuted = () => {
+      videoEl.pause();
+      videoEl.muted = true;
+      videoEl.volume = 0;
+      videoEl.loop = false;
+      videoEl.onended = null;
+      try { videoEl.currentTime = 0; } catch (e) { /* best effort for cached media */ }
+      const p = videoEl.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    };
+    const box = videoEl.closest(".interactive-video");
+    if (box) box.addEventListener("click", playMuted);
+    playMuted();
   });
 }
 
@@ -209,40 +223,41 @@ function playPageVideos(withSound) {
   const videos = Array.from(stage.querySelectorAll(".video-slot-player"));
   if (!videos.length) return;
 
-  if (!withSound) {
-    videos.forEach((videoEl) => {
-      videoEl.loop = true;
-      videoEl.muted = true;
-      videoEl.volume = 0;
-      const p = videoEl.play();
-      if (p && typeof p.catch === "function") p.catch(() => {});
-    });
-    return;
-  }
-
   videos.forEach((videoEl) => {
     videoEl.pause();
-    videoEl.loop = videos.length === 1;
+    videoEl.loop = false;
+    videoEl.onended = null;
     videoEl.muted = true;
     videoEl.volume = 0;
     try { videoEl.currentTime = 0; } catch (e) { /* some streams may not seek immediately */ }
   });
 
-  function playAt(index) {
-    const videoEl = videos[index];
-    if (!videoEl) return;
-    videoEl.muted = false;
-    videoEl.volume = 1;
-    if (index < videos.length - 1) {
-      videoEl.onended = () => playAt(index + 1);
-    }
+  function playOne(videoEl, sound, onEnded) {
+    videoEl.pause();
+    videoEl.loop = false;
+    videoEl.onended = typeof onEnded === "function" ? onEnded : null;
+    videoEl.muted = !sound;
+    videoEl.volume = sound ? 1 : 0;
+    try { videoEl.currentTime = 0; } catch (e) { /* some streams may not seek immediately */ }
     const p = videoEl.play();
     if (p && typeof p.catch === "function") {
       p.catch(() => {
-        footerMsg.textContent = "Tap the video if your browser blocks sound autoplay.";
+        if (sound) footerMsg.textContent = "Tap the video if your browser blocks sound autoplay.";
       });
     }
   }
+
+  function playAt(index) {
+    const videoEl = videos[index];
+    if (!videoEl) return;
+    playOne(videoEl, withSound, index < videos.length - 1 ? () => playAt(index + 1) : null);
+  }
+
+  videos.forEach((videoEl) => {
+    const slot = videoEl.closest(".video-slot-has-video");
+    if (slot) slot.addEventListener("click", () => playOne(videoEl, hasSoundConsent()));
+  });
+
   playAt(0);
 }
 
