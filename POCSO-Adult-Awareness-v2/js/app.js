@@ -727,13 +727,7 @@ function renderVisualBlock(block, page) {
       </div>`;
     return div;
   }
-  div.innerHTML = `
-    <div class="video-slot" data-video-slot="${slotId}">
-      ${tag}
-      <div class="video-slot-head">${svgIcon("video", 16)}${block.heading ? escapeHtml(block.heading.replace(/^\[|\]$/g, "")) : "Video / visual — placeholder"}</div>
-      ${block.lines.map((l) => `<p>${escapeHtml(l)}</p>`).join("")}
-    </div>`;
-  return div;
+  return null;
 }
 
 /* Real interactive HTML component, not a video placeholder: a horizontal

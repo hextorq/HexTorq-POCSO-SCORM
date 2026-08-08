@@ -317,11 +317,7 @@ const CHAPTERS = [
           `Penetration into the vagina, mouth, urethra or anus of a child; or making the child do so with the offender or any other person.`
         ]},
         { t: "p", lines: [
-          `Punishment — Section 4. At least 10 years, and it can go up to imprisonment for life, with a fine. If the child is below 16, at least 20 years, and it can go up to imprisonment for the rest of the offender's life, with a fine.`,
-          `No interaction on this screen. The learner reads and moves on.`
-        ]},
-        { t: "visual", lines: [
-          `None. Any drawing here either sanitises the offence or distresses the reader. Silence is the correct design choice.`
+          `Punishment — Section 4. At least 10 years, and it can go up to imprisonment for life, with a fine. If the child is below 16, at least 20 years, and it can go up to imprisonment for the rest of the offender's life, with a fine.`
         ]}
       ]
     },
