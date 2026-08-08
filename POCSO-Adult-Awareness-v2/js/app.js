@@ -1244,7 +1244,6 @@ function renderCommitment(container, page, block, setInteractionCheck) {
   box.className = "commit-box";
   const done = !!state.commitDone[key];
   box.innerHTML = `
-    ${makeInteractiveVideoHtml(INTERACTIVE_VIDEOS.tapReveal, "Commitment tap interaction animation")}
     <button class="commit-btn${done ? " confirmed" : ""}" id="commitBtn">${done ? svgIcon("check", 16) + " Understood" : escapeHtml(block.data.buttonText)}</button>
     ${done ? `<div class="commit-confirmed-note">You've confirmed you understand this law applies to you.</div>` : ""}
   `;
