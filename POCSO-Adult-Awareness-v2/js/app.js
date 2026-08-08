@@ -185,7 +185,7 @@ function makeVideoPlayerHtml(src, extraClass) {
 function makeInteractiveVideoHtml(src, label) {
   return `
     <div class="interactive-video" aria-label="${escapeHtml(label || "Interactive animation")}">
-      <video class="interactive-video-player" src="${escapeHtml(src)}" muted playsinline webkit-playsinline preload="auto"></video>
+      <video class="interactive-video-player" src="${escapeHtml(src)}" autoplay muted loop playsinline webkit-playsinline preload="auto"></video>
     </div>`;
 }
 function makeFeedbackVideoHtml(correct) {
@@ -200,16 +200,14 @@ function setupInteractiveVideos(root) {
   scope.querySelectorAll(".interactive-video-player").forEach((videoEl) => {
     videoEl.muted = true;
     videoEl.volume = 0;
-    videoEl.loop = false;
+    videoEl.loop = true;
     videoEl.onended = null;
     try { videoEl.currentTime = 0; } catch (e) { /* best effort for cached media */ }
     const playMuted = () => {
-      videoEl.pause();
       videoEl.muted = true;
       videoEl.volume = 0;
-      videoEl.loop = false;
+      videoEl.loop = true;
       videoEl.onended = null;
-      try { videoEl.currentTime = 0; } catch (e) { /* best effort for cached media */ }
       const p = videoEl.play();
       if (p && typeof p.catch === "function") p.catch(() => {});
     };
