@@ -1457,7 +1457,7 @@ function renderCertificateBlock(wrap) {
   const actions = document.createElement("div");
   actions.className = "cert-actions";
   actions.innerHTML = `
-    <button class="btn btn-primary" id="printCertBtn"><span class="btn-icon">${svgIcon("printer", 14)}</span>Print / Save as PDF</button>
+    <button class="btn btn-primary" id="printCertBtn"><span class="btn-icon">${svgIcon("printer", 14)}</span>Download Certificate PDF</button>
   `;
   wrap.appendChild(actions);
   actions.querySelector("#printCertBtn").addEventListener("click", () => { SFX.click(); window.print(); });

@@ -478,17 +478,26 @@ body{
 .cert-actions{display:flex;gap:10px;justify-content:center;margin-bottom:20px}
 
 @media print{
+  @page{size:A4 landscape;margin:0}
   /* Only the certificate itself keeps its colours — the surrounding page
      (which is tinted per-severity on screen) must print as plain white,
      and the certificate should sit centred on the sheet, not pinned to
      the top-left. */
-  html,body{overflow:visible !important;height:auto !important;background:#fff !important}
-  #app{height:auto}
+  *{box-shadow:none !important}
+  html,body{overflow:visible !important;width:297mm;height:210mm;margin:0 !important;background:#fff !important}
+  body > *:not(#app){display:none !important}
+  #app{height:auto;background:#fff !important}
   .topbar,.sidebar,.footer,.cert-actions,.cert-gate{display:none !important}
-  .layout{max-width:none}
+  .layout{display:block !important;max-width:none;width:297mm;height:210mm;background:#fff !important}
   .stage{
-    padding:0;overflow:visible;background:#fff !important;
-    display:flex;justify-content:center;align-items:center;min-height:100vh;
+    padding:0 !important;overflow:visible !important;background:#fff !important;
+    display:block !important;width:297mm;height:210mm;min-height:0 !important;
   }
-  .page{max-width:100%;margin:0 auto}
+  .page{display:block !important;max-width:none !important;width:297mm;height:210mm;margin:0 !important;padding:0 !important;background:#fff !important}
+  .page > *:not(.certificate){display:none !important}
+  .certificate{
+    display:block !important;box-sizing:border-box;width:277mm;min-height:190mm;
+    margin:10mm !important;padding:20mm 18mm !important;break-inside:avoid;page-break-inside:avoid;
+    box-shadow:none !important;
+  }
 }
