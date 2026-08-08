@@ -228,7 +228,7 @@ body{
   display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--navy);
 }
 .commit-box .interactive-video{margin-bottom:14px}
-.quiz-box .interactive-video{max-width:360px;margin:0 0 10px}
+.quiz-box .interactive-video{max-width:460px;margin:0 auto 12px}
 .cert-gate + .interactive-video,.certificate + .interactive-video{margin-top:0}
 
 /* ---------- Sound consent ---------- */
