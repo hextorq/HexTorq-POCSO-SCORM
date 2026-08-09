@@ -794,7 +794,7 @@ const CHAPTERS = [
 {
   num: 5,
   title: `When a Child Tells You, and What to Do Next`,
-  duration: `~9 min · 8 screens`,
+  duration: `~9 min · 7 screens`,
   blurb: `What to say, what not to say, and how to report — and what happens after.`,
   screens: [
     {
@@ -938,36 +938,47 @@ const CHAPTERS = [
     },
     {
       id: "5.3",
-      heading: `SCREEN 5.3 — Reporting`,
+      heading: `SCREEN 5.3 — What happens after you report`,
       severity: "safe",
       blocks: [
+        { t: "dialogue", location: `TEA SHOP`, turns: [
+          { who: "Murugan", text: `Selvi. Your sister's girl. Kayal. You said you'd tell me what happened.` },
+          { who: "Selvi", text: `She's nine. She stopped going upstairs. That's all it was, anna — she wouldn't go upstairs where her father's cousin stays. Two months I watched it and said nothing.` },
+          { who: "Murugan", text: `So what made you finally —` },
+          { who: "Selvi", text: `She wet the bed. Nine years old. And when my sister scolded her, she said sorry so many times. Like she was apologising for something else.` },
+          { who: "Murugan", text: `And you called that number.` },
+          { who: "Selvi", text: `1098. From the back of the shop. My hands were shaking. I thought — I am about to burn down my sister's house.` },
+          { who: "Murugan", text: `What did they ask you? Proof? Papers?` },
+          { who: "Selvi", text: `Nothing like that. A woman answered. She asked what I had noticed, how old Kayal is, and whether she would be in that house tonight. I said yes. She said that was the important part.` },
+          { who: "Murugan", text: `And then police at the door. Jeep. Whole street watching.` },
+          { who: "Selvi", text: `No. One lady officer. Plain clothes, not uniform. She sat in the front room. My sister sat with Kayal. And she asked Kayal to tell it once.` },
+          { who: "Murugan", text: `Once?` },
+          { who: "Selvi", text: `Once. Not at a station. Not with him standing there. She wrote down exactly what the child said, in Tamil, in the child's own words.` },
+          { who: "Murugan", text: `(pause) And your sister?` },
+          { who: "Selvi", text: `Two days she didn't look at me. On the third day she came and stood where you're standing. She asked me one thing — how long did you know.` },
+          { who: "Murugan", text: `What did you say?` },
+          { who: "Selvi", text: `Two months. And that I should have said it in the first week.` },
+          { who: "Murugan", text: `She forgave you?` },
+          { who: "Selvi", text: `She said the same thing I'd been telling myself. That she also knew something was wrong. Neither of us said it out loud.` },
+          { who: "Murugan", text: `And now? Court, lawyers, the child standing in front of a judge?` },
+          { who: "Selvi", text: `There's a woman who stays with Kayal through all of it. A support person, they call her. The hearing is closed — no public, no reporters. Kayal doesn't have to look at him. And her name can't be printed anywhere.` },
+          { who: "Murugan", text: `And you?` },
+          { who: "Selvi", text: `I'm a witness. One day they'll call me and I'll say what I saw. (pause) Anna, I was afraid for two months while I did nothing. This is easier than that was.` }
+        ]},
         { t: "p", lines: [
-          `Any person who suspects, or knows, must report. Section 19.`,
-          `"Any person."`,
-          `Staying quiet is itself an offence. Failure to report can bring up to six months, or a fine, or both — and up to one year for a person in charge of an institution. Section 21.`,
-          `A child is never punished for not reporting. Section 21(3).`,
-          `You do not have to give your name when you report. If you do give it, you may later be asked to give a statement.`,
-          `If the report turns out to be wrong, nothing happens to the person who made it.`,
-          `The law says it plainly: no liability, civil or criminal, for giving information in good faith. Section 19(7).`,
-          `Good faith means honestly believing something was wrong. It does not mean being right. No lawsuit. No prosecution. Even if the investigation finds nothing.`,
-          `A complaint made knowingly to humiliate or defame someone is a different thing, and is itself an offence. Section 22. Reporting an honest suspicion is not.`,
-          `A POCSO case cannot be settled or withdrawn — a compromise, a payment, or a marriage arranged afterwards does not close it.`
-        ]}
-      ]
-    },
-    {
-      id: "5.4",
-      heading: `SCREEN 5.4 — What happens after you report`,
-      severity: "safe",
-      blocks: [
+          `Most people stay quiet because they don't know what they are starting. This is what happens.`
+        ]},
+        { t: "table", headerRow: [`Stop`, `What happens`], rows: [
+          [`1 · The call`, `To 1098, the police, or the SJPU. You give what you noticed. You don't need proof.`],
+          [`2 · The child's safety`, `If the child needs a safe place, the Child Welfare Committee decides. Not you.`],
+          [`3 · The statement`, `Taken once, by a woman officer, in plain clothes, at the child's home or a place the child chooses, with someone the child trusts present. A child is never held at a station overnight.`],
+          [`4 · Medical, only if needed`, `A woman doctor, for a girl child, with a trusted adult present. No FIR is needed first.`],
+          [`5 · The court`, `A Special Court, heard in private. The child does not face the accused. Evidence within thirty days, trial within a year.`],
+          [`6 · Through all of it`, `A support person stays with the child. Free legal aid. Compensation can be ordered at any stage, without waiting for the verdict.`]
+        ]},
         { t: "p", lines: [
-          `Most people stay quiet because they do not know what they are starting. This is what happens.`,
-          `The report goes to the local police or the Special Juvenile Police Unit. If the child needs a safe place or care, the child is placed before the Child Welfare Committee.`,
-          `The statement is taken by a woman police officer, not in uniform, at the child's home or a place the child chooses, with a parent or someone the child trusts sitting there. The child is not kept at a police station at night.`,
-          `If a medical examination is needed, it is done by a woman doctor for a girl child, with someone the child trusts present. No FIR is needed first.`,
-          `The case is heard by a Special Court, in private. The child does not have to face the accused. The evidence is meant to be recorded within thirty days, and the trial finished within a year.`,
-          `The family can ask for a support person to stay with the child through all of it, and for free legal aid. The court can order compensation at any stage, without waiting for the case to end.`,
-          `And you — you may be asked to give a statement as a witness. Nothing that identifies the child can ever be published.`,
+          `You may be called as a witness, and asked to say what you saw.`,
+          `Nothing that identifies the child can ever be published — not the name, not the school, not the photograph.`,
           `Sections 19, 24, 26, 27, 33, 35, 36 and 40.`
         ]},
         { t: "visual", video: `video/ch05-screen-5-4-after-reporting-pathway.mp4`, lines: [
