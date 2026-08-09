@@ -805,7 +805,7 @@ const CHAPTERS = [
         { t: "p", lines: [
           `When a child tells an adult, understand what has just happened. It rarely comes out plainly.`,
           `Indirectly — a boy says "I don't want to go to tuition any more." He is not refusing tuition. He is refusing a person, and hoping someone asks.`,
-          `"What if someone's uncle did something bad to them?" The friend is very often the child asking.`
+          `As a question about "a friend" — "What if someone's uncle did something bad to them?" The friend is very often the child asking.`
         ]},
         { t: "p", lines: [ `The first ten seconds matter most.` ]},
         { t: "sayNotSay", sayHeading: `Say this`, say: [ `"I believe you."`, `"This is not your fault."`, `"I'm glad you told me."`, `"Take your time."` ], sayNote: `Then stay calm and let the child speak without interrupting.`,
@@ -898,7 +898,7 @@ const CHAPTERS = [
       heading: `STATIC PANEL — Where to report`,
       severity: "safe",
       blocks: [
-        { t: "table", headerRow: [`Contact`, `Use`], rows: [
+        { t: "table", headerRow: [``, ``], rows: [
           [`1098`, `Child Helpline — free, day and night`],
           [`1091`, `Women Helpline — Tamil Nadu`],
           [`Local police / SJPU`, `Where the law says the report goes`],
@@ -979,7 +979,7 @@ const CHAPTERS = [
         { t: "p", lines: [
           `You may be called as a witness, and asked to say what you saw.`,
           `Nothing that identifies the child can ever be published — not the name, not the school, not the photograph.`,
-          `Sections 19, 24, 26, 27, 33, 35, 36 and 40.`
+          `Sections 19, 24, 26, 27, 33, 35, 36, 40.`
         ]},
         { t: "visual", video: `video/ch05-screen-5-4-after-reporting-pathway.mp4`, lines: [
           `A single horizontal path with six plain stops: the call · the police or SJPU · the child's statement, at home · the Child Welfare Committee, if care is needed · the Special Court · the trial. No faces, no uniforms, no courtroom drama. The point is that the path exists and is short, not that it is impressive.`
