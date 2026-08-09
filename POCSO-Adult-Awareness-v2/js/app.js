@@ -61,6 +61,7 @@ const state = loadState() || {
   caseAnswers: {},
   caseSubmitted: {},
   branching: {},
+  emergencyChoice: {},
   commitDone: {},
   learnerName: "",
   certGenerated: false
@@ -514,6 +515,7 @@ function render() {
 
   const severity = page.type === "screen" ? (page.screen.severity || "") : (FINAL_PAGE_TYPES.includes(page.type) ? "safe" : "");
   document.body.dataset.severity = severity;
+  document.body.dataset.focusMode = page.type === "screen" && page.screen.focusMode ? "true" : "false";
 
   if (page.type === "intro") renderIntroPage(page, wrap);
   else if (page.type === "screen") renderScreenPage(page, wrap);
@@ -868,6 +870,8 @@ function renderInteractionBlock(block, page, setInteractionCheck) {
     renderMultiSelectCase(div, page, block, setInteractionCheck);
   } else if (kind === "linearBranching") {
     renderLinearBranching(div, page, block, setInteractionCheck);
+  } else if (kind === "emergencyChoice") {
+    renderEmergencyChoice(div, page, block, setInteractionCheck);
   } else if (kind === "commitmentTap") {
     renderCommitment(div, page, block, setInteractionCheck);
   }
@@ -1362,6 +1366,62 @@ function renderWriteRecordPanel(panel) {
     <div class="write-note">${escapeHtml(panel.note)}</div>
   `;
   return div;
+}
+
+/* --- Emergency choice: full-screen stop point with inline 1098 action --- */
+function renderEmergencyChoice(container, page, block, setInteractionCheck) {
+  const key = page.id;
+  if (!state.emergencyChoice) state.emergencyChoice = {};
+  const selected = state.emergencyChoice[key];
+
+  const box = document.createElement("div");
+  box.className = "emergency-choice-box";
+  box.innerHTML = `
+    <a class="emergency-persistent-call" href="tel:1098" aria-label="Call Child Helpline 1098">1098</a>
+    <div class="emergency-question">${escapeHtml(block.data.question)}</div>
+    <div class="emergency-choices"></div>
+    <div class="emergency-feedback" hidden></div>
+  `;
+  container.appendChild(box);
+
+  const choicesEl = box.querySelector(".emergency-choices");
+  const feedbackEl = box.querySelector(".emergency-feedback");
+
+  function showFeedback(choice) {
+    feedbackEl.hidden = false;
+    feedbackEl.className = "emergency-feedback " + (choice.urgent ? "urgent" : "steady");
+    feedbackEl.innerHTML = `
+      <div>${escapeHtml(choice.feedback)}</div>
+      ${choice.urgent ? `<a class="emergency-call" href="tel:1098" aria-label="Call Child Helpline 1098">Call 1098</a>` : ""}
+      <button type="button" class="btn btn-primary emergency-continue">Continue</button>
+    `;
+    feedbackEl.querySelector(".emergency-continue").addEventListener("click", () => {
+      state.completedPages[currentPage().id] = true;
+      if (state.currentIndex < PAGES.length - 1) {
+        state.currentIndex++;
+        saveState();
+        render();
+      }
+    });
+  }
+
+  block.data.choices.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "emergency-choice" + (selected === i ? " selected" : "");
+    btn.textContent = choice.label;
+    btn.addEventListener("click", () => {
+      state.emergencyChoice[key] = i;
+      saveState();
+      choice.urgent ? SFX.incorrect() : SFX.correct();
+      showFeedback(choice);
+      notify(document.querySelector("#stage .page"));
+    });
+    choicesEl.appendChild(btn);
+  });
+
+  if (selected !== undefined && block.data.choices[selected]) showFeedback(block.data.choices[selected]);
+  setInteractionCheck(() => state.emergencyChoice[key] !== undefined);
 }
 
 /* --- Commitment tap --- */

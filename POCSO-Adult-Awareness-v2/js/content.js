@@ -879,33 +879,18 @@ const CHAPTERS = [
     },
     {
       id: "5.2b",
-      heading: `SCREEN 5.2 — What not to do`,
+      heading: `SCREEN 5.2b`,
       severity: "warning",
+      focusMode: true,
       blocks: [
-        { t: "p", heading: `Do not promise secrecy.`, lines: [
-          `A child will often ask first: "Promise you won't tell anyone." That promise cannot be kept — reporting is a legal duty, and secrecy leaves the child where they are.`
-        ]},
-        { t: "quote", heading: `Say this instead:`, lines: [
-          `"I can't promise to keep it a secret, because if somebody is hurting you, my job is to make it stop. But I promise I'll tell you who I'm telling. And I'll stay with you through it."`
-        ]},
-        { t: "p", heading: `Do not investigate.`, lines: [
-          `No leading questions. "Did he touch you here?" puts information into the child's account that they did not give.`,
-          `Two questions are enough: "Can you tell me what happened?" and "Is there anything else you want to tell me?" Then stop.`
-        ]},
-        { t: "p", lines: [
-          `Do not make the child repeat it to a second, third and fourth adult.`,
-          `Do not photograph or examine the child.`
-        ]},
-        { t: "list", heading: `Write it down, the same day.`, items: [
-          `The child's exact words, in the language they used. Do not translate. Do not tidy them up`,
-          `Date and time`,
-          `Where, and who else was there`
-        ]},
-        { t: "p", lines: [
-          `One question before anything else: does the child have to go back tonight to where that person is?`,
-          `If yes — call 1098 immediately.`,
-          `Do not send the child home with the person suspected.`
-        ]}
+        { t: "interaction", kind: "emergencyChoice", data: {
+          question: `Tonight — does the child go back to where that person is?`,
+          choices: [
+            { label: `YES`, urgent: true, feedback: `Call 1098 now. Do not send the child home with the person suspected. This is not a decision you make alone, and it is not a decision for tomorrow morning.` },
+            { label: `NO`, urgent: false, feedback: `You still report. Section 19 has no "wait and see" clause. But you are not racing the clock tonight.` },
+            { label: `I DON'T KNOW`, urgent: true, feedback: `Then treat it as yes. Call 1098 now.` }
+          ]
+        }}
       ]
     },
     {

@@ -144,6 +144,15 @@ body{
 .chapter-item.active .ch-sub{color:rgba(255,255,255,.7)}
 @media(min-width:900px){.sidebar{display:block}}
 
+body[data-focus-mode="true"] .topbar,
+body[data-focus-mode="true"] .sidebar,
+body[data-focus-mode="true"] .footer,
+body[data-focus-mode="true"] .head-row-flex{display:none !important}
+body[data-focus-mode="true"] #app{min-height:100vh}
+body[data-focus-mode="true"] .layout{max-width:none;min-height:100vh}
+body[data-focus-mode="true"] .stage{padding:0;align-items:center;min-height:100vh}
+body[data-focus-mode="true"] .page{max-width:none;min-height:100vh;display:flex;align-items:center;justify-content:center}
+
 /* ---------- Stage / page ---------- */
 .stage{flex:1;min-width:0;overflow-x:hidden;padding:28px 20px 96px;display:flex;justify-content:center}
 .page{width:100%;max-width:700px;min-width:0}
@@ -422,6 +431,44 @@ body{
   .write-row{grid-template-columns:1fr}
   .write-row div:first-child{border-right:none;background:#f8fcf8}
   .write-row div:nth-child(2){background:#fff8f7}
+}
+
+/* ---------- Emergency stop choice ---------- */
+.emergency-choice-box{
+  width:100%;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:clamp(28px,6vw,72px);text-align:center;background:#fffdf7;
+}
+.emergency-persistent-call{
+  position:fixed;right:18px;top:18px;z-index:30;border-radius:999px;background:var(--danger);color:#fff;
+  text-decoration:none;font-weight:900;letter-spacing:.04em;padding:12px 18px;box-shadow:0 8px 24px rgba(163,55,43,.28);
+}
+.emergency-question{
+  color:var(--navy);font-weight:900;line-height:1.15;font-size:clamp(2rem,5.5vw,4.4rem);
+  max-width:980px;margin:0 auto 34px;
+}
+.emergency-choices{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.emergency-choice{
+  min-width:150px;border:2px solid var(--navy);background:#fff;color:var(--navy);
+  border-radius:8px;padding:15px 22px;font-size:1rem;font-weight:900;letter-spacing:.04em;cursor:pointer;
+  transition:background .15s,color .15s,border-color .15s,transform .1s;
+}
+.emergency-choice:hover,.emergency-choice.selected{background:var(--navy);color:#fff;border-color:var(--navy)}
+.emergency-choice:active{transform:scale(.97)}
+.emergency-feedback{
+  margin-top:26px;max-width:780px;border-radius:8px;padding:18px 20px;font-size:1rem;line-height:1.55;text-align:left;
+}
+.emergency-feedback.urgent{background:#fbeeec;border:1px solid var(--danger);color:#6e2318}
+.emergency-feedback.steady{background:#eef6ef;border:1px solid var(--ok);color:#1e4a2c}
+.emergency-call{
+  display:flex;align-items:center;justify-content:center;width:100%;margin-top:18px;border-radius:8px;
+  background:var(--danger);color:#fff;text-decoration:none;font-size:2.2rem;font-weight:900;padding:18px 20px;
+}
+.emergency-continue{margin-top:14px}
+@media(max-width:520px){
+  .emergency-choice-box{padding:24px 18px}
+  .emergency-choices{width:100%;flex-direction:column}
+  .emergency-choice{width:100%}
+  .emergency-feedback{text-align:center}
 }
 
 /* ---------- Commitment tap ---------- */
