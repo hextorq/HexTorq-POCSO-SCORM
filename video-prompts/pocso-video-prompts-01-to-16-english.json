@@ -1,0 +1,1389 @@
+{
+  "project": "POCSO Adult Awareness",
+  "format": "Google video generation prompts",
+  "version": "english-only-v1",
+  "duration_seconds_each": 10,
+  "global_rule": "For all 16 videos: English voiceover only. Do not use Tamil voiceover. No on-screen text at all: no words, letters, numbers, captions, subtitles, labels, title cards, signs, readable phone screens, readable documents, stamps, or UI text. No logos at all: do not add any logo, emblem, badge, seal, watermark, official mark, brand mark, or corner image. Keep each video to 7-9 fast visual beats within 10 seconds. Avoid abuse depiction, distress, explicit content, villain framing, police raid imagery, courtroom drama, sensational music, and crime-documentary style.",
+  "common_style": {
+    "visual_style": "clean public-awareness animation with warm realistic Indian/Tamil Nadu context",
+    "aspect_ratio": "16:9",
+    "resolution": "1920x1080",
+    "duration_seconds": 10,
+    "pace": "lively, clear, 7-9 quick beats",
+    "color_palette": "navy, white, gold, warm daylight, soft green for safety, soft red only for caution",
+    "logos": "No logos at all. Do not add any logo, emblem, badge, seal, watermark, official mark, brand mark, or corner image anywhere in the video."
+  },
+  "prompts": [
+    {
+      "asset_id": "video_01",
+      "chapter": 1,
+      "screen": "1.1",
+      "title": "Opening",
+      "target_file": "video/ch01-screen-1-1-opening.mp4",
+      "language": "English",
+      "voiceover": "POCSO is a law that protects children. It matters to every adult, not only police, lawyers, or teachers. Wherever children are present, adults must know the line and act responsibly.",
+      "onscreen_text_rule": "No on-screen text at all. Do not generate words, letters, numbers, captions, subtitles, labels, title cards, legal text, button text, UI text, signage, stamps, readable phone/document content, logos, emblems, seals, badges, watermarks, brand marks, official marks, or corner images anywhere in the video. The message must come only from the English voiceover and non-branded visuals.",
+      "timeline": [
+        {
+          "time": "00:00-00:01.25",
+          "scene": "a bright Tamil Nadu street morning.",
+          "camera": "wide establishing shot",
+          "animation": "soft light sweep"
+        },
+        {
+          "time": "00:01.25-00:02.50",
+          "scene": "Tea stall with ordinary adults; schoolchildren pass safely in the background.",
+          "camera": "medium eye-level",
+          "animation": "gentle crossfade"
+        },
+        {
+          "time": "00:02.50-00:03.75",
+          "scene": "Bus stop with parents, workers, and children waiting in a normal public space.",
+          "camera": "wide steady shot",
+          "animation": "subtle parallax"
+        },
+        {
+          "time": "00:03.75-00:05.00",
+          "scene": "School gate at pickup time; adults wait respectfully outside.",
+          "camera": "medium-wide",
+          "animation": "brief gold safety line moves across frame"
+        },
+        {
+          "time": "00:05.00-00:06.25",
+          "scene": "Neighbourhood shopkeeper hands a notebook to a child while another adult stands nearby.",
+          "camera": "side angle",
+          "animation": "warm transition blur"
+        },
+        {
+          "time": "00:06.25-00:07.50",
+          "scene": "Apartment lobby watchman notices children and visitors entering the building.",
+          "camera": "medium shot",
+          "animation": "small shield outline appears briefly"
+        },
+        {
+          "time": "00:07.50-00:08.75",
+          "scene": "A hand checks a phone; the phone stays abstract, no messages shown.",
+          "camera": "close-up",
+          "animation": "screen glow, no readable content"
+        },
+        {
+          "time": "00:08.75-00:10.00",
+          "scene": "Wide public street with adults and children sharing space safely; soft shield glow in the background.",
+          "camera": "wide final hold",
+          "animation": "shield fades out"
+        }
+      ],
+      "audio_direction": "Clear English adult narrator, calm and serious, low warm music, light real-world ambience.",
+      "negative_prompt": [
+        "no Tamil",
+        "no on-screen text",
+        "no captions or any on-screen text",
+        "no abuse depiction",
+        "no distressed child",
+        "no villain",
+        "no dark alley",
+        "no police arrest",
+        "no courtroom",
+        "no words",
+        "no letters",
+        "no numbers",
+        "no labels",
+        "no title cards",
+        "no readable phone screens",
+        "no readable documents",
+        "no logos",
+        "no extra marks",
+        "no emblems",
+        "no badges",
+        "no seals",
+        "no watermarks",
+        "no brand marks",
+        "no official marks",
+        "no corner images"
+      ]
+    },
+    {
+      "asset_id": "video_02",
+      "chapter": 1,
+      "screen": "1.2",
+      "title": "The Name",
+      "target_file": "video/ch01-screen-1-2-the-name.mp4",
+      "language": "English",
+      "voiceover": "POCSO means the Protection of Children from Sexual Offences Act, 2012. It is a central law passed by Parliament, and it applies across India, including Tamil Nadu.",
+      "onscreen_text_rule": "No on-screen text at all. Do not generate words, letters, numbers, captions, subtitles, labels, title cards, legal text, button text, UI text, signage, stamps, readable phone/document content, logos, emblems, seals, badges, watermarks, brand marks, official marks, or corner images anywhere in the video. The message must come only from the English voiceover and non-branded visuals.",
+      "timeline": [
+        {
+          "time": "00:00-00:01.25",
+          "scene": "Clean navy background with a clean non-branded frame.",
+          "camera": "static centered",
+          "animation": "soft soft fade"
+        },
+        {
+          "time": "00:01.25-00:02.50",
+          "scene": "An official document silhouette slides in, blank except for a blank official-looking shape.",
+          "camera": "flat motion graphic",
+          "animation": "paper slide with no readable text and no official marks"
+        },
+        {
+          "time": "00:02.50-00:03.75",
+          "scene": "Short a clean abstract law-document motion appears with no readable text.",
+          "camera": "center frame",
+          "animation": "clean title reveal"
+        },
+        {
+          "time": "00:03.75-00:05.00",
+          "scene": "Map outline of India appears with Tamil Nadu highlighted softly.",
+          "camera": "graphic close",
+          "animation": "gentle highlight pulse"
+        },
+        {
+          "time": "00:05.00-00:06.25",
+          "scene": "Parliament building visual and law book visual appear side by side.",
+          "camera": "flat graphic",
+          "animation": "simple visual elements rise into place"
+        },
+        {
+          "time": "00:06.25-00:07.50",
+          "scene": "Families, teachers, neighbours, and workers appear as simple respectful silhouettes.",
+          "camera": "wide graphic",
+          "animation": "people simple visual elements fade in"
+        },
+        {
+          "time": "00:07.50-00:08.75",
+          "scene": "A protective shield surrounds a child simple visual element, with adults outside the shield.",
+          "camera": "centered graphic",
+          "animation": "shield line draws itself"
+        },
+        {
+          "time": "00:08.75-00:10.00",
+          "scene": "Return to the clean text card with the official visual tone.",
+          "camera": "static final",
+          "animation": "subtle gold accent glow"
+        }
+      ],
+      "audio_direction": "Clear English narrator, official but warm, no dramatic music.",
+      "negative_prompt": [
+        "no Tamil",
+        "no on-screen text",
+        "no readable documents",
+        "no courtroom",
+        "no crime scene",
+        "no words",
+        "no letters",
+        "no numbers",
+        "no labels",
+        "no title cards",
+        "no readable phone screens",
+        "no logos",
+        "no extra marks",
+        "no emblems",
+        "no badges",
+        "no seals",
+        "no watermarks",
+        "no brand marks",
+        "no official marks",
+        "no corner images"
+      ]
+    },
+    {
+      "asset_id": "video_03",
+      "chapter": 1,
+      "screen": "1.5",
+      "title": "Boys Are Children Too",
+      "target_file": "video/ch01-screen-1-5-boys-are-children-too.mp4",
+      "language": "English",
+      "voiceover": "POCSO protects every child below 18. A girl, a boy, or a child of any gender is protected. The law does not protect only one kind of child.",
+      "onscreen_text_rule": "No on-screen text at all. Do not generate words, letters, numbers, captions, subtitles, labels, title cards, legal text, button text, UI text, signage, stamps, readable phone/document content, logos, emblems, seals, badges, watermarks, brand marks, official marks, or corner images anywhere in the video. The message must come only from the English voiceover and non-branded visuals.",
+      "timeline": [
+        {
+          "time": "00:00-00:01.20",
+          "scene": "Bright school courtyard, children of different genders enter frame equally.",
+          "camera": "wide balanced shot",
+          "animation": "soft daylight fade"
+        },
+        {
+          "time": "00:01.20-00:02.40",
+          "scene": "Three simple child silhouettes appear side by side with equal height and equal lighting.",
+          "camera": "center graphic",
+          "animation": "simple visual elements pop in gently"
+        },
+        {
+          "time": "00:02.40-00:03.60",
+          "scene": "A neutral age marker shows the below-18 idea with a non-readable age-boundary visual.",
+          "camera": "close graphic",
+          "animation": "number line highlights under 18"
+        },
+        {
+          "time": "00:03.60-00:04.80",
+          "scene": "Shield outline expands around all child silhouettes at the same time.",
+          "camera": "centered",
+          "animation": "single shield stroke"
+        },
+        {
+          "time": "00:04.80-00:06.00",
+          "scene": "Adult silhouettes stand outside the shield, representing responsibility, not threat.",
+          "camera": "wide graphic",
+          "animation": "calm fade-in"
+        },
+        {
+          "time": "00:06.00-00:07.20",
+          "scene": "Balanced real-life montage: playground, classroom corridor, street crossing.",
+          "camera": "quick cuts",
+          "animation": "clean wipe transitions"
+        },
+        {
+          "time": "00:07.20-00:08.60",
+          "scene": "All children are shown upright, confident, and equally visible.",
+          "camera": "medium group frame",
+          "animation": "warm glow behind group"
+        },
+        {
+          "time": "00:08.60-00:10.00",
+          "scene": "Final protective shield holds around the group; no logos appear.",
+          "camera": "steady final",
+          "animation": "shield gently pulses once"
+        }
+      ],
+      "audio_direction": "Clear English narrator, reassuring and firm.",
+      "negative_prompt": [
+        "no Tamil",
+        "no on-screen text",
+        "no crying child",
+        "no unequal framing",
+        "no hidden faces",
+        "no stereotype that only girls are protected",
+        "no words",
+        "no letters",
+        "no numbers",
+        "no labels",
+        "no title cards",
+        "no readable phone screens",
+        "no readable documents",
+        "no logos",
+        "no extra marks",
+        "no emblems",
+        "no badges",
+        "no seals",
+        "no watermarks",
+        "no brand marks",
+        "no official marks",
+        "no corner images"
+      ]
+    },
+    {
+      "asset_id": "video_04",
+      "chapter": 1,
+      "screen": "1.6",
+      "title": "Where the Danger Actually Is",
+      "target_file": "video/ch01-screen-1-6-where-the-danger-is.mp4",
+      "language": "English",
+      "voiceover": "Danger does not always look like a stranger in the dark. Often, risk can come from someone known to the child. Do not judge safety by appearance alone.",
+      "onscreen_text_rule": "No on-screen text at all. Do not generate words, letters, numbers, captions, subtitles, labels, title cards, legal text, button text, UI text, signage, stamps, readable phone/document content, logos, emblems, seals, badges, watermarks, brand marks, official marks, or corner images anywhere in the video. The message must come only from the English voiceover and non-branded visuals.",
+      "timeline": [
+        {
+          "time": "00:00-00:01.20",
+          "scene": "A bright neighbourhood lane, normal daytime activity.",
+          "camera": "wide realistic shot",
+          "animation": "soft fade in"
+        },
+        {
+          "time": "00:01.20-00:02.40",
+          "scene": "A familiar adult waves politely near a public place; no menace, no darkness.",
+          "camera": "medium shot",
+          "animation": "gentle freeze-frame outline"
+        },
+        {
+          "time": "00:02.40-00:03.60",
+          "scene": "A family gathering scene where several known adults are present.",
+          "camera": "wide indoor daylight",
+          "animation": "subtle focus shift"
+        },
+        {
+          "time": "00:03.60-00:04.80",
+          "scene": "A child's support circle appears: parent, teacher, neighbour, coach simple visual elements.",
+          "camera": "flat graphic",
+          "animation": "simple visual elements arrange in a circle"
+        },
+        {
+          "time": "00:04.80-00:06.00",
+          "scene": "One simple visual element is highlighted neutrally, showing risk is about behaviour, not looks.",
+          "camera": "graphic close",
+          "animation": "soft caution ring"
+        },
+        {
+          "time": "00:06.00-00:07.20",
+          "scene": "Checklist extra marks appear without words; show secrecy, gifts, isolation, and pressure only through non-readable visual actions.",
+          "camera": "graphic montage",
+          "animation": "simple visual elements flash gently"
+        },
+        {
+          "time": "00:07.20-00:08.60",
+          "scene": "Adult observer pauses, notices a concerning pattern, and chooses alertness.",
+          "camera": "medium realistic shot",
+          "animation": "warm-to-caution color shift"
+        },
+        {
+          "time": "00:08.60-00:10.00",
+          "scene": "Final frame: a safe public circle around children, adults watching responsibly.",
+          "camera": "wide final",
+          "animation": "shield closes softly"
+        }
+      ],
+      "audio_direction": "Clear English narrator, serious but non-sensational.",
+      "negative_prompt": [
+        "no Tamil",
+        "no on-screen text",
+        "no villain face",
+        "no dark alley",
+        "no abuse depiction",
+        "no fear-based visuals",
+        "no words",
+        "no letters",
+        "no numbers",
+        "no labels",
+        "no title cards",
+        "no readable phone screens",
+        "no readable documents",
+        "no logos",
+        "no extra marks",
+        "no emblems",
+        "no badges",
+        "no seals",
+        "no watermarks",
+        "no brand marks",
+        "no official marks",
+        "no corner images"
+      ]
+    },
+    {
+      "asset_id": "video_05",
+      "chapter": 1,
+      "screen": "1.8",
+      "title": "Why This Module Is Addressed To You",
+      "target_file": "video/ch01-screen-1-8-applies-to-you.mp4",
+      "language": "English",
+      "voiceover": "An adult can cross the law by harming a child, or by knowing or suspecting and staying silent. This module helps you know the line, and never stand beside it in silence.",
+      "onscreen_text_rule": "No on-screen text at all. Do not generate words, letters, numbers, captions, subtitles, labels, title cards, legal text, button text, UI text, signage, stamps, readable phone/document content, logos, emblems, seals, badges, watermarks, brand marks, official marks, or corner images anywhere in the video. The message must come only from the English voiceover and non-branded visuals.",
+      "timeline": [
+        {
+          "time": "00:00-00:01.15",
+          "scene": "Split-screen graphic: one side shows a warning hand simple visual element stopped by a shield, the other shows a silent phone simple visual element.",
+          "camera": "center graphic",
+          "animation": "clean split reveal"
+        },
+        {
+          "time": "00:01.15-00:02.30",
+          "scene": "Adult silhouette sees a concern and pauses, thinking.",
+          "camera": "medium realistic",
+          "animation": "subtle pause highlight"
+        },
+        {
+          "time": "00:02.30-00:03.45",
+          "scene": "Two simple paths appear: harmful action and silent inaction, both marked with caution color.",
+          "camera": "top-down graphic",
+          "animation": "two path lines draw"
+        },
+        {
+          "time": "00:03.45-00:04.60",
+          "scene": "A protective boundary line appears between adults and children.",
+          "camera": "wide graphic",
+          "animation": "gold line draws across frame"
+        },
+        {
+          "time": "00:04.60-00:05.75",
+          "scene": "The silence path changes into a report pathway simple visual element.",
+          "camera": "graphic close",
+          "animation": "phone simple visual element turns into report simple visual element"
+        },
+        {
+          "time": "00:05.75-00:06.90",
+          "scene": "Adult chooses action: moves toward a help desk/report visual mark, not toward the child.",
+          "camera": "medium shot",
+          "animation": "calm forward motion"
+        },
+        {
+          "time": "00:06.90-00:08.20",
+          "scene": "Children are shown safe in a public space, no distress.",
+          "camera": "wide warm shot",
+          "animation": "soft safety glow"
+        },
+        {
+          "time": "00:08.20-00:10.00",
+          "scene": "Final frame: boundary line and shield remain; no logos appear.",
+          "camera": "steady final",
+          "animation": "three three abstract action beats fade in without text"
+        }
+      ],
+      "audio_direction": "Clear English narrator, firm and direct, no fear tone.",
+      "negative_prompt": [
+        "no Tamil",
+        "no on-screen text",
+        "no explicit harm",
+        "no accused person",
+        "no crying child",
+        "no police raid",
+        "no words",
+        "no letters",
+        "no numbers",
+        "no labels",
+        "no title cards",
+        "no readable phone screens",
+        "no readable documents",
+        "no logos",
+        "no extra marks",
+        "no emblems",
+        "no badges",
+        "no seals",
+        "no watermarks",
+        "no brand marks",
+        "no official marks",
+        "no corner images"
+      ]
+    },
+    {
+      "asset_id": "video_06",
+      "chapter": 2,
+      "screen": "2.1",
+      "title": "Four Kinds Opening",
+      "target_file": "video/ch02-screen-2-1-four-kinds-opening.mp4",
+      "language": "English",
+      "voiceover": "POCSO covers four broad kinds of offences. Some involve touch, some do not. The law looks at sexual intent, the child's age, and the adult's duty.",
+      "onscreen_text_rule": "No on-screen text at all. Do not generate words, letters, numbers, captions, subtitles, labels, title cards, legal text, button text, UI text, signage, stamps, readable phone/document content, logos, emblems, seals, badges, watermarks, brand marks, official marks, or corner images anywhere in the video. The message must come only from the English voiceover and non-branded visuals.",
+      "timeline": [
+        {
+          "time": "00:00-00:01.10",
+          "scene": "Clean four-panel grid appears on navy-white background.",
+          "camera": "flat graphic",
+          "animation": "panels slide in"
+        },
+        {
+          "time": "00:01.10-00:02.20",
+          "scene": "Panel one: abstract boundary simple visual element, no body depiction.",
+          "camera": "panel close",
+          "animation": "caution line draws"
+        },
+        {
+          "time": "00:02.20-00:03.30",
+          "scene": "Panel two: hand-stop simple visual element representing physical contact rules.",
+          "camera": "panel close",
+          "animation": "stop visual mark appears"
+        },
+        {
+          "time": "00:03.30-00:04.40",
+          "scene": "Panel three: speech bubble and phone simple visual element representing harassment without touch.",
+          "camera": "panel close",
+          "animation": "message simple visual element fades, no readable content shown"
+        },
+        {
+          "time": "00:04.40-00:05.50",
+          "scene": "Panel four: blank media frame locked behind a shield.",
+          "camera": "panel close",
+          "animation": "lock closes"
+        },
+        {
+          "time": "00:05.50-00:06.70",
+          "scene": "All four panels align into a single legal-awareness board.",
+          "camera": "wide graphic",
+          "animation": "grid snaps into place"
+        },
+        {
+          "time": "00:06.70-00:08.20",
+          "scene": "Adults from different roles appear around the board: parent, teacher, shopkeeper, neighbour.",
+          "camera": "wide graphic",
+          "animation": "simple visual elements fade in"
+        },
+        {
+          "time": "00:08.20-00:10.00",
+          "scene": "Shield covers the four categories; no logos appear.",
+          "camera": "final center",
+          "animation": "soft gold pulse"
+        }
+      ],
+      "audio_direction": "Clear English narrator, organized and calm.",
+      "negative_prompt": [
+        "no Tamil",
+        "no on-screen text",
+        "no explicit visuals",
+        "no child body depiction",
+        "no sensational crime visuals",
+        "no words",
+        "no letters",
+        "no numbers",
+        "no labels",
+        "no title cards",
+        "no readable phone screens",
+        "no readable documents",
+        "no logos",
+        "no extra marks",
+        "no emblems",
+        "no badges",
+        "no seals",
+        "no watermarks",
+        "no brand marks",
+        "no official marks",
+        "no corner images"
+      ]
+    },
+    {
+      "asset_id": "video_07",
+      "chapter": 2,
+      "screen": "2.4",
+      "title": "Personal Space Boundary Rule",
+      "target_file": "replace_existing_video_07.mp4",
+      "language": "English",
+      "voiceover": "This lesson is about a child’s personal space. If an adult crosses that boundary in an unsafe way, agreement is not the test. Below 18, the child is protected, and adults must notice, stop, and report concerns.",
+      "onscreen_text_rule": "No on-screen text at all. Do not generate words, letters, numbers, captions, subtitles, labels, title cards, legal text, button text, UI text, signage, stamps, readable phone or document content, logos, emblems, seals, badges, watermarks, brand marks, official marks, or corner images anywhere in the video. The message must come only from the English voiceover and non-branded visuals.",
+      "timeline": [
+        {
+          "time": "00:00-00:01.20",
+          "scene": "A school corridor in daylight. A child stands calmly inside a clear glowing personal-space circle. Other students pass normally in the background.",
+          "camera": "wide realistic-style frame",
+          "animation": "personal-space circle fades in around the child"
+        },
+        {
+          "time": "00:01.20-00:02.40",
+          "scene": "An adult silhouette steps toward the edge of the circle, then stops outside it. The boundary becomes brighter, showing the line that must not be crossed.",
+          "camera": "medium side angle",
+          "animation": "boundary line brightens at the edge"
+        },
+        {
+          "time": "00:02.40-00:03.60",
+          "scene": "The adult silhouette moves back to a respectful distance. The child remains calm, upright, and protected. No physical contact is shown.",
+          "camera": "medium clean frame",
+          "animation": "space opens between the two silhouettes"
+        },
+        {
+          "time": "00:03.60-00:04.80",
+          "scene": "A second visual shows an adult pointing a child toward another person, but a protective boundary appears between them before anyone gets close.",
+          "camera": "abstract graphic frame",
+          "animation": "protective boundary appears before the gap closes"
+        },
+        {
+          "time": "00:04.80-00:06.00",
+          "scene": "A non-readable age boundary appears as two zones: child zone and adult zone, with the child zone protected by warm light. No numbers or words appear.",
+          "camera": "flat graphic close-up",
+          "animation": "child zone glows gently"
+        },
+        {
+          "time": "00:06.00-00:07.20",
+          "scene": "A responsible adult observer notices the boundary concern from a distance, stays calm, and turns toward a help pathway instead of confronting the child.",
+          "camera": "medium realistic-style shot",
+          "animation": "subtle focus highlight on observer"
+        },
+        {
+          "time": "00:07.20-00:08.60",
+          "scene": "Abstract pathway without words: concern is noticed, the adult pauses, a help channel opens, and the child-safe space becomes stronger.",
+          "camera": "left-to-right motion graphic",
+          "animation": "four visual beats connect with a soft gold line"
+        },
+        {
+          "time": "00:08.60-00:10.00",
+          "scene": "Final frame: the child stands safely inside a protected personal-space circle, adults remain outside at respectful distance, and the help pathway is visible as abstract shapes. No logos and no text appear.",
+          "camera": "steady final frame",
+          "animation": "protective circle glow settles and fades"
+        }
+      ],
+      "audio_direction": "Clear English narrator, calm and precise. Keep it relevant to unsafe personal-space boundary crossing involving a child, but do not show any contact or distress. No dramatic music, no fear tone.",
+      "negative_prompt": [
+        "no Tamil",
+        "no on-screen text",
+        "no words",
+        "no letters",
+        "no numbers",
+        "no labels",
+        "no title cards",
+        "no readable phone screens",
+        "no readable documents",
+        "no logos",
+        "no emblems",
+        "no badges",
+        "no seals",
+        "no watermarks",
+        "no brand marks",
+        "no official marks",
+        "no corner images",
+        "no explicit content",
+        "no physical contact shown",
+        "no close body interaction",
+        "no abuse depiction",
+        "no distressed child",
+        "no threatening adult",
+        "no crime scene",
+        "no police raid",
+        "no courtroom"
+      ]
+    },
+    {
+      "asset_id": "video_08",
+      "chapter": 2,
+      "screen": "2.5",
+      "title": "Sexual Harassment Section 11",
+      "target_file": "video/ch02-screen-2-5-sexual-harassment-section-11.mp4",
+      "language": "English",
+      "voiceover": "Sexual harassment under POCSO does not require touching. Sexual words, gestures, requests, showing sexual material, or repeated watching can become an offence.",
+      "onscreen_text_rule": "No on-screen text at all. Do not generate words, letters, numbers, captions, subtitles, labels, title cards, legal text, button text, UI text, signage, stamps, readable phone/document content, logos, emblems, seals, badges, watermarks, brand marks, official marks, or corner images anywhere in the video. The message must come only from the English voiceover and non-branded visuals.",
+      "timeline": [
+        {
+          "time": "00:00-00:01.10",
+          "scene": "Phone and speech bubble simple visual elements appear on clean background, with no readable phone content.",
+          "camera": "graphic close",
+          "animation": "simple visual elements fade in"
+        },
+        {
+          "time": "00:01.10-00:02.20",
+          "scene": "Speech bubble turns into a caution visual mark.",
+          "camera": "center graphic",
+          "animation": "bubble morph"
+        },
+        {
+          "time": "00:02.20-00:03.30",
+          "scene": "Gesture simple visual element is blocked by a shield.",
+          "camera": "graphic close",
+          "animation": "shield swipe"
+        },
+        {
+          "time": "00:03.30-00:04.40",
+          "scene": "Request simple visual element appears as a question mark inside a warning triangle.",
+          "camera": "graphic close",
+          "animation": "triangle draws"
+        },
+        {
+          "time": "00:04.40-00:05.50",
+          "scene": "Blank media thumbnail appears and is immediately covered by a lock.",
+          "camera": "graphic close",
+          "animation": "lock snaps shut"
+        },
+        {
+          "time": "00:05.50-00:06.70",
+          "scene": "Watching-eye simple visual element appears, then changes into a caution marker.",
+          "camera": "center graphic",
+          "animation": "eye simple visual element fades to warning"
+        },
+        {
+          "time": "00:06.70-00:08.20",
+          "scene": "Four simple visual elements align under a protective legal shield.",
+          "camera": "wide graphic",
+          "animation": "simple visual elements settle into grid"
+        },
+        {
+          "time": "00:08.20-00:10.00",
+          "scene": "Adult awareness visual mark appears: observe, stop, report.",
+          "camera": "final frame",
+          "animation": "three small simple visual elements appear, no sentences"
+        }
+      ],
+      "audio_direction": "Clear English narrator, direct and serious.",
+      "negative_prompt": [
+        "no Tamil",
+        "no on-screen text",
+        "no explicit messages",
+        "no sexual material",
+        "no stalking depiction",
+        "no distress",
+        "no words",
+        "no letters",
+        "no numbers",
+        "no labels",
+        "no title cards",
+        "no readable phone screens",
+        "no readable documents",
+        "no logos",
+        "no extra marks",
+        "no emblems",
+        "no badges",
+        "no seals",
+        "no watermarks",
+        "no brand marks",
+        "no official marks",
+        "no corner images"
+      ]
+    },
+    {
+      "asset_id": "video_09",
+      "chapter": 2,
+      "screen": "2.6",
+      "title": "Unsafe Phone Content Response",
+      "target_file": "replace_existing_video_09.mp4",
+      "language": "English",
+      "voiceover": "If unsafe content involving a child reaches your phone, do not share, save, or show it. Stop first. Keep the phone aside, report it, and follow guidance.",
+      "onscreen_text_rule": "No on-screen text at all. Do not generate words, letters, numbers, captions, subtitles, labels, title cards, legal text, button text, UI text, signage, stamps, readable phone or document content, logos, emblems, seals, badges, watermarks, brand marks, official marks, or corner images anywhere in the video. The message must come only from the English voiceover and non-branded visuals.",
+      "timeline": [
+        {
+          "time": "00:00-00:01.20",
+          "scene": "A phone on a table receives a blurred, unreadable media notification. The screen shows only abstract blur, no image, no message, no readable content.",
+          "camera": "close-up on phone",
+          "animation": "soft notification glow, no text"
+        },
+        {
+          "time": "00:01.20-00:02.40",
+          "scene": "A hand reaches toward the phone, pauses before opening or sharing anything, and stops.",
+          "camera": "close-up side angle",
+          "animation": "motion slows and freezes gently"
+        },
+        {
+          "time": "00:02.40-00:03.60",
+          "scene": "The share action is represented only by an abstract arrow shape that fades out before completing. No app interface is shown.",
+          "camera": "abstract graphic overlay",
+          "animation": "arrow dissolves before moving forward"
+        },
+        {
+          "time": "00:03.60-00:04.80",
+          "scene": "The save action is represented by a generic storage shape closing and fading away. No phone gallery or file screen is shown.",
+          "camera": "clean graphic close-up",
+          "animation": "storage shape closes softly"
+        },
+        {
+          "time": "00:04.80-00:06.00",
+          "scene": "The adult places the phone face down on a table calmly, keeping it aside and not circulating anything.",
+          "camera": "medium realistic-style shot",
+          "animation": "warm focus on responsible pause"
+        },
+        {
+          "time": "00:06.00-00:07.20",
+          "scene": "A non-readable help pathway appears as abstract shapes: phone, responsible adult, help channel, safe outcome. No words or numbers.",
+          "camera": "left-to-right graphic",
+          "animation": "four visual beats connect with a gold line"
+        },
+        {
+          "time": "00:07.20-00:08.60",
+          "scene": "The child-safe outcome appears as a protected light circle around a child silhouette, separate from the phone.",
+          "camera": "wide clean graphic",
+          "animation": "protective circle forms gently"
+        },
+        {
+          "time": "00:08.60-00:10.00",
+          "scene": "Final frame: phone remains closed on the table, help pathway remains abstract, and the child-safe circle stays protected. No logos and no text appear.",
+          "camera": "steady final frame",
+          "animation": "calm fade out"
+        }
+      ],
+      "audio_direction": "Clear English narrator, calm and procedural. Keep the voiceover precise and under 10 seconds. Do not describe illegal material in detail. No dramatic music, no fear tone.",
+      "negative_prompt": [
+        "no Tamil",
+        "no on-screen text",
+        "no words",
+        "no letters",
+        "no numbers",
+        "no labels",
+        "no title cards",
+        "no readable phone screens",
+        "no readable messages",
+        "no readable documents",
+        "no logos",
+        "no emblems",
+        "no badges",
+        "no seals",
+        "no watermarks",
+        "no brand marks",
+        "no official marks",
+        "no corner images",
+        "no explicit content",
+        "no illegal image shown",
+        "no child image on the phone",
+        "no phone gallery",
+        "no chat screen",
+        "no forwarding completed",
+        "no saving completed",
+        "no distressed child",
+        "no crime scene",
+        "no police raid",
+        "no courtroom"
+      ]
+    },
+    {
+      "asset_id": "video_10",
+      "chapter": 2,
+      "screen": "2.6",
+      "title": "Report Delete Pathway",
+      "target_file": "video/ch02-screen-2-6-report-delete-pathway.mp4",
+      "language": "English",
+      "voiceover": "Follow the order. Stop first. Report to the police or Childline. Then delete only after reporting, so the material is not kept or circulated.",
+      "onscreen_text_rule": "No on-screen text at all. Do not generate words, letters, numbers, captions, subtitles, labels, title cards, legal text, button text, UI text, signage, stamps, readable phone/document content, logos, emblems, seals, badges, watermarks, brand marks, official marks, or corner images anywhere in the video. The message must come only from the English voiceover and non-branded visuals.",
+      "timeline": [
+        {
+          "time": "00:00-00:01.10",
+          "scene": "Three empty pathway circles appear in a row.",
+          "camera": "flat centered graphic",
+          "animation": "circles draw left to right"
+        },
+        {
+          "time": "00:01.10-00:02.20",
+          "scene": "First circle fills with a clear stop gesture visual without words.",
+          "camera": "graphic close",
+          "animation": "stop simple visual element pops"
+        },
+        {
+          "time": "00:02.20-00:03.30",
+          "scene": "A phone share arrow freezes before moving.",
+          "camera": "close graphic",
+          "animation": "arrow stops mid-motion"
+        },
+        {
+          "time": "00:03.30-00:04.40",
+          "scene": "Second circle fills with a report action visual without words.",
+          "camera": "graphic close",
+          "animation": "document visual mark"
+        },
+        {
+          "time": "00:04.40-00:05.50",
+          "scene": "Police station and Childline-style help simple visual elements appear as options, no readable numbers.",
+          "camera": "wide graphic",
+          "animation": "two simple visual elements fade in"
+        },
+        {
+          "time": "00:05.50-00:06.70",
+          "scene": "Third circle fills with a delete action visual without words.",
+          "camera": "graphic close",
+          "animation": "trash simple visual element appears after report line completes"
+        },
+        {
+          "time": "00:06.70-00:08.20",
+          "scene": "The order line glows through the three action stages.",
+          "camera": "top-down path",
+          "animation": "gold line travels across"
+        },
+        {
+          "time": "00:08.20-00:10.00",
+          "scene": "Final pathway holds with shield around all three steps.",
+          "camera": "steady final",
+          "animation": "shield fades softly with no logos"
+        }
+      ],
+      "audio_direction": "Clear English narrator, precise and procedural.",
+      "negative_prompt": [
+        "no Tamil",
+        "no on-screen text",
+        "no illegal image",
+        "no delete before report",
+        "no police raid",
+        "no panic",
+        "no words",
+        "no letters",
+        "no numbers",
+        "no labels",
+        "no title cards",
+        "no readable phone screens",
+        "no readable documents",
+        "no logos",
+        "no extra marks",
+        "no emblems",
+        "no badges",
+        "no seals",
+        "no watermarks",
+        "no brand marks",
+        "no official marks",
+        "no corner images"
+      ]
+    },
+    {
+      "asset_id": "video_11",
+      "chapter": 2,
+      "screen": "2.7",
+      "title": "When Punishment Goes Up",
+      "target_file": "video/ch02-screen-2-7-punishment-goes-up.mp4",
+      "language": "English",
+      "voiceover": "Punishment becomes more severe when the offender holds power, when the child is very young or disabled, or when the harm is aggravated. The law treats these situations more seriously.",
+      "onscreen_text_rule": "No on-screen text at all. Do not generate words, letters, numbers, captions, subtitles, labels, title cards, legal text, button text, UI text, signage, stamps, readable phone/document content, logos, emblems, seals, badges, watermarks, brand marks, official marks, or corner images anywhere in the video. The message must come only from the English voiceover and non-branded visuals.",
+      "timeline": [
+        {
+          "time": "00:00-00:01.10",
+          "scene": "A simple staircase graphic appears with three rising levels.",
+          "camera": "center graphic",
+          "animation": "steps build upward"
+        },
+        {
+          "time": "00:01.10-00:02.20",
+          "scene": "First step: power-position simple visual element such as authority-position silhouette, not a real badge or logo.",
+          "camera": "step close",
+          "animation": "simple visual element lands on step"
+        },
+        {
+          "time": "00:02.20-00:03.30",
+          "scene": "Second step: very-young-child safety simple visual element and disability access simple visual element.",
+          "camera": "step close",
+          "animation": "simple visual elements appear equally"
+        },
+        {
+          "time": "00:03.30-00:04.40",
+          "scene": "Third step: aggravated harm represented by caution shield, no body or injury depiction.",
+          "camera": "step close",
+          "animation": "caution shield glows"
+        },
+        {
+          "time": "00:04.40-00:05.50",
+          "scene": "The staircase rises into a larger legal scale visual mark.",
+          "camera": "wide graphic",
+          "animation": "stairs morph into scales"
+        },
+        {
+          "time": "00:05.50-00:06.70",
+          "scene": "Adult duty simple visual elements appear at the base: notice, report, protect.",
+          "camera": "graphic lower frame",
+          "animation": "simple visual elements slide in"
+        },
+        {
+          "time": "00:06.70-00:08.20",
+          "scene": "The top step is highlighted more strongly but calmly.",
+          "camera": "slow push-in",
+          "animation": "soft red-gold highlight"
+        },
+        {
+          "time": "00:08.20-00:10.00",
+          "scene": "Final frame: legal scales, shield, and three seriousness factors arranged cleanly.",
+          "camera": "steady final",
+          "animation": "no logos appear"
+        }
+      ],
+      "audio_direction": "Clear English narrator, grave but controlled.",
+      "negative_prompt": [
+        "no Tamil",
+        "no on-screen text",
+        "no injury depiction",
+        "no violent scene",
+        "no courtroom",
+        "no sensational escalation",
+        "no words",
+        "no letters",
+        "no numbers",
+        "no labels",
+        "no title cards",
+        "no readable phone screens",
+        "no readable documents",
+        "no logos",
+        "no extra marks",
+        "no emblems",
+        "no badges",
+        "no seals",
+        "no watermarks",
+        "no brand marks",
+        "no official marks",
+        "no corner images"
+      ]
+    },
+    {
+      "asset_id": "video_12",
+      "chapter": 3,
+      "screen": "3.2",
+      "title": "Three Beliefs That Are Wrong",
+      "target_file": "video/ch03-screen-3-2-three-beliefs-wrong.mp4",
+      "language": "English",
+      "voiceover": "Some beliefs are legally wrong. Looking older is not consent. Being in love is not consent. Being close to 18 is not consent. Below 18, the law protects the child.",
+      "onscreen_text_rule": "No on-screen text at all. Do not generate words, letters, numbers, captions, subtitles, labels, title cards, legal text, button text, UI text, signage, stamps, readable phone/document content, logos, emblems, seals, badges, watermarks, brand marks, official marks, or corner images anywhere in the video. The message must come only from the English voiceover and non-branded visuals.",
+      "timeline": [
+        {
+          "time": "00:00-00:01.10",
+          "scene": "Three neutral belief cards appear on screen.",
+          "camera": "flat graphic",
+          "animation": "cards flip in"
+        },
+        {
+          "time": "00:01.10-00:02.20",
+          "scene": "First abstract belief card is rejected visually, with no readable words.",
+          "camera": "card close",
+          "animation": "false visual mark lands"
+        },
+        {
+          "time": "00:02.20-00:03.30",
+          "scene": "Second abstract belief card is rejected visually, with no readable words.",
+          "camera": "card close",
+          "animation": "visual mark lands"
+        },
+        {
+          "time": "00:03.30-00:04.40",
+          "scene": "Third abstract belief card is rejected visually, with no readable words.",
+          "camera": "card close",
+          "animation": "visual mark lands"
+        },
+        {
+          "time": "00:04.40-00:05.50",
+          "scene": "A non-readable age-boundary graphic appears; the below-18 side is protected visually without numbers.",
+          "camera": "graphic center",
+          "animation": "line highlights below 18"
+        },
+        {
+          "time": "00:05.50-00:06.70",
+          "scene": "Consent checkbox fades out under the below-18 mark.",
+          "camera": "graphic close",
+          "animation": "checkbox dissolves"
+        },
+        {
+          "time": "00:06.70-00:08.20",
+          "scene": "A shield expands over the below-18 section.",
+          "camera": "wide graphic",
+          "animation": "shield grows"
+        },
+        {
+          "time": "00:08.20-00:10.00",
+          "scene": "Final frame shows three rejected abstract belief cards behind a protective light boundary, with no readable words.",
+          "camera": "steady final",
+          "animation": "soft legal-document background texture"
+        }
+      ],
+      "audio_direction": "Clear English narrator, firm and simple.",
+      "negative_prompt": [
+        "no Tamil",
+        "no on-screen text",
+        "no romantic child-adult visuals",
+        "no couple depiction",
+        "no glamour",
+        "no victim distress",
+        "no words",
+        "no letters",
+        "no numbers",
+        "no labels",
+        "no title cards",
+        "no readable phone screens",
+        "no readable documents",
+        "no logos",
+        "no extra marks",
+        "no emblems",
+        "no badges",
+        "no seals",
+        "no watermarks",
+        "no brand marks",
+        "no official marks",
+        "no corner images"
+      ]
+    },
+    {
+      "asset_id": "video_13",
+      "chapter": 4,
+      "screen": "4.1",
+      "title": "Grooming Warning Signs",
+      "target_file": "video/ch04-screen-4-1-grooming-warning-signs.mp4",
+      "language": "English",
+      "voiceover": "Grooming can start as attention, gifts, secrecy, then control. It may look friendly. Notice the pattern early, and report concerns.",
+      "onscreen_text_rule": "No on-screen text at all. Do not generate words, letters, numbers, captions, subtitles, labels, title cards, legal text, button text, UI text, signage, stamps, readable phone/document content, logos, emblems, seals, badges, watermarks, brand marks, official marks, or corner images anywhere in the video. The message must come only from the English voiceover and non-branded visuals.",
+      "timeline": [
+        {
+          "time": "00:00-00:01.10",
+          "scene": "A staircase appears with five low, clean steps.",
+          "camera": "center graphic",
+          "animation": "steps build one by one"
+        },
+        {
+          "time": "00:01.10-00:02.20",
+          "scene": "Step one: attention simple visual element, warm but neutral.",
+          "camera": "step close",
+          "animation": "simple visual element appears"
+        },
+        {
+          "time": "00:02.20-00:03.30",
+          "scene": "Step two: gift simple visual element, then a small caution ring appears.",
+          "camera": "step close",
+          "animation": "gift simple visual element gets caution outline"
+        },
+        {
+          "time": "00:03.30-00:04.40",
+          "scene": "Step three: secrecy simple visual element represented by a closed speech bubble.",
+          "camera": "step close",
+          "animation": "bubble closes"
+        },
+        {
+          "time": "00:04.40-00:05.50",
+          "scene": "Step four: isolation simple visual element with a child silhouette separated from group by distance, not distress.",
+          "camera": "wide graphic",
+          "animation": "space opens between simple visual elements"
+        },
+        {
+          "time": "00:05.50-00:06.70",
+          "scene": "Step five: control simple visual element represented by strings cut by a shield.",
+          "camera": "graphic close",
+          "animation": "shield cuts lines"
+        },
+        {
+          "time": "00:06.70-00:08.20",
+          "scene": "Adult observer sees the full staircase pattern, not just one step.",
+          "camera": "medium realistic",
+          "animation": "pattern highlight across steps"
+        },
+        {
+          "time": "00:08.20-00:10.00",
+          "scene": "Final frame: pattern is enclosed by a caution shield and report simple visual element.",
+          "camera": "steady final",
+          "animation": "shield pulse and fade"
+        }
+      ],
+      "audio_direction": "Clear English narrator, calm warning tone. Keep the voiceover precise and under 10 seconds. No dramatic music, no fear tone.",
+      "negative_prompt": [
+        "no Tamil",
+        "no on-screen text",
+        "no predator depiction",
+        "no distressed child",
+        "no readable chat content",
+        "no dark room",
+        "no words",
+        "no letters",
+        "no numbers",
+        "no labels",
+        "no title cards",
+        "no readable phone screens",
+        "no readable documents",
+        "no logos",
+        "no extra marks",
+        "no emblems",
+        "no badges",
+        "no seals",
+        "no watermarks",
+        "no brand marks",
+        "no official marks",
+        "no corner images"
+      ]
+    },
+    {
+      "asset_id": "video_14",
+      "chapter": 4,
+      "screen": "4.2",
+      "title": "Divya Case Signs",
+      "target_file": "video/ch04-screen-4-2-divya-case-signs.mp4",
+      "language": "English",
+      "voiceover": "When a child changes suddenly, notice the pattern. Behaviour, unusual knowledge, body signs, and phone behaviour can all matter. Do not investigate. Report concerns.",
+      "onscreen_text_rule": "No on-screen text at all. Do not generate words, letters, numbers, captions, subtitles, labels, title cards, legal text, button text, UI text, signage, stamps, readable phone/document content, logos, emblems, seals, badges, watermarks, brand marks, official marks, or corner images anywhere in the video. The message must come only from the English voiceover and non-branded visuals.",
+      "timeline": [
+        {
+          "time": "00:00-00:01.10",
+          "scene": "Four observation cards appear in a clean grid.",
+          "camera": "flat graphic",
+          "animation": "cards slide in"
+        },
+        {
+          "time": "00:01.10-00:02.20",
+          "scene": "Behaviour card: child simple visual element becomes withdrawn in a neutral, non-distressing way.",
+          "camera": "card close",
+          "animation": "color softens"
+        },
+        {
+          "time": "00:02.20-00:03.30",
+          "scene": "Knowledge card: question mark and book simple visual element, no explicit content.",
+          "camera": "card close",
+          "animation": "question mark appears"
+        },
+        {
+          "time": "00:03.30-00:04.40",
+          "scene": "Body card: medical cross and care visual mark, no injury depiction.",
+          "camera": "card close",
+          "animation": "care simple visual element fades in"
+        },
+        {
+          "time": "00:04.40-00:05.50",
+          "scene": "Phone card: blank phone with lock and caution mark.",
+          "camera": "card close",
+          "animation": "phone locks"
+        },
+        {
+          "time": "00:05.50-00:06.70",
+          "scene": "Adult notes the pattern on a simple notepad, without questioning the child.",
+          "camera": "medium realistic",
+          "animation": "notepad line appears, no readable details"
+        },
+        {
+          "time": "00:06.70-00:08.20",
+          "scene": "Investigating magnifying glass simple visual element is crossed out; report simple visual element appears instead.",
+          "camera": "graphic transition",
+          "animation": "cross-out then report arrow"
+        },
+        {
+          "time": "00:08.20-00:10.00",
+          "scene": "Final frame: four signs feed into one report pathway.",
+          "camera": "wide final",
+          "animation": "lines connect to shield"
+        }
+      ],
+      "audio_direction": "Clear English narrator, careful and supportive.",
+      "negative_prompt": [
+        "no Tamil",
+        "no on-screen text",
+        "no distressed child close-up",
+        "no injury visuals",
+        "no explicit phone content",
+        "no interrogation scene",
+        "no words",
+        "no letters",
+        "no numbers",
+        "no labels",
+        "no title cards",
+        "no readable phone screens",
+        "no readable documents",
+        "no logos",
+        "no extra marks",
+        "no emblems",
+        "no badges",
+        "no seals",
+        "no watermarks",
+        "no brand marks",
+        "no official marks",
+        "no corner images"
+      ]
+    },
+    {
+      "asset_id": "video_15",
+      "chapter": 5,
+      "screen": "5.1",
+      "title": "When A Child Tells You",
+      "target_file": "video/ch05-screen-5-1-child-tells-you.mp4",
+      "language": "English",
+      "voiceover": "A child may speak directly, indirectly, or through a question about a friend. Stay calm. Listen. Believe the child enough to act. Do not press for details.",
+      "onscreen_text_rule": "No on-screen text at all. Do not generate words, letters, numbers, captions, subtitles, labels, title cards, legal text, button text, UI text, signage, stamps, readable phone/document content, logos, emblems, seals, badges, watermarks, brand marks, official marks, or corner images anywhere in the video. The message must come only from the English voiceover and non-branded visuals.",
+      "timeline": [
+        {
+          "time": "00:00-00:01.10",
+          "scene": "Adult and child sit in a safe public counselling-style space, no distress close-up.",
+          "camera": "wide respectful shot",
+          "animation": "soft fade in"
+        },
+        {
+          "time": "00:01.10-00:02.20",
+          "scene": "Three speech bubble styles appear: direct, indirect, friend question.",
+          "camera": "flat graphic",
+          "animation": "bubbles appear one by one"
+        },
+        {
+          "time": "00:02.20-00:03.30",
+          "scene": "Adult takes a slow breath and listens without interrupting.",
+          "camera": "medium shot",
+          "animation": "calm light shift"
+        },
+        {
+          "time": "00:03.30-00:04.40",
+          "scene": "Listening simple visual element appears, with no readable quotation content.",
+          "camera": "graphic close",
+          "animation": "ear simple visual element glows"
+        },
+        {
+          "time": "00:04.40-00:05.50",
+          "scene": "Questioning/interrogation simple visual element is crossed out.",
+          "camera": "graphic close",
+          "animation": "cross-out line"
+        },
+        {
+          "time": "00:05.50-00:06.70",
+          "scene": "Adult writes a brief note later, same day, without showing content.",
+          "camera": "close-up on blank notepad",
+          "animation": "pen movement only"
+        },
+        {
+          "time": "00:06.70-00:08.20",
+          "scene": "Report pathway simple visual element appears beside the support shield.",
+          "camera": "graphic center",
+          "animation": "arrow to report visual mark"
+        },
+        {
+          "time": "00:08.20-00:10.00",
+          "scene": "Final frame: child is supported by safe adults and a shield, not isolated.",
+          "camera": "wide final",
+          "animation": "shield closes gently"
+        }
+      ],
+      "audio_direction": "Clear English narrator, gentle but firm.",
+      "negative_prompt": [
+        "no Tamil",
+        "no on-screen text",
+        "no crying child close-up",
+        "no interrogation",
+        "no readable disclosure content",
+        "no panic",
+        "no words",
+        "no letters",
+        "no numbers",
+        "no labels",
+        "no title cards",
+        "no readable phone screens",
+        "no readable documents",
+        "no logos",
+        "no extra marks",
+        "no emblems",
+        "no badges",
+        "no seals",
+        "no watermarks",
+        "no brand marks",
+        "no official marks",
+        "no corner images"
+      ]
+    },
+    {
+      "asset_id": "video_16",
+      "chapter": 5,
+      "screen": "5.4",
+      "title": "After Reporting Pathway",
+      "target_file": "video/ch05-screen-5-4-after-reporting-pathway.mp4",
+      "language": "English",
+      "voiceover": "After a report, the process moves to safety, medical care if needed, child-friendly statement, investigation, and support. Your role is to report and protect, not to solve the case yourself.",
+      "onscreen_text_rule": "No on-screen text at all. Do not generate words, letters, numbers, captions, subtitles, labels, title cards, legal text, button text, UI text, signage, stamps, readable phone/document content, logos, emblems, seals, badges, watermarks, brand marks, official marks, or corner images anywhere in the video. The message must come only from the English voiceover and non-branded visuals.",
+      "timeline": [
+        {
+          "time": "00:00-00:01.10",
+          "scene": "A calm pathway begins with a report document simple visual element.",
+          "camera": "flat path graphic",
+          "animation": "path line starts"
+        },
+        {
+          "time": "00:01.10-00:02.20",
+          "scene": "Safety step appears: shield around child simple visual element.",
+          "camera": "step close",
+          "animation": "shield forms"
+        },
+        {
+          "time": "00:02.20-00:03.30",
+          "scene": "Care step appears: medical care simple visual element, no hospital drama.",
+          "camera": "step close",
+          "animation": "care simple visual element fades in"
+        },
+        {
+          "time": "00:03.30-00:04.40",
+          "scene": "Child-friendly statement step appears: calm room, trusted adult nearby.",
+          "camera": "simple room graphic",
+          "animation": "room outline draws"
+        },
+        {
+          "time": "00:04.40-00:05.50",
+          "scene": "Investigation step appears as document and magnifier handled by officials.",
+          "camera": "graphic close",
+          "animation": "document stack aligns"
+        },
+        {
+          "time": "00:05.50-00:06.70",
+          "scene": "Support step appears: counselling/support hands simple visual element.",
+          "camera": "step close",
+          "animation": "support simple visual element glows"
+        },
+        {
+          "time": "00:06.70-00:08.20",
+          "scene": "Adult reporter steps back respectfully while the system pathway continues.",
+          "camera": "wide graphic",
+          "animation": "adult simple visual element remains at report point"
+        },
+        {
+          "time": "00:08.20-00:10.00",
+          "scene": "Final frame: full pathway from report to support under one protective shield.",
+          "camera": "steady final",
+          "animation": "gold line completes and holds"
+        }
+      ],
+      "audio_direction": "Clear English narrator, reassuring and procedural.",
+      "negative_prompt": [
+        "no Tamil",
+        "no on-screen text",
+        "no court drama",
+        "no police raid",
+        "no medical distress",
+        "no child interrogation",
+        "no words",
+        "no letters",
+        "no numbers",
+        "no labels",
+        "no title cards",
+        "no readable phone screens",
+        "no readable documents",
+        "no logos",
+        "no extra marks",
+        "no emblems",
+        "no badges",
+        "no seals",
+        "no watermarks",
+        "no brand marks",
+        "no official marks",
+        "no corner images"
+      ]
+    }
+  ]
+}
