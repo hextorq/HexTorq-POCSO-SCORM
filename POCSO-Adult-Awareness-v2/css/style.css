@@ -399,7 +399,7 @@ body[data-focus-mode="true"] .page{max-width:none;min-height:100vh;display:flex;
 .branch-situation{font-weight:700;color:var(--navy);font-size:1rem;line-height:1.5;margin-bottom:14px}
 .branch-body{display:flex;flex-direction:column;gap:16px;align-items:center}
 .branch-illustration{
-  position:relative;min-height:190px;border-radius:8px;overflow:hidden;
+  position:relative;width:100%;max-width:520px;min-height:190px;border-radius:8px;overflow:hidden;
   background:linear-gradient(#f7f3e8 0 68%, #e2d8c5 68% 100%);
   border:1px solid var(--border);
 }
@@ -417,9 +417,10 @@ body[data-focus-mode="true"] .page{max-width:none;min-height:100vh;display:flex;
 }
 .branch-choice:hover{border-color:var(--gold);background:#fbf7ec}
 .branch-feedback{margin-top:14px;padding:12px 14px;border-radius:8px;font-size:.9rem;line-height:1.55}
+.branch-feedback div{margin-bottom:10px}
 .branch-feedback.correct{background:#eef6ef;color:#1e4a2c;border:1px solid var(--ok)}
 .branch-feedback.incorrect{background:#fbeeec;color:#6e2318;border:1px solid var(--danger)}
-.branch-next{display:flex;margin-top:10px}
+.branch-next{display:inline-flex;margin-top:0}
 .write-panel{margin-top:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
 .write-heading{font-weight:800;color:var(--navy);margin-bottom:12px}
 .write-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);border-radius:8px;overflow:hidden}

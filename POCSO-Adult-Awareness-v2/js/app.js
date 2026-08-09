@@ -1415,7 +1415,7 @@ function renderLinearBranching(container, page, block, setInteractionCheck) {
     const choice = beat.choices[progress.lastChoice];
     feedback.hidden = false;
     feedback.className = "branch-feedback " + (choice.correct ? "correct" : "incorrect");
-    feedback.textContent = choice.feedback;
+    feedback.innerHTML = `<div>${escapeHtml(choice.feedback)}</div>`;
     if (choice.correct && progress.pendingAdvance) {
       const nextBtn = document.createElement("button");
       nextBtn.type = "button";
