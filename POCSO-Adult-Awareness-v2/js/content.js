@@ -1010,7 +1010,7 @@ const CHAPTERS = [
           { label: `"Take your time. Is there anything else you want to tell me?"`, correct: true },
           { label: `"Let's call your parents so you can tell them properly"`, correct: false }
         ],
-        feedback: `Options a and b are leading — they supply information the child did not give, and can be used to undermine the child's evidence later. Option d makes the child repeat it to more adults, which is distressing and creates inconsistencies.`
+        feedback: `a and b are leading — they supply information the child did not give, and can be used to undermine her evidence later. d makes the child repeat it to more adults, which is distressing and creates inconsistencies.`
       },
       {
         type: "single",
@@ -1020,41 +1020,6 @@ const CHAPTERS = [
           { label: `False`, correct: true }
         ],
         feedback: `Taking it back is common. It usually follows pressure from the family, fear of consequences, or distress at how the first adult reacted. It is not proof the disclosure was untrue, and the duty to report does not change.`
-      },
-      {
-        type: "single",
-        q: `Scenario. A hostel warden hears from a resident that another staff member sexually assaulted a child. He tells the correspondent, who says the school will handle it internally. Neither goes to the police. Under POCSO —`,
-        options: [
-          { label: `The warden has done his duty by informing his senior`, correct: false },
-          { label: `Only the correspondent is liable`, correct: false },
-          { label: `Both failed to report. The correspondent faces the higher penalty, as the person in charge`, correct: true },
-          { label: `Neither is liable unless the parents complain`, correct: false }
-        ],
-        feedback: `The duty falls on any person who knows — it is not discharged by passing it up the line. Telling a senior is not reporting. A person in charge of an institution faces up to one year for failing to report an offence by someone under them.`
-      },
-      {
-        type: "single",
-        q: `Scenario. A woman reports a suspicion about her neighbour. The investigation finds nothing and the case is closed. She is —`,
-        options: [
-          { label: `Liable for defamation`, correct: false },
-          { label: `Liable for a false complaint`, correct: false },
-          { label: `Protected, because she reported in good faith`, correct: true },
-          { label: `Protected only if she apologises`, correct: false }
-        ],
-        feedback: `The law protects anyone who gives information in good faith from civil and criminal liability, whether or not the case proceeds. Only a knowingly false complaint, made to humiliate or defame, is an offence.`
-      },
-      {
-        type: "multi",
-        q: `Multiple select. Which of these does the law require when a child's statement is recorded? (Select all that apply.)`,
-        options: [
-          { label: `The officer must not be in uniform`, correct: true },
-          { label: `A woman officer records it, as far as possible`, correct: true },
-          { label: `It is recorded at her home or a place she chooses`, correct: true },
-          { label: `She must not be kept at a police station at night`, correct: true },
-          { label: `Her parent or someone she trusts must be present`, correct: true },
-          { label: `She must identify the accused in person at the police station`, correct: false }
-        ],
-        feedback: `The first five are required by law. The last is not — the court must ensure she is not exposed to the accused while giving evidence.`
       }
     ]
   }
