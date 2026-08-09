@@ -6,7 +6,7 @@
 */
 
 const MODULE_META = {
-  title: `POCSO - age group: 18+`,
+  title: `POCSO Awareness (Age: 18+)`,
   issuingAuthority: `Tamil Nadu Police`,
   productionNote: `All the highlights are the suggestions, the developer can use any creative representation based on the content`,
   disclaimer: `This module explains the law in simple words. It is not legal advice.`

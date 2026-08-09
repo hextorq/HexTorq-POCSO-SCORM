@@ -1718,10 +1718,10 @@ function renderCertificateBlock(wrap) {
     </div>
     <div class="cert-badge">${svgIcon("cert", 34)}</div>
     <div class="cert-title">Certificate of Completion</div>
-    <div class="cert-sub">POCSO - age group: 18+</div>
+    <div class="cert-sub">POCSO Awareness (Age: 18+)</div>
     <div class="cert-body">This is to certify that</div>
     <div class="cert-name">${escapeHtml(state.learnerName || "Learner")}</div>
-    <div class="cert-body">has completed the POCSO - age group: 18+ module — covering the definition of a child under the Act, what counts as an offence, the duty to report, and how to respond when a child discloses abuse — with an overall quiz performance of <strong>${score}%</strong>.</div>
+    <div class="cert-body">has completed the POCSO Adult Awareness Module — covering the definition of a child under the Act, what counts as an offence, the duty to report, and how to respond when a child discloses abuse — with an overall quiz performance of <strong>${score}%</strong>.</div>
     <div class="cert-sign-row">
       ${CERT_SIGNATORIES.map((s) => `
         <div class="cert-sign">
@@ -1870,7 +1870,7 @@ async function buildOneCardCanvas() {
   y += 40;
   ctx.font = "600 20px 'Segoe UI', Arial, sans-serif";
   ctx.fillStyle = "rgba(255,255,255,.75)";
-  ctx.fillText("POCSO - age group: 18+", W / 2, y);
+  ctx.fillText("POCSO Adult Awareness Module", W / 2, y);
   y += 60;
 
   ctx.font = "800 46px Georgia, serif";
@@ -1949,7 +1949,7 @@ async function downloadAndShareOneCard(btn) {
 
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
       try {
-        await navigator.share({ files: [file], title: "One Card to Keep — POCSO - age group: 18+", text: "POCSO - age group: 18+ — One Card to Keep" });
+        await navigator.share({ files: [file], title: "One Card to Keep — POCSO Awareness", text: "POCSO Adult Awareness — One Card to Keep" });
         return;
       } catch (e) { /* user cancelled the share sheet — fall through to a plain download */ }
     }
