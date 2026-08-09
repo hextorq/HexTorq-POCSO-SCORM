@@ -794,7 +794,7 @@ const CHAPTERS = [
 {
   num: 5,
   title: `When a Child Tells You, and What to Do Next`,
-  duration: `~9 min · 6 screens`,
+  duration: `~9 min · 8 screens`,
   blurb: `What to say, what not to say, and how to report — and what happens after.`,
   screens: [
     {
@@ -894,7 +894,7 @@ const CHAPTERS = [
       ]
     },
     {
-      id: "5.2c",
+      id: "5.2-report",
       heading: `STATIC PANEL — Where to report`,
       severity: "safe",
       blocks: [
@@ -910,6 +910,33 @@ const CHAPTERS = [
       ]
     },
     {
+      id: "5.2c",
+      heading: `SCREEN 5.2c — Myth or law`,
+      severity: "notice",
+      blocks: [
+        { t: "interaction", kind: "sequentialFlip", data: {
+          items: [
+            { front: `"If I'm not certain, I shouldn't report."`, back: `Suspicion is enough. Section 19 says suspects or knows.` },
+            { front: `"If I report and I turn out to be wrong, I can be sued."`, back: `Not if you reported in good faith — Section 19(7), no liability, civil or criminal. Only a complaint made knowingly to humiliate or defame is an offence — Section 22(1).` },
+            { front: `"A child who makes a false complaint can be punished."`, back: `Never — Section 22(2). And a child is never punished for failing to report — Section 21(3).` },
+            { front: `"I told the school correspondent. I have reported."`, back: `You have not. Reporting means the police, the SJPU, the CWC, or 1098.` },
+            { front: `"Staying quiet is a moral failing, not an offence."`, back: `It is an offence — up to six months, a fine, or both. Up to one year if you are in charge of an institution. Section 21.` },
+            { front: `"The two families settled it, so the case is closed."`, back: `POCSO cases cannot be compromised or withdrawn. Not by payment, not by an apology, not by a marriage arranged afterwards.` }
+          ]
+        }}
+      ]
+    },
+    {
+      id: "5.2d",
+      heading: `STATIC PANEL — Does this apply to you?`,
+      severity: "safe",
+      blocks: [
+        { t: "p", lines: [
+          `Staff of a hotel, lodge, hospital, club, studio or photographic facility, and staff of media organisations, carry a specific duty to report under Section 20.`
+        ]}
+      ]
+    },
+    {
       id: "5.3",
       heading: `SCREEN 5.3 — Reporting`,
       severity: "safe",
@@ -919,7 +946,6 @@ const CHAPTERS = [
           `"Any person."`,
           `Staying quiet is itself an offence. Failure to report can bring up to six months, or a fine, or both — and up to one year for a person in charge of an institution. Section 21.`,
           `A child is never punished for not reporting. Section 21(3).`,
-          `Some people have a special duty. Staff of a hotel, lodge, hospital, club, studio or photo shop, and media staff, must report what they come across. Section 20.`,
           `You do not have to give your name when you report. If you do give it, you may later be asked to give a statement.`,
           `If the report turns out to be wrong, nothing happens to the person who made it.`,
           `The law says it plainly: no liability, civil or criminal, for giving information in good faith. Section 19(7).`,

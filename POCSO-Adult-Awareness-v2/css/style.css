@@ -329,6 +329,14 @@ body[data-focus-mode="true"] .page{max-width:none;min-height:100vh;display:flex;
 .deck-tag.tag-notoffence{background:#eef6ef;color:var(--ok)}
 .deck-back-text{font-size:.88rem;line-height:1.5;color:var(--text)}
 .deck-back-foot{display:flex;justify-content:flex-end;margin-top:8px}
+.seq-flip{max-width:560px;margin:0 auto;text-align:center}
+.seq-progress{font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.seq-card{min-height:220px;text-align:left}
+.seq-card .deck-inner{min-height:220px}
+.seq-card .deck-front-text{font-size:1.12rem;line-height:1.45}
+.seq-card .deck-back-text{font-size:1rem;line-height:1.6}
+.seq-actions{display:flex;justify-content:center;margin-top:14px;min-height:42px}
+.seq-done{font-size:.9rem;font-weight:700;color:var(--ok);padding:10px 12px}
 
 /* ---------- Sort exercise (real drag-and-drop, GSAP Draggable) ---------- */
 .sort-instruction{font-size:.82rem;color:var(--text-mute);margin-bottom:2px;font-style:italic}

@@ -862,6 +862,8 @@ function renderInteractionBlock(block, page, setInteractionCheck) {
     renderFlipDeck(div, page, block, setInteractionCheck);
   } else if (kind === "judgmentCards") {
     renderJudgmentDeck(div, page, block, setInteractionCheck);
+  } else if (kind === "sequentialFlip") {
+    renderSequentialFlip(div, page, block, setInteractionCheck);
   } else if (kind === "sortDrag") {
     renderSortDrag(div, page, block, setInteractionCheck);
   } else if (kind === "numberPick") {
@@ -1009,6 +1011,99 @@ function renderFlipDeck(container, page, block, setInteractionCheck) {
   });
 
   setInteractionCheck(() => block.data.items.every((_, i) => revealed[i]));
+}
+
+/* --- Sequential flip: one card at a time, no scoring --- */
+function renderSequentialFlip(container, page, block, setInteractionCheck) {
+  const key = page.id;
+  if (!state.deckRevealed[key]) state.deckRevealed[key] = {};
+  const revealed = state.deckRevealed[key];
+  const items = block.data.items || [];
+  const currentIndex = Math.min(Object.keys(revealed).length, Math.max(0, items.length - 1));
+  const item = items[currentIndex];
+  const isOpen = !!revealed[currentIndex];
+  const complete = items.length > 0 && items.every((_, i) => revealed[i]);
+  const variant = DECK_VARIANTS[currentIndex % DECK_VARIANTS.length];
+
+  const shell = document.createElement("div");
+  shell.className = "seq-flip";
+  shell.innerHTML = `<div class="seq-progress">${Math.min(currentIndex + 1, items.length)} of ${items.length}</div>`;
+  container.appendChild(shell);
+
+  const card = document.createElement("div");
+  card.className = "deck-card seq-card" + (isOpen ? " open" : "");
+  card.innerHTML = `
+    <div class="deck-inner">
+      <div class="deck-face deck-face-front">
+        <div class="deck-front-text">${escapeHtml(item.front)}</div>
+        <div class="deck-hint">${svgIcon("volume", 12)} Tap to reveal</div>
+      </div>
+      <div class="deck-face deck-face-back">
+        <div class="deck-back-text">${escapeHtml(item.back)}</div>
+        <div class="deck-back-foot"></div>
+      </div>
+    </div>
+  `;
+  shell.appendChild(card);
+
+  const inner = card.querySelector(".deck-inner");
+  const front = card.querySelector(".deck-face-front");
+  const back = card.querySelector(".deck-face-back");
+  setupDeckVariant(variant, front, back);
+  if (isOpen) playDeckVariant(variant, front, back, inner, true);
+
+  const actions = document.createElement("div");
+  actions.className = "seq-actions";
+  shell.appendChild(actions);
+
+  function drawActions() {
+    actions.innerHTML = "";
+    if (isOpen && !complete) {
+      const nextCardBtn = document.createElement("button");
+      nextCardBtn.type = "button";
+      nextCardBtn.className = "btn btn-primary";
+      nextCardBtn.textContent = "Next card";
+      nextCardBtn.addEventListener("click", () => { SFX.navNext(); render(); });
+      actions.appendChild(nextCardBtn);
+    } else if (complete) {
+      const done = document.createElement("div");
+      done.className = "seq-done";
+      done.textContent = "All six cards have been opened.";
+      actions.appendChild(done);
+    }
+  }
+
+  card.addEventListener("click", (ev) => {
+    if (isOpen) return;
+    revealed[currentIndex] = true;
+    saveState();
+    card.classList.add("open");
+    playDeckVariant(variant, front, back, inner, false);
+    SFX.open();
+    const nowComplete = items.every((_, i) => revealed[i]);
+    if (nowComplete) {
+      SFX.complete();
+      confettiAt(ev, false);
+    }
+    notify(document.querySelector("#stage .page"));
+    actions.innerHTML = "";
+    if (nowComplete) {
+      const done = document.createElement("div");
+      done.className = "seq-done";
+      done.textContent = "All six cards have been opened.";
+      actions.appendChild(done);
+    } else {
+      const nextCardBtn = document.createElement("button");
+      nextCardBtn.type = "button";
+      nextCardBtn.className = "btn btn-primary";
+      nextCardBtn.textContent = "Next card";
+      nextCardBtn.addEventListener("click", () => { SFX.navNext(); render(); });
+      actions.appendChild(nextCardBtn);
+    }
+  });
+
+  drawActions();
+  setInteractionCheck(() => items.length > 0 && items.every((_, i) => revealed[i]));
 }
 
 /* --- Judgment cards (Offence / Not an offence), reuses the deck visual --- */
