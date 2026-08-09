@@ -794,7 +794,7 @@ const CHAPTERS = [
 {
   num: 5,
   title: `When a Child Tells You, and What to Do Next`,
-  duration: `~9 min · 5 screens`,
+  duration: `~9 min · 6 screens`,
   blurb: `What to say, what not to say, and how to report — and what happens after.`,
   screens: [
     {
@@ -894,6 +894,22 @@ const CHAPTERS = [
       ]
     },
     {
+      id: "5.2c",
+      heading: `STATIC PANEL — Where to report`,
+      severity: "safe",
+      blocks: [
+        { t: "table", headerRow: [`Contact`, `Use`], rows: [
+          [`1098`, `Child Helpline — free, day and night`],
+          [`1091`, `Women Helpline — Tamil Nadu`],
+          [`Local police / SJPU`, `Where the law says the report goes`],
+          [`POCSO e-Box`, `Online, for anyone who cannot report in person`]
+        ]},
+        { t: "p", lines: [
+          `Telling a panchayat, a school correspondent, or the family is not reporting.`
+        ]}
+      ]
+    },
+    {
       id: "5.3",
       heading: `SCREEN 5.3 — Reporting`,
       severity: "safe",
@@ -909,13 +925,7 @@ const CHAPTERS = [
           `The law says it plainly: no liability, civil or criminal, for giving information in good faith. Section 19(7).`,
           `Good faith means honestly believing something was wrong. It does not mean being right. No lawsuit. No prosecution. Even if the investigation finds nothing.`,
           `A complaint made knowingly to humiliate or defame someone is a different thing, and is itself an offence. Section 22. Reporting an honest suspicion is not.`,
-          `Telling a panchayat, a school correspondent, or the family is not reporting. And a POCSO case cannot be settled or withdrawn — a compromise, a payment, or a marriage arranged afterwards does not close it.`
-        ]},
-        { t: "list", heading: `Where to report`, items: [
-          `Child Helpline 1098 — free, day and night`,
-          `Singappen Special Force 1091 — the Tamil Nadu Police unit for women and children`,
-          `Local police / SJPU — where the law says the report goes`,
-          `POCSO e-Box — online, for anyone who cannot report in person`
+          `A POCSO case cannot be settled or withdrawn — a compromise, a payment, or a marriage arranged afterwards does not close it.`
         ]}
       ]
     },
