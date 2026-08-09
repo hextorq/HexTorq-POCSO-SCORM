@@ -612,7 +612,7 @@ function renderScreenPage(page, wrap) {
     if (el) {
       el.classList.add("gsap-stagger");
       wrap.appendChild(el);
-      if (["p", "quote", "list", "beliefList", "sayNotSay", "table", "interaction"].includes(block.t)) {
+      if (["p", "lawTitle", "quote", "list", "beliefList", "sayNotSay", "table", "interaction"].includes(block.t)) {
         hasReadableContent = true;
       }
     }
@@ -625,7 +625,7 @@ function renderScreenPage(page, wrap) {
       // Video-slot placeholders and production notes are also built from <p>
       // tags, but they're notes for whoever builds the video/module — not
       // lesson content — so they must never be swept into the narration.
-      const els = Array.from(wrap.querySelectorAll("p,li,.belief,.response"))
+      const els = Array.from(wrap.querySelectorAll("p,li,.belief,.response,.law-title-en,.law-title-ta"))
         .filter((el) => !el.closest(".video-slot") && !el.closest(".p-note"));
       wrap.querySelectorAll(".deck-card").forEach((card) => {
         const front = card.querySelector(".deck-front-text");
@@ -656,6 +656,7 @@ function notify(wrap) { wrap.dispatchEvent(new Event("interaction-changed")); }
 function renderBlock(block, page, setInteractionCheck) {
   switch (block.t) {
     case "p": return renderParagraphBlock(block);
+    case "lawTitle": return renderLawTitleBlock(block);
     case "quote": return renderQuoteBlock(block);
     case "list": return renderListBlock(block);
     case "table": return renderTableBlock(block);
@@ -677,6 +678,15 @@ function renderParagraphBlock(block) {
   if (block.heading) html += `<span class="block-heading">${escapeHtml(block.heading)}</span>`;
   (block.lines || []).forEach((line) => { html += `<p>${escapeHtml(line)}</p>`; });
   div.innerHTML = html;
+  return div;
+}
+function renderLawTitleBlock(block) {
+  const div = document.createElement("div");
+  div.className = "block law-title-card";
+  div.innerHTML = `
+    <div class="law-title-en">${escapeHtml(block.english)}</div>
+    <div class="law-title-ta" lang="ta">${escapeHtml(block.tamil)}</div>
+  `;
   return div;
 }
 function renderQuoteBlock(block) {
@@ -1430,10 +1440,10 @@ function renderCertificateBlock(wrap) {
     </div>
     <div class="cert-badge">${svgIcon("cert", 34)}</div>
     <div class="cert-title">Certificate of Completion</div>
-    <div class="cert-sub">POCSO Awareness (Age: 18+)</div>
+    <div class="cert-sub">POCSO - age group: 18+</div>
     <div class="cert-body">This is to certify that</div>
     <div class="cert-name">${escapeHtml(state.learnerName || "Learner")}</div>
-    <div class="cert-body">has completed the POCSO Adult Awareness Module — covering the definition of a child under the Act, what counts as an offence, the duty to report, and how to respond when a child discloses abuse — with an overall quiz performance of <strong>${score}%</strong>.</div>
+    <div class="cert-body">has completed the POCSO - age group: 18+ module — covering the definition of a child under the Act, what counts as an offence, the duty to report, and how to respond when a child discloses abuse — with an overall quiz performance of <strong>${score}%</strong>.</div>
     <div class="cert-sign-row">
       ${CERT_SIGNATORIES.map((s) => `
         <div class="cert-sign">
@@ -1582,7 +1592,7 @@ async function buildOneCardCanvas() {
   y += 40;
   ctx.font = "600 20px 'Segoe UI', Arial, sans-serif";
   ctx.fillStyle = "rgba(255,255,255,.75)";
-  ctx.fillText("POCSO Adult Awareness Module", W / 2, y);
+  ctx.fillText("POCSO - age group: 18+", W / 2, y);
   y += 60;
 
   ctx.font = "800 46px Georgia, serif";
@@ -1661,7 +1671,7 @@ async function downloadAndShareOneCard(btn) {
 
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
       try {
-        await navigator.share({ files: [file], title: "One Card to Keep — POCSO Awareness", text: "POCSO Adult Awareness — One Card to Keep" });
+        await navigator.share({ files: [file], title: "One Card to Keep — POCSO - age group: 18+", text: "POCSO - age group: 18+ — One Card to Keep" });
         return;
       } catch (e) { /* user cancelled the share sheet — fall through to a plain download */ }
     }

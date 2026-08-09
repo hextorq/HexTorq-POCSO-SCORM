@@ -107,7 +107,8 @@ body{
    else in this row is deliberately empty so the bar reads as centred. */
 .topbar-progress-row{display:flex;justify-content:center}
 .progress-center-block{width:100%;max-width:50%;display:flex;flex-direction:column;align-items:center;gap:4px}
-.module-name{font-size:.76rem;font-weight:600;opacity:.85;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.module-name{font-size:.76rem;font-weight:600;opacity:.9;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.module-credit{font-size:.68rem;font-weight:600;color:rgba(255,255,255,.7);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .topbar-progress{display:flex;align-items:center;gap:10px;width:100%}
 .progress-chapter-label{font-size:.72rem;font-weight:700;color:var(--gold-2);white-space:nowrap;letter-spacing:.02em}
 .progress-track{flex:1;height:6px;background:rgba(255,255,255,.18);border-radius:6px;overflow:hidden}
@@ -174,6 +175,23 @@ body{
 .block p{line-height:1.65;margin:0 0 .8em;color:var(--text)}
 .block p:last-child{margin-bottom:0}
 .block-heading{font-weight:700;color:var(--navy);margin-bottom:.4em;display:block}
+
+.law-title-card{
+  border:1px solid var(--border);
+  border-left:4px solid var(--gold);
+  border-radius:8px;
+  background:#fff;
+  padding:18px 20px;
+  box-shadow:var(--shadow);
+}
+.law-title-en,.law-title-ta{
+  color:var(--navy);
+  font-weight:800;
+  line-height:1.35;
+  text-align:center;
+}
+.law-title-en{font-size:1.05rem;margin-bottom:10px}
+.law-title-ta{font-size:1.02rem}
 
 /* ---------- Lists / tables ---------- */
 .p-list{margin:0;padding-left:1.2em;line-height:1.65}

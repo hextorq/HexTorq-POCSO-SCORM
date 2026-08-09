@@ -6,7 +6,7 @@
 */
 
 const MODULE_META = {
-  title: `POCSO — Adult Awareness Module`,
+  title: `POCSO - age group: 18+`,
   issuingAuthority: `Tamil Nadu Police`,
   productionNote: `All the highlights are the suggestions, the developer can use any creative representation based on the content`,
   disclaimer: `This module explains the law in simple words. It is not legal advice.`
@@ -48,9 +48,8 @@ const CHAPTERS = [
       id: "1.2",
       heading: `SCREEN 1.2 — The name`,
       blocks: [
+        { t: "lawTitle", english: `POCSO — The Protection of Children from Sexual Offences Act, 2012`, tamil: `குழந்தைகளை பாலியல் குற்றங்களிலிருந்து பாதுகாக்கும் சட்டம், 2012` },
         { t: "p", lines: [
-          `POCSO — The Protection of Children from Sexual Offences Act, 2012`,
-          `குழந்தைகளை பாலியல் குற்றங்களிலிருந்து பாதுகாக்கும் சட்டம், 2012`,
           `A central law, passed by Parliament in 2012. It applies in every state, including Tamil Nadu.`
         ]},
         { t: "visual", video: `video/ch01-screen-1-2-the-name.mp4`, lines: [
@@ -72,7 +71,7 @@ const CHAPTERS = [
             { front: `Below 18 — unless the child looks older.`, back: `False. Looks are not a test. The court decides age from records — school certificate first, then birth certificate.` },
             { front: `Below 18 — unless the child is earning.`, back: `False. A working child is still a child.` },
             { front: `Below 18 — unless the child is married.`, back: `False. Marriage does not make a child an adult under this Act.` },
-            { front: `Below 18 — unless the child agreed.`, back: `False. Below 18, a child cannot give consent.` }
+            { front: `Below 18 — unless the child says yes.`, back: `False. A child cannot give consent.` }
           ]
         }},
       ]
@@ -83,7 +82,7 @@ const CHAPTERS = [
       severity: "warning",
       blocks: [
         { t: "p", lines: [
-          `Below 18, a child cannot give consent.`,
+          `A child cannot give consent.`,
           `This is where most adults get it wrong. It is also where an ordinary person most often becomes an accused person.`
         ]},
         { t: "dialogue", location: `TEA SHOP`, turns: [
@@ -197,7 +196,7 @@ const CHAPTERS = [
         ]},
         { t: "interaction", kind: "tapOpen", label: `Screen text — after the conversation: The four parts of POCSO. Tap to open each.`, data: {
           items: [
-            { front: `1 · It defines the offences and the punishments.`, back: `Sections 3 to 15. Wider than most people assume — several offences involve no touching.` },
+            { front: `1 · It defines the offences and the punishments. Sections 3 to 15.`, back: `Wider than most people assume — several offences involve no touching.` },
             { front: `2 · It makes reporting a legal duty.`, back: `Section 19: any person who knows, or thinks, that an offence has been committed must report it. You do not have to be certain. Section 21: failure to report is punishable.` },
             { front: `3 · It changes how the child is treated.`, back: `Who records the statement, where, in whose presence. How a medical examination is done. Whether the child must face the accused in court.` },
             { front: `4 · It creates Special Courts.`, back: `So these cases are heard by designated courts, within fixed timelines.` }
@@ -400,11 +399,11 @@ const CHAPTERS = [
           { who: "Murugan", text: `I sent it to my brother. And to the watchman. See what people have become, I told them.` },
           { who: "Selvi", text: `(after a pause) Anna. That's an offence.` },
           { who: "Murugan", text: `What offence? I didn't make it! I was showing them how disgusting it is.` },
-          { who: "Selvi", text: `Sending it on is its own offence. The law doesn't ask why you sent it. Three years, it can go up to. And there's a separate case under the IT act Section 67B on top of that.` },
+          { who: "Selvi", text: `Sending it on is its own offence. The law doesn't ask why you sent it. Three years, it can go up to. And there's a separate case under the IT Act Section 67B on top of that.` },
           { who: "Murugan", text: `For forwarding?` },
           { who: "Selvi", text: `For forwarding.` },
           { who: "Murugan", text: `Then what was I supposed to do?` },
-          { who: "Selvi", text: `Two things. Report it. Then delete it. Nothing else is allowed.` },
+          { who: "Selvi", text: `Report it. Then delete it. If the police ask you to keep it, do that instead — they will tell you what to do with it.` },
           { who: "Murugan", text: `(after a moment) My brother will have sent it on by now. Definitely.` },
           { who: "Selvi", text: `Yes. And that person will send it to somebody. Every one of them thinks he's the one exposing it.` },
           { who: "Selvi", text: `(pause)` },
@@ -415,19 +414,17 @@ const CHAPTERS = [
         ]},
         { t: "p", heading: `Screen text — after the conversation`, lines: [
           `Somebody made it. That is where this starts.`,
-          `Using a child to make sexual material is an offence in itself — Section 13. Not less than five years.`,
-          `Sending it on is a separate offence. Up to three years, for any reason at all. Condemning it is not a reason the law recognises. There is also a separate offence under the IT Act.`,
-          `Keeping it is a separate offence. Even simply having it and not deleting it or reporting it carries a fine. Keeping it in order to pass it on carries up to three years.`,
-          `Only two reasons to still have it are permitted: reporting it, or producing it in court.`
+          `Making it carries at least five years. Keeping it in order to pass it on carries up to three years, or a fine, or both. Sending it on carries up to three years, for any reason at all — and is separately an offence under Section 67B of the IT Act.`,
+          `Only two reasons to still have it are permitted: reporting it, or producing it as evidence when directed.`
         ]},
         { t: "p", lines: [
-          `Report it. Then delete it.`,
-          `That is the only permitted action.`
+          `Report it. Then delete it. If the police ask you to keep it, do that instead — they will tell you what to do with it.`,
+          `That is the permitted action.`
         ]},
         { t: "list", heading: `You have it on your phone right now. Do this in order.`, items: [
           `1 · Stop → do not forward it, not to one more person, not to warn anybody`,
           `2 · Report it → cybercrime.gov.in · or 1098 · or your local police station`,
-          `3 · Delete it → from the chat, and from your phone's gallery and downloads`
+          `3 · Delete it → from the chat, gallery and downloads, unless the police ask you to keep it`
         ]},
         { t: "p", lines: [
           `Then, if you can: leave the group, or tell the group not to forward it. You are not required to. The three steps above are.`
@@ -437,8 +434,8 @@ const CHAPTERS = [
           `On Selvi's line "somebody was in the room" — cut to nothing. No flashback, no silhouette, no shadowed doorway, no implied figure. This is the single most important instruction on the screen. The sentence is doing the work. Any image at all reduces it, and any image at all risks becoming the thing the learner remembers instead of the sentence.`,
           `After the conversation — the spread. One phone icon. Then two. Four. Eight. Sixteen, moving outward past the edges of the frame. No content on any of them, only spread. It runs three seconds and stops dead.`,
           `Forward — struck through in red, tagged "up to 3 years, plus a separate IT Act offence"`,
-          `Report and delete — in green, tagged "the only permitted action"`,
-          `Appears only after the learner taps "Report and delete." Not before.`
+          `Report, then delete — in green, tagged "the permitted action"`,
+          `Appears only after the learner taps "Report, then delete." Not before.`
         ]},
         { t: "pathway", video: `video/ch02-screen-2-6-report-delete-pathway.mp4`, steps: [`Stop`, `Report`, `Delete`] }
       ]
@@ -493,7 +490,7 @@ const CHAPTERS = [
           { label: `An offence under Section 15(2), because he sent it on`, correct: true },
           { label: `An offence only if one of the friends complains`, correct: false }
         ],
-        feedback: `Section 15(2) covers storing such material in order to transmit, propagate, display or distribute it. The only permitted purposes are reporting it, or producing it as evidence in court. Report and delete was the correct action.`
+        feedback: `Section 15(2) covers storing such material in order to transmit, propagate, display or distribute it. Report it, then delete it. If the police ask you to keep it, do that instead — they will tell you what to do with it.`
       },
       {
         type: "single",
@@ -983,7 +980,7 @@ const FINAL_CARD = {
   lines: [
     `Anyone below 18 is a child. Below 18, "yes" has no meaning in law.`,
     `A crime does not need touching. Messages, pictures, videos, and following a child are all offences.`,
-    `Never forward a photo or video of child abuse. Report it, then delete it.`,
+    `Never forward a photo or video of child abuse. Report it, then delete it, unless the police ask you to keep it.`,
     `Suspicion is enough. You do not have to be sure — and staying quiet is itself an offence.`,
     `If a child tells you — believe, don't question, don't promise secrecy, write it down, report the same day.`
   ],
