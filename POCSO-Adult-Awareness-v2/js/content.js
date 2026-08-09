@@ -66,7 +66,7 @@ const CHAPTERS = [
           `A child is any person below the age of 18. POCSO Act, Section 2(d)`,
           `That is the whole definition. There is no exception in it.`
         ]},
-        { t: "interaction", kind: "beliefFlip", label: `Interaction — tap each belief to test it against the law:`, fixedHeader: "18", data: {
+        { t: "interaction", kind: "beliefFlip", label: `Tap each belief to test it against the law:`, fixedHeader: "18", data: {
           items: [
             { front: `Below 18 — unless the child looks older.`, back: `False. Looks are not a test. The court decides age from records — school certificate first, then birth certificate.` },
             { front: `Below 18 — unless the child is earning.`, back: `False. A working child is still a child.` },
@@ -101,12 +101,12 @@ const CHAPTERS = [
           { who: "Murugan", text: `So it's a crime either way.` },
           { who: "Selvi", text: `Either way. Only the question changes.` }
         ]},
-        { t: "p", heading: `Screen text — below the conversation:`, lines: [
+        { t: "p", lines: [
           `Two different laws. Two different questions.`,
           `Below 18 — POCSO. A child's consent does not exist in law.`,
           `18 and above — BNS. Sex without consent is rape — BNS Sections 63 and 64.`
         ]},
-        { t: "interaction", kind: "tapReveal", label: `Interaction — tap each to reveal:`, data: {
+        { t: "interaction", kind: "tapReveal", label: `Tap each to reveal:`, data: {
           items: [
             { front: `But she agreed.`, back: `Below 18, "yes" has no meaning in law.` },
             { front: `But she looks older.`, back: `Looks are irrelevant. Age comes from records.` },
@@ -128,7 +128,7 @@ const CHAPTERS = [
           `Any child can be a victim. Girls and boys are protected the same way.`,
           `Any adult, regardless of gender or relationship to the child, can commit an offence under POCSO. The law does not assume the offender is male.`
         ]},
-        { t: "interaction", kind: "sortDrag", label: `Interaction — sort exercise. Five case cards. The learner drags each into "POCSO applies" or "POCSO does not apply."`, data: {
+        { t: "interaction", kind: "sortDrag", label: `Sort each case card:`, data: {
           bins: [ { id: "applies", label: `POCSO applies` }, { id: "not-applies", label: `POCSO does not apply` } ],
           items: [
             { text: `A 15-year-old boy is sexually assaulted by a male relative`, bin: "applies", feedback: `Correct. Boys are protected equally.` },
@@ -154,7 +154,7 @@ const CHAPTERS = [
           `We teach children to be careful of strangers.`,
           `The evidence points the other way.`
         ]},
-        { t: "interaction", kind: "numberPick", label: `Interaction — tap your estimate.`, data: {
+        { t: "interaction", kind: "numberPick", label: `Tap your estimate.`, data: {
           question: `Out of 10 of the most serious POCSO cases, how many do you think involve someone the child already knew?`,
           min: 0, max: 10,
           revealHeading: `Answer revealed:`,
@@ -194,7 +194,7 @@ const CHAPTERS = [
           { who: "Murugan", text: `And you're telling me all this because?` },
           { who: "Selvi", text: `Because you have three children coming into this shop every evening for biscuits, Murugan anna. It's your business too.` }
         ]},
-        { t: "interaction", kind: "tapOpen", label: `Screen text — after the conversation: The four parts of POCSO. Tap to open each.`, data: {
+        { t: "interaction", kind: "tapOpen", label: `The four parts of POCSO. Tap to open each.`, data: {
           items: [
             { front: `1 · It defines the offences and the punishments. Sections 3 to 15.`, back: `Wider than most people assume — several offences involve no touching.` },
             { front: `2 · It makes reporting a legal duty.`, back: `Section 19: any person who knows, or thinks, that an offence has been committed must report it. You do not have to be certain. Section 21: failure to report is punishable.` },
@@ -217,7 +217,7 @@ const CHAPTERS = [
           `So this module is not only about protecting a child from someone else.`,
           `It is about knowing exactly where the line is — so that you never cross it, and never stand next to it in silence.`
         ]},
-        { t: "interaction", kind: "commitmentTap", label: `Interaction — commitment tap. One button. Nothing is scored. It exists so the learner makes a statement instead of just reading one.`, data: {
+        { t: "interaction", kind: "commitmentTap", data: {
           buttonText: `I understand this law applies to me.`
         }},
         { t: "visual", video: `video/ch01-screen-1-8-applies-to-you.mp4`, lines: [
@@ -331,7 +331,7 @@ const CHAPTERS = [
           `The test is the intent behind the touch — not the body part, and not whether there were clothes in between.`,
           `Punishment — Section 8. Three to five years, with a fine.`
         ]},
-        { t: "interaction", kind: "judgmentCards", label: `Interaction — judgement. Three situations, marked Offence / Not an offence.`, data: {
+        { t: "interaction", kind: "judgmentCards", label: `Choose offence or not an offence:`, data: {
           items: [
             { situation: `A doctor examines a child's stomach during a consultation, with the parent present`, answer: `Not an offence`, feedback: `Correct. There is no sexual intent — and Section 41 states that Sections 3 to 13 do not apply to medical examination or treatment carried out with the consent of the parent or guardian.` },
             { situation: `An uncle touches a 12-year-old's chest over her school uniform`, answer: `Offence`, feedback: `Correct. Clothing makes no difference. Section 7 covers touching over clothes where the intent is sexual.` },
@@ -362,7 +362,7 @@ const CHAPTERS = [
           { who: "Murugan", text: `(long pause) No.` },
           { who: "Selvi", text: `Then the answer was already there. It just wasn't known to be written down.` }
         ]},
-        { t: "p", heading: `Screen text — below the conversation:`, lines: [
+        { t: "p", lines: [
           `This is the section least known, and most often broken.`,
           `Section 11 requires no touching at all. With sexual intent, each of these is an offence:`
         ]},
@@ -412,7 +412,7 @@ const CHAPTERS = [
           { who: "Murugan", text: `(nothing)` },
           { who: "Selvi", text: `For him it was one day. For the child it doesn't stop, because we didn't stop.` }
         ]},
-        { t: "p", heading: `Screen text — after the conversation`, lines: [
+        { t: "p", lines: [
           `Somebody made it. That is where this starts.`,
           `Making it carries at least five years. Keeping it in order to pass it on carries up to three years, or a fine, or both. Sending it on carries up to three years, for any reason at all — and is separately an offence under Section 67B of the IT Act.`,
           `Only two reasons to still have it are permitted: reporting it, or producing it as evidence when directed.`
@@ -567,7 +567,7 @@ const CHAPTERS = [
           { who: "Sekar", text: `She had no way to protect herself from someone she was told was safe. The law looked at that and said — worse. Not better.` },
           { who: "Amudha", text: `(no answer)` }
         ]},
-        { t: "p", heading: `Screen text — below the conversation:`, lines: [
+        { t: "p", lines: [
           `Three beliefs, and what the law says.`
         ]},
         { t: "beliefList", items: [
@@ -671,7 +671,7 @@ const CHAPTERS = [
           `Over four months: he starts bringing her small gifts. He recharges her phone. He tells her she is more grown-up than other girls her age. He asks her not to mention the gifts — the other children in the building will feel bad, he says. He starts arriving before her mother leaves, and staying after she goes.`,
           `Her mother notices Divya has gone quiet, and decides it must be exam pressure. Her teacher notices Divya has stopped sitting with her usual friends.`
         ]},
-        { t: "interaction", kind: "multiSelectCase", label: `Interaction — multiple select. Which of the six patterns are present?`, data: {
+        { t: "interaction", kind: "multiSelectCase", label: `Which of the six patterns are present?`, data: {
           options: [
             { label: `Targeting`, correct: true },
             { label: `Special treatment`, correct: true },
@@ -686,7 +686,7 @@ const CHAPTERS = [
             `Two adults have already seen something change. Neither of them had to be sure, and neither of them had to ask Divya a single question. Either one could have reported a suspicion that day.`
           ]
         }},
-        { t: "p", heading: `Screen text — below the case: Signs in a child.`, lines: [] },
+        { t: "p", heading: `Signs in a child.`, lines: [] },
         { t: "list", heading: `In behaviour`, items: [
           `suddenly withdrawn, or suddenly clingy`, `afraid of one person or one place`, `won't be alone with someone she was fine with before`, `marks falling`, `stops activities she liked`, `running away`, `angry, or hurting herself`, `not sleeping`, `bedwetting`
         ]},
@@ -741,7 +741,7 @@ const CHAPTERS = [
           { who: "Selvi", text: `And if it isn't nothing?` },
           { who: "Murugan", text: `Then you waited two months. Don't wait four.` }
         ]},
-        { t: "p", heading: `Screen text — below the conversation:`, lines: [
+        { t: "p", lines: [
           `More than 9 out of 10 offenders are already known to the child. So most suspicions will be about someone known — a relative, a family friend, someone whose family is tied to yours.`,
           `This is where most adults stop.`,
           `The reasons are always the same. It will destroy the family. He would never. She'll be blamed for the rest of her life. Let me watch a little longer and be sure.`,
