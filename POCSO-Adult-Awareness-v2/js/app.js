@@ -60,6 +60,7 @@ const state = loadState() || {
   sliderRevealed: {},
   caseAnswers: {},
   caseSubmitted: {},
+  branching: {},
   commitDone: {},
   learnerName: "",
   certGenerated: false
@@ -865,6 +866,8 @@ function renderInteractionBlock(block, page, setInteractionCheck) {
     renderNumberPick(div, page, block, setInteractionCheck);
   } else if (kind === "multiSelectCase") {
     renderMultiSelectCase(div, page, block, setInteractionCheck);
+  } else if (kind === "linearBranching") {
+    renderLinearBranching(div, page, block, setInteractionCheck);
   } else if (kind === "commitmentTap") {
     renderCommitment(div, page, block, setInteractionCheck);
   }
@@ -1239,6 +1242,126 @@ function renderMultiSelectCase(container, page, block, setInteractionCheck) {
   draw();
   setInteractionCheck(() => submittedCheck());
   function submittedCheck() { return !!state.caseSubmitted[key]; }
+}
+
+/* --- Linear branching: one situation beat at a time with inline feedback --- */
+function renderLinearBranching(container, page, block, setInteractionCheck) {
+  const key = page.id;
+  if (!state.branching) state.branching = {};
+  if (!state.branching[key]) state.branching[key] = { beat: 0, complete: false, lastChoice: null, pendingAdvance: false };
+  const progress = state.branching[key];
+  const beats = block.data.beats || [];
+  const currentBeatIndex = Math.min(progress.beat || 0, Math.max(0, beats.length - 1));
+  const beat = beats[currentBeatIndex];
+
+  const box = document.createElement("div");
+  box.className = "branch-box";
+  container.appendChild(box);
+
+  const stepText = document.createElement("div");
+  stepText.className = "branch-step";
+  stepText.textContent = `Beat ${currentBeatIndex + 1} of ${beats.length}`;
+  box.appendChild(stepText);
+
+  const situation = document.createElement("div");
+  situation.className = "branch-situation";
+  situation.textContent = beat.situation;
+  box.appendChild(situation);
+
+  const body = document.createElement("div");
+  body.className = "branch-body";
+  body.innerHTML = `
+    <div class="branch-illustration" aria-hidden="true">
+      <div class="branch-wall"></div>
+      <div class="branch-child"></div>
+      <div class="branch-adult"></div>
+      <div class="branch-floor"></div>
+    </div>
+    <div class="branch-choices"></div>
+  `;
+  box.appendChild(body);
+
+  const choicesEl = body.querySelector(".branch-choices");
+  const feedback = document.createElement("div");
+  feedback.className = "branch-feedback";
+  feedback.hidden = true;
+
+  (beat.choices || []).forEach((choice, idx) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "branch-choice";
+    btn.textContent = choice.label;
+    btn.disabled = !!progress.pendingAdvance || !!progress.complete;
+    btn.addEventListener("click", () => {
+      progress.lastChoice = idx;
+      if (choice.correct) {
+        SFX.correct();
+        if (currentBeatIndex < beats.length - 1) {
+          progress.pendingAdvance = true;
+          saveState();
+          render();
+          return;
+        }
+        progress.complete = true;
+      } else {
+        SFX.incorrect();
+      }
+      saveState();
+      render();
+    });
+    choicesEl.appendChild(btn);
+  });
+
+  if (progress.lastChoice !== null && beat.choices[progress.lastChoice]) {
+    const choice = beat.choices[progress.lastChoice];
+    feedback.hidden = false;
+    feedback.className = "branch-feedback " + (choice.correct ? "correct" : "incorrect");
+    feedback.textContent = choice.feedback;
+    if (choice.correct && progress.pendingAdvance) {
+      const nextBtn = document.createElement("button");
+      nextBtn.type = "button";
+      nextBtn.className = "btn btn-primary branch-next";
+      nextBtn.textContent = `Continue to Beat ${currentBeatIndex + 2}`;
+      nextBtn.addEventListener("click", () => {
+        progress.beat = currentBeatIndex + 1;
+        progress.lastChoice = null;
+        progress.pendingAdvance = false;
+        saveState();
+        render();
+      });
+      feedback.appendChild(nextBtn);
+    }
+  }
+  box.appendChild(feedback);
+
+  if (progress.complete && block.data.completionPanel) {
+    const panel = renderWriteRecordPanel(block.data.completionPanel);
+    container.appendChild(panel);
+    if (typeof gsap !== "undefined") gsap.from(panel, { autoAlpha: 0, y: 14, duration: 0.35, ease: "power2.out" });
+  }
+
+  setInteractionCheck(() => !!progress.complete);
+}
+
+function renderWriteRecordPanel(panel) {
+  const div = document.createElement("div");
+  div.className = "write-panel";
+  const rows = (panel.rows || []).map((row) => `
+    <div class="write-row">
+      <div>${escapeHtml(row[0])}</div>
+      <div>${escapeHtml(row[1])}</div>
+    </div>
+  `).join("");
+  div.innerHTML = `
+    <div class="write-heading">${escapeHtml(panel.heading)}</div>
+    <div class="write-grid">
+      <div class="write-col write-yes"><div class="write-col-head">✓ ${escapeHtml(panel.writeHeading)}</div></div>
+      <div class="write-col write-no"><div class="write-col-head">✕ ${escapeHtml(panel.dontHeading)}</div></div>
+      ${rows}
+    </div>
+    <div class="write-note">${escapeHtml(panel.note)}</div>
+  `;
+  return div;
 }
 
 /* --- Commitment tap --- */

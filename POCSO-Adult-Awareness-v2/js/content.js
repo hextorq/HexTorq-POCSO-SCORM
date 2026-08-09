@@ -794,7 +794,7 @@ const CHAPTERS = [
 {
   num: 5,
   title: `When a Child Tells You, and What to Do Next`,
-  duration: `~9 min · 4 screens`,
+  duration: `~9 min · 5 screens`,
   blurb: `What to say, what not to say, and how to report — and what happens after.`,
   screens: [
     {
@@ -826,6 +826,59 @@ const CHAPTERS = [
     },
     {
       id: "5.2",
+      heading: `SCREEN 5.2a — The next hour`,
+      severity: "warning",
+      blocks: [
+        { t: "interaction", kind: "linearBranching", data: {
+          continuity: `Same child as 5.1 — same name, same illustration, same clothing. This must read as one continuous event, not a new scenario.`,
+          beats: [
+            {
+              situation: `The child has stopped talking. She is looking at the floor.`,
+              choices: [
+                { label: `"Did he touch you here?"`, correct: false, feedback: `She nods. But the word was yours, not hers. In court, the defence will say exactly that — that you put it in her mouth. Replay.` },
+                { label: `"Thank you for telling me. I believe you." — and say nothing more`, correct: true, feedback: `You are not the investigator. Your job is to hear it, and to write it down.` },
+                { label: `"Can you tell me the whole thing from the beginning?"`, correct: false, feedback: `She has told it once already. Every retelling costs her, and any small difference between the tellings will be used against her later. Replay.` }
+              ]
+            },
+            {
+              situation: `The headmistress is passing the corridor. She stops. "What's going on?"`,
+              choices: [
+                { label: `Call her over so the child can tell her too`, correct: false, feedback: `That is two adults. By evening it will be five. Each one will ask her to start again. Replay.` },
+                { label: `"I'll come and speak to you in ten minutes." Stay with the child.`, correct: true, feedback: `The headmistress needs to know. The child does not need to say it again.` }
+              ]
+            },
+            {
+              situation: `Another teacher says quietly: "Take a photo of the marks. We'll need proof."`,
+              choices: [
+                { label: `Photograph the marks`, correct: false, feedback: `You have made an image of a child's body, and exposed her again to do it. Medical examination is a doctor's work, on the direction of the police or the CWC. Not yours. Replay.` },
+                { label: `Do not photograph. Do not lift her clothing.`, correct: true, feedback: `Correct.` }
+              ]
+            },
+            {
+              situation: `You see him in the corridor. He is walking towards the staff room.`,
+              choices: [
+                { label: `Ask him directly what happened`, correct: false, feedback: `Now he knows. Anything that could have been evidence will be gone by tonight — and so, possibly, will he. The child is less safe than she was ten minutes ago. Replay.` },
+                { label: `Say nothing. Keep walking.`, correct: true, feedback: `Correct.` }
+              ]
+            }
+          ],
+          completionPanel: {
+            heading: `Before you leave today, write it down.`,
+            writeHeading: `Write`,
+            dontHeading: `Do not`,
+            rows: [
+              [`Her exact words, in her language`, `Translate her words`],
+              [`Date and time`, `Tidy them into sentences`],
+              [`Where it happened`, `Summarise in your own words`],
+              [`Who else was there`, `Wait until tomorrow`]
+            ],
+            note: `A summary in your own words is not a record. "Inappropriate touching" is your phrase, not hers.`
+          }
+        }}
+      ]
+    },
+    {
+      id: "5.2b",
       heading: `SCREEN 5.2 — What not to do`,
       severity: "warning",
       blocks: [
