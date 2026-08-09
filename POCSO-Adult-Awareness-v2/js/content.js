@@ -799,26 +799,28 @@ const CHAPTERS = [
   screens: [
     {
       id: "5.1",
-      heading: `SCREEN 5.1 — When a child tells you`,
+      heading: `SCREEN 5.1 — The first ten seconds`,
       severity: "safe",
       blocks: [
         { t: "p", lines: [
-          `When a child tells an adult, understand what has just happened.`,
-          `It rarely comes out plainly. Usually it arrives like this:`
-        ]},
-        { t: "p", heading: `Indirectly`, lines: [
-          `a boy says "I don't want to go to tuition any more." He is not refusing tuition. He is refusing a person, and hoping someone asks.`
-        ]},
-        { t: "p", heading: `As a question about "a friend"`, lines: [
+          `When a child tells an adult, understand what has just happened. It rarely comes out plainly.`,
+          `Indirectly — a boy says "I don't want to go to tuition any more." He is not refusing tuition. He is refusing a person, and hoping someone asks.`,
           `"What if someone's uncle did something bad to them?" The friend is very often the child asking.`
         ]},
         { t: "p", lines: [ `The first ten seconds matter most.` ]},
-        { t: "sayNotSay", sayHeading: `Say this`, say: [ `"I believe you."`, `"This is not your fault."`, `"I'm glad you told me."` ], sayNote: `Then stay calm, and let the child speak without interrupting.`,
+        { t: "sayNotSay", sayHeading: `Say this`, say: [ `"I believe you."`, `"This is not your fault."`, `"I'm glad you told me."`, `"Take your time."` ], sayNote: `Then stay calm and let the child speak without interrupting.`,
           notHeading: `Not this`, not: [ `"Are you sure?"`, `"Why didn't you tell me before?"`, `"Why did you go with him?"`, `"Let's keep this between us."` ] },
+        { t: "p", heading: `Do not promise secrecy.`, lines: [
+          `A child will often ask first: "Promise you won't tell anyone." That promise cannot be kept — reporting is a legal duty, and secrecy leaves the child where they are.`
+        ]},
+        { t: "quote", heading: `Say this instead:`, lines: [
+          `"I can't promise to keep it a secret, because if somebody is hurting you, my job is to make it stop. But I promise I'll tell you who I'm telling. And I'll stay with you through it."`
+        ]},
+        { t: "p", lines: [
+          `Two questions are enough: "Can you tell me what happened?" and "Is there anything else you want to tell me?" Then stop. Do not keep pressing — "and then what happened", "tell me more", "what else did he do" — that is investigation, and it is not yours to do.`
+        ]},
         { t: "visual", video: `video/ch05-screen-5-1-child-tells-you.mp4`, lines: [
-          `Top: a still of two people sitting side by side on a step, seen from behind — an adult and a child, both facing away, neither looking at the other. Children disclose in this position, not face to face. The image teaches that before the text does.`,
-          `Middle — five small cards, scrolled horizontally, one per pattern: a school bag put down at a doorway, child half-turned away · two children on a school step, the speaker looking straight ahead · a child speaking to an adult who is half-listening and still doing something with their hands · the same child later, shaking their head · the inside of an auto at night, both facing forward. In every one, the child is not making eye contact. That is the through-line. Draw boys in at least two of the five.`,
-          `Strip across the bottom: "The difference is not how much you care. It is what comes out of your mouth in the first ten seconds."`
+          `Still of two people on a step seen from behind, adult and child, neither looking at the other. Five horizontal cards, children never making eye contact, boys in at least two. Bottom strip: "The difference is not how much you care. It is what comes out of your mouth in the first ten seconds."`
         ]}
       ]
     },
