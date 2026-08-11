@@ -879,7 +879,7 @@ const CHAPTERS = [
           question: `Tonight — does the child go back to where that person is?`,
           choices: [
             { label: `YES`, urgent: true, feedback: `Call 1098 now. Do not send the child home with the person suspected. This is not a decision you make alone, and it is not a decision for tomorrow morning.` },
-            { label: `NO`, urgent: false, feedback: `You still report. Section 19 has no "wait and see" clause. But you are not racing the clock tonight.` },
+            { label: `NO`, urgent: false, feedback: `You still report it under section 19.` },
             { label: `I DON'T KNOW`, urgent: true, feedback: `Then treat it as yes. Call 1098 now.` }
           ]
         }}
