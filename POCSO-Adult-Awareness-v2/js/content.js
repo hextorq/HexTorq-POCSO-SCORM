@@ -365,12 +365,12 @@ const CHAPTERS = [
           `This is the section least known, and most often broken.`,
           `Section 11 requires no touching at all. With sexual intent, each of these is an offence:`
         ]},
-        { t: "list", items: [
-          `1 · Saying a word, making a sound or gesture, or showing an object or part of the body, intending a child to hear or see it`,
-          `2 · Showing a child pornographic material, in any form or media`,
-          `3 · Repeatedly following, watching or contacting a child — directly, or by phone or online`,
-          `4 · Threatening to use a real or morphed sexual picture of a child`,
-          `5 · Luring a child for pornographic purposes`
+        { t: "table", className: "offence-table", headerRow: [`No.`, `Offence under Section 11`], rows: [
+          [`1`, `Saying a word, making a sound or gesture, or showing an object or part of the body, intending a child to hear or see it`],
+          [`2`, `Showing a child pornographic material, in any form or media`],
+          [`3`, `Repeatedly following, watching or contacting a child — directly, or by phone or online`],
+          [`4`, `Threatening to use a real or morphed sexual picture of a child`],
+          [`5`, `Luring a child for pornographic purposes`]
         ]},
         { t: "p", lines: [ `Punishment — Section 12. Up to three years, with a fine.` ]},
         { t: "visual", video: `video/ch02-screen-2-5-sexual-harassment-section-11.mp4`, lines: [
@@ -569,10 +569,10 @@ const CHAPTERS = [
         { t: "p", lines: [
           `Three beliefs, and what the law says.`
         ]},
-        { t: "beliefList", items: [
-          { belief: `"It only happened once."`, response: `Every offence is complete the first time. Repetition raises the punishment. Its absence removes nothing.` },
-          { belief: `"There was no penetration."`, response: `Separate offences exist for touching without penetration, and for acts with no touching at all.` },
-          { belief: `"The child said nothing at the time."`, response: `Delay is normal and does not weaken a case. Courts accept that children stay silent for years. Nobody is too late to come forward.` }
+        { t: "table", className: "belief-table", headerRow: [`Belief`, `What the law says`], rows: [
+          [`"It only happened once."`, `Every offence is complete the first time. Repetition raises the punishment. Its absence removes nothing.`],
+          [`"There was no penetration."`, `Separate offences exist for touching without penetration, and for acts with no touching at all.`],
+          [`"The child said nothing at the time."`, `Delay is normal and does not weaken a case. Courts accept that children stay silent for years. Nobody is too late to come forward.`]
         ]},
         { t: "p", lines: [
           `Committing the act is not the only way to be liable.`,
@@ -685,18 +685,11 @@ const CHAPTERS = [
             `Two adults have already seen something change. Neither of them had to be sure, and neither of them had to ask Divya a single question. Either one could have reported a suspicion that day.`
           ]
         }},
-        { t: "p", heading: `Signs in a child.`, lines: [] },
-        { t: "list", heading: `In behaviour`, items: [
-          `suddenly withdrawn, or suddenly clingy`, `afraid of one person or one place`, `won't be alone with someone she was fine with before`, `marks falling`, `stops activities she liked`, `running away`, `angry, or hurting herself`, `not sleeping`, `bedwetting`
-        ]},
-        { t: "list", heading: `In what she knows`, items: [
-          `words, drawings or games involving sexual acts a child that age should not know about.`
-        ]},
-        { t: "list", heading: `In the body`, items: [
-          `difficulty walking or sitting`, `pain, bleeding or discharge`, `falling ill often with no clear reason`, `not wanting to change clothes in front of anyone`
-        ]},
-        { t: "list", heading: `On the phone`, items: [
-          `hiding the screen`, `a phone, SIM or account the family didn't know existed`, `upset after being online`
+        { t: "table", className: "signs-table", caption: `Signs in a child`, headerRow: [`Where it appears`, `What to notice`], rows: [
+          [`In behaviour`, `suddenly withdrawn, or suddenly clingy; afraid of one person or one place; won't be alone with someone she was fine with before; marks falling; stops activities she liked; running away; angry, or hurting herself; not sleeping; bedwetting`],
+          [`In what she knows`, `words, drawings or games involving sexual acts a child that age should not know about.`],
+          [`In the body`, `difficulty walking or sitting; pain, bleeding or discharge; falling ill often with no clear reason; not wanting to change clothes in front of anyone`],
+          [`On the phone`, `hiding the screen; a phone, SIM or account the family didn't know existed; upset after being online`]
         ]},
         { t: "p", lines: [ `You do not need to spot many. One change that is new, and does not go away, is enough.` ]},
         { t: "visual", video: `video/ch04-screen-4-2-divya-case-signs.mp4`, lines: [
@@ -712,13 +705,13 @@ const CHAPTERS = [
       heading: `SCREEN 4.3 — Noticing is not investigating`,
       severity: "safe",
       blocks: [
-        { t: "p", lines: [
-          `Suspicion is enough to report.`,
-          `Do not question the child. Probing questions damage the child's account.`,
-          `Do not confront the person suspected. It warns him, endangers the child, destroys evidence.`,
-          `Do not arrange a medical examination. There is a legal procedure for that.`,
-          `Do not discuss it in a WhatsApp group, a staff room, or with neighbours. Revealing a child's identity — in a newspaper, or on WhatsApp, Facebook or YouTube — is itself an offence under Section 23.`,
-          `Report it. That is the whole job. Establishing what happened is the system's work.`
+        { t: "table", className: "investigation-table", headerRow: [`Rule`, `Why it matters`], rows: [
+          [`Suspicion is enough`, `Suspicion is enough to report.`],
+          [`Do not question the child`, `Probing questions damage the child's account.`],
+          [`Do not confront the person suspected`, `It warns him, endangers the child, destroys evidence.`],
+          [`Do not arrange a medical examination`, `There is a legal procedure for that.`],
+          [`Do not discuss it in a WhatsApp group, a staff room, or with neighbours`, `Revealing a child's identity — in a newspaper, or on WhatsApp, Facebook or YouTube — is itself an offence under Section 23.`],
+          [`Report it`, `That is the whole job. Establishing what happened is the system's work.`]
         ]},
         { t: "dialogue", location: `TEA SHOP`, note: `(add any characters / scenario without changing the core content)`, turns: [
           { who: "Selvi", text: `Murugan anna. Can I ask you something, and you won't repeat it?` },
