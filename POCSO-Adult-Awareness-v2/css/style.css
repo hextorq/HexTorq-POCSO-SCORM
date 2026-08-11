@@ -231,6 +231,18 @@ body[data-focus-mode="true"] .page{max-width:none;min-height:100vh;display:flex;
 .p-table{width:100%;border-collapse:collapse;margin:.4em 0}
 .p-table th,.p-table td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--border);font-size:.92rem}
 .p-table th{color:var(--text-mute);font-size:.74rem;text-transform:uppercase;letter-spacing:.05em}
+.compare-table-wrap{overflow-x:auto}
+.compare-table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;background:#fff;table-layout:fixed}
+.compare-table th,.compare-table td{padding:13px 14px;border-bottom:1px solid var(--border);font-size:.92rem;line-height:1.45;color:var(--navy)}
+.compare-table tr:last-child th,.compare-table tr:last-child td{border-bottom:none}
+.compare-table thead th{background:#f8f6ee;font-weight:800;text-align:center}
+.compare-table thead th:first-child{width:28%;background:#fff}
+.compare-table tbody th{width:28%;font-weight:700;text-align:left;color:var(--text-mute);background:#fbfaf6}
+.compare-table tbody td{width:36%;font-weight:700;text-align:center;background:#fff}
+.compare-table th:nth-child(2),.compare-table td:nth-child(2){border-left:1px solid var(--border);border-right:1px solid var(--border)}
+@media(max-width:560px){
+  .compare-table th,.compare-table td{padding:10px 9px;font-size:.82rem}
+}
 
 /* ---------- Quote / say-not-say ---------- */
 .p-quote{

@@ -681,7 +681,7 @@ function renderScreenPage(page, wrap) {
     if (el) {
       el.classList.add("gsap-stagger");
       wrap.appendChild(el);
-      if (["p", "lawTitle", "quote", "list", "beliefList", "sayNotSay", "table", "interaction"].includes(block.t)) {
+      if (["p", "lawTitle", "quote", "list", "beliefList", "sayNotSay", "table", "compareTable", "interaction"].includes(block.t)) {
         hasReadableContent = true;
       }
     }
@@ -729,6 +729,7 @@ function renderBlock(block, page, setInteractionCheck) {
     case "quote": return renderQuoteBlock(block);
     case "list": return renderListBlock(block);
     case "table": return renderTableBlock(block);
+    case "compareTable": return renderCompareTableBlock(block);
     case "note": return renderNoteBlock(block);
     case "visual": return renderVisualBlock(block, page);
     case "pathway": return renderPathwayBlock(block);
@@ -782,6 +783,30 @@ function renderTableBlock(block) {
   const head = `<tr>${block.headerRow.map((h) => `<th>${escapeHtml(h)}</th>`).join("")}</tr>`;
   const rows = block.rows.map((r) => `<tr>${r.map((c) => `<td>${escapeHtml(c)}</td>`).join("")}</tr>`).join("");
   div.innerHTML = `<table class="p-table"><thead>${head}</thead><tbody>${rows}</tbody></table>`;
+  return div;
+}
+function renderCompareTableBlock(block) {
+  const div = document.createElement("div");
+  div.className = "block compare-table-wrap";
+  const rows = block.rows.map((r) => `
+    <tr>
+      <th scope="row">${escapeHtml(r[0])}</th>
+      <td>${escapeHtml(r[1])}</td>
+      <td>${escapeHtml(r[2])}</td>
+    </tr>
+  `).join("");
+  div.innerHTML = `
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>${escapeHtml(block.columns[0])}</th>
+          <th>${escapeHtml(block.columns[1])}</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
   return div;
 }
 function renderNoteBlock(block) {

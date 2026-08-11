@@ -203,10 +203,15 @@ const CHAPTERS = [
       severity: "warning",
       blocks: [
         { t: "p", lines: [
-          `There are two ways an adult can end up on the wrong side of this law.`,
-          `The first is obvious. By doing something to a child.`,
-          `The second one catches people who never thought they had done anything wrong. By knowing, or suspecting, and staying quiet.`,
-          `The punishments are not the same. But both are offences, and only one of them is something you might do by accident.`,
+          `There are two ways an adult can end up on the wrong side of this law.`
+        ]},
+        { t: "compareTable", columns: [`Doing something to a child`, `Knowing, and staying quiet`], rows: [
+          [`Where in the law`, `Sections 3 to 15`, `Section 19 · Section 21`],
+          [`Can it happen by accident?`, `No`, `Yes`],
+          [`Is it an offence?`, `Yes`, `Yes`]
+        ]},
+        { t: "p", lines: [
+          `The punishments are not the same. But both are offences.`,
           `So this module is not only about protecting a child from someone else.`,
           `It is about knowing exactly where the line is — so that you never cross it, and never stand next to it in silence.`
         ]},
