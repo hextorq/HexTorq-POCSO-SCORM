@@ -897,7 +897,7 @@ const CHAPTERS = [
       heading: `STATIC PANEL — Where to report`,
       severity: "safe",
       blocks: [
-        { t: "table", headerRow: [``, ``], rows: [
+        { t: "table", className: "report-table", headerRow: [``, ``], rows: [
           [`1098`, `Child Helpline — free, day and night`],
           [`1091`, `Women Helpline — Tamil Nadu`],
           [`Local police / SJPU`, `Where the law says the report goes`],
@@ -967,7 +967,7 @@ const CHAPTERS = [
         { t: "p", lines: [
           `Most people stay quiet because they don't know what they are starting. This is what happens.`
         ]},
-        { t: "table", headerRow: [`Stop`, `What happens`], rows: [
+        { t: "table", className: "after-report-table", headerRow: [`Stop`, `What happens`], rows: [
           [`1 · The call`, `To 1098, the police, or the SJPU. You give what you noticed. You don't need proof.`],
           [`2 · The child's safety`, `If the child needs a safe place, the Child Welfare Committee decides. Not you.`],
           [`3 · The statement`, `Taken once, by a woman officer, in plain clothes, at the child's home or a place the child chooses, with someone the child trusts present. A child is never held at a station overnight.`],
