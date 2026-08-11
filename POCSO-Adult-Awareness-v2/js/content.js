@@ -32,13 +32,6 @@ const CHAPTERS = [
           `POCSO applies to every adult in India — including you.`,
           `In the next 45 minutes you will learn what this law says, what it treats as a crime, and what it asks you to do.`
         ]},
-        { t: "visual", video: `video/ch01-screen-1-1-opening.mp4`, lines: [
-          `Build a 20–25 second sequence of five or six short shots of ordinary Chennai adult life.`,
-          `Suggested shots: a man pouring tea at a roadside shop; two women waiting at a bus stop with school bags in hand; an auto driver leaning on his vehicle outside a school gate at 3:30pm; a shopkeeper handing over change to a child; a watchman in an apartment lobby; a hand scrolling a phone.`,
-          `What to avoid: no dark colours, no shadows, no sinister music cue, no menacing figure. Nothing that says "crime."`,
-          `Why: the point of this opening is that these are the people the law is speaking to — ordinary adults in ordinary places. If the visual looks like a crime documentary, the learner decides the module is about someone else and stops paying attention.`,
-          `Ending shot: hold on one wide frame of a normal street with adults and children in the same space. The text appears over it.`
-        ]},
         { t: "note", lines: [
           `Every screen carries audio narration, and text that can be enlarged. Nothing is taught only in writing.`
         ]}
