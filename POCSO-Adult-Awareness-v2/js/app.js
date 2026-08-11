@@ -1,5 +1,20 @@
 /* POCSO Adult Awareness Module — app engine */
 
+/* ---------------- Master settings ----------------
+   Flip these switches during development/testing, then set them back to
+   their shipped defaults before real learners use the module. */
+const MASTER_SETTINGS = {
+  // true: tapping an already-revealed flip card (belief cards, tap-reveal
+  // decks) closes it again, so it can be re-opened — a toggle, not a
+  // one-way reveal. false: original one-way behaviour.
+  cardsToggleOpenClose: true,
+  // true: every page load starts completely fresh (ignores and wipes any
+  // saved progress) — turn this on while testing so you don't have to keep
+  // resuming from where a previous run left off. false (shipped default):
+  // normal behaviour, resumes the learner's progress via localStorage.
+  alwaysFreshStart: true
+};
+
 if (typeof gsap !== "undefined" && typeof Draggable !== "undefined") gsap.registerPlugin(Draggable, ScrollTrigger);
 
 /* Shown in the footer while an interaction is still incomplete — rotates
@@ -72,6 +87,10 @@ function saveState() {
   catch (e) { /* Safari private-browsing throws on quota — progress just won't persist */ }
 }
 function loadState() {
+  if (MASTER_SETTINGS.alwaysFreshStart) {
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    return null;
+  }
   try { const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : null; }
   catch (e) { return null; }
 }
@@ -1030,6 +1049,37 @@ function playDeckVariant(v, front, back, inner, instant) {
       break;
   }
 }
+// Mirror of playDeckVariant — animates a revealed card back to its closed
+// (front-facing) state, so cards can be tapped closed again, not just
+// opened once. Gated by MASTER_SETTINGS.cardsToggleOpenClose at the call site.
+function closeDeckVariant(v, front, back, inner, instant) {
+  if (typeof gsap === "undefined") { if (front) front.style.display = ""; if (back) back.style.display = "none"; return; }
+  switch (v.type) {
+    case "flip":
+      gsap.to(inner, { [v.axis]: 0, duration: instant ? 0 : 0.6, ease: "back.out(1.4)" });
+      break;
+    case "pop":
+      gsap.to(back, { scale: 0.55, autoAlpha: 0, duration: instant ? 0 : 0.28, ease: "power1.in" });
+      gsap.to(front, { scale: 1, autoAlpha: 1, duration: instant ? 0 : 0.5, delay: instant ? 0 : 0.14, ease: "back.out(2.2)" });
+      break;
+    case "slide":
+      gsap.to(back, { [v.axis]: v.from, autoAlpha: 0, duration: instant ? 0 : 0.45, ease: "power2.inOut" });
+      gsap.to(front, { [v.axis]: 0, autoAlpha: 1, duration: instant ? 0 : 0.45, ease: "power2.inOut" });
+      break;
+    case "spin":
+      gsap.to(back, { rotation: -22, scale: 0.6, autoAlpha: 0, duration: instant ? 0 : 0.32, ease: "power1.in" });
+      gsap.to(front, { rotation: 0, scale: 1, autoAlpha: 1, duration: instant ? 0 : 0.5, delay: instant ? 0 : 0.1, ease: "back.out(1.8)" });
+      break;
+    case "unfold":
+      gsap.to(back, { scaleY: 0, autoAlpha: 0, duration: instant ? 0 : 0.2 });
+      gsap.to(front, { autoAlpha: 1, duration: instant ? 0 : 0.5, ease: "power2.out" });
+      break;
+    case "peel":
+      gsap.to(back, { xPercent: 40, rotation: 12, autoAlpha: 0, duration: instant ? 0 : 0.4, ease: "power2.in" });
+      gsap.to(front, { xPercent: 0, rotation: 0, autoAlpha: 1, duration: instant ? 0 : 0.45, delay: instant ? 0 : 0.08, ease: "power2.out" });
+      break;
+  }
+}
 
 /* --- Flip deck: shared by beliefFlip / tapReveal / tapOpen / judgment cards --- */
 function renderFlipDeck(container, page, block, setInteractionCheck) {
@@ -1082,7 +1132,17 @@ function renderFlipDeck(container, page, block, setInteractionCheck) {
     card.querySelector(".deck-back-foot").appendChild(miniSpeaker);
 
     card.addEventListener("click", (ev) => {
-      if (isOpen || ev.target.closest(".speaker-btn")) return;
+      if (ev.target.closest(".speaker-btn")) return;
+
+      const nowOpen = card.classList.contains("open");
+      if (nowOpen) {
+        if (!MASTER_SETTINGS.cardsToggleOpenClose) return;
+        card.classList.remove("open");
+        closeDeckVariant(variant, front, back, inner, false);
+        SFX.click();
+        return;
+      }
+
       revealed[i] = true;
       saveState();
       card.classList.add("open");
