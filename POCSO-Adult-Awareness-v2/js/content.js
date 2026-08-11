@@ -294,7 +294,7 @@ const CHAPTERS = [
       heading: `SCREEN 2.2 — The four kinds`,
       severity: "notice",
       blocks: [
-        { t: "table", headerRow: [`What it is`, `Section`], rows: [
+        { t: "table", className: "four-kinds-table", headerRow: [`What it is`, `Section`], rows: [
           [`1 · Penetrative sexual assault`, `3`],
           [`2 · Sexual assault — touching, without penetration`, `7`],
           [`3 · Sexual harassment — no touching needed`, `11`],
