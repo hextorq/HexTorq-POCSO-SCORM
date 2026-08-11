@@ -418,6 +418,7 @@ function goToPageId(id) {
 }
 
 function buildSidebar() {
+  if (!chapterListEl) return;
   chapterListEl.innerHTML = "";
   CHAPTERS.forEach((ch) => {
     const li = document.createElement("li");
@@ -480,6 +481,7 @@ function syncOpenChapterToPage() {
   if (currentKey) openChapterKey = currentKey;
 }
 function updateSidebar() {
+  if (!chapterListEl) return;
   const page = currentPage();
   const items = chapterListEl.querySelectorAll(".chapter-item");
   items.forEach((item) => {
