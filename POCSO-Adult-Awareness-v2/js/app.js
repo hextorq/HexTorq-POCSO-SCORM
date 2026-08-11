@@ -1925,39 +1925,9 @@ function renderCertificatePage(page, wrap) {
 /* ---------------- One Card to Keep — its own page, read after the certificate ---------------- */
 function renderOneCardPage(page, wrap) {
   const card = document.createElement("div");
-  card.className = "final-card final-card-poster";
+  card.className = "one-card-image-wrap";
   card.innerHTML = `
-    <div class="poster-top">
-      <div class="poster-agency">
-        <img src="img/singappen-logo.png" alt="Singappen">
-        <div><strong>Singappen Special Task Force</strong><span>Tamil Nadu Police</span></div>
-      </div>
-      <div class="poster-module"><strong>POCSO Act, 2012</strong><span>Awareness Module</span></div>
-    </div>
-    <h1>One Card To Keep</h1>
-    <div class="poster-intro">Five things. If you remember nothing else, remember these.</div>
-    <div class="poster-list">
-      ${[
-        ["Age Matters", "Any person below 18 years is a child. Below 18, \"yes\" has no meaning in law."],
-        ["Abuse Is Not Limited To Physical Contact", "Messages, pictures, videos, and following a child online or offline are all offences under POCSO. Grooming, stalking, exposing a child to pornography, or sharing sexual material are punishable offences."],
-        ["Never Share Abuse Material", "Do not forward a photo or video of child abuse. Report it immediately. Preserve evidence where required. Delete only after appropriate reporting procedures."],
-        ["Reasonable Suspicion Requires Action", "Suspicion is enough. You do not have to be sure — and staying quiet is itself an offence."],
-        ["If A Child Tells You — Believe", "Listen calmly and believe the child. Do not question or confront. Do not promise confidentiality. Write it down as soon as possible. Report the same day to the authorities."]
-      ].map((item, i) => `
-        <div class="poster-row">
-          <div class="poster-num">${String(i + 1).padStart(2, "0")}</div>
-          <div class="poster-icon">${["<18", "MSG", "!", "?", "✓"][i]}</div>
-          <div class="poster-copy"><h2>${escapeHtml(item[0])}</h2><p>${escapeHtml(item[1])}</p></div>
-        </div>
-      `).join("")}
-    </div>
-    <div class="poster-helplines">
-      <div><strong>Child Helpline</strong><span>1098</span><small>24x7 | Free | Confidential</small></div>
-      <div><strong>Singappen Special Force</strong><span>1091</span><small>Toll Free</small></div>
-      <div><strong>Your Local Police</strong><span>100</span><small>Emergency</small></div>
-      <div><strong>SJPU / POCSO e-Box</strong><span>Online</span><small>Reporting Platform</small></div>
-    </div>
-    <div class="poster-disclaimer">This module explains the law in simple words. It is not legal advice. For legal action, contact the authorities.</div>
+    <img class="one-card-image" src="img/one-card-to-keep.jpg" alt="One Card to Keep">
   `;
   wrap.appendChild(card);
 
@@ -2100,28 +2070,26 @@ async function buildOneCardCanvas() {
 
 async function downloadAndShareOneCard(btn) {
   SFX.click();
-  const canvas = await buildOneCardCanvas();
-  if (!canvas) { footerMsg.textContent = "Image export isn't supported on this browser."; return; }
-  canvas.toBlob(async (blob) => {
-    if (!blob) return;
-    const fileName = "suraksha-kavasam-one-card-to-keep.png";
-    const file = new File([blob], fileName, { type: "image/png" });
+  const response = await fetch("img/one-card-to-keep.jpg");
+  if (!response.ok) { footerMsg.textContent = "One Card image could not be loaded."; return; }
+  const blob = await response.blob();
+  const fileName = "one-card-to-keep.jpg";
+  const file = new File([blob], fileName, { type: blob.type || "image/jpeg" });
 
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      try {
-        await navigator.share({ files: [file], title: "One Card to Keep — POCSO Awareness", text: "POCSO Adult Awareness — One Card to Keep" });
-        return;
-      } catch (e) { /* user cancelled the share sheet — fall through to a plain download */ }
-    }
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = fileName;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-  }, "image/png");
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    try {
+      await navigator.share({ files: [file], title: "One Card to Keep — POCSO Awareness", text: "POCSO Adult Awareness — One Card to Keep" });
+      return;
+    } catch (e) { /* user cancelled the share sheet — fall through to a plain download */ }
+  }
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
 }
 
 /* ---------------- Boot ---------------- */
