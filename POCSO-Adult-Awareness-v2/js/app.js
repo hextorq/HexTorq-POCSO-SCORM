@@ -402,23 +402,83 @@ function makeDialogueSpeakerBtn(turns, getLineEls) {
   return btn;
 }
 
-/* ---------------- Sidebar ---------------- */
+/* ---------------- Sidebar (accordion: one chapter open at a time) ---------------- */
+const FINAL_PAGE_TYPES = ["certificate", "onecard"];
+let openChapterKey = null;
+
+function goToPageId(id) {
+  const idx = PAGES.findIndex((p) => p.id === id);
+  if (idx === -1 || idx === state.currentIndex) return;
+  SFX.navNext();
+  Speech.stop();
+  state.currentIndex = idx;
+  saveState();
+  syncOpenChapterToPage();
+  render();
+}
+
 function buildSidebar() {
   chapterListEl.innerHTML = "";
   CHAPTERS.forEach((ch) => {
     const li = document.createElement("li");
     li.className = "chapter-item";
     li.dataset.chapter = ch.num;
-    li.innerHTML = `<span class="ch-title"><span class="dot"></span><span>${ch.title}</span></span><span class="ch-sub">${ch.duration}</span>`;
+    li.innerHTML = `
+      <button type="button" class="ch-header">
+        <span class="ch-title"><span class="dot"></span><span>${ch.title}</span></span>
+        <span class="ch-sub">${ch.duration}${svgIcon("chevronDown", 15)}</span>
+      </button>
+      <ul class="ch-screens"></ul>`;
+    const sub = li.querySelector(".ch-screens");
+    ch.screens.forEach((screen) => {
+      const s = document.createElement("li");
+      s.className = "ch-screen-item";
+      s.dataset.pageId = screen.id;
+      s.textContent = screen.heading.replace(/^SCREEN\s*[\d.]+\s*—\s*/i, "");
+      sub.appendChild(s);
+    });
+    const quizLi = document.createElement("li");
+    quizLi.className = "ch-screen-item ch-screen-item-quiz";
+    quizLi.dataset.pageId = "quiz-" + ch.num;
+    quizLi.textContent = "Chapter " + ch.num + " Quiz";
+    sub.appendChild(quizLi);
     chapterListEl.appendChild(li);
   });
   const finalLi = document.createElement("li");
   finalLi.className = "chapter-item";
   finalLi.dataset.chapter = "final";
-  finalLi.innerHTML = `<span class="ch-title"><span class="dot"></span><span>One Card to Keep</span></span>`;
+  finalLi.innerHTML = `
+    <button type="button" class="ch-header">
+      <span class="ch-title"><span class="dot"></span><span>One Card to Keep</span></span>
+      <span class="ch-sub">${svgIcon("chevronDown", 15)}</span>
+    </button>
+    <ul class="ch-screens">
+      <li class="ch-screen-item" data-page-id="certificate">Certificate</li>
+      <li class="ch-screen-item" data-page-id="onecard">One Card to Keep</li>
+    </ul>`;
   chapterListEl.appendChild(finalLi);
+
+  chapterListEl.addEventListener("click", (ev) => {
+    const screenItem = ev.target.closest(".ch-screen-item");
+    if (screenItem) { goToPageId(screenItem.dataset.pageId); return; }
+    const header = ev.target.closest(".ch-header");
+    if (!header) return;
+    const item = header.closest(".chapter-item");
+    const key = item.dataset.chapter;
+    SFX.select();
+    openChapterKey = openChapterKey === key ? null : key;
+    updateSidebar();
+  });
 }
-const FINAL_PAGE_TYPES = ["certificate", "onecard"];
+// Expands the sidebar accordion to the chapter a navigation just landed on.
+// Only called from actual navigation (Back/Next/direct jump), never from
+// updateSidebar() itself — otherwise collapsing the currently-open chapter
+// while still viewing one of its screens would immediately reopen it.
+function syncOpenChapterToPage() {
+  const page = currentPage();
+  const currentKey = FINAL_PAGE_TYPES.includes(page.type) ? "final" : (page.chapter ? String(page.chapter.num) : null);
+  if (currentKey) openChapterKey = currentKey;
+}
 function updateSidebar() {
   const page = currentPage();
   const items = chapterListEl.querySelectorAll(".chapter-item");
@@ -427,11 +487,17 @@ function updateSidebar() {
     const isFinal = key === "final";
     const isActive = isFinal ? FINAL_PAGE_TYPES.includes(page.type) : (page.chapter && String(page.chapter.num) === key);
     item.classList.toggle("active", isActive);
+    item.classList.toggle("open", openChapterKey === key);
     const chapterPages = isFinal
       ? PAGES.filter((p) => FINAL_PAGE_TYPES.includes(p.type))
       : PAGES.filter((p) => p.chapter && String(p.chapter.num) === key);
     const done = chapterPages.length > 0 && chapterPages.every((p) => state.completedPages[p.id]);
     item.classList.toggle("done", done);
+
+    item.querySelectorAll(".ch-screen-item").forEach((si) => {
+      si.classList.toggle("active", si.dataset.pageId === page.id);
+      si.classList.toggle("done", !!state.completedPages[si.dataset.pageId]);
+    });
   });
 }
 
@@ -464,13 +530,13 @@ function updateProgress() {
 /* ---------------- Navigation ---------------- */
 btnBack.addEventListener("click", () => {
   SFX.navBack(); Speech.stop();
-  if (state.currentIndex > 0) { state.currentIndex--; saveState(); render(); }
+  if (state.currentIndex > 0) { state.currentIndex--; saveState(); syncOpenChapterToPage(); render(); }
 });
 btnNext.addEventListener("click", () => {
   SFX.navNext(); Speech.stop();
   state.completedPages[currentPage().id] = true;
   saveState();
-  if (state.currentIndex < PAGES.length - 1) { state.currentIndex++; saveState(); render(); }
+  if (state.currentIndex < PAGES.length - 1) { state.currentIndex++; saveState(); syncOpenChapterToPage(); render(); }
 });
 
 /* ---------------- Screen-in animation ---------------- */
@@ -1347,15 +1413,40 @@ function renderMultiSelectCase(container, page, block, setInteractionCheck) {
 function renderLinearBranching(container, page, block, setInteractionCheck) {
   const key = page.id;
   if (!state.branching) state.branching = {};
-  if (!state.branching[key]) state.branching[key] = { beat: 0, complete: false, lastChoice: null, pendingAdvance: false };
+  if (!state.branching[key]) state.branching[key] = { beat: 0, complete: false, choices: {}, maxBeat: 0 };
   const progress = state.branching[key];
+  if (!progress.choices) {
+    progress.choices = {};
+    if (progress.lastChoice !== null && progress.lastChoice !== undefined) progress.choices[progress.beat || 0] = progress.lastChoice;
+  }
+  if (progress.maxBeat === undefined) progress.maxBeat = progress.beat || 0;
   const beats = block.data.beats || [];
   const currentBeatIndex = Math.min(progress.beat || 0, Math.max(0, beats.length - 1));
   const beat = beats[currentBeatIndex];
+  const selected = progress.choices[currentBeatIndex];
+  const maxUnlocked = progress.complete ? beats.length - 1 : Math.min(progress.maxBeat || 0, beats.length - 1);
 
   const box = document.createElement("div");
   box.className = "branch-box";
   container.appendChild(box);
+
+  const nav = document.createElement("div");
+  nav.className = "branch-nav";
+  beats.forEach((_, i) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "branch-nav-btn" + (i === currentBeatIndex ? " active" : "");
+    btn.textContent = String(i + 1);
+    btn.disabled = i > maxUnlocked;
+    btn.addEventListener("click", () => {
+      progress.beat = i;
+      saveState();
+      SFX.select();
+      render();
+    });
+    nav.appendChild(btn);
+  });
+  box.appendChild(nav);
 
   const stepText = document.createElement("div");
   stepText.className = "branch-step";
@@ -1388,20 +1479,20 @@ function renderLinearBranching(container, page, block, setInteractionCheck) {
   (beat.choices || []).forEach((choice, idx) => {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "branch-choice";
+    btn.className = "branch-choice" + (selected === idx ? " selected" : "");
     btn.textContent = choice.label;
-    btn.disabled = !!progress.pendingAdvance || !!progress.complete;
     btn.addEventListener("click", () => {
-      progress.lastChoice = idx;
+      progress.choices[currentBeatIndex] = idx;
       if (choice.correct) {
         SFX.correct();
         if (currentBeatIndex < beats.length - 1) {
-          progress.pendingAdvance = true;
+          progress.maxBeat = Math.max(progress.maxBeat || 0, currentBeatIndex + 1);
           saveState();
           render();
           return;
         }
         progress.complete = true;
+        progress.maxBeat = beats.length - 1;
       } else {
         SFX.incorrect();
       }
@@ -1411,20 +1502,19 @@ function renderLinearBranching(container, page, block, setInteractionCheck) {
     choicesEl.appendChild(btn);
   });
 
-  if (progress.lastChoice !== null && beat.choices[progress.lastChoice]) {
-    const choice = beat.choices[progress.lastChoice];
+  if (selected !== null && selected !== undefined && beat.choices[selected]) {
+    const choice = beat.choices[selected];
     feedback.hidden = false;
     feedback.className = "branch-feedback " + (choice.correct ? "correct" : "incorrect");
     feedback.innerHTML = `<div>${escapeHtml(choice.feedback)}</div>`;
-    if (choice.correct && progress.pendingAdvance) {
+    if (choice.correct && currentBeatIndex < beats.length - 1) {
       const nextBtn = document.createElement("button");
       nextBtn.type = "button";
       nextBtn.className = "btn btn-primary branch-next";
       nextBtn.textContent = `Continue to Beat ${currentBeatIndex + 2}`;
       nextBtn.addEventListener("click", () => {
         progress.beat = currentBeatIndex + 1;
-        progress.lastChoice = null;
-        progress.pendingAdvance = false;
+        progress.maxBeat = Math.max(progress.maxBeat || 0, currentBeatIndex + 1);
         saveState();
         render();
       });
@@ -1432,6 +1522,26 @@ function renderLinearBranching(container, page, block, setInteractionCheck) {
     }
   }
   box.appendChild(feedback);
+
+  const controls = document.createElement("div");
+  controls.className = "branch-controls";
+  controls.innerHTML = `
+    <button type="button" class="btn btn-ghost branch-prev" ${currentBeatIndex === 0 ? "disabled" : ""}>Previous beat</button>
+    <button type="button" class="btn btn-ghost branch-forward" ${currentBeatIndex >= maxUnlocked ? "disabled" : ""}>Next beat</button>
+  `;
+  controls.querySelector(".branch-prev").addEventListener("click", () => {
+    progress.beat = Math.max(0, currentBeatIndex - 1);
+    saveState();
+    SFX.navBack();
+    render();
+  });
+  controls.querySelector(".branch-forward").addEventListener("click", () => {
+    progress.beat = Math.min(maxUnlocked, currentBeatIndex + 1);
+    saveState();
+    SFX.navNext();
+    render();
+  });
+  box.appendChild(controls);
 
   if (progress.complete && block.data.completionPanel) {
     const panel = renderWriteRecordPanel(block.data.completionPanel);
@@ -1787,17 +1897,39 @@ function renderCertificatePage(page, wrap) {
 /* ---------------- One Card to Keep — its own page, read after the certificate ---------------- */
 function renderOneCardPage(page, wrap) {
   const card = document.createElement("div");
-  card.className = "final-card";
+  card.className = "final-card final-card-poster";
   card.innerHTML = `
-    <h1>${escapeHtml(FINAL_CARD.heading)}</h1>
-    <div class="intro">${escapeHtml(FINAL_CARD.intro)}</div>
-    <ol>${FINAL_CARD.lines.map((l) => `<li>${escapeHtml(l)}</li>`).join("")}</ol>
-    <div class="contacts">${escapeHtml(FINAL_CARD.contacts)}</div>
-    <div class="disclaimer">${escapeHtml(FINAL_CARD.disclaimer)}</div>
-    <div class="helpline-logos">
-      <img src="img/child-line.jpg" alt="Childline 1098">
-      <img src="img/singapen-helpline.png" alt="Singapenn Helpline">
+    <div class="poster-top">
+      <div class="poster-agency">
+        <img src="img/singappen-logo.png" alt="Singappen">
+        <div><strong>Singappen Special Task Force</strong><span>Tamil Nadu Police</span></div>
+      </div>
+      <div class="poster-module"><strong>POCSO Act, 2012</strong><span>Awareness Module</span></div>
     </div>
+    <h1>One Card To Keep</h1>
+    <div class="poster-intro">Five things. If you remember nothing else, remember these.</div>
+    <div class="poster-list">
+      ${[
+        ["Age Matters", "Any person below 18 years is a child. Below 18, \"yes\" has no meaning in law."],
+        ["Abuse Is Not Limited To Physical Contact", "Messages, pictures, videos, and following a child online or offline are all offences under POCSO. Grooming, stalking, exposing a child to pornography, or sharing sexual material are punishable offences."],
+        ["Never Share Abuse Material", "Do not forward a photo or video of child abuse. Report it immediately. Preserve evidence where required. Delete only after appropriate reporting procedures."],
+        ["Reasonable Suspicion Requires Action", "Suspicion is enough. You do not have to be sure — and staying quiet is itself an offence."],
+        ["If A Child Tells You — Believe", "Listen calmly and believe the child. Do not question or confront. Do not promise confidentiality. Write it down as soon as possible. Report the same day to the authorities."]
+      ].map((item, i) => `
+        <div class="poster-row">
+          <div class="poster-num">${String(i + 1).padStart(2, "0")}</div>
+          <div class="poster-icon">${["<18", "MSG", "!", "?", "✓"][i]}</div>
+          <div class="poster-copy"><h2>${escapeHtml(item[0])}</h2><p>${escapeHtml(item[1])}</p></div>
+        </div>
+      `).join("")}
+    </div>
+    <div class="poster-helplines">
+      <div><strong>Child Helpline</strong><span>1098</span><small>24x7 | Free | Confidential</small></div>
+      <div><strong>Singappen Special Force</strong><span>1091</span><small>Toll Free</small></div>
+      <div><strong>Your Local Police</strong><span>100</span><small>Emergency</small></div>
+      <div><strong>SJPU / POCSO e-Box</strong><span>Online</span><small>Reporting Platform</small></div>
+    </div>
+    <div class="poster-disclaimer">This module explains the law in simple words. It is not legal advice. For legal action, contact the authorities.</div>
   `;
   wrap.appendChild(card);
 
@@ -1967,6 +2099,7 @@ async function downloadAndShareOneCard(btn) {
 /* ---------------- Boot ---------------- */
 startVideoPreload();
 buildSidebar();
+syncOpenChapterToPage();
 render();
 
 const loadingScreen = document.getElementById("loadingScreen");
