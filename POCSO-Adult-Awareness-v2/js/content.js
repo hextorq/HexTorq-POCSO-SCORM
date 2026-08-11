@@ -313,8 +313,9 @@ const CHAPTERS = [
         { t: "quote", heading: `The Act's own words:`, lines: [
           `Penetration into the vagina, mouth, urethra or anus of a child; or making the child do so with the offender or any other person.`
         ]},
-        { t: "p", lines: [
-          `Punishment — Section 4. At least 10 years, and it can go up to imprisonment for life, with a fine. If the child is below 16, at least 20 years, and it can go up to imprisonment for the rest of the offender's life, with a fine.`
+        { t: "table", className: "punishment-table", caption: `Punishment — Section 4`, headerRow: [``, `Minimum`, `Maximum`], rows: [
+          [`Child below 18`, `10 years`, `Life imprisonment + fine`],
+          [`Child below 16`, `20 years`, `Imprisonment for the rest of life + fine`]
         ]}
       ]
     },

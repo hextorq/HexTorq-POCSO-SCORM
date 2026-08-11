@@ -785,7 +785,7 @@ function renderTableBlock(block) {
   const head = `<tr>${block.headerRow.map((h) => `<th>${escapeHtml(h)}</th>`).join("")}</tr>`;
   const rows = block.rows.map((r) => `<tr>${r.map((c) => `<td>${escapeHtml(c)}</td>`).join("")}</tr>`).join("");
   const tableClass = ["p-table", block.className || ""].filter(Boolean).join(" ");
-  div.innerHTML = `<table class="${tableClass}"><thead>${head}</thead><tbody>${rows}</tbody></table>`;
+  div.innerHTML = `${block.caption ? `<div class="table-caption">${escapeHtml(block.caption)}</div>` : ""}<table class="${tableClass}"><thead>${head}</thead><tbody>${rows}</tbody></table>`;
   return div;
 }
 function renderCompareTableBlock(block) {
