@@ -474,6 +474,10 @@ body[data-focus-mode="true"] .page{max-width:none;min-height:100vh;display:flex;
 .branch-continuity{font-size:.78rem;line-height:1.5;color:var(--text-mute);margin-bottom:10px}
 .branch-step{font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
 .branch-situation{font-weight:700;color:var(--navy);font-size:1rem;line-height:1.5;margin-bottom:14px}
+.branch-situation-label{
+  display:block;width:max-content;margin-bottom:6px;padding:3px 8px;border-radius:4px;
+  background:#fbf7ec;color:var(--gold);font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+}
 .branch-body{display:flex;flex-direction:column;gap:16px;align-items:center}
 .branch-illustration{
   position:relative;width:100%;max-width:520px;min-height:190px;border-radius:8px;overflow:hidden;

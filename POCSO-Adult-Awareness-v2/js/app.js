@@ -1483,7 +1483,7 @@ function renderLinearBranching(container, page, block, setInteractionCheck) {
 
   const situation = document.createElement("div");
   situation.className = "branch-situation";
-  situation.textContent = beat.situation;
+  situation.innerHTML = `<span class="branch-situation-label">Situation</span><span>${escapeHtml(beat.situation)}</span>`;
   box.appendChild(situation);
 
   const body = document.createElement("div");
